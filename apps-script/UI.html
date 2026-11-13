@@ -355,8 +355,121 @@
         window.google.script = {};
       }
 
+      function mcCleanUrlsOn_() {
+        var host = '';
+        try { host = String(location.hostname || ''); } catch (eHost) { return false; }
+        return host === 'mcurator.com' || host === 'www.mcurator.com' || /\.github\.io$/i.test(host);
+      }
+      function mcNormalizePublicPath_(pathname) {
+        var p = String(pathname || '/');
+        p = p.replace(/\/index\.html$/i, '');
+        if (p.length > 1 && p.charAt(p.length - 1) === '/') p = p.slice(0, -1);
+        return p || '/';
+      }
+      function mcRouteFromPublicPath_(pathname) {
+        var p = mcNormalizePublicPath_(pathname);
+        try {
+          if (/\.github\.io$/i.test(location.hostname || '')) {
+            var firstSeg = p.split('/').filter(Boolean)[0] || '';
+            var pagesPrefix = firstSeg ? '/' + firstSeg : '';
+            if (pagesPrefix && (p === pagesPrefix || p.indexOf(pagesPrefix + '/') === 0)) {
+              p = p.slice(pagesPrefix.length) || '/';
+            }
+          }
+        } catch (ePrefix) {}
+        if (/\/apps-script\/UI\.html$/i.test(p)) return null;
+        if (p === '/') return '/';
+        var exact = {
+          '/home': '/',
+          '/story': '/section/story',
+          '/workflow': '/section/workflow',
+          '/exhibitions': '/section/online-exhibition',
+          '/origin': '/origin',
+          '/origin/atlas': '/origin/atlas',
+          '/origin/pulse': '/origin/pulse',
+          '/origin/studio': '/origin/studio',
+          '/marketplace': '/marketplace',
+          '/start': '/section/start',
+          '/about': '/section/about',
+          '/passport': '/section/card-generator',
+          '/passport-studio': '/section/passport-studio',
+          '/paleo': '/section/paleo-reconstruction',
+          '/photo-restore': '/section/photo-restoration-lab',
+          '/paper': '/section/taxonomy-manuscript-studio',
+          '/evolution-tree': '/section/evolution-tree-lab',
+          '/husbandry': '/section/husbandry-log'
+        };
+        if (exact[p]) return exact[p];
+        if (p.indexOf('/workflow/') === 0) return '/section' + p;
+        if (p.indexOf('/marketplace/') === 0 || p.indexOf('/origin/') === 0) return p;
+        if (p.indexOf('/photo-restore') === 0) return '/section/photo-restoration-lab' + p.slice('/photo-restore'.length);
+        if (/\/apps-script\//.test(p) || /\.[a-z0-9]+$/i.test(p)) return null;
+        return '/section' + p;
+      }
+      function mcRouteToPublicPath_(route) {
+        var r = String(route || '/').split('?')[0];
+        if (!r) r = '/';
+        if (r.charAt(0) !== '/') r = '/' + r;
+        if (r === '/' || r === '/home') return '/';
+        if (r === '/section/story' || r === '/section/founder-story') return '/story';
+        if (r === '/section/workflow') return '/workflow';
+        if (r.indexOf('/section/workflow/') === 0) return '/workflow/' + r.slice('/section/workflow/'.length);
+        if (r === '/section/online-exhibition' || r === '/section/exhibitions' || r === '/section/museum-collections' || r === '/section/online-museum') return '/exhibitions';
+        if (r === '/section/start') return '/start';
+        if (r === '/section/about') return '/about';
+        if (r === '/section/card-generator' || r === '/card-generator') return '/passport';
+        if (r === '/section/passport-studio') return '/passport-studio';
+        if (r === '/section/paleo-reconstruction') return '/paleo';
+        if (r.indexOf('/section/photo-restoration-lab') === 0) return '/photo-restore' + r.slice('/section/photo-restoration-lab'.length);
+        if (r === '/section/taxonomy-manuscript-studio') return '/paper';
+        if (r === '/section/evolution-tree-lab' || r === '/section/workflow/evolution-tree') return '/evolution-tree';
+        if (r === '/section/husbandry-log') return '/husbandry';
+        if (r.indexOf('/section/') === 0) return '/' + r.slice('/section/'.length);
+        return r;
+      }
+      function mcCommitRoute_(hashValue) {
+        var raw = String(hashValue || '');
+        if (raw.charAt(0) === '#') raw = raw.slice(1);
+        var q = '';
+        var qi = raw.indexOf('?');
+        if (qi >= 0) {
+          q = raw.slice(qi);
+          raw = raw.slice(0, qi);
+        }
+        if (!raw) raw = '/';
+        if (raw.charAt(0) !== '/') raw = '/' + raw;
+        if (mcCleanUrlsOn_()) {
+          var publicPath = mcRouteToPublicPath_(raw);
+          var prefix = '';
+          try {
+            if (/\.github\.io$/i.test(location.hostname || '')) {
+              var firstSeg = String(location.pathname || '/').split('/').filter(Boolean)[0] || '';
+              if (firstSeg) prefix = '/' + firstSeg;
+            }
+          } catch (ePrefix) {}
+          history.pushState({}, '', prefix + publicPath + (q || location.search || ''));
+          return;
+        }
+        var nextHash = '#' + raw + q;
+        if (String(location.hash || '') !== nextHash) window.location.hash = nextHash;
+      }
+      window.mcCleanUrlsOn_ = mcCleanUrlsOn_;
+      window.mcRouteFromPublicPath_ = mcRouteFromPublicPath_;
+      window.mcRouteToPublicPath_ = mcRouteToPublicPath_;
+      window.mcCommitRoute_ = mcCommitRoute_;
+      if (mcCleanUrlsOn_() && /\/apps-script\/UI\.html$/i.test(location.pathname || '')) {
+        var legacyRoute = '/';
+        var legacyHash = String(location.hash || '').replace(/^#/, '');
+        if (legacyHash && legacyHash !== '/') legacyRoute = legacyHash.charAt(0) === '/' ? legacyHash.split('?')[0] : '/' + legacyHash.split('?')[0];
+        location.replace(mcRouteToPublicPath_(legacyRoute) + (location.search || ''));
+      }
       function mcPathFromHash_() {
         var h = String(typeof location !== 'undefined' && location.hash ? location.hash : '').replace(/^#/, '');
+        if (h && h !== '/') return h.charAt(0) === '/' ? h.split('?')[0] : '/' + h.split('?')[0];
+        if (mcCleanUrlsOn_()) {
+          var fromPath = mcRouteFromPublicPath_(location.pathname);
+          if (fromPath) return fromPath;
+        }
         if (!h || h === '/') return '/';
         return h.charAt(0) === '/' ? h : '/' + h;
       }
@@ -369,6 +482,7 @@
         } catch (e) {}
       }
       function mcMaybeRestoreHashOnReload_() {
+        if (mcCleanUrlsOn_()) return;
         if (window.__MC_HASH_RESTORED__) return;
         try {
           var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
@@ -33861,7 +33975,7 @@
           window.MCRouter.go('/section/museum-collections');
           return;
         }
-        window.location.hash = '#/section/museum-collections';
+        window.mcCommitRoute_('/section/museum-collections');
       });
       document.getElementById('btnWelcomeHeroDemo')?.addEventListener('click', function (ev) {
         if (window.McWelcomeHeroDemo && typeof window.McWelcomeHeroDemo.onPrimaryClick === 'function') {
@@ -33876,7 +33990,7 @@
           window.MCRouter.go('/section/card-generator');
           return;
         }
-        window.location.hash = '#/section/card-generator';
+        window.mcCommitRoute_('/section/card-generator');
       });
       document.getElementById('btnWelcomeToAccount')?.addEventListener('click', () => goWelcomeAuthSection());
       document.getElementById('btnWelcomeHowItWorks')?.addEventListener('click', function () {
@@ -34209,6 +34323,11 @@
 
     window.addEventListener('hashchange', () => {
       if (window.MCRouter && typeof window.MCRouter.render === 'function') window.MCRouter.render();
+    });
+    window.addEventListener('popstate', () => {
+      if (window.mcCleanUrlsOn_ && window.mcCleanUrlsOn_() && window.MCRouter && typeof window.MCRouter.render === 'function') {
+        window.MCRouter.render();
+      }
     });
 
     if (!window.__mcGlobalNavBound) {
@@ -35155,6 +35274,9 @@
         }
       } catch (eN) {}
       let raw = String(window.location.hash || '').replace(/^#/, '');
+      if ((!raw || raw === '/') && window.mcCleanUrlsOn_ && window.mcCleanUrlsOn_()) {
+        raw = window.mcRouteFromPublicPath_(location.pathname) || raw;
+      }
       if (!raw || raw === '/') return '/';
       if (raw.charAt(0) !== '/') raw = '/' + raw;
       raw = raw.split('?')[0];
@@ -35495,7 +35617,7 @@
 
     function renderMarketplaceAssetDetail(id) {
       try {
-        window.location.hash = '#/marketplace/asset/' + encodeURIComponent(String(id || ''));
+        window.mcCommitRoute_('/marketplace/asset/' + encodeURIComponent(String(id || '')));
       } catch (eH) {}
       if (window.MCRouter && typeof window.MCRouter.render === 'function') {
         window.MCRouter.render();
@@ -35513,28 +35635,28 @@
       if (!target) return;
       console.log('[MC NAV]', target);
       if (target === '/section/paleo-reconstruction') {
-        window.location.hash = '#/section/paleo-reconstruction';
+        window.mcCommitRoute_('/section/paleo-reconstruction');
         window.MCRouter.render();
         return;
       }
       if (target === '/section/photo-restoration-lab' || target.indexOf('/section/photo-restoration-lab') === 0) {
         var prlCap = target.indexOf('capture=1') !== -1 ? '?capture=1' : '';
-        window.location.hash = '#/section/photo-restoration-lab' + prlCap;
+        window.mcCommitRoute_('/section/photo-restoration-lab' + prlCap);
         window.MCRouter.render();
         return;
       }
       if (target === '/section/taxonomy-manuscript-studio') {
-        window.location.hash = '#/section/taxonomy-manuscript-studio';
+        window.mcCommitRoute_('/section/taxonomy-manuscript-studio');
         window.MCRouter.render();
         return;
       }
       if (target === '/section/evolution-tree-lab' || target === '/section/workflow/evolution-tree') {
-        window.location.hash = '#/section/evolution-tree-lab';
+        window.mcCommitRoute_('/section/evolution-tree-lab');
         window.MCRouter.render();
         return;
       }
       if (target === '/section/husbandry-log') {
-        window.location.hash = '#/section/husbandry-log';
+        window.mcCommitRoute_('/section/husbandry-log');
         window.MCRouter.render();
         return;
       }
@@ -35542,21 +35664,16 @@
         target.indexOf('/section/specimen-workflow') === 0 ||
         target === '/section/herbarium-workflow'
       ) {
-        window.location.hash =
-          '#' + (target.indexOf('/section/') === 0 ? target : '/section/specimen-workflow');
+        window.mcCommitRoute_(target.indexOf('/section/') === 0 ? target : '/section/specimen-workflow');
         window.MCRouter.render();
         return;
       }
       if (target === '/card-generator' || target === '/section/card-generator') {
-        window.location.hash = '#/section/card-generator';
+        window.mcCommitRoute_('/section/card-generator');
         window.MCRouter.render();
         return;
       }
-      if (target.charAt(0) === '/') {
-        window.location.hash = '#' + target;
-      } else {
-        window.location.hash = '#/' + target;
-      }
+      window.mcCommitRoute_(target.charAt(0) === '/' ? target : '/' + target);
       try {
         if (typeof window.mcPersistLastHash_ === 'function') window.mcPersistLastHash_(target.charAt(0) === '/' ? target : '/' + target);
       } catch (ePersistGo) {}
@@ -35725,7 +35842,7 @@
             }
           } catch (eFsRedir) {}
           try {
-            window.location.hash = '#/section/story';
+            window.mcCommitRoute_('/section/story');
           } catch (eFsHash) {}
           return;
         }
@@ -35776,7 +35893,7 @@
           }
         } catch (eExRedir) {}
         try {
-          window.location.hash = '#/section/online-exhibition';
+          window.mcCommitRoute_('/section/online-exhibition');
         } catch (eExHash) {}
         return;
       }
@@ -35789,7 +35906,7 @@
           }
         } catch (eExRedir) {}
         try {
-          window.location.hash = '#/section/online-exhibition';
+          window.mcCommitRoute_('/section/online-exhibition');
         } catch (eExHash) {}
         return;
       }
