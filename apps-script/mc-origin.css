@@ -7562,7 +7562,142 @@
 }
 
 .mc-origin .mc-origin-discover__marketing .mc-origin-hero-stage {
-  min-height: min(52vw, 420px);
+  min-height: min(28vw, 240px);
+}
+
+.mc-origin-usp {
+  display: grid;
+  gap: 18px;
+  margin: 4px 0 28px;
+  scroll-margin-top: calc(var(--origin-focus-offset, 96px) + var(--origin-local-nav-height, 48px));
+}
+
+.mc-origin-usp__head {
+  display: grid;
+  gap: 8px;
+  max-width: 68ch;
+}
+
+.mc-origin-usp__lead,
+.mc-origin-usp__tools-title {
+  margin: 0;
+}
+
+.mc-origin-usp__lead {
+  color: var(--origin-text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.mc-origin-usp__tools-title {
+  margin-top: 8px;
+  color: var(--origin-text-primary);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.mc-origin-usp__grid,
+.mc-origin-usp__tools {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.mc-origin .mc-origin-usp__card,
+.mc-origin .mc-origin-usp__tool {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 16px 16px 18px;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  background: var(--origin-surface-raised);
+  border: 1px solid var(--origin-border);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.mc-origin .mc-origin-usp__card h3,
+.mc-origin .mc-origin-usp__tool h3,
+.mc-origin .mc-origin-usp__card p,
+.mc-origin .mc-origin-usp__tool p {
+  margin: 0;
+}
+
+.mc-origin-usp__index {
+  color: var(--origin-accent-primary, #5ec4b6);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.mc-origin-usp__ask {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.mc-origin .mc-origin-usp__card h3,
+.mc-origin .mc-origin-usp__tool h3 {
+  color: var(--origin-text-primary);
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.mc-origin-usp__body,
+.mc-origin .mc-origin-usp__tool p {
+  color: var(--origin-text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mc-origin-usp__enables {
+  color: var(--origin-text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.mc-origin .mc-origin-usp__card:hover,
+.mc-origin .mc-origin-usp__tool:hover {
+  border-color: #8eab96;
+}
+
+.mc-origin .mc-origin-usp__card:focus-visible,
+.mc-origin .mc-origin-usp__tool:focus-visible {
+  outline: 2px solid var(--origin-accent-primary, #5ec4b6);
+  outline-offset: 2px;
+}
+
+@media (max-width: 980px) {
+  .mc-origin-usp__grid,
+  .mc-origin-usp__tools {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .mc-origin-usp__grid,
+  .mc-origin-usp__tools {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-origin .mc-origin-usp__card,
+  .mc-origin .mc-origin-usp__tool {
+    transition: none;
+  }
 }
 
 .mc-origin .mc-origin-discover__actions {

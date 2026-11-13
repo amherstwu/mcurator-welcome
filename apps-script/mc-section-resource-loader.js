@@ -330,11 +330,11 @@
       js: [{ url: 'online-exhibition-bundle.js?v=online-exhibition-v84-collab-labels', id: 'mcOnlineExhibitionBundle' }],
     },
     origin: {
-      css: ['mc-origin.css?v=origin-polish-20261006'],
+      css: ['mc-origin.css?v=origin-usp-board-v1'],
       js: [
         { url: 'data/sat-market-named-specimens.js?v=sat-v3-passport-ref2', id: 'mcOriginSpecimenPhotos' },
         { url: 'data/sat-assets-data.js?v=origin-stage9-workspace', id: 'mcSatAssetCatalog' },
-        { url: 'mc-origin.js?v=origin-review-20261006', id: 'mcOriginBundle' },
+        { url: 'mc-origin.js?v=origin-usp-board-v1', id: 'mcOriginBundle' },
       ],
     },
     'specimen-workflow': {

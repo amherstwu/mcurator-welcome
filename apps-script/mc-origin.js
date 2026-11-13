@@ -1571,6 +1571,88 @@
     );
   }
 
+  function originSystemUspHtml() {
+    var cards = lessonLayerDefs()
+      .map(function (layer, index) {
+        var n = index < 9 ? '0' + (index + 1) : String(index + 1);
+        return (
+          '<li><button type="button" class="mc-origin-usp__card" data-origin-route="' +
+          escapeHtml(layer.route) +
+          '">' +
+          '<span class="mc-origin-usp__index" aria-hidden="true">' +
+          n +
+          '</span>' +
+          '<p class="mc-origin-usp__ask" data-i18n="origin_lesson_tab_' +
+          layer.key +
+          '">' +
+          escapeHtml(t('origin_lesson_tab_' + layer.key, layer.key)) +
+          '</p>' +
+          '<h3 data-i18n="origin_usp_' +
+          layer.key +
+          '_claim">' +
+          escapeHtml(t('origin_usp_' + layer.key + '_claim', '')) +
+          '</h3>' +
+          '<p class="mc-origin-usp__body" data-i18n="origin_usp_' +
+          layer.key +
+          '_body">' +
+          escapeHtml(t('origin_usp_' + layer.key + '_body', '')) +
+          '</p>' +
+          '<p class="mc-origin-usp__enables" data-i18n="origin_usp_' +
+          layer.key +
+          '_enables">' +
+          escapeHtml(t('origin_usp_' + layer.key + '_enables', '')) +
+          '</p></button></li>'
+        );
+      })
+      .join('');
+    var tools = toolBenchDefs()
+      .map(function (tool) {
+        return (
+          '<li><button type="button" class="mc-origin-usp__tool" data-origin-route="' +
+          escapeHtml(tool.route) +
+          '">' +
+          '<h3 data-i18n="origin_tool_' +
+          tool.key +
+          '_title">' +
+          escapeHtml(t('origin_tool_' + tool.key + '_title', tool.title)) +
+          '</h3>' +
+          '<p data-i18n="origin_tool_' +
+          tool.key +
+          '_copy">' +
+          escapeHtml(t('origin_tool_' + tool.key + '_copy', tool.copy)) +
+          '</p></button></li>'
+        );
+      })
+      .join('');
+    return (
+      '<section class="mc-origin-usp" aria-labelledby="mc-origin-usp-title">' +
+      '<header class="mc-origin-usp__head">' +
+      '<p class="mc-origin__kicker" data-i18n="origin_usp_kicker">' +
+      escapeHtml(t('origin_usp_kicker', 'THE COMMERCIAL STANDARD')) +
+      '</p>' +
+      '<h2 id="mc-origin-usp-title" data-i18n="origin_usp_title">' +
+      escapeHtml(t('origin_usp_title', 'Six promises a specimen record has to keep')) +
+      '</h2>' +
+      '<p class="mc-origin-usp__lead" data-i18n="origin_usp_lead">' +
+      escapeHtml(
+        t(
+          'origin_usp_lead',
+          'Identity, place, discussion, exhibition, and provenance stay on the same object. These are the product promises, not a feature list.'
+        )
+      ) +
+      '</p></header>' +
+      '<ol class="mc-origin-usp__grid">' +
+      cards +
+      '</ol>' +
+      '<h3 class="mc-origin-usp__tools-title" data-i18n="origin_tools_title">' +
+      escapeHtml(t('origin_tools_title', 'Six research tools, free when you join')) +
+      '</h3>' +
+      '<ul class="mc-origin-usp__tools">' +
+      tools +
+      '</ul></section>'
+    );
+  }
+
   function originDiscoverHtml(signed, state) {
     var assets = readAtlasAssets();
     var catalogFailed = atlasCatalogFailed;
@@ -1656,6 +1738,7 @@
       '</p></div>' +
       feature +
       '</section>' +
+      originSystemUspHtml() +
       (cards
         ? '<section class="mc-origin-discover__more" aria-labelledby="mc-origin-discover-more">' +
           '<div class="mc-origin-discover__more-head"><h2 id="mc-origin-discover-more" class="mc-origin-section__title" data-i18n="origin_discover_more">' +
