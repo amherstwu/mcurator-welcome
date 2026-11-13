@@ -240,11 +240,10 @@
         });
       }, wait);
     };
-    if (global.document.readyState === 'complete') {
-      run();
-    } else {
-      global.addEventListener('load', run, { once: true });
-    }
+    run();
+    global.setTimeout(function () {
+      if (global.document.getElementById('mcBootSplash')) dismissMcBootSplash();
+    }, 4500);
   }
 
   function shouldRestoreAppSession() {

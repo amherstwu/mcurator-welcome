@@ -748,8 +748,6 @@
       '/section/passport-studio': 'passport-studio',
       '/section/card-generator': 'passport-studio',
       '/card-generator': 'passport-studio',
-      '/section/story': 'founder-story',
-      '/section/founder-story': 'founder-story',
       '/section/online-exhibition': 'online-exhibition',
       '/section/exhibitions': 'online-exhibition',
       '/section/online-museum': 'online-exhibition',

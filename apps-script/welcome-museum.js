@@ -3199,7 +3199,6 @@
   var VISUAL_EDITOR_BUILD_TAG = 'EDITOR-BOOT-FIX-2026-05-25';
   var DEFAULT_EDITOR_PAGES = [
     { id: 'landing', title: '首頁 Home', path: 'UI.html', icon: '🏠', enabled: true },
-    { id: 'story', title: '故事 Story', path: 'UI.html#/section/story', icon: '📖', enabled: true },
     { id: 'workflow', title: '解決方案 Workflow', path: 'UI.html#/section/workflow', icon: '⚙️', enabled: true },
     { id: 'online-exhibition', title: '線上展覽 Online Exhibition', path: 'UI.html#/section/online-exhibition', icon: '🏛️', enabled: true },
     { id: 'about', title: '關於 About', path: 'UI.html#/section/about', icon: 'ℹ️', enabled: true },

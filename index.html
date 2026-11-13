@@ -2,6 +2,8 @@
 <html lang="zh-Hant" dir="ltr" data-ui-scheme="dark" class="mc-boot-active">
 <head>
   <meta charset="utf-8" />
+  <!-- Must precede every relative URL. The published homepage lives at / and rewrites this to /apps-script/. -->
+  <base href="/apps-script/" target="_top" />
   <link rel="icon" href="brand/mark-simple-light.jpg" type="image/jpeg" />
   <script>
     (function () {
@@ -103,7 +105,23 @@
     })();
   </script>
   <link rel="stylesheet" href="mc-loader.css?v=brand-mark-v4" />
-  <script src="mc-preview-shell.js?v=mc-loader-v1"></script>
+  <script src="mc-preview-shell.js?v=mc-loader-v3"></script>
+  <script>
+    (function () {
+      window.setTimeout(function () {
+        var splash = document.getElementById('mcBootSplash');
+        if (!splash) return;
+        document.documentElement.classList.remove('mc-boot-active');
+        splash.classList.add('mc-boot-splash--out', 'mc-loader--out');
+        splash.setAttribute('aria-busy', 'false');
+        window.setTimeout(function () {
+          try {
+            splash.remove();
+          } catch (eBoot) {}
+        }, 480);
+      }, 6000);
+    })();
+  </script>
   <style id="mcLandingVisibilityGuard">
     html:not(.mc-entered) #welcomeShell {
       display: flex !important;
@@ -155,6 +173,38 @@
       color: #ece8df;
       overflow: hidden;
       font-family: Inter, 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    /* Keep the boot mark inside the card even if the loader stylesheet is late. */
+    #mcBootSplash .mc-loader__shell {
+      width: min(540px, 88vw);
+      max-width: 88vw;
+    }
+    #mcBootSplash .mc-loader__panel-top,
+    #mcBootSplash .mc-loader__brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #mcBootSplash .mc-loader__logo-wrap {
+      width: 6.25rem;
+      height: 6.25rem;
+      max-width: 6.25rem;
+    }
+    #mcBootSplash .mc-loader__logo {
+      width: 4.75rem;
+      height: 4.75rem;
+      max-width: 4.75rem;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+    #mcBootSplash .mc-loader__logo img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      margin: 0;
+      object-fit: cover;
+      display: block;
     }
   </style>
   <script>
@@ -355,121 +405,8 @@
         window.google.script = {};
       }
 
-      function mcCleanUrlsOn_() {
-        var host = '';
-        try { host = String(location.hostname || ''); } catch (eHost) { return false; }
-        return host === 'mcurator.com' || host === 'www.mcurator.com' || /\.github\.io$/i.test(host);
-      }
-      function mcNormalizePublicPath_(pathname) {
-        var p = String(pathname || '/');
-        p = p.replace(/\/index\.html$/i, '');
-        if (p.length > 1 && p.charAt(p.length - 1) === '/') p = p.slice(0, -1);
-        return p || '/';
-      }
-      function mcRouteFromPublicPath_(pathname) {
-        var p = mcNormalizePublicPath_(pathname);
-        try {
-          if (/\.github\.io$/i.test(location.hostname || '')) {
-            var firstSeg = p.split('/').filter(Boolean)[0] || '';
-            var pagesPrefix = firstSeg ? '/' + firstSeg : '';
-            if (pagesPrefix && (p === pagesPrefix || p.indexOf(pagesPrefix + '/') === 0)) {
-              p = p.slice(pagesPrefix.length) || '/';
-            }
-          }
-        } catch (ePrefix) {}
-        if (/\/apps-script\/UI\.html$/i.test(p)) return null;
-        if (p === '/') return '/';
-        var exact = {
-          '/home': '/',
-          '/story': '/section/story',
-          '/workflow': '/section/workflow',
-          '/exhibitions': '/section/online-exhibition',
-          '/origin': '/origin',
-          '/origin/atlas': '/origin/atlas',
-          '/origin/pulse': '/origin/pulse',
-          '/origin/studio': '/origin/studio',
-          '/marketplace': '/marketplace',
-          '/start': '/section/start',
-          '/about': '/section/about',
-          '/passport': '/section/card-generator',
-          '/passport-studio': '/section/passport-studio',
-          '/paleo': '/section/paleo-reconstruction',
-          '/photo-restore': '/section/photo-restoration-lab',
-          '/paper': '/section/taxonomy-manuscript-studio',
-          '/evolution-tree': '/section/evolution-tree-lab',
-          '/husbandry': '/section/husbandry-log'
-        };
-        if (exact[p]) return exact[p];
-        if (p.indexOf('/workflow/') === 0) return '/section' + p;
-        if (p.indexOf('/marketplace/') === 0 || p.indexOf('/origin/') === 0) return p;
-        if (p.indexOf('/photo-restore') === 0) return '/section/photo-restoration-lab' + p.slice('/photo-restore'.length);
-        if (/\/apps-script\//.test(p) || /\.[a-z0-9]+$/i.test(p)) return null;
-        return '/section' + p;
-      }
-      function mcRouteToPublicPath_(route) {
-        var r = String(route || '/').split('?')[0];
-        if (!r) r = '/';
-        if (r.charAt(0) !== '/') r = '/' + r;
-        if (r === '/' || r === '/home') return '/';
-        if (r === '/section/story' || r === '/section/founder-story') return '/story';
-        if (r === '/section/workflow') return '/workflow';
-        if (r.indexOf('/section/workflow/') === 0) return '/workflow/' + r.slice('/section/workflow/'.length);
-        if (r === '/section/online-exhibition' || r === '/section/exhibitions' || r === '/section/museum-collections' || r === '/section/online-museum') return '/exhibitions';
-        if (r === '/section/start') return '/start';
-        if (r === '/section/about') return '/about';
-        if (r === '/section/card-generator' || r === '/card-generator') return '/passport';
-        if (r === '/section/passport-studio') return '/passport-studio';
-        if (r === '/section/paleo-reconstruction') return '/paleo';
-        if (r.indexOf('/section/photo-restoration-lab') === 0) return '/photo-restore' + r.slice('/section/photo-restoration-lab'.length);
-        if (r === '/section/taxonomy-manuscript-studio') return '/paper';
-        if (r === '/section/evolution-tree-lab' || r === '/section/workflow/evolution-tree') return '/evolution-tree';
-        if (r === '/section/husbandry-log') return '/husbandry';
-        if (r.indexOf('/section/') === 0) return '/' + r.slice('/section/'.length);
-        return r;
-      }
-      function mcCommitRoute_(hashValue) {
-        var raw = String(hashValue || '');
-        if (raw.charAt(0) === '#') raw = raw.slice(1);
-        var q = '';
-        var qi = raw.indexOf('?');
-        if (qi >= 0) {
-          q = raw.slice(qi);
-          raw = raw.slice(0, qi);
-        }
-        if (!raw) raw = '/';
-        if (raw.charAt(0) !== '/') raw = '/' + raw;
-        if (mcCleanUrlsOn_()) {
-          var publicPath = mcRouteToPublicPath_(raw);
-          var prefix = '';
-          try {
-            if (/\.github\.io$/i.test(location.hostname || '')) {
-              var firstSeg = String(location.pathname || '/').split('/').filter(Boolean)[0] || '';
-              if (firstSeg) prefix = '/' + firstSeg;
-            }
-          } catch (ePrefix) {}
-          history.pushState({}, '', prefix + publicPath + (q || location.search || ''));
-          return;
-        }
-        var nextHash = '#' + raw + q;
-        if (String(location.hash || '') !== nextHash) window.location.hash = nextHash;
-      }
-      window.mcCleanUrlsOn_ = mcCleanUrlsOn_;
-      window.mcRouteFromPublicPath_ = mcRouteFromPublicPath_;
-      window.mcRouteToPublicPath_ = mcRouteToPublicPath_;
-      window.mcCommitRoute_ = mcCommitRoute_;
-      if (mcCleanUrlsOn_() && /\/apps-script\/UI\.html$/i.test(location.pathname || '')) {
-        var legacyRoute = '/';
-        var legacyHash = String(location.hash || '').replace(/^#/, '');
-        if (legacyHash && legacyHash !== '/') legacyRoute = legacyHash.charAt(0) === '/' ? legacyHash.split('?')[0] : '/' + legacyHash.split('?')[0];
-        location.replace(mcRouteToPublicPath_(legacyRoute) + (location.search || ''));
-      }
       function mcPathFromHash_() {
         var h = String(typeof location !== 'undefined' && location.hash ? location.hash : '').replace(/^#/, '');
-        if (h && h !== '/') return h.charAt(0) === '/' ? h.split('?')[0] : '/' + h.split('?')[0];
-        if (mcCleanUrlsOn_()) {
-          var fromPath = mcRouteFromPublicPath_(location.pathname);
-          if (fromPath) return fromPath;
-        }
         if (!h || h === '/') return '/';
         return h.charAt(0) === '/' ? h : '/' + h;
       }
@@ -482,7 +419,6 @@
         } catch (e) {}
       }
       function mcMaybeRestoreHashOnReload_() {
-        if (mcCleanUrlsOn_()) return;
         if (window.__MC_HASH_RESTORED__) return;
         try {
           var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
@@ -596,7 +532,6 @@
       });
     })();
   </script>
-  <base href="/apps-script/" target="_top" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0a0d12" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -670,7 +605,7 @@
   <link rel="stylesheet" href="mc-homepage-narrative.css"/>
   <link rel="stylesheet" href="mc-homepage-arrow-path.css?v=2026-journey-v5"/>
   <!-- OLD MCURATOR WORKFLOW SECTION DISABLED BY CODEX REBUILD -->
-  <link rel="stylesheet" href="mc-workflow-screenshot-rebuild.css?v=scene-fade-v4"/>
+  <link rel="stylesheet" href="mc-workflow-screenshot-rebuild.css?v=scene-fade-v2"/>
   
   <!--MC_SECTION_DEFER_BEGIN css: founder-story-bundle.css MC_SECTION_DEFER_END-->
   
@@ -13372,7 +13307,6 @@
 
                 <nav class="mc-nav-links" aria-label="Product" id="welcomeSiteNav">
                   <button type="button" class="mc-nav-link" id="lpNavHome" data-route="/" data-welcome-nav="intro" data-i18n="lp_nav_home">Home</button>
-                  <button type="button" class="mc-nav-link" data-route="/section/story" data-i18n="lp_nav_story">Story</button>
                   <button type="button" class="mc-nav-link" id="lpNavProduct" data-lp-scroll="#mcHomeStory" data-lp-spy="lp-story" data-i18n="lp_clean_nav_product">Product</button>
                   <button type="button" class="mc-nav-link" id="lpNavSolutions" data-lp-scroll="#mcHomeS2" data-route="/section/workflow" data-lp-spy="lp-workflow" data-i18n="lp_clean_nav_solutions">Solutions</button>
                   <button type="button" class="mc-nav-link" id="lpNavWorkspaceTools" data-lp-scroll="#welcomeWorkspaceUspSection" data-lp-spy="lp-workspace-usp" data-i18n="lp_nav_workspace_tools">加入後功能</button>
@@ -13395,7 +13329,6 @@
               <div class="lp-drawer" id="lpNavDrawer" hidden>
                 <div class="lp-drawer__inner">
                   <button type="button" class="lp-drawer__item" data-route="/" data-welcome-nav="intro" data-i18n="lp_nav_home">Home</button>
-                  <button type="button" class="lp-drawer__item" data-route="/section/story" data-i18n="lp_nav_story">Story</button>
                   <button type="button" class="lp-drawer__item" data-lp-scroll="#mcHomeStory" data-lp-spy="lp-story" data-i18n="lp_clean_nav_product">Product</button>
                   <button type="button" class="lp-drawer__item" data-lp-scroll="#mcHomeS2" data-route="/section/workflow" data-lp-spy="lp-workflow" data-i18n="lp_clean_nav_solutions">Solutions</button>
                   <button type="button" class="lp-drawer__item" data-lp-scroll="#welcomeWorkspaceUspSection" data-lp-spy="lp-workspace-usp" data-i18n="lp_nav_workspace_tools">加入後功能</button>
@@ -32390,27 +32323,14 @@
           }
         }
       }
-      remountExperience(window.MCFounderStory, 'welcomePhaseFounderStory');
       remountExperience(window.MCOnlineExhibition, 'welcomePhaseOnlineExhibition');
       remountExperience(window.MCOrigin, 'welcomePhaseOrigin');
     }
 
     function showWelcomePhaseFounderStory() {
-      state.welcomePhase = 'founder-story';
-      document.getElementById('welcomePhaseIntro')?.style.setProperty('display', 'none');
-      hideWelcomeSubPhases_('welcomePhaseFounderStory');
-      document.getElementById('welcomePhaseFounderStory')?.style.setProperty('display', 'block');
-      applyI18n();
-      applyWelcomeVideo();
-      const sh = document.getElementById('welcomeShell');
-      if (sh) sh.scrollTo({ top: 0, behavior: 'smooth' });
-      updateWelcomeNavHighlight();
-      try {
-        if (window.MCAboutParticles && typeof window.MCAboutParticles.stop === 'function') window.MCAboutParticles.stop();
-      } catch (eFsP) {}
-      try {
-        refreshEmbeddedPublicExperiences_(true);
-      } catch (eFsMount) {}
+      var storyPhase = document.getElementById('welcomePhaseFounderStory');
+      if (storyPhase) storyPhase.style.setProperty('display', 'none');
+      if (typeof showWelcomePhaseIntro === 'function') showWelcomePhaseIntro();
     }
 
     function showWelcomePhaseOnlineExhibition() {
@@ -33975,7 +33895,7 @@
           window.MCRouter.go('/section/museum-collections');
           return;
         }
-        window.mcCommitRoute_('/section/museum-collections');
+        window.location.hash = '#/section/museum-collections';
       });
       document.getElementById('btnWelcomeHeroDemo')?.addEventListener('click', function (ev) {
         if (window.McWelcomeHeroDemo && typeof window.McWelcomeHeroDemo.onPrimaryClick === 'function') {
@@ -33990,7 +33910,7 @@
           window.MCRouter.go('/section/card-generator');
           return;
         }
-        window.mcCommitRoute_('/section/card-generator');
+        window.location.hash = '#/section/card-generator';
       });
       document.getElementById('btnWelcomeToAccount')?.addEventListener('click', () => goWelcomeAuthSection());
       document.getElementById('btnWelcomeHowItWorks')?.addEventListener('click', function () {
@@ -34323,11 +34243,6 @@
 
     window.addEventListener('hashchange', () => {
       if (window.MCRouter && typeof window.MCRouter.render === 'function') window.MCRouter.render();
-    });
-    window.addEventListener('popstate', () => {
-      if (window.mcCleanUrlsOn_ && window.mcCleanUrlsOn_() && window.MCRouter && typeof window.MCRouter.render === 'function') {
-        window.MCRouter.render();
-      }
     });
 
     if (!window.__mcGlobalNavBound) {
@@ -35274,9 +35189,6 @@
         }
       } catch (eN) {}
       let raw = String(window.location.hash || '').replace(/^#/, '');
-      if ((!raw || raw === '/') && window.mcCleanUrlsOn_ && window.mcCleanUrlsOn_()) {
-        raw = window.mcRouteFromPublicPath_(location.pathname) || raw;
-      }
       if (!raw || raw === '/') return '/';
       if (raw.charAt(0) !== '/') raw = '/' + raw;
       raw = raw.split('?')[0];
@@ -35326,7 +35238,6 @@
         '<span class="mc-global-brand__wordmark" aria-hidden="true">MCurator</span></div>' +
         '<nav class="mc-global-nav" aria-label="Main navigation">' +
         '<button type="button" data-route="/" data-nav-key="home" data-i18n="lp_nav_home">首頁</button>' +
-        '<button type="button" data-route="/section/story" data-nav-key="story" data-i18n="lp_nav_story">故事</button>' +
         '<button type="button" data-route="/section/workflow" data-nav-key="workflow" data-i18n="lp_nav_workflow">流程</button>' +
         '<button type="button" data-route="/section/online-exhibition" data-nav-key="online-exhibition" data-i18n="lp_nav_museum">線上展覽</button>' +
         '<button type="button" data-route="/origin" data-nav-key="origin" data-i18n="lp_nav_origin" data-i18n-aria="lp_nav_origin_aria" aria-label="MCurator ORIGIN">起源館</button>' +
@@ -35346,7 +35257,6 @@
         '</header>' +
         '<div id="mcGlobalNavDrawer" class="mc-global-nav-drawer" hidden>' +
         '<button type="button" data-route="/" data-i18n="lp_nav_home">首頁</button>' +
-        '<button type="button" data-route="/section/story" data-i18n="lp_nav_story">故事</button>' +
         '<button type="button" data-route="/section/workflow" data-i18n="lp_nav_workflow">流程</button>' +
         '<button type="button" data-route="/section/online-exhibition" data-i18n="lp_nav_museum">線上展覽</button>' +
         '<button type="button" data-route="/origin" data-i18n="lp_nav_origin" data-i18n-aria="lp_nav_origin_aria" aria-label="MCurator ORIGIN">起源館</button>' +
@@ -35617,7 +35527,7 @@
 
     function renderMarketplaceAssetDetail(id) {
       try {
-        window.mcCommitRoute_('/marketplace/asset/' + encodeURIComponent(String(id || '')));
+        window.location.hash = '#/marketplace/asset/' + encodeURIComponent(String(id || ''));
       } catch (eH) {}
       if (window.MCRouter && typeof window.MCRouter.render === 'function') {
         window.MCRouter.render();
@@ -35635,28 +35545,28 @@
       if (!target) return;
       console.log('[MC NAV]', target);
       if (target === '/section/paleo-reconstruction') {
-        window.mcCommitRoute_('/section/paleo-reconstruction');
+        window.location.hash = '#/section/paleo-reconstruction';
         window.MCRouter.render();
         return;
       }
       if (target === '/section/photo-restoration-lab' || target.indexOf('/section/photo-restoration-lab') === 0) {
         var prlCap = target.indexOf('capture=1') !== -1 ? '?capture=1' : '';
-        window.mcCommitRoute_('/section/photo-restoration-lab' + prlCap);
+        window.location.hash = '#/section/photo-restoration-lab' + prlCap;
         window.MCRouter.render();
         return;
       }
       if (target === '/section/taxonomy-manuscript-studio') {
-        window.mcCommitRoute_('/section/taxonomy-manuscript-studio');
+        window.location.hash = '#/section/taxonomy-manuscript-studio';
         window.MCRouter.render();
         return;
       }
       if (target === '/section/evolution-tree-lab' || target === '/section/workflow/evolution-tree') {
-        window.mcCommitRoute_('/section/evolution-tree-lab');
+        window.location.hash = '#/section/evolution-tree-lab';
         window.MCRouter.render();
         return;
       }
       if (target === '/section/husbandry-log') {
-        window.mcCommitRoute_('/section/husbandry-log');
+        window.location.hash = '#/section/husbandry-log';
         window.MCRouter.render();
         return;
       }
@@ -35664,16 +35574,21 @@
         target.indexOf('/section/specimen-workflow') === 0 ||
         target === '/section/herbarium-workflow'
       ) {
-        window.mcCommitRoute_(target.indexOf('/section/') === 0 ? target : '/section/specimen-workflow');
+        window.location.hash =
+          '#' + (target.indexOf('/section/') === 0 ? target : '/section/specimen-workflow');
         window.MCRouter.render();
         return;
       }
       if (target === '/card-generator' || target === '/section/card-generator') {
-        window.mcCommitRoute_('/section/card-generator');
+        window.location.hash = '#/section/card-generator';
         window.MCRouter.render();
         return;
       }
-      window.mcCommitRoute_(target.charAt(0) === '/' ? target : '/' + target);
+      if (target.charAt(0) === '/') {
+        window.location.hash = '#' + target;
+      } else {
+        window.location.hash = '#/' + target;
+      }
       try {
         if (typeof window.mcPersistLastHash_ === 'function') window.mcPersistLastHash_(target.charAt(0) === '/' ? target : '/' + target);
       } catch (ePersistGo) {}
@@ -35834,24 +35749,18 @@
       }
 
       if (path === '/section/story' || path === '/section/founder-story') {
-        if (path === '/section/founder-story') {
-          try {
-            if (window.MCRouter && typeof window.MCRouter.go === 'function') {
-              window.MCRouter.go('/section/story');
-              return;
-            }
-          } catch (eFsRedir) {}
-          try {
-            window.mcCommitRoute_('/section/story');
-          } catch (eFsHash) {}
-          return;
-        }
         try {
-          if (typeof showWelcomeMarketingShell_ === 'function') showWelcomeMarketingShell_();
-        } catch (eStShell) {}
+          if (window.MCRouter && typeof window.MCRouter.go === 'function') {
+            window.MCRouter.go('/');
+            return;
+          }
+        } catch (eStoryHome) {}
         try {
-          if (typeof showWelcomePhaseFounderStory === 'function') showWelcomePhaseFounderStory();
-        } catch (eStShow) {}
+          window.location.hash = '#/';
+        } catch (eStoryHash) {}
+        try {
+          if (typeof showWelcomePhaseIntro === 'function') showWelcomePhaseIntro();
+        } catch (eStoryIntro) {}
         return;
       }
 
@@ -35893,7 +35802,7 @@
           }
         } catch (eExRedir) {}
         try {
-          window.mcCommitRoute_('/section/online-exhibition');
+          window.location.hash = '#/section/online-exhibition';
         } catch (eExHash) {}
         return;
       }
@@ -35906,7 +35815,7 @@
           }
         } catch (eExRedir) {}
         try {
-          window.mcCommitRoute_('/section/online-exhibition');
+          window.location.hash = '#/section/online-exhibition';
         } catch (eExHash) {}
         return;
       }
@@ -45703,7 +45612,7 @@
   <script src="mc-homepage-narrative.js" defer></script>
   <script src="mc-origin-intro.js?v=origin-intro-v1" defer></script>
   <!-- OLD MCURATOR WORKFLOW SECTION DISABLED BY CODEX REBUILD -->
-  <script src="mc-workflow-screenshot-rebuild.js?v=scene-fade-v7" defer id="mcPassportStoryBundle"></script>
+  <script src="mc-workflow-screenshot-rebuild.js?v=scene-fade-v3" defer id="mcPassportStoryBundle"></script>
   <script>
     (function () {
       var scriptEl = document.getElementById('mcPassportStoryBundle');
