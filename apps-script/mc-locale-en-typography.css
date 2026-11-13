@@ -1,0 +1,667 @@
+/**
+ * English locale typography — Inter enterprise stack.
+ * Applies when html lang is en, en-US, en-GB, or en-001. Does not affect zh-TW or ja-JP.
+ * All three English variants share identical typography; spelling differs only in i18n resolution.
+ */
+html[lang='en'], html[lang^='en-'], html.mc-locale-en {
+  --font-display: Inter, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-welcome-serif: var(--font-display);
+  --font-welcome-accent: var(--font-display);
+  --font-body: Inter, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-specimen-serif: var(--font-body);
+  --font-ui-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Shared English type scale (en-001 / en-US / en-GB) — v10 balanced rhythm */
+  --mc-en-body-size: 0.9375rem;
+  --mc-en-lead-size: 1rem;
+  --mc-en-small-size: 0.8125rem;
+  --mc-en-caption-size: 0.6875rem;
+  --mc-en-sci-size: 1rem;
+  --mc-en-hero-usp-title-size: 0.9375rem;
+  --mc-en-hero-usp-body-size: 0.875rem;
+  --mc-en-btn-size: 0.9375rem;
+  --mc-en-body-line: 1.6;
+  --mc-en-lead-line: 1.65;
+  --mc-en-heading-track: -0.018em;
+  --mc-en-h1-size: clamp(1.4375rem, 0.875rem + 1.05vw, 1.75rem);
+  --mc-en-h2-size: clamp(1.25rem, 0.78rem + 0.82vw, 1.4375rem);
+  --mc-en-h3-size: clamp(1.0625rem, 0.72rem + 0.52vw, 1.1875rem);
+  --mc-en-h1-size-mobile: clamp(1.3125rem, 1rem + 2.4vw, 1.5625rem);
+  --mc-en-h2-size-mobile: clamp(1.1875rem, 0.92rem + 1.8vw, 1.375rem);
+  --mc-en-h3-size-mobile: clamp(1.0625rem, 0.86rem + 1.4vw, 1.1875rem);
+  --mc-en-hero-size: clamp(1.5625rem, 0.95rem + 1.25vw, 1.875rem);
+  --mc-en-hero-size-mobile: clamp(1.375rem, 1.05rem + 2vw, 1.625rem);
+  --mc-en-discipline-pick-size: clamp(0.6875rem, 0.625rem + 0.18vw, 0.8125rem);
+  --mc-en-discipline-preview-size: clamp(1.125rem, 0.95rem + 0.55vw, 1.375rem);
+  --mc-en-display-weight: 630;
+  --mc-en-title-weight: 600;
+
+  font-family: var(--font-body);
+  font-size: var(--mc-en-body-size);
+  line-height: var(--mc-en-body-line);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html[lang='en'] body, html[lang^='en-'] body, html.mc-locale-en body,
+html[lang='en'] button, html[lang^='en-'] button, html.mc-locale-en button,
+html[lang='en'] input, html[lang^='en-'] input, html.mc-locale-en input,
+html[lang='en'] select, html[lang^='en-'] select, html.mc-locale-en select,
+html[lang='en'] textarea, html[lang^='en-'] textarea, html.mc-locale-en textarea,
+html[lang='en'] label, html[lang^='en-'] label, html.mc-locale-en label,
+html[lang='en'] .mc-boot-screen, html[lang^='en-'] .mc-boot-screen, html.mc-locale-en .mc-boot-screen{
+  font-family: var(--font-body);
+}
+
+html[lang='en'] h1, html[lang^='en-'] h1, html.mc-locale-en h1,
+html[lang='en'] h2, html[lang^='en-'] h2, html.mc-locale-en h2,
+html[lang='en'] h3, html[lang^='en-'] h3, html.mc-locale-en h3,
+html[lang='en'] .mc-section-title, html[lang^='en-'] .mc-section-title, html.mc-locale-en .mc-section-title,
+html[lang='en'] .section-heading, html[lang^='en-'] .section-heading, html.mc-locale-en .section-heading{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-title-weight);
+  letter-spacing: var(--mc-en-heading-track);
+  line-height: 1.22;
+}
+
+html[lang='en'] h1, html[lang^='en-'] h1, html.mc-locale-en h1{
+  font-weight: var(--mc-en-display-weight);
+  line-height: 1.18;
+}
+
+html[lang='en'] h2, html[lang^='en-'] h2, html.mc-locale-en h2{
+  letter-spacing: -0.018em;
+}
+
+html[lang='en'] h3, html[lang^='en-'] h3, html.mc-locale-en h3{
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+/* —— Landing & welcome —— */
+html[lang='en'] .mc-hero-title, html[lang^='en-'] .mc-hero-title, html.mc-locale-en .mc-hero-title,
+html[lang='en'] #welcomeContentTitle, html[lang^='en-'] #welcomeContentTitle, html.mc-locale-en #welcomeContentTitle,
+html[lang='en'] #welcomeContentTitle em, html[lang^='en-'] #welcomeContentTitle em, html.mc-locale-en #welcomeContentTitle em,
+html[lang='en'] .welcome-philosophy__title, html[lang^='en-'] .welcome-philosophy__title, html.mc-locale-en .welcome-philosophy__title,
+html[lang='en'] .welcome-landing-kicker, html[lang^='en-'] .welcome-landing-kicker, html.mc-locale-en .welcome-landing-kicker,
+html[lang='en'] .welcome-landing-kicker--art, html[lang^='en-'] .welcome-landing-kicker--art, html.mc-locale-en .welcome-landing-kicker--art,
+html[lang='en'] .mc-museum-dash__h, html[lang^='en-'] .mc-museum-dash__h, html.mc-locale-en .mc-museum-dash__h,
+html[lang='en'] .welcome-gate__title, html[lang^='en-'] .welcome-gate__title, html.mc-locale-en .welcome-gate__title,
+html[lang='en'] .mc-trio-story__title, html[lang^='en-'] .mc-trio-story__title, html.mc-locale-en .mc-trio-story__title{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-display-weight);
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+}
+
+html[lang='en'] .mc-hero-sub, html[lang^='en-'] .mc-hero-sub, html.mc-locale-en .mc-hero-sub,
+html[lang='en'] .mc-hero-badge, html[lang^='en-'] .mc-hero-badge, html.mc-locale-en .mc-hero-badge,
+html[lang='en'] .welcome-landing-mode__label, html[lang^='en-'] .welcome-landing-mode__label, html.mc-locale-en .welcome-landing-mode__label,
+html[lang='en'] .welcome-lp__mosaicCap, html[lang^='en-'] .welcome-lp__mosaicCap, html.mc-locale-en .welcome-lp__mosaicCap,
+html[lang='en'] .primary-btn, html[lang^='en-'] .primary-btn, html.mc-locale-en .primary-btn,
+html[lang='en'] .soft-btn, html[lang^='en-'] .soft-btn, html.mc-locale-en .soft-btn,
+html[lang='en'] .welcome-gate__lead, html[lang^='en-'] .welcome-gate__lead, html.mc-locale-en .welcome-gate__lead,
+html[lang='en'] .mc-trio-story__body, html[lang^='en-'] .mc-trio-story__body, html.mc-locale-en .mc-trio-story__body{
+  font-family: var(--font-body);
+}
+
+html[lang='en'] .mc-hero-badge, html[lang^='en-'] .mc-hero-badge, html.mc-locale-en .mc-hero-badge{
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: 10.5px;
+}
+
+html[lang='en'] .primary-btn, html[lang^='en-'] .primary-btn, html.mc-locale-en .primary-btn,
+html[lang='en'] .soft-btn, html[lang^='en-'] .soft-btn, html.mc-locale-en .soft-btn{
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* —— Homepage narrative —— */
+html[lang='en'] .mc-home-passport__taxon, html[lang^='en-'] .mc-home-passport__taxon, html.mc-locale-en .mc-home-passport__taxon,
+html[lang='en'] .mc-home-chapter h2, html[lang^='en-'] .mc-home-chapter h2, html.mc-locale-en .mc-home-chapter h2,
+html[lang='en'] #welcomeLandingPage.mc-home-narrative-v1 .mc-home-cabinetCard__title, html[lang^='en-'] #welcomeLandingPage.mc-home-narrative-v1 .mc-home-cabinetCard__title, html.mc-locale-en #welcomeLandingPage.mc-home-narrative-v1 .mc-home-cabinetCard__title,
+html[lang='en'] #welcomeLandingPage.mc-home-narrative-v1 .mc-vm-asset__head h2, html[lang^='en-'] #welcomeLandingPage.mc-home-narrative-v1 .mc-vm-asset__head h2, html.mc-locale-en #welcomeLandingPage.mc-home-narrative-v1 .mc-vm-asset__head h2{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-title-weight);
+  letter-spacing: -0.018em;
+  line-height: 1.22;
+}
+
+html[lang='en'] .mc-home-chapter p, html[lang^='en-'] .mc-home-chapter p, html.mc-locale-en .mc-home-chapter p,
+html[lang='en'] .mc-home-passport__meta, html[lang^='en-'] .mc-home-passport__meta, html.mc-locale-en .mc-home-passport__meta,
+html[lang='en'] #welcomeLandingPage.mc-home-narrative-v1 .mc-home-cabinetCard__body, html[lang^='en-'] #welcomeLandingPage.mc-home-narrative-v1 .mc-home-cabinetCard__body, html.mc-locale-en #welcomeLandingPage.mc-home-narrative-v1 .mc-home-cabinetCard__body{
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.62;
+}
+
+/* —— Passport hero v2 —— */
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-display-weight);
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  font-size: var(--mc-en-hero-size);
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__flipHint--copy, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__flipHint--copy, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__flipHint--copy{
+  font-family: var(--font-body);
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge{
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: var(--mc-en-caption-size);
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead{
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: var(--mc-en-lead-line);
+  font-size: var(--mc-en-lead-size);
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn{
+  font-weight: 600;
+  font-size: var(--mc-en-btn-size);
+  letter-spacing: -0.01em;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong{
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--mc-en-hero-usp-title-size);
+  letter-spacing: normal;
+  line-height: 1.45;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span{
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--mc-en-hero-usp-body-size);
+  letter-spacing: normal;
+  line-height: 1.55;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__specimenNav button, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__specimenNav button, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__specimenNav button{
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--mc-en-small-size);
+  letter-spacing: normal;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__hotspot b, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__hotspot b, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__hotspot b{
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__hotspot span, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__hotspot span, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__hotspot span{
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__taxon, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__taxon, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__taxon{
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sci, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sci, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sci{
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__common, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__common, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__common{
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+  color: rgba(224, 232, 218, 0.86);
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__meta dt, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__meta dt, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__meta dt{
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__meta dd, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__meta dd, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__meta dd{
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__review, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__review, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__review,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__mcId, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__mcId, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__mcId,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sat, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sat, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sat,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__progressPct, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__progressPct, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__progressPct,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__exportLine, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__exportLine, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__exportLine,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__catalog, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__catalog, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__catalog{
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backTitle, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backTitle, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backTitle{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-title-weight);
+  letter-spacing: -0.018em;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backSub, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backSub, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backSub,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backList span, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backList span, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backList span{
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backList em, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backList em, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backList em{
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+/* —— Workflow rebuild —— */
+html[lang='en'] .mc-workflow-screenshot-rebuild, html[lang^='en-'] .mc-workflow-screenshot-rebuild, html.mc-locale-en .mc-workflow-screenshot-rebuild{
+  font-family: var(--font-body);
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel small, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel small, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel small{
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel h2{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-title-weight);
+  letter-spacing: -0.018em;
+  line-height: 1.22;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel p, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel p, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel p{
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.62;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__meta b, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__meta b, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__meta b,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-zh, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-zh, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-zh,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-title-weight);
+  letter-spacing: -0.015em;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-en, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-en, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-en,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-en, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-en, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-en{
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__sci, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__sci, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__sci{
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__common, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__common, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__common{
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__taxon, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__taxon, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__taxon{
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__meta dt, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__meta dt, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__meta dt{
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__meta dd, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__meta dd, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__meta dd{
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__backTitle, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__backTitle, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__backTitle{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-title-weight);
+  letter-spacing: -0.018em;
+}
+
+/* —— Global nav & shell —— */
+html[lang='en'] .mc-global-header, html[lang^='en-'] .mc-global-header, html.mc-locale-en .mc-global-header,
+html[lang='en'] .mc-global-nav, html[lang^='en-'] .mc-global-nav, html.mc-locale-en .mc-global-nav,
+html[lang='en'] .mc-workbench-bento, html[lang^='en-'] .mc-workbench-bento, html.mc-locale-en .mc-workbench-bento,
+html[lang='en'] .side-card, html[lang^='en-'] .side-card, html.mc-locale-en .side-card,
+html[lang='en'] .mc-online-hero, html[lang^='en-'] .mc-online-hero, html.mc-locale-en .mc-online-hero{
+  font-family: var(--font-body);
+}
+
+html[lang='en'] .mc-global-header .mc-nav-brand, html[lang^='en-'] .mc-global-header .mc-nav-brand, html.mc-locale-en .mc-global-header .mc-nav-brand,
+html[lang='en'] .mc-online-hero h2, html[lang^='en-'] .mc-online-hero h2, html.mc-locale-en .mc-online-hero h2{
+  font-family: var(--font-display);
+  font-weight: var(--mc-en-title-weight);
+  letter-spacing: -0.018em;
+}
+
+/* —— Forms, tables, FAQ —— */
+html[lang='en'] input, html[lang^='en-'] input, html.mc-locale-en input,
+html[lang='en'] select, html[lang^='en-'] select, html.mc-locale-en select,
+html[lang='en'] textarea, html[lang^='en-'] textarea, html.mc-locale-en textarea{
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+html[lang='en'] label, html[lang^='en-'] label, html.mc-locale-en label{
+  font-weight: 500;
+}
+
+html[lang='en'] th, html[lang^='en-'] th, html.mc-locale-en th{
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+html[lang='en'] td, html[lang^='en-'] td, html.mc-locale-en td{
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+@media (min-width: 768px) {
+  html[lang='en'] h1, html[lang^='en-'] h1, html.mc-locale-en h1{
+    font-size: var(--mc-en-h1-size);
+  }
+
+  html[lang='en'] h2, html[lang^='en-'] h2, html.mc-locale-en h2{
+    font-size: var(--mc-en-h2-size);
+  }
+
+  html[lang='en'] h3, html[lang^='en-'] h3, html.mc-locale-en h3{
+    font-size: var(--mc-en-h3-size);
+  }
+}
+
+@media (max-width: 767px) {
+  html[lang='en'] h1, html[lang^='en-'] h1, html.mc-locale-en h1{
+    font-size: var(--mc-en-h1-size-mobile);
+  }
+
+  html[lang='en'] h2, html[lang^='en-'] h2, html.mc-locale-en h2{
+    font-size: var(--mc-en-h2-size-mobile);
+  }
+
+  html[lang='en'] h3, html[lang^='en-'] h3, html.mc-locale-en h3{
+    font-size: var(--mc-en-h3-size-mobile);
+  }
+
+  html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title{
+    font-size: var(--mc-en-hero-size-mobile);
+  }
+}
+
+/* —— English size caps for module-specific large clamps —— */
+html[lang='en'] .mc-hero-title, html[lang^='en-'] .mc-hero-title, html.mc-locale-en .mc-hero-title,
+html[lang='en'] #welcomeContentTitle, html[lang^='en-'] #welcomeContentTitle, html.mc-locale-en #welcomeContentTitle,
+html[lang='en'] .welcome-gate__title, html[lang^='en-'] .welcome-gate__title, html.mc-locale-en .welcome-gate__title{
+  font-size: var(--mc-en-hero-size);
+}
+
+html[lang='en'] .workbench-bento-v2 .wb-bento-topbar__titles h1, html[lang^='en-'] .workbench-bento-v2 .wb-bento-topbar__titles h1, html.mc-locale-en .workbench-bento-v2 .wb-bento-topbar__titles h1,
+html[lang='en'] .workbench-bento-v2 .bento-card h2, html[lang^='en-'] .workbench-bento-v2 .bento-card h2, html.mc-locale-en .workbench-bento-v2 .bento-card h2,
+html[lang='en'] #welcomeWorkspaceUspSection .workspace-tools-marketing__title, html[lang^='en-'] #welcomeWorkspaceUspSection .workspace-tools-marketing__title, html.mc-locale-en #welcomeWorkspaceUspSection .workspace-tools-marketing__title,
+html[lang='en'] #welcomeOriginIntroSection .welcome-origin-intro__title, html[lang^='en-'] #welcomeOriginIntroSection .welcome-origin-intro__title, html.mc-locale-en #welcomeOriginIntroSection .welcome-origin-intro__title,
+html[lang='en'] #welcomeLandingPage.mc-home-narrative-v1 .mc-home-chapter h2, html[lang^='en-'] #welcomeLandingPage.mc-home-narrative-v1 .mc-home-chapter h2, html.mc-locale-en #welcomeLandingPage.mc-home-narrative-v1 .mc-home-chapter h2,
+html[lang='en'] .workflow-quest-header h2, html[lang^='en-'] .workflow-quest-header h2, html.mc-locale-en .workflow-quest-header h2,
+html[lang='en'] .mc-rpc-level-num, html[lang^='en-'] .mc-rpc-level-num, html.mc-locale-en .mc-rpc-level-num,
+html[lang='en'] .mc-sat-market-hero h1, html[lang^='en-'] .mc-sat-market-hero h1, html.mc-locale-en .mc-sat-market-hero h1{
+  font-size: var(--mc-en-h1-size);
+  line-height: 1.22;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel h2{
+  font-size: var(--mc-en-h2-size);
+}
+
+@media (max-width: 767px) {
+  html[lang='en'] .mc-hero-title, html[lang^='en-'] .mc-hero-title, html.mc-locale-en .mc-hero-title,
+  html[lang='en'] #welcomeContentTitle, html[lang^='en-'] #welcomeContentTitle, html.mc-locale-en #welcomeContentTitle,
+  html[lang='en'] .welcome-gate__title, html[lang^='en-'] .welcome-gate__title, html.mc-locale-en .welcome-gate__title{
+    font-size: var(--mc-en-hero-size-mobile);
+  }
+
+  html[lang='en'] .workbench-bento-v2 .wb-bento-topbar__titles h1, html[lang^='en-'] .workbench-bento-v2 .wb-bento-topbar__titles h1, html.mc-locale-en .workbench-bento-v2 .wb-bento-topbar__titles h1,
+  html[lang='en'] .workbench-bento-v2 .bento-card h2, html[lang^='en-'] .workbench-bento-v2 .bento-card h2, html.mc-locale-en .workbench-bento-v2 .bento-card h2,
+  html[lang='en'] #welcomeWorkspaceUspSection .workspace-tools-marketing__title, html[lang^='en-'] #welcomeWorkspaceUspSection .workspace-tools-marketing__title, html.mc-locale-en #welcomeWorkspaceUspSection .workspace-tools-marketing__title,
+html[lang='en'] #welcomeOriginIntroSection .welcome-origin-intro__title, html[lang^='en-'] #welcomeOriginIntroSection .welcome-origin-intro__title, html.mc-locale-en #welcomeOriginIntroSection .welcome-origin-intro__title,
+  html[lang='en'] #welcomeLandingPage.mc-home-narrative-v1 .mc-home-chapter h2, html[lang^='en-'] #welcomeLandingPage.mc-home-narrative-v1 .mc-home-chapter h2, html.mc-locale-en #welcomeLandingPage.mc-home-narrative-v1 .mc-home-chapter h2,
+  html[lang='en'] .workflow-quest-header h2, html[lang^='en-'] .workflow-quest-header h2, html.mc-locale-en .workflow-quest-header h2,
+  html[lang='en'] .mc-rpc-level-num, html[lang^='en-'] .mc-rpc-level-num, html.mc-locale-en .mc-rpc-level-num,
+  html[lang='en'] .mc-sat-market-hero h1, html[lang^='en-'] .mc-sat-market-hero h1, html.mc-locale-en .mc-sat-market-hero h1{
+    font-size: var(--mc-en-h1-size-mobile);
+  }
+
+  html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel h2{
+    font-size: var(--mc-en-h2-size-mobile);
+  }
+}
+
+/* —— English welcome hero: Inter stack, compact scale (beats landing !important) —— */
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__copy,
+html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__copy,
+html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__copy,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__copy *,
+html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__copy *,
+html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__copy * {
+  text-transform: none !important;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title,
+html[lang='en'] #welcomeContentTitle, html[lang^='en-'] #welcomeContentTitle, html.mc-locale-en #welcomeContentTitle{
+  font-family: var(--font-body) !important;
+  font-size: var(--mc-en-hero-size) !important;
+  font-weight: var(--mc-en-display-weight) !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  letter-spacing: var(--mc-en-heading-track) !important;
+  line-height: 1.22 !important;
+}
+
+html[lang='en'] #welcomeContentTitle em, html[lang^='en-'] #welcomeContentTitle em, html.mc-locale-en #welcomeContentTitle em,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title em, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title em, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title em,
+html[lang='en'] #welcomeContentTitle span, html[lang^='en-'] #welcomeContentTitle span, html.mc-locale-en #welcomeContentTitle span{
+  font-family: inherit !important;
+  font-style: normal !important;
+  font-weight: inherit !important;
+  text-transform: none !important;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__lead,
+html[lang='en'] #welcomeContentLead, html[lang^='en-'] #welcomeContentLead, html.mc-locale-en #welcomeContentLead{
+  font-family: var(--font-body) !important;
+  font-size: var(--mc-en-lead-size) !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  line-height: var(--mc-en-lead-line) !important;
+  max-width: 34rem;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong,
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span{
+  text-transform: none !important;
+  font-style: normal !important;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp strong{
+  font-size: var(--mc-en-hero-usp-title-size) !important;
+  line-height: 1.45 !important;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__usp li div span{
+  font-size: var(--mc-en-hero-usp-body-size) !important;
+  line-height: 1.55 !important;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__btn{
+  font-size: var(--mc-en-btn-size) !important;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sci, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sci, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__sci{
+  font: 500 italic var(--mc-en-sci-size)/1.3 var(--font-body) !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__taxon, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__taxon, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__taxon{
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.08em !important;
+}
+
+html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__badge{
+  font-family: var(--font-body) !important;
+  font-size: var(--mc-en-caption-size) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  html[lang='en'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title, html[lang^='en-'] #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title, html.mc-locale-en #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__title,
+  html[lang='en'] #welcomeContentTitle, html[lang^='en-'] #welcomeContentTitle, html.mc-locale-en #welcomeContentTitle{
+    font-size: var(--mc-en-hero-size-mobile) !important;
+  }
+}
+
+/* —— Workflow rebuild: Inter stack (en-001 / en-US / en-GB identical) —— */
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel h2,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-prov-head h3, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-prov-head h3, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-prov-head h3{
+  font-family: var(--font-body) !important;
+  font-size: var(--mc-en-h2-size) !important;
+  font-weight: var(--mc-en-title-weight) !important;
+  font-style: normal !important;
+  letter-spacing: -0.018em !important;
+  line-height: 1.22 !important;
+  text-transform: none !important;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh{
+  font-family: var(--font-body) !important;
+  font-size: var(--mc-en-discipline-preview-size) !important;
+  font-weight: var(--mc-en-title-weight) !important;
+  font-style: normal !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.22 !important;
+  text-transform: none !important;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-zh, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-zh, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__title-zh,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__meta b, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__meta b, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-stage.stage-02 .mcwf-discipline-pick__meta b{
+  font-family: var(--font-body) !important;
+  font-size: var(--mc-en-discipline-pick-size) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.25 !important;
+  text-transform: none !important;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel p, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel p, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel p,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel small, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel small, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel small,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-en, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-en, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-en,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-identity small, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-identity small, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-identity small,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-identity em, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-identity em, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-identity em{
+  font-family: var(--font-body) !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel small, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel small, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel small{
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel p, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel p, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel p{
+  font-size: var(--mc-en-small-size) !important;
+  font-weight: 400 !important;
+  line-height: 1.62 !important;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-identity strong, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-identity strong, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-identity strong{
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card__sci, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card__sci, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card__sci,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__sci, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__sci, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__sci,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-evolving-card .mc-passport-card__sci, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-evolving-card .mc-passport-card__sci, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-evolving-card .mc-passport-card__sci{
+  font: 500 italic var(--mc-en-body-size)/1.25 var(--font-body) !important;
+  letter-spacing: 0.01em !important;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card__common, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card__common, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card__common,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__common, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__common, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__common{
+  font-family: var(--font-body) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card__taxon, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card__taxon, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card__taxon,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__taxon, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__taxon, html.mc-locale-en .mc-workflow-screenshot-rebuild .mc-passport-card--workflow .mc-passport-card__taxon{
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+}
+
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-live-layer--tree .mcwf-tax-node, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-live-layer--tree .mcwf-tax-node, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-live-layer--tree .mcwf-tax-node,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-tree-detail__chip, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-tree-detail__chip, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-tree-detail__chip,
+html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-tree .node, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-tree .node, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-tree .node{
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+}
+
+@media (max-width: 767px) {
+  html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-story-panel h2, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-story-panel h2,
+  html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-prov-head h3, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-prov-head h3, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-prov-head h3{
+    font-size: var(--mc-en-h2-size-mobile) !important;
+  }
+
+  html[lang='en'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh, html[lang^='en-'] .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh, html.mc-locale-en .mc-workflow-screenshot-rebuild .mcwf-discipline-preview__title-zh{
+    font-size: clamp(1rem, 0.88rem + 1.2vw, 1.1875rem) !important;
+  }
+}

@@ -1,0 +1,513 @@
+/**
+ * Specimen coverflow gallery — 3D arc, front-only cards (data-coverflow-no-flip).
+ * Replaces legacy .mc-cf / mc-cf__* stack.
+ */
+
+.specimen-coverflow-section {
+  position: relative;
+  min-height: auto;
+  padding: clamp(56px, 7vw, 110px) 24px clamp(48px, 6vw, 80px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(103, 232, 169, 0.1), transparent 34%),
+    linear-gradient(180deg, #04100d, #010403);
+  color: #f4efe1;
+  contain: layout paint style;
+}
+
+.specimen-coverflow-section[data-coverflow-bg='museum'] {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(215, 193, 109, 0.12), transparent 40%),
+    linear-gradient(180deg, #1a1510, #0c0a08);
+}
+
+.specimen-coverflow-section[data-coverflow-bg='minimal'] {
+  background: #070b0a;
+}
+
+.specimen-coverflow-section--reduce .specimen-coverflow-item {
+  transition: none !important;
+}
+
+.specimen-coverflow-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 24px;
+}
+
+.specimen-coverflow-header p {
+  display: none;
+}
+
+.specimen-coverflow-header h2 {
+  margin: 0;
+  font-family: 'Noto Serif TC', Georgia, serif;
+  font-size: clamp(36px, 5.5vw, 72px);
+  line-height: 1.05;
+}
+
+.specimen-coverflow-header span {
+  display: none;
+}
+
+.specimen-coverflow-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px auto 22px;
+}
+
+.specimen-coverflow-filters button {
+  border-radius: 999px;
+  border: 1px solid rgba(167, 243, 193, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(244, 239, 225, 0.82);
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font: inherit;
+}
+
+.specimen-coverflow-filters button.is-active {
+  background: rgba(103, 232, 169, 0.14);
+  border-color: rgba(103, 232, 169, 0.52);
+  color: #dfffee;
+}
+
+.specimen-coverflow-filters button:focus-visible {
+  outline: 2px solid rgba(103, 232, 169, 0.55);
+  outline-offset: 2px;
+}
+
+.specimen-coverflow-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 12px;
+  padding: 0 4px;
+}
+
+.specimen-coverflow-toolbar .cw-count {
+  font-size: 14px;
+  color: rgba(244, 239, 225, 0.72);
+  font-variant-numeric: tabular-nums;
+}
+
+.cw-wall-empty {
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 15px;
+  color: rgba(244, 239, 225, 0.72);
+  max-width: 36em;
+  margin: 0 auto;
+}
+
+.cw-wall-empty[hidden] {
+  display: none !important;
+}
+
+.specimen-coverflow-stage {
+  position: relative;
+  width: min(1500px, 100%);
+  height: clamp(520px, 58vw, 640px);
+  margin: 0 auto;
+  perspective: 1200px;
+  perspective-origin: 50% 42%;
+  transform-style: preserve-3d;
+  outline: none;
+}
+
+.specimen-coverflow-track {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.specimen-coverflow-track.specimen-coverflow-scroll,
+.specimen-coverflow-track.coverflow {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.specimen-coverflow-track.specimen-coverflow-scroll::-webkit-scrollbar,
+.specimen-coverflow-track.coverflow::-webkit-scrollbar {
+  display: none;
+}
+
+.specimen-coverflow-item {
+  position: absolute;
+  width: min(400px, 64vw);
+  left: 0;
+  bottom: 60px;
+  margin: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  list-style: none;
+  padding: 0;
+  transition: transform 0.4s ease, margin-left 0.4s ease, filter 0.4s ease;
+  will-change: transform, margin-left, filter;
+}
+
+.specimen-coverflow-item.is-active {
+  cursor: grab;
+}
+
+.specimen-coverflow-item.is-active:active {
+  cursor: grabbing;
+}
+
+.specimen-coverflow-item .specimen-record-card--coverflow {
+  max-width: 100%;
+}
+
+/* Workflow mc-passport-card layout inside coverflow arc */
+.specimen-coverflow-item .mc-passport-coverflow-host {
+  display: contents;
+}
+
+.specimen-coverflow-section .mc-passport-card--coverflow {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 640 / 1080;
+  max-height: min(600px, 72vh);
+  transform: none;
+  cursor: default;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.specimen-coverflow-section .mc-passport-card--coverflow::before,
+.specimen-coverflow-section .mc-passport-card--coverflow::after {
+  content: none;
+  display: none;
+}
+
+.specimen-coverflow-section .mc-passport-card--coverflow .mc-passport-card__face {
+  position: absolute;
+  inset: 0;
+}
+
+/* Coverflow card scale + typography (reference specimen passport; Hero unchanged). */
+.specimen-coverflow-section .specimen-record-card.specimen-record-card--coverflow,
+.specimen-coverflow-section .specimen-record-card {
+  width: min(400px, 64vw);
+  max-width: 100%;
+}
+
+.specimen-coverflow-section .specimen-record-card__face {
+  padding: 22px 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.specimen-coverflow-section .specimen-record-card__top {
+  margin-bottom: 12px;
+}
+
+.specimen-coverflow-section .specimen-record-card__top--coverflow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.specimen-coverflow-section .specimen-record-card__topStart {
+  flex: 0 0 auto;
+}
+
+.specimen-coverflow-section .specimen-record-card__topIds {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px 8px;
+  min-width: 0;
+  text-align: center;
+}
+
+.specimen-coverflow-section .specimen-record-card__topIds .specimen-record-card__number {
+  margin-top: 0;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+.specimen-coverflow-section .specimen-record-card__topIds .specimen-record-card__sat {
+  display: inline;
+  margin-top: 0;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(244, 239, 225, 0.42);
+}
+
+.specimen-coverflow-section .specimen-record-card__verified {
+  font-size: 10px;
+  padding: 3px 8px;
+  letter-spacing: 0.14em;
+}
+
+.specimen-coverflow-section .specimen-record-card__number {
+  font-size: 15px;
+  margin-top: 7px;
+}
+
+.specimen-coverflow-section .specimen-record-card__sat,
+.specimen-coverflow-section .specimen-record-card__satLine {
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.specimen-coverflow-section .specimen-record-card__status {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  flex: 0 0 auto;
+}
+
+.specimen-coverflow-section .specimen-record-card__photo {
+  aspect-ratio: 1 / 1;
+  margin: 10px 0 14px;
+  border-radius: 16px;
+  background: #050505;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.specimen-coverflow-section .specimen-record-card__photo[data-fit='contain'] img,
+.specimen-coverflow-section .specimen-record-card__photo img {
+  background: #050505;
+}
+
+.specimen-coverflow-section .specimen-record-card__steps,
+.specimen-coverflow-section .specimen-record-card__registry {
+  display: none;
+}
+
+.specimen-coverflow-section .specimen-record-card__coverflowFoot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.specimen-coverflow-section .specimen-record-card__coverflowFoot .specimen-record-card__progress {
+  flex: 1 1 auto;
+  margin-top: 0;
+  min-width: 0;
+}
+
+.specimen-coverflow-section .specimen-record-card__progressHead {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: rgba(244, 239, 225, 0.78);
+  font-size: 12px;
+}
+
+.specimen-coverflow-section .specimen-record-card__progressHead strong {
+  font-weight: 800;
+}
+
+.specimen-coverflow-section .specimen-record-card__coverflowFoot .specimen-record-card__export {
+  flex: 0 0 auto;
+  margin-top: 0;
+  font-size: 13px;
+  white-space: nowrap;
+  text-align: right;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  color: #d7c16d;
+}
+
+.specimen-coverflow-section .specimen-record-card__meta {
+  margin: 14px 0 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.specimen-coverflow-section .specimen-record-card__meta div {
+  padding: 9px 11px;
+}
+
+.specimen-coverflow-section .specimen-record-card__meta dt {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.specimen-coverflow-section .specimen-record-card__meta dd {
+  font-size: 14px;
+}
+
+.specimen-coverflow-section .specimen-record-card__identity .specimen-record-card__type {
+  display: none;
+}
+
+.specimen-coverflow-section .specimen-record-card__identity h3 {
+  font-size: clamp(26px, 4.2vw, 36px);
+  line-height: 1.05;
+}
+
+.specimen-coverflow-section .specimen-record-card__identity p {
+  font-size: 14px;
+  margin-top: 6px;
+  color: rgba(244, 239, 225, 0.58);
+}
+
+.specimen-coverflow-section .specimen-record-card__photo img {
+  object-position: center center;
+}
+
+.specimen-coverflow-section .specimen-record-card__steps {
+  gap: 2px;
+}
+
+.specimen-coverflow-section .specimen-record-card__steps span {
+  font-size: 9px;
+  padding: 3px 5px;
+}
+
+.specimen-coverflow-section .specimen-record-card__progress {
+  margin-top: 10px;
+}
+
+.specimen-coverflow-section .specimen-record-card__progress span,
+.specimen-coverflow-section .specimen-record-card__progress strong {
+  font-size: 12px;
+}
+
+.specimen-coverflow-section .specimen-record-card__progress i {
+  height: 6px;
+}
+
+.specimen-coverflow-section .specimen-record-card__export {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.specimen-coverflow-section .specimen-record-card__registry {
+  font-size: 10px;
+  margin-top: 8px;
+}
+
+.specimen-coverflow-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 80;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(2, 6, 23, 0.72);
+  color: #fff;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  font: inherit;
+}
+
+.specimen-coverflow-nav:focus-visible {
+  outline: 2px solid rgba(103, 232, 169, 0.55);
+  outline-offset: 2px;
+}
+
+.specimen-coverflow-nav--prev {
+  left: clamp(8px, 2vw, 24px);
+}
+
+.specimen-coverflow-nav--next {
+  right: clamp(8px, 2vw, 24px);
+}
+
+.specimen-coverflow-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+  color: rgba(244, 239, 225, 0.58);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* —— iTunes Cover Flow mode —— */
+.specimen-coverflow-section--itunes {
+  min-height: min(820px, 88vh);
+  background:
+    radial-gradient(ellipse 80% 42% at 50% 58%, rgba(120, 140, 160, 0.14), transparent 62%),
+    radial-gradient(circle at 50% 18%, rgba(103, 232, 169, 0.08), transparent 38%),
+    linear-gradient(180deg, #060a0c 0%, #020304 52%, #000 100%);
+}
+
+.specimen-coverflow-section--itunes[data-coverflow-bg='museum'] {
+  background:
+    radial-gradient(ellipse 80% 42% at 50% 58%, rgba(180, 160, 110, 0.12), transparent 62%),
+    linear-gradient(180deg, #14100c 0%, #060504 52%, #000 100%);
+}
+
+.specimen-coverflow-section--itunes .specimen-coverflow-stage {
+  height: clamp(300px, 38vw, 380px);
+  perspective: 1200px;
+  margin-bottom: 0;
+}
+
+.specimen-coverflow-section--itunes .specimen-coverflow-stage::before {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 14%;
+  height: 1px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  box-shadow: 0 0 28px rgba(180, 200, 220, 0.12);
+}
+
+.specimen-coverflow-section--itunes .specimen-coverflow-stage::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.72) 100%);
+}
+
+.specimen-coverflow-section--itunes .specimen-coverflow-track {
+  z-index: 1;
+}
+
+.specimen-coverflow-section--itunes .specimen-coverflow-item {
+  width: min(228px, 40vw);
+  transition:
+    transform 520ms cubic-bezier(0.22, 0.84, 0.26, 1),
+    opacity 280ms ease,
+    filter 280ms ease;
+}
+
+.specimen-coverflow-section--itunes .specimen-coverflow-item:not(.is-active) {
+  filter: brightness(var(--b, 0.78)) saturate(var(--sat, 0.82));
+}
+
+.specimen-coverflow-section--itunes .specimen-coverflow-nav {
+  top: 42%;
+}
+
+.specimen-coverflow-section--itunes .specimen-coverflow-footer {
+  margin-top: 8px;
+}

@@ -1,0 +1,332 @@
+/**
+ * Welcome hero — Vitrine layout (copy left, product card right).
+ * Uses global specimen-record-card.css for the passport.
+ * Scope: #mcWelcomeHero[data-mc-hero-layout="vitrine"]
+ */
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'].mc-product-hero {
+  --vh-bg: #0b0d10;
+  --vh-text: #eceff2;
+  --vh-muted: rgba(236, 239, 242, 0.58);
+  --vh-accent: #c9a84c;
+  --vh-accent-soft: rgba(201, 168, 76, 0.14);
+  --vh-line: rgba(255, 255, 255, 0.08);
+  background: var(--vh-bg) !important;
+  color: var(--vh-text);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'].mc-product-hero::before {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mcwhe3 {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-product-nav {
+  position: relative;
+  z-index: 20;
+  background: linear-gradient(180deg, rgba(11, 13, 16, 0.92) 0%, rgba(11, 13, 16, 0) 100%);
+  border-bottom: 1px solid var(--vh-line);
+}
+
+/* Safety: never hide the vitrine stage */
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine {
+  display: flex !important;
+  visibility: visible !important;
+}
+
+/* —— Stage —— */
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - 56px);
+  overflow: hidden;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__spot {
+  position: absolute;
+  right: -8%;
+  top: 18%;
+  width: min(62vw, 640px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.14) 0%, rgba(110, 207, 188, 0.06) 32%, transparent 68%);
+  filter: blur(2px);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__gridlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(var(--vh-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--vh-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, black 10%, transparent 75%);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__inner {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 64px);
+  width: min(1160px, 100%);
+  margin: 0 auto;
+  padding: clamp(88px, 11vh, 116px) clamp(20px, 4vw, 40px) clamp(40px, 6vh, 72px);
+  box-sizing: border-box;
+}
+
+/* —— Copy —— */
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__copy {
+  max-width: 520px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__eyebrow {
+  margin: 0 0 16px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vh-accent);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__title {
+  margin: 0;
+  font-size: clamp(1.85rem, 4.2vw, 3rem);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--vh-text);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__title em {
+  font-style: normal;
+  color: var(--vh-accent);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__lead {
+  margin: 18px 0 0;
+  font-size: clamp(0.9rem, 1.6vw, 1.02rem);
+  line-height: 1.6;
+  color: var(--vh-muted);
+  max-width: 38ch;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__btn {
+  border-radius: 10px;
+  padding: 13px 20px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__btn--primary {
+  border: 1px solid rgba(201, 168, 76, 0.55);
+  background: linear-gradient(180deg, #e8d49a 0%, #c9a84c 48%, #a8873a 100%);
+  color: #1a1408;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__btn--ghost {
+  border: 1px solid var(--vh-line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--vh-text);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Pipeline — numbered steps, not capsule buttons */
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__pipeline {
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: var(--vh-muted);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__step i {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-size: 0.65rem;
+  font-style: normal;
+  font-weight: 800;
+  color: var(--vh-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--vh-line);
+  transition: inherit;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__step span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__step.is-on,
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__step:hover {
+  background: var(--vh-accent-soft);
+  color: var(--vh-text);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__step.is-on i,
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__step:hover i {
+  color: #1a1408;
+  background: var(--vh-accent);
+  border-color: transparent;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__metrics li {
+  font-size: 0.78rem;
+  color: var(--vh-muted);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__metrics strong {
+  margin-right: 6px;
+  font-size: 0.92rem;
+  font-weight: 750;
+  color: var(--vh-text);
+}
+
+/* —— Showcase card —— */
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] #mcProductHeroPassport.specimen-record-card--hero {
+  width: min(100%, 420px);
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] #mcProductHeroPassport .specimen-record-card__inner {
+  overflow: visible;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] #mcProductHeroPassport .specimen-record-card__face.specimen-record-card__front {
+  transform: translateZ(1px);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] #mcProductHeroPassport .specimen-record-card__photo .mc-specimen-ph {
+  display: none;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__hint {
+  margin: 14px 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--vh-muted);
+  text-align: center;
+}
+
+/* Zone highlight on passport regions */
+#mcWelcomeHero[data-mc-hero-layout='vitrine'][data-zone='photo'] [data-hero-zone='photo'],
+#mcWelcomeHero[data-mc-hero-layout='vitrine'][data-zone='label'] [data-hero-zone='label'],
+#mcWelcomeHero[data-mc-hero-layout='vitrine'][data-zone='locality'] [data-hero-zone='locality'],
+#mcWelcomeHero[data-mc-hero-layout='vitrine'][data-zone='passport'] [data-hero-zone='passport'],
+#mcWelcomeHero[data-mc-hero-layout='vitrine'][data-zone='export'] [data-hero-zone='passport'] {
+  outline: 2px solid rgba(201, 168, 76, 0.75);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+@media (max-width: 960px) {
+  #mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__inner {
+    grid-template-columns: 1fr;
+    padding-top: clamp(80px, 10vh, 100px);
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__copy {
+    max-width: none;
+    text-align: center;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__actions {
+    justify-content: center;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__pipeline {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__metrics {
+    justify-content: center;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__spot {
+    right: 50%;
+    transform: translateX(50%);
+    top: 52%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcWelcomeHero[data-mc-hero-layout='vitrine'] .mc-hero-vitrine__btn:hover {
+    transform: none;
+  }
+}

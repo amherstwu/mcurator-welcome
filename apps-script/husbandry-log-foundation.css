@@ -1,0 +1,518 @@
+/**
+ * Husbandry Log — Design foundation
+ * Scope: #section-husbandry-log, #mcHusbandryLogRoot, .hlc-app
+ */
+
+#section-husbandry-log {
+  /* —— Design tokens —— */
+  --hlc-bg: radial-gradient(120% 85% at 50% -12%, color-mix(in srgb, #1e3348 62%, transparent), transparent 58%),
+    radial-gradient(90% 70% at 100% 100%, color-mix(in srgb, #152030 45%, transparent), transparent 55%),
+    linear-gradient(168deg, #080c12 0%, color-mix(in srgb, var(--hl-bg, #0a0d12) 92%, #0c121c) 100%);
+  --hlc-bg-soft: color-mix(in srgb, #121a26 78%, transparent);
+  --hlc-panel: color-mix(in srgb, var(--hl-card, #131922) 76%, transparent);
+  --hlc-panel-2: color-mix(in srgb, var(--hl-card-soft, #171d28) 68%, transparent);
+  --hlc-border: color-mix(in srgb, var(--hl-line, rgba(255, 255, 255, 0.1)) 82%, transparent);
+  --hlc-border-strong: color-mix(in srgb, var(--hl-line-strong, rgba(104, 136, 158, 0.3)) 70%, var(--hlc-border));
+  --hlc-text: var(--hl-ink, var(--text, #f1f5f9));
+  --hlc-muted: var(--hl-muted, var(--muted, #b8c5d4));
+  --hlc-accent: color-mix(in srgb, #5ecf9a 42%, var(--hl-green, var(--primary, #7a96a8)));
+  --hlc-accent-soft: color-mix(in srgb, var(--hlc-accent) 14%, transparent);
+  --hlc-accent-glow: color-mix(in srgb, var(--hlc-accent) 38%, #2d6b52);
+  --hlc-success: var(--hl-success, var(--success, #6d9d7c));
+  --hlc-warning: var(--hl-gold, var(--warning, #c4a24a));
+  --hlc-danger: var(--hl-red, var(--danger, #c4756f));
+  --hlc-info: color-mix(in srgb, var(--hlc-accent) 55%, #6eb5ff);
+  --hlc-radius-lg: clamp(16px, calc(var(--hl-r-card, 20px) + 4px), 24px);
+  --hlc-radius-md: clamp(10px, var(--hl-r-sm, 12px), 16px);
+  --hlc-shadow-soft: 0 10px 36px color-mix(in srgb, #000 28%, transparent),
+    0 0 0 1px color-mix(in srgb, #fff 5%, transparent) inset;
+  --hlc-shadow-card: 0 4px 18px color-mix(in srgb, #000 22%, transparent),
+    0 0 0 1px color-mix(in srgb, #fff 4%, transparent) inset;
+  --hlc-blur: 14px;
+  --hlc-space-xs: 4px;
+  --hlc-space-sm: 8px;
+  --hlc-space-md: 12px;
+  --hlc-space-lg: 16px;
+  --hlc-space-xl: 24px;
+  --hlc-space-2xl: 32px;
+  --hlc-text-xs: 0.6875rem;
+  --hlc-text-sm: 0.8125rem;
+  --hlc-text-md: 0.9375rem;
+  --hlc-text-lg: 1.125rem;
+  --hlc-text-xl: clamp(1.25rem, 2vw, 1.5rem);
+  --hlc-content-max: 100%;
+  --hlc-transition: 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  background: var(--hlc-bg);
+  color: var(--hlc-text);
+}
+
+#section-husbandry-log #mcHusbandryLogRoot,
+#section-husbandry-log #mcHusbandryLogShell {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: clip;
+}
+
+#section-husbandry-log .hlc-app {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  overflow-x: clip;
+  padding: clamp(var(--hlc-space-lg), 2.5vw, var(--hlc-space-2xl));
+  padding-bottom: calc(var(--hlc-space-2xl) + env(safe-area-inset-bottom, 0px));
+  color: var(--hlc-text);
+  font-size: var(--hlc-text-sm);
+  line-height: 1.45;
+}
+
+#section-husbandry-log #mcHusbandryLogShell,
+#section-husbandry-log #mcHusbandryLogRoot {
+  width: 100%;
+  max-width: none;
+}
+
+#section-husbandry-log .hlc-app--dash {
+  min-height: calc(100dvh - 72px);
+}
+
+#section-husbandry-log .hlc-app__inner {
+  width: 100%;
+  max-width: var(--hlc-content-max);
+  margin-inline: auto;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: inherit;
+}
+
+#section-husbandry-log .hlc-app__content {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+#section-husbandry-log .hlc-collection-stage {
+  width: 100%;
+  min-width: 0;
+}
+
+#section-husbandry-log .hlc-app__inner::before {
+  content: '';
+  position: absolute;
+  inset: -24px -12px auto;
+  height: calc(100% + 48px);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.45;
+  background-image:
+    linear-gradient(color-mix(in srgb, #fff 2.2%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, #fff 2.2%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 92%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 92%);
+}
+
+#section-husbandry-log::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+#section-husbandry-log .hlc-app__content {
+  display: grid;
+  gap: var(--hlc-space-xl);
+  min-width: 0;
+}
+
+#section-husbandry-log .hlc-app__inner > *,
+#section-husbandry-log .hlc-grid-pets > *,
+#section-husbandry-log .hlc-command-center__grid > *,
+#section-husbandry-log .hlc-record-grid > * {
+  min-width: 0;
+}
+
+#section-husbandry-log .hlc-pet-card__photo-media img,
+#section-husbandry-log .hlc-photo-wall__item,
+#section-husbandry-log .hlc-lightbox__frame img {
+  max-width: 100%;
+}
+
+#section-husbandry-log .hlc-sticky-head {
+  margin-bottom: var(--hlc-space-sm);
+  padding: var(--hlc-space-sm) 0 var(--hlc-space-md);
+  background: linear-gradient(180deg, color-mix(in srgb, #080c12 88%, transparent) 65%, transparent);
+  backdrop-filter: blur(var(--hlc-blur));
+  -webkit-backdrop-filter: blur(var(--hlc-blur));
+}
+
+#section-husbandry-log .hlc-section-title,
+#section-husbandry-log .hlc-collection-section__title {
+  margin: 0;
+  font-size: var(--hlc-text-md);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--hlc-text);
+}
+
+#section-husbandry-log .hlc-empty {
+  font-size: var(--hlc-text-sm);
+  color: var(--hlc-muted);
+}
+
+/* —— Glass surfaces —— */
+#section-husbandry-log :is(
+  .hlc-pet-card,
+  .hlc-panel,
+  .hlc-summary-card,
+  .hlc-command-center,
+  .hlc-home-recent,
+  .hlc-trend-card,
+  .hlc-record-card,
+  .hlc-home-stat,
+  .hlc-checklist-section,
+  .hlc-timeline-section,
+  .hlc-pet-hero,
+  .hlc-welcome__card--lead,
+  .hlc-shell-nav--dash
+) {
+  border: 1px solid var(--hlc-border);
+  background: var(--hlc-panel);
+  box-shadow: var(--hlc-shadow-card);
+  backdrop-filter: blur(var(--hlc-blur));
+  -webkit-backdrop-filter: blur(var(--hlc-blur));
+}
+
+#section-husbandry-log .hlc-pet-card,
+#section-husbandry-log .hlc-panel,
+#section-husbandry-log .hlc-summary-card,
+#section-husbandry-log .hlc-command-center,
+#section-husbandry-log .hlc-home-recent,
+#section-husbandry-log .hlc-trend-card,
+#section-husbandry-log .hlc-checklist-section,
+#section-husbandry-log .hlc-timeline-section,
+#section-husbandry-log .hlc-pet-hero {
+  border-radius: var(--hlc-radius-lg);
+}
+
+#section-husbandry-log .hlc-record-card,
+#section-husbandry-log .hlc-home-stat,
+#section-husbandry-log .hlc-action-dock__item,
+#section-husbandry-log .hlc-home-quick-btn {
+  border-radius: var(--hlc-radius-md);
+}
+
+#section-husbandry-log :is(
+  .hlc-pet-card,
+  .hlc-record-card,
+  .hlc-home-stat,
+  .hlc-trend-card,
+  .hlc-action-dock__item,
+  .hlc-home-quick-btn,
+  .hlc-pet-card--create__opt
+) {
+  transition:
+    transform var(--hlc-transition),
+    box-shadow var(--hlc-transition),
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+#section-husbandry-log :is(
+  .hlc-pet-card:hover,
+  .hlc-record-card:hover,
+  .hlc-home-stat:hover,
+  .hlc-trend-card:hover,
+  .hlc-action-dock__item:hover,
+  .hlc-home-quick-btn:hover,
+  .hlc-pet-card--create:hover
+) {
+  transform: translateY(-3px);
+  box-shadow: var(--hlc-shadow-soft);
+}
+
+#section-husbandry-log :is(
+  .hlc-pet-card:active,
+  .hlc-record-card:active,
+  .hlc-btn:active,
+  .hlc-shell-nav__btn:active,
+  .hlc-action-dock__item:active,
+  .hlc-home-quick-btn:active,
+  .hlc-pet-card--create__opt:active
+) {
+  transform: scale(0.98);
+}
+
+#section-husbandry-log .hlc-btn {
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--hlc-border);
+  font-size: var(--hlc-text-sm);
+  font-weight: 700;
+  transition: transform var(--hlc-transition), box-shadow var(--hlc-transition), border-color 0.2s ease;
+}
+
+#section-husbandry-log .hlc-btn--primary {
+  border-color: color-mix(in srgb, var(--hlc-accent) 55%, var(--hlc-border));
+  background: color-mix(in srgb, var(--hlc-accent) 22%, var(--hlc-panel-2));
+  color: var(--hlc-text);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--hlc-accent) 16%, transparent);
+}
+
+#section-husbandry-log .hlc-btn--ghost {
+  background: var(--hlc-panel-2);
+  color: var(--hlc-text);
+}
+
+#section-husbandry-log .hlc-grid-pets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: var(--hlc-space-lg);
+  align-items: stretch;
+}
+
+#section-husbandry-log .hlc-pet-card.hlc-pet-card--living,
+#section-husbandry-log .hlc-pet-card.hlc-pet-card--create {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#section-husbandry-log .hlc-pet-card--living .hlc-pet-card__main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#section-husbandry-log .hlc-pet-card--living .hlc-pet-card__body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#section-husbandry-log .hlc-pet-card__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 6.75rem;
+}
+
+#section-husbandry-log .hlc-pet-card__tags {
+  display: flex;
+  align-items: center;
+  min-height: 1.625rem;
+}
+
+#section-husbandry-log .hlc-pet-card__stage-chip--empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#section-husbandry-log .hlc-pet-card__category,
+#section-husbandry-log .hlc-pet-card__sci {
+  margin: 0;
+  min-height: 1.35em;
+  line-height: 1.35;
+}
+
+#section-husbandry-log .hlc-pet-card__slot--empty {
+  color: color-mix(in srgb, var(--hlc-muted) 55%, transparent);
+}
+
+#section-husbandry-log .hlc-pet-card__next {
+  min-height: 2.7em;
+  margin: 0;
+}
+
+#section-husbandry-log .hlc-pet-card__quest {
+  flex-shrink: 0;
+}
+
+#section-husbandry-log .hlc-pet-card__meta {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+#section-husbandry-log .hlc-pet-card__quick-bar {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+#section-husbandry-log .hlc-collection-stage,
+#section-husbandry-log .hlc-collection-section,
+#section-husbandry-log .hlc-trends-grid,
+#section-husbandry-log .hlc-profile-grid {
+  display: grid;
+  gap: var(--hlc-space-xl);
+}
+
+#section-husbandry-log .hlc-trends-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+}
+
+#section-husbandry-log .hlc-profile-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+}
+
+#section-husbandry-log .hlc-panel {
+  padding: var(--hlc-space-lg);
+}
+
+#section-husbandry-log .hlc-record-grid,
+#section-husbandry-log .hlc-record-grid--bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
+  gap: var(--hlc-space-md);
+}
+
+#section-husbandry-log .hlc-toast {
+  border-radius: var(--hlc-radius-md);
+  border: 1px solid var(--hlc-border-strong);
+  background: color-mix(in srgb, var(--hlc-panel) 92%, #000);
+  box-shadow: var(--hlc-shadow-soft);
+  font-size: var(--hlc-text-sm);
+}
+
+@media (max-width: 1024px) {
+  #section-husbandry-log .hlc-command-center__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #section-husbandry-log .hlc-command-center__widget {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  #section-husbandry-log .hlc-app {
+    padding-inline: var(--hlc-space-md);
+  }
+
+  #section-husbandry-log .hlc-command-center__grid {
+    grid-template-columns: 1fr;
+  }
+
+  #section-husbandry-log .hlc-home-stats--command,
+  #section-husbandry-log .hlc-home-stats--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #section-husbandry-log .hlc-action-dock {
+    display: flex;
+    gap: var(--hlc-space-sm);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: 100%;
+    padding-bottom: 2px;
+  }
+
+  #section-husbandry-log .hlc-action-dock::-webkit-scrollbar {
+    display: none;
+  }
+
+  #section-husbandry-log .hlc-action-dock__item {
+    flex: 0 0 auto;
+    min-width: 72px;
+  }
+
+  #section-husbandry-log .hlc-pet-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #section-husbandry-log .hlc-pet-toolbar__filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: 100%;
+  }
+
+  #section-husbandry-log .hlc-pet-toolbar__filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  #section-husbandry-log .hlc-shell-nav-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  #section-husbandry-log .hlc-shell-nav-wrap::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  #section-husbandry-log .hlc-app {
+    padding-inline: var(--hlc-space-md);
+  }
+
+  #section-husbandry-log .hlc-grid-pets {
+    grid-template-columns: 1fr;
+  }
+
+  #section-husbandry-log .hlc-pet-card__quick-bar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  #section-husbandry-log .hlc-summary-card__body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #section-husbandry-log .hlc-command-center,
+  #section-husbandry-log .hlc-home-recent,
+  #section-husbandry-log .hlc-panel {
+    padding: var(--hlc-space-md);
+  }
+}
+
+/* Phase 6 �X undo toast + danger batch action */
+#section-husbandry-log .hlc-toast--with-undo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+}
+#section-husbandry-log .hlc-toast__msg {
+  flex: 1;
+  min-width: 0;
+}
+#section-husbandry-log .hlc-toast__undo {
+  flex-shrink: 0;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--hlc-accent, #2a7) 45%, var(--hlc-border, #ccc));
+  background: color-mix(in srgb, var(--hlc-accent, #2a7) 14%, transparent);
+  color: inherit;
+  cursor: pointer;
+}
+#section-husbandry-log .hlc-toast__undo:hover {
+  background: color-mix(in srgb, var(--hlc-accent, #2a7) 22%, transparent);
+}
+#section-husbandry-log .hlc-btn--danger {
+  color: color-mix(in srgb, var(--hlc-danger, #c44) 85%, #000);
+  border-color: color-mix(in srgb, var(--hlc-danger, #c44) 40%, var(--hlc-border, #ccc));
+}
+#section-husbandry-log .hlc-btn--danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--hlc-danger, #c44) 12%, transparent);
+}

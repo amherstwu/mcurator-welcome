@@ -1,0 +1,1137 @@
+/**
+ * ACTIVE FILE — used by UI.html
+ * Do not import old landing / museum versions at the same time.
+ *
+ * MCurator landing — premium motion, museum lighting, USP depth.
+ * Load after mcurator-museum.css. Respects prefers-reduced-motion.
+ */
+
+/* —— Hero: scale + museum spotlight —— */
+#mcWelcomeHero .c-hero__spotlight {
+  opacity: 0.45;
+  transform: scale(1.15);
+  filter: blur(60px);
+}
+#mcWelcomeHero .c-hero__orbitHalo {
+  opacity: 0.35;
+}
+#lpCinematicHero {
+  transition: background 0.6s ease, box-shadow 0.6s ease;
+}
+#lpCinematicHero[data-hero-mode='pro'] {
+  --lp-hero-glow: rgba(100, 200, 160, 0.12);
+}
+#lpCinematicHero[data-hero-mode='hobby'] {
+  --lp-hero-glow: rgba(120, 180, 220, 0.1);
+}
+#lpCinematicHero[data-hero-mode='bio'] {
+  --lp-hero-glow: rgba(200, 190, 120, 0.1);
+}
+.mc-hero3d {
+  min-height: 680px;
+  max-width: min(560px, 100%);
+}
+@media (min-width: 1200px) {
+  .mc-hero3d {
+    min-height: 720px;
+  }
+}
+
+/* Hero: taxonomy aux panel removed (SAT card is self-contained) */
+#mcWelcomeHero .mc-hero-aux {
+  display: none !important;
+}
+@media (min-width: 1024px) {
+  #mcWelcomeHero #mcHeroMaturity {
+    display: block !important;
+    max-width: min(520px, 100%);
+    margin-top: 0.75rem;
+  }
+}
+@media (max-width: 1023.98px) {
+  #mcWelcomeHero #mcHeroMaturity {
+    display: none !important;
+  }
+}
+#mcWelcomeHero .mc-hero3d {
+  min-height: 0;
+  max-width: min(420px, 100%);
+}
+@media (min-width: 1024px) {
+  #mcWelcomeHero .mc-hero3d {
+    max-width: min(400px, 46vw);
+  }
+}
+#mcWelcomeHero .mc-hero3d__display {
+  display: none !important;
+}
+#mcWelcomeHero .mc-hero3d__meterH em {
+  display: none !important;
+}
+/* No hover-driven scale/sheen on hero SAT card (fullscreen stability; click-to-flip only). */
+.mc-hero3d::before {
+  content: '';
+  position: absolute;
+  inset: -8% -20% -20% -20%;
+  background: radial-gradient(ellipse 70% 60% at 50% 45%, var(--lp-hero-glow, rgba(90, 160, 130, 0.16)), transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* v4 曾在此對 cardShell / img 加 translateY+scale，與 museum 的 .mc-hero3d__scene 3D
+   同時作用會產生巢狀 transform、裁切與整塊「跳閃／消失感」。已改由 scene 統一做 3D。 */
+.mc-hero3d__cardShell {
+  z-index: 1;
+  border-radius: 34px;
+  transition: transform 0.55s var(--mc3-ease, cubic-bezier(0.2, 0.75, 0.2, 1));
+}
+.mc-hero3d__face {
+  border-radius: 28px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 -24px 70px rgba(80, 150, 130, 0.14) inset;
+}
+/* 翻面只保留 Y 轉，不在此疊 scale（mcurator-museum 定義） */
+.mc-hero3d__card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* —— USP mode chips: premium, not default tabs —— */
+.lp-hero__uspchips {
+  position: relative;
+  gap: 10px 12px;
+}
+.lp-hero__uspchips::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(120, 200, 160, 0.2), transparent);
+  pointer-events: none;
+}
+.lp-hero__uspchip {
+  position: relative;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 10px 16px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(165deg, rgba(20, 28, 32, 0.92) 0%, rgba(8, 12, 16, 0.78) 100%);
+  color: rgba(240, 245, 240, 0.85);
+  transition: transform 0.35s cubic-bezier(0.2, 0.75, 0.2, 1), box-shadow 0.35s, border-color 0.35s, color 0.25s;
+}
+.lp-hero__uspchip::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #5ecf9a, #6ec9e8);
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition: opacity 0.3s, transform 0.35s;
+}
+.lp-hero__uspchip.is-active {
+  color: #f2faf4;
+  border-color: rgba(120, 210, 170, 0.5);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(100, 200, 150, 0.25) inset, 0 0 24px rgba(100, 200, 150, 0.12);
+  transform: translateY(-2px) scale(1.04);
+}
+.lp-hero__uspchip.is-active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero__uspchip,
+  .lp-hero__uspchip::after {
+    transition: none;
+  }
+  .lp-hero__uspchip.is-active {
+    transform: none;
+  }
+}
+.mc-hero-title,
+#welcomeContentTitle {
+  font-size: clamp(1.75rem, 1.1rem + 2.1vw, 2.75rem) !important;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+/* —— Scroll reveal: subtle (near-zero opacity caused harsh “flash” when revealed) —— */
+.welcome-reveal:not(.mc-welcome-revealed) {
+  opacity: 0.94;
+  transform: translateY(12px);
+  transition: opacity 0.55s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.6s cubic-bezier(0.16, 0.9, 0.2, 1);
+}
+.welcome-reveal.mc-welcome-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .welcome-reveal,
+  .welcome-reveal:not(.mc-welcome-revealed) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+.lp-sec-anim .lp-sec-eyebrow,
+.lp-sec-anim .lp-sec-h,
+.lp-sec-anim .lp-sec-dek {
+  transform: translateY(32px);
+  transition: opacity 0.6s, transform 0.65s cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+.lp-sec-anim.mc-welcome-revealed .lp-sec-eyebrow,
+.lp-sec-anim.mc-welcome-revealed .lp-sec-h,
+.lp-sec-anim.mc-welcome-revealed .lp-sec-dek {
+  transform: translateY(0);
+}
+.lp-sec-anim .lp-sec-h {
+  font-size: clamp(1.4rem, 1rem + 1.5vw, 2.1rem) !important;
+  letter-spacing: -0.02em;
+}
+
+/* —— Trio / USP cards: lift + image zoom —— */
+.lp-hero-tcard {
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(155deg, rgba(22, 32, 38, 0.88), rgba(8, 10, 14, 0.9));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4);
+  transition: transform 0.45s cubic-bezier(0.2, 0.75, 0.2, 1), box-shadow 0.45s, border-color 0.3s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .lp-hero-tcard:hover {
+    transform: translateY(-20px) scale(1.01);
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(100, 200, 150, 0.15);
+    border-color: rgba(120, 200, 160, 0.3);
+  }
+  .lp-hero-tcard:hover .lp-hero-tcard__ph {
+    transform: scale(1.08);
+  }
+}
+.lp-hero-tcard__ph {
+  border-radius: 20px;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.lp-hero-tcard__viz {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+}
+.lp-hero-tcard__viz::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(60, 120, 100, 0.25), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.lp-hero-tcard:hover .lp-hero-tcard__viz::after {
+  opacity: 1;
+}
+
+/* —— Fragment deck + chips —— */
+#lp-fragment-theater [data-lp-frag].is-mc3-fragOn {
+  animation: mc4FragPulse 1.6s ease-in-out infinite;
+  z-index: 2;
+}
+@keyframes mc4FragPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(120, 220, 180, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(120, 220, 180, 0.6), 0 12px 36px rgba(0, 0, 0, 0.4);
+  }
+}
+.mc-deck3d .lp-ft3-card--center {
+  transform: scale(1) translateY(-10px) translateZ(0) rotateY(0deg);
+  filter: brightness(1.08) drop-shadow(0 40px 70px rgba(0, 0, 0, 0.45));
+}
+.mc-deck3d .lp-ft3-card.is-mc3-near {
+  filter: brightness(0.9);
+}
+#lp-fragment-theater .lp-ft3-f.mcp-hl {
+  transform: scale(1.04);
+  transition: transform 0.25s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  #lp-fragment-theater [data-lp-frag].is-mc3-fragOn {
+    animation: none;
+  }
+}
+
+/* —— Workflow: 6 steps + pipe —— */
+.lp-wf-stagger .mc-wf-step {
+  transform: translateY(48px);
+  opacity: 0.12;
+  transition: opacity 0.55s, transform 0.6s;
+}
+.mc-wf-step.mc-wf--active {
+  transform: scale(1.03) translateY(-2px);
+}
+.mc-wf-pipe__token {
+  transition: left 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  box-shadow: 0 0 18px rgba(100, 200, 150, 0.35);
+}
+@media (min-width: 1200px) {
+  .mc-wf-pipe::before {
+    background: linear-gradient(90deg, rgba(100, 160, 120, 0.15), rgba(200, 180, 100, 0.25), rgba(100, 160, 120, 0.15));
+  }
+}
+
+/* —— Specimen wall (cabinet) —— */
+.mc-cab__frame {
+  border-radius: 20px;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.45s, filter 0.35s;
+  transform-style: preserve-3d;
+}
+@media (hover: hover) and (pointer: fine) {
+  .mc-cab__frame:hover {
+    transform: translateY(-24px) rotateX(4deg) rotateY(5deg) scale(1.02);
+    z-index: 2;
+  }
+  .mc-cab__frame:hover .mc-cab__fig img {
+    transform: scale(1.08);
+  }
+}
+.mc-cab__fig img {
+  transition: transform 0.5s ease;
+}
+.mc-cab-sec {
+  position: relative;
+}
+.mc-cab-sec::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 60% at 50% 0%, rgba(30, 80, 60, 0.2), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.mc-cab--focus::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* —— Module cards —— */
+.welcome-value-card,
+.lp-fcard {
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s, border-color 0.3s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .lp-fcard:hover,
+  .welcome-value-card:hover {
+    transform: translateY(-10px);
+  }
+}
+.lp-hero__cta-primary.primary-btn,
+#btnWelcomeHeroDemo.primary-btn {
+  min-height: 52px;
+  padding: 0 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  box-shadow: 0 20px 40px rgba(60, 200, 140, 0.2);
+  transition: transform 0.25s, box-shadow 0.3s;
+}
+.c-hero__cta--primary:hover,
+.lp-hero__cta-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* —— Museum surface depth —— */
+#welcomeMuseumBody.lp-landing-museum {
+  --museum-vignette: rgba(0, 8, 6, 0.2);
+}
+#welcomeMuseumBody.lp-landing-museum::before {
+  background-image: linear-gradient(180deg, var(--museum-vignette) 0%, transparent 32%), repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 32px
+  ) !important;
+  opacity: 0.4 !important;
+  mix-blend-mode: soft-light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-hero3d::before,
+  .lp-hero-tcard__viz::after,
+  .lp-hero__uspchips::after,
+  .mc-cab-sec::before,
+  .mc-deck3d .lp-ft3-card--center {
+    transition: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .mc-hero3d:hover .mc-hero3d__cardShell,
+    .lp-hero-tcard:hover,
+    .mc-cab__frame:hover,
+    .c-hero__cta--primary:hover {
+      transform: none;
+    }
+  }
+}
+/**
+ * MCurator landing v5 — placeholders, section cleanup, cab preview, dev gate.
+ * Loaded after mcurator-museum-v3.css
+ */
+
+/* Legacy six-chapter block removed from reading order */
+#lp-usp.lp-usp--legacy-hidden {
+  display: none !important;
+  visibility: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* Dev tools: show only in dev (see welcome-museum-v3.js) */
+#developerOnlyPanel.mc-landing-dev-only {
+  display: none !important;
+}
+html.mc-landing-dev #developerOnlyPanel.mc-landing-dev-only {
+  display: block !important;
+}
+
+/* —— SpecimenImagePlaceholder: semantic categories —— */
+.mc-specimen-ph {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  width: 100%;
+  background: var(
+    --mc-specimen-ph-bg,
+    linear-gradient(145deg, #1a2330 0%, #0c1218 50%, #080c10 100%)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.mc-specimen-ph::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 50% at 50% 0%, rgba(100, 180, 150, 0.12), transparent 65%);
+  pointer-events: none;
+}
+.mc-specimen-ph__icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  opacity: 0.5;
+  margin-bottom: 6px;
+  z-index: 1;
+}
+.mc-specimen-ph__label {
+  position: relative;
+  z-index: 1;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(200, 220, 205, 0.55);
+  text-align: center;
+  max-width: 16em;
+  padding: 0 10px;
+  line-height: 1.35;
+}
+.mc-specimen-ph__note {
+  font-size: 0.58rem;
+  color: rgba(180, 200, 190, 0.38);
+  margin-top: 4px;
+  z-index: 1;
+  letter-spacing: 0.04em;
+}
+.mc-specimen-ph--insect {
+  --mc-specimen-ph-bg: linear-gradient(155deg, #1a2830, #0a1012);
+}
+.mc-specimen-ph--reptile {
+  --mc-specimen-ph-bg: linear-gradient(155deg, #222818, #0a0e0c);
+}
+.mc-specimen-ph--plant {
+  --mc-specimen-ph-bg: linear-gradient(155deg, #1a2420, #0c100e);
+}
+.mc-specimen-ph--fossil {
+  --mc-specimen-ph-bg: linear-gradient(155deg, #262220, #100c0a);
+}
+.mc-specimen-ph--habitat {
+  --mc-specimen-ph-bg: linear-gradient(160deg, #1a2a24, #081210);
+}
+.mc-specimen-ph--archive {
+  --mc-specimen-ph-bg: linear-gradient(150deg, #1e1c28, #0c0a12);
+}
+.mc-hero3d__imgW {
+  position: relative;
+}
+.mc-hero3d__imgW .specimen-image-frame {
+  position: relative;
+  min-height: 0;
+  z-index: 0;
+}
+.mc-hero3d__imgW .mc-specimen-ph,
+.mc-hero3d__imgW .specimen-image-frame .mc-specimen-ph {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.mc-hero3d__imgW .mc-hero3d__imgWInner {
+  position: relative;
+  z-index: 0;
+}
+.mc-hero3d__imgW .mc-hero3d__img {
+  position: relative;
+  z-index: 1;
+}
+.mc-hero3d__imgW .mc-hero3d__img:not(.mc-welcome-img--loaded) {
+  opacity: 0;
+  min-height: 1px;
+}
+.mc-hero3d__imgW:has(.mc-hero3d__img.mc-welcome-img--loaded) .mc-specimen-ph,
+.mc-hero3d__imgW:has(.mc-hero3d__img.mc-welcome-img--loaded) .specimen-image-frame .mc-specimen-ph {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.mc-cab__fig:has(img.mc-welcome-img--loaded) .mc-specimen-ph--cab {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* —— Digital cabinet preview dialog —— */
+.mc-cab-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 18000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.mc-cab-preview[hidden] {
+  display: none !important;
+}
+.mc-cab-preview.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mc-cab-preview__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+.mc-cab-preview__panel {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 100%);
+  max-height: min(92vh, 800px);
+  overflow: auto;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(200deg, #101820 0%, #060a0c 100%);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.65);
+  padding: 20px 20px 22px;
+  box-sizing: border-box;
+}
+.mc-cab-preview__x {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(240, 250, 245, 0.9);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mc-cab-preview__x:hover,
+.mc-cab-preview__x:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+.mc-cab-preview__fig {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 200px;
+  max-height: 40vh;
+  background: #0a0c0a;
+  margin-top: 8px;
+  margin-bottom: 14px;
+}
+.mc-cab-preview__fig img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 40vh;
+  object-fit: cover;
+}
+.mc-cab-preview__meta {
+  display: grid;
+  gap: 6px 12px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: rgba(210, 225, 215, 0.9);
+}
+.mc-cab-preview__id {
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(160, 200, 175, 0.7);
+  margin: 0;
+}
+.mc-cab-preview__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #eef5f0;
+}
+.mc-cab-preview__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  font-size: 0.75rem;
+  color: rgba(200, 215, 200, 0.75);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mc-cab-preview {
+    transition: none;
+  }
+}
+
+/* —— Hero: single SAT card column (aux panel removed) —— */
+@media (min-width: 1024px) {
+  #mcWelcomeHero .lp-hero__showcase {
+    max-width: min(1040px, 100%) !important;
+  }
+  #mcWelcomeHero .mc-hero3d {
+    max-width: min(520px, 100%);
+    min-width: min(440px, 100% - 16px);
+  }
+  #mcWelcomeHero .mc-hero3d__float {
+    display: block;
+    width: 100%;
+    max-width: min(520px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media (max-width: 1023.98px) {
+  #mcWelcomeHero .mc-hero3d__float {
+    display: block;
+  }
+}
+#lpCinematicHero .lp-hero__modeDek {
+  transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+#mcHero3d[data-hero-mode="pro"] {
+  --mc3-modeglow: rgba(90, 140, 200, 0.14);
+}
+#mcHero3d[data-hero-mode="hobby"] {
+  --mc3-modeglow: rgba(200, 160, 100, 0.12);
+}
+#mcHero3d[data-hero-mode="bio"] {
+  --mc3-modeglow: rgba(80, 180, 120, 0.14);
+}
+#mcWelcomeHero .mc-hero-aux {
+  position: relative;
+  box-shadow: 0 0 40px var(--mc3-modeglow, rgba(0, 0, 0, 0.12));
+  transition: box-shadow 0.4s;
+}
+/**
+ * MCurator landing v6 — stronger motion, gallery wall, modules, progressive section.
+ * Loaded after v4/v5. Respects prefers-reduced-motion.
+ */
+
+/* —— Duplicated / optional narrative: hide immersive media block (copy lives in modules) —— */
+#lp-media.lp-sec--landing-hidden,
+section#lp-media.lp-sec--landing-hidden,
+#lpProgressiveRecord.lp-sec--landing-hidden,
+section#lpProgressiveRecord.lp-sec--landing-hidden {
+  display: none !important;
+  visibility: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* —— Progressive record band —— */
+#lpProgressiveRecord {
+  position: relative;
+  z-index: 2;
+  max-width: min(920px, 100% - 40px);
+  margin: clamp(1.5rem, 4vw, 2.75rem) auto;
+  padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 2rem);
+  border-radius: 24px;
+  border: 1px solid rgba(120, 200, 160, 0.12);
+  background: linear-gradient(150deg, rgba(18, 32, 28, 0.5) 0%, rgba(6, 10, 8, 0.35) 100%);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  backdrop-filter: blur(8px);
+}
+#lpProgressiveRecord .lp-sec-h {
+  font-size: clamp(1.35rem, 1.05rem + 1.2vw, 1.85rem) !important;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+#lpProgressiveRecord .lp-sec-dek {
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.55;
+  max-width: 58ch;
+}
+
+/* —— Scroll reveal: slightly stronger entrance —— */
+.welcome-reveal:not(.mc-welcome-revealed) {
+  transform: translateY(48px) scale(0.99);
+}
+@media (prefers-reduced-motion: reduce) {
+  .welcome-reveal:not(.mc-welcome-revealed) {
+    transform: none;
+  }
+}
+
+/* —— Hero: mode deks (visible copy animates in) —— */
+#lpCinematicHero .lp-hero__modeDek:not([hidden]) {
+  animation: lpV6ModeIn 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes lpV6ModeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #lpCinematicHero .lp-hero__modeDek:not([hidden]) {
+    animation: none;
+  }
+}
+
+/* —— Trio: stronger premium hover (amplitude) —— */
+@media (hover: hover) and (pointer: fine) {
+  .lp-hero-tcard {
+    --lp-tcard-spot: 0;
+  }
+  .lp-hero-tcard::before {
+    content: '';
+    position: absolute;
+    inset: -20% -30% 40% -30%;
+    background: radial-gradient(ellipse 50% 70% at 50% 0%, rgba(100, 200, 150, 0.14), transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.45s ease, transform 0.5s ease;
+    transform: translateY(8px) scale(0.96);
+  }
+  .lp-hero-tcard:hover::before,
+  .lp-hero-tcard:focus-within::before {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .lp-hero-tcard:hover,
+  .lp-hero-tcard:focus-within {
+    transform: translateY(-32px) scale(1.055);
+    box-shadow: 0 44px 90px rgba(0, 0, 0, 0.58), 0 0 0 1px rgba(100, 200, 150, 0.28);
+    z-index: 2;
+  }
+  .lp-hero-tcard:hover .lp-hero-tcard__ph,
+  .lp-hero-tcard:focus-within .lp-hero-tcard__ph {
+    transform: scale(1.11);
+  }
+  .lp-hero-tcard:hover .lp-hero-tcard__hover,
+  .lp-hero-tcard:focus-within .lp-hero-tcard__hover {
+    transform: translateY(-52px);
+    opacity: 1;
+  }
+  .lp-hero-tcard--2:hover .lp-hero-tcard__flow,
+  .lp-hero-tcard--2:focus-within .lp-hero-tcard__flow {
+    transform: translateY(-10px) scale(1.03);
+  }
+}
+.lp-hero-tcard {
+  position: relative;
+  z-index: 1;
+}
+.lp-hero-tcard__ph.mc-specimen-ph,
+.lp-hero-tcard__ph--layer {
+  min-height: 160px;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+}
+.lp-hero-tcard__hover {
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.4s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .lp-hero-tcard--1 {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(90, 160, 200, 0.1);
+  }
+  .lp-hero-tcard--2 {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(200, 180, 100, 0.12);
+  }
+  .lp-hero-tcard--3 {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(120, 200, 140, 0.12);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-tcard:hover,
+  .lp-hero-tcard:focus-within,
+  .lp-hero-tcard:hover .lp-hero-tcard__ph,
+  .lp-hero-tcard:hover .lp-hero-tcard__hover {
+    transform: none;
+  }
+}
+
+/* —— Digital museum wall: obvious lift + dim siblings —— */
+.mc-cab__wall {
+  position: relative;
+  gap: 14px;
+  align-items: stretch;
+}
+@media (hover: hover) and (pointer: fine) {
+  .mc-cab__wall:has(.mc-cab__frame:hover) .mc-cab__frame:not(:hover) {
+    filter: brightness(0.7) saturate(0.9);
+    transform: scale(0.98);
+  }
+  .mc-cab__frame {
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s, filter 0.35s;
+  }
+  .mc-cab__frame:hover,
+  .mc-cab__frame:focus-visible {
+    transform: translateY(-36px) rotate(6deg) scale(1.04);
+    z-index: 3;
+    box-shadow: 0 32px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(120, 200, 160, 0.2);
+  }
+  .mc-cab__frame:hover .mc-cab__figImg.mc-welcome-img--loaded,
+  .mc-cab__frame:focus-within .mc-cab__figImg.mc-welcome-img--loaded {
+    transform: scale(1.1);
+  }
+}
+.mc-cab__fig {
+  overflow: hidden;
+  border-radius: 10px 10px 6px 6px;
+}
+.mc-cab__figImg {
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mc-cab__wall:has(.mc-cab__frame:hover) .mc-cab__frame:not(:hover),
+  .mc-cab__frame:hover,
+  .mc-cab__frame:focus-visible {
+    filter: none;
+    transform: none;
+  }
+}
+
+/* —— Fragment: passport cwrap leans toward active highlight —— */
+#lp-fragment-theater {
+  --lp-frag-lean: 0deg;
+}
+#lp-fragment-theater .lp-ft3-cwrap {
+  transform: perspective(1400px) rotateY(var(--lp-frag-lean, 0deg));
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  #lp-fragment-theater .lp-ft3-cwrap {
+    transition: none;
+    transform: none;
+  }
+}
+#lp-fragment-theater[data-lp-hl='med'] {
+  --lp-frag-lean: 5deg;
+}
+#lp-fragment-theater[data-lp-hl='label'] {
+  --lp-frag-lean: 2deg;
+}
+#lp-fragment-theater[data-lp-hl='tax'] {
+  --lp-frag-lean: -3deg;
+}
+#lp-fragment-theater[data-lp-hl='geo'] {
+  --lp-frag-lean: 4deg;
+}
+#lp-fragment-theater[data-lp-hl='coll'] {
+  --lp-frag-lean: -2deg;
+}
+#lp-fragment-theater[data-lp-hl='rev'] {
+  --lp-frag-lean: -4deg;
+}
+#lp-fragment-theater[data-lp-hl='vis'] {
+  --lp-frag-lean: 3deg;
+}
+#lp-fragment-theater[data-lp-hl='ex'] {
+  --lp-frag-lean: -5deg;
+}
+
+/* —— Workflow: stronger active step (line drawn in mcurator-museum-v3.css) —— */
+#welcomeWorkflowSection .mc-wf-step:hover {
+  transform: translateY(-3px);
+}
+#welcomeWorkflowSection .mc-wf--active {
+  box-shadow: 0 0 0 1px rgba(120, 200, 160, 0.22) inset, 0 10px 32px rgba(0, 0, 0, 0.25);
+}
+@media (prefers-reduced-motion: reduce) {
+  #welcomeWorkflowSection .mc-wf-step:hover {
+    transform: none;
+  }
+}
+
+/* —— Product module grid: six distinct card treatments —— */
+#welcomeFeatureGridSection .lp-fcard[data-lp-fcard='0'] {
+  background: linear-gradient(165deg, rgba(20, 36, 32, 0.85), rgba(8, 10, 12, 0.9));
+  border-color: rgba(100, 180, 200, 0.18);
+}
+#welcomeFeatureGridSection .lp-fcard[data-lp-fcard='1'] {
+  background: linear-gradient(170deg, rgba(28, 28, 36, 0.88), rgba(8, 8, 12, 0.9));
+  border-color: rgba(200, 180, 100, 0.15);
+}
+#welcomeFeatureGridSection .lp-fcard[data-lp-fcard='2'] {
+  background: linear-gradient(160deg, rgba(22, 32, 44, 0.85), rgba(6, 10, 14, 0.9));
+  border-color: rgba(120, 160, 220, 0.16);
+}
+#welcomeFeatureGridSection .lp-fcard[data-lp-fcard='3'] {
+  background: linear-gradient(168deg, rgba(32, 24, 36, 0.86), rgba(10, 8, 12, 0.9));
+  border-color: rgba(200, 120, 180, 0.12);
+}
+#welcomeFeatureGridSection .lp-fcard[data-lp-fcard='4'] {
+  background: linear-gradient(162deg, rgba(24, 32, 28, 0.86), rgba(6, 12, 8, 0.9));
+  border-color: rgba(140, 200, 140, 0.12);
+}
+#welcomeFeatureGridSection .lp-fcard[data-lp-fcard='5'] {
+  background: linear-gradient(165deg, rgba(30, 26, 20, 0.88), rgba(10, 8, 6, 0.9));
+  border-color: rgba(220, 180, 120, 0.16);
+}
+@media (hover: hover) and (pointer: fine) {
+  #welcomeFeatureGridSection .lp-fcard {
+    min-height: 200px;
+    border-radius: 18px;
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s, border-color 0.3s;
+  }
+  #welcomeFeatureGridSection .lp-fcard:hover,
+  #welcomeFeatureGridSection .lp-fcard:focus-within {
+    transform: translateY(-12px) scale(1.02);
+  }
+  #welcomeFeatureGridSection .lp-fcard .mc-fcard__reveal {
+    opacity: 0.55;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(8px);
+    transition: max-height 0.4s ease, opacity 0.3s, transform 0.35s;
+  }
+  #welcomeFeatureGridSection .lp-fcard:hover .mc-fcard__reveal,
+  #welcomeFeatureGridSection .lp-fcard:focus-within .mc-fcard__reveal {
+    opacity: 1;
+    max-height: 120px;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #welcomeFeatureGridSection .lp-fcard .mc-fcard__reveal {
+    opacity: 0.9;
+    max-height: none;
+  }
+  #welcomeFeatureGridSection .lp-fcard:hover {
+    transform: none;
+  }
+}
+
+/* =============================================================================
+   About MCurator (welcomePhaseAbout) — layered atmosphere + glass readability
+   ============================================================================= */
+
+#welcomePhaseAbout.about-page {
+  position: relative;
+  min-height: 100svh;
+  overflow-x: hidden;
+  isolation: isolate;
+  color: #f4efe2;
+  background: linear-gradient(180deg, #07110d 0%, #0a0f0d 45%, #050706 100%);
+}
+
+#welcomePhaseAbout .about-bg-gradient,
+#welcomePhaseAbout .about-bg-hero-glow,
+#welcomePhaseAbout .about-particles,
+#welcomePhaseAbout .about-bg-noise {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#welcomePhaseAbout .about-bg-gradient {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(132, 108, 55, 0.14), transparent 38%),
+    radial-gradient(circle at 15% 22%, rgba(30, 92, 65, 0.2), transparent 36%),
+    radial-gradient(ellipse 100% 70% at 50% 10%, rgba(18, 72, 52, 0.14), transparent 56%);
+}
+
+#welcomePhaseAbout .about-bg-hero-glow {
+  z-index: 0;
+  background: radial-gradient(ellipse 85% 55% at 50% 14%, rgba(22, 88, 62, 0.28), transparent 52%),
+    radial-gradient(ellipse 60% 40% at 50% 18%, rgba(132, 108, 55, 0.12), transparent 50%);
+  mix-blend-mode: soft-light;
+}
+
+#welcomePhaseAbout .about-particles {
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.44;
+  mix-blend-mode: screen;
+  filter: blur(0.35px);
+}
+
+#welcomePhaseAbout .about-bg-noise {
+  z-index: 2;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+#welcomePhaseAbout .about-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: min(920px, 100%);
+  margin: 0 auto;
+  padding: clamp(16px, 4vw, 36px) clamp(12px, 3vw, 24px) clamp(28px, 5vw, 48px);
+}
+
+#welcomePhaseAbout article.about-glass-card.welcome-card--landing {
+  background: rgba(8, 16, 13, 0.76) !important;
+  border: 1px solid rgba(218, 186, 112, 0.16) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(0, 0, 0, 0.35) inset !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: clamp(22px, 4vw, 40px) clamp(18px, 3.5vw, 36px) clamp(26px, 4vw, 40px) !important;
+  max-width: min(880px, 100%) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#welcomePhaseAbout .about-hero-title {
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
+  color: #f8f3e6;
+}
+
+#welcomePhaseAbout .about-hero-lead {
+  color: rgba(244, 239, 226, 0.88);
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.5);
+}
+
+#welcomePhaseAbout .about-prose {
+  margin-top: 1.15rem;
+  color: rgba(244, 239, 226, 0.92);
+  line-height: 1.65;
+}
+
+#welcomePhaseAbout .about-prose > .about-section {
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.2rem 1.15rem;
+  border-radius: 16px;
+  background: rgba(5, 10, 8, 0.52);
+  border: 1px solid rgba(218, 186, 112, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+
+#welcomePhaseAbout .about-prose > .about-section:first-child {
+  margin-top: 0.5rem;
+}
+
+#welcomePhaseAbout .about-prose > .about-section--muted {
+  background: rgba(4, 8, 7, 0.62);
+  border-color: rgba(218, 186, 112, 0.08);
+}
+
+#welcomePhaseAbout .about-prose h2,
+#welcomePhaseAbout .about-prose h3,
+#welcomePhaseAbout .about-prose h4 {
+  color: #f4efe2;
+  margin: 0 0 0.65em;
+  font-weight: 650;
+}
+
+#welcomePhaseAbout .about-prose p {
+  margin: 0.65em 0;
+}
+
+#welcomePhaseAbout .about-prose ul,
+#welcomePhaseAbout .about-prose ol {
+  margin: 0.5em 0 0.65em 1.1em;
+  padding: 0;
+}
+
+#welcomePhaseAbout .about-prose .about-inline-list li {
+  margin: 0.35em 0;
+}
+
+#welcomePhaseAbout .about-prose a {
+  color: #e8d49a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#welcomePhaseAbout .about-prose .muted,
+#welcomePhaseAbout .about-fallback-hint {
+  color: rgba(220, 210, 190, 0.72) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #welcomePhaseAbout .about-prose .lp-fcard,
+  #welcomePhaseAbout .about-prose [class*='feature'] {
+    transition: border-color 0.3s ease, box-shadow 0.35s ease;
+  }
+  #welcomePhaseAbout .about-prose .lp-fcard:hover {
+    border-color: rgba(218, 186, 112, 0.28) !important;
+    box-shadow: 0 0 0 1px rgba(100, 160, 120, 0.12), 0 16px 40px rgba(0, 0, 0, 0.35) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #welcomePhaseAbout .about-particles {
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #welcomePhaseAbout .about-particles {
+    display: none !important;
+    opacity: 0 !important;
+  }
+}

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>MCurator Visual Editor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    html, body {
+      margin: 0;
+      min-height: 100vh;
+      background: #010409;
+      color: #e6edf3;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+    }
+    .mc-editor-boot {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      padding: 24px;
+      text-align: center;
+    }
+    .mc-editor-boot__panel {
+      max-width: 420px;
+      padding: 24px 28px;
+      border: 1px solid #30363d;
+      border-radius: 16px;
+      background: #161b22;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+    }
+    .mc-editor-boot__panel h1 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .mc-editor-boot__panel p {
+      margin: 0;
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .mc-editor-boot__panel.is-error p { color: #ff7b72; }
+    .mc-editor-boot__spinner {
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 14px;
+      border: 3px solid rgba(214, 194, 122, 0.25);
+      border-top-color: #d6c27a;
+      border-radius: 50%;
+      animation: mc-editor-spin 0.8s linear infinite;
+    }
+    @keyframes mc-editor-spin { to { transform: rotate(360deg); } }
+    html.mc-editor-mode .mc-editor-boot { display: none; }
+  </style>
+</head>
+<body>
+  <div class="mc-editor-boot" id="mcEditorBoot">
+    <div class="mc-editor-boot__panel" id="mcEditorBootPanel">
+      <div class="mc-editor-boot__spinner" aria-hidden="true"></div>
+      <h1>MCurator Visual Editor</h1>
+      <p id="mcEditorBootMsg">正在載入編輯器…</p>
+    </div>
+  </div>
+
+  <script src="local-preview-boot.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      window.__MC_EDITOR_STANDALONE__ = true;
+      window.__MC_EDITOR_TARGET__ = 'UI.html';
+      window.__MC_EDITOR_ALL_PAGES__ = true;
+      window.state = window.state || { lang: 'zh-TW' };
+      window.MCt = window.MCt || function (k) { return k; };
+      window.applyI18n = window.applyI18n || function () {};
+      window.setUiExperience = window.setUiExperience || function () {};
+      if (location.protocol === 'file:') {
+        var msg = document.getElementById('mcEditorBootMsg');
+        if (msg) {
+          msg.textContent = '請使用本機伺服器開啟（雙擊 open-visual-editor.bat），勿用 file:// 直接開啟。';
+        }
+        document.getElementById('mcEditorBootPanel').classList.add('is-error');
+      }
+      try {
+        var u = new URL(location.href);
+        if (!u.searchParams.has('editor')) {
+          u.searchParams.set('editor', '1');
+          u.searchParams.set('staticPreview', '1');
+          u.searchParams.set('allPages', '1');
+          u.searchParams.set('editorAllPages', '1');
+          history.replaceState({}, '', u.toString());
+        } else if (!u.searchParams.has('allPages')) {
+          u.searchParams.set('allPages', '1');
+          u.searchParams.set('editorAllPages', '1');
+          history.replaceState({}, '', u.toString());
+        }
+      } catch (eUrl) {
+        void 0;
+      }
+    })();
+  </script>
+  <script src="editor-mode.js"></script>
+  <script src="welcome-museum.js?v=editor-boot-fix-2026-05-25" defer></script>
+  <script defer>
+    (function () {
+      'use strict';
+      var BUILD = 'EDITOR-BOOT-FIX-2026-05-25';
+      var bootPanel = document.getElementById('mcEditorBootPanel');
+      var bootMsg = document.getElementById('mcEditorBootMsg');
+      var attempts = 0;
+
+      function fail(message) {
+        if (bootPanel) bootPanel.classList.add('is-error');
+        if (bootMsg) bootMsg.textContent = message;
+        console.error('[VisualEditor]', message);
+      }
+
+      function tryOpen() {
+        attempts += 1;
+        if (typeof window.openVisualEditorOverlay === 'function') {
+          try {
+            window.openVisualEditorOverlay();
+            var boot = document.getElementById('mcEditorBoot');
+            if (boot) boot.style.display = 'none';
+            console.log('[VisualEditor] standalone boot OK — build ' + BUILD);
+            return;
+          } catch (err) {
+            fail('編輯器啟動失敗：' + (err && err.message ? err.message : String(err)));
+            return;
+          }
+        }
+        if (attempts < 40) {
+          setTimeout(tryOpen, 120);
+          return;
+        }
+        fail('無法載入 welcome-museum.js。請確認已執行 open-visual-editor.bat 並用 http://127.0.0.1 開啟。');
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', tryOpen);
+      } else {
+        tryOpen();
+      }
+    })();
+  </script>
+</body>
+</html>

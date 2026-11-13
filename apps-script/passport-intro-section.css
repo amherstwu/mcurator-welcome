@@ -1,0 +1,660 @@
+/**
+ * Passport Studio marketing — "From Photo to Passport" interactive block.
+ * Scoped under #mcHomeStory .passport-intro-* and .passport-intro-card
+ */
+#mcHomeStory .mc-home-passport.passport-intro-card {
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+#mcHomeStory .mc-home-passport.passport-intro-card > .mc-home-passport__glow {
+  display: none;
+}
+
+#mcHomeStory .passport-intro-card {
+  --pi-gold: #c9a227;
+  --pi-gold-soft: rgba(215, 193, 109, 0.85);
+  --pi-moss: rgba(72, 160, 120, 0.9);
+  --pi-ivory: #faf6ec;
+  --pi-muted: rgba(244, 239, 225, 0.62);
+  --pi-deep: #050a08;
+  perspective: 1400px;
+}
+
+#mcHomeStory .passport-intro-card__chrome {
+  position: relative;
+  border-radius: 20px;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+#mcHomeStory .passport-intro-card__scene {
+  position: relative;
+  border-radius: 18px;
+  overflow: visible;
+  transform-origin: 50% 50%;
+  transition: transform 0.55s cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+
+#mcHomeStory .passport-intro-card--inspect .passport-intro-card__scene {
+  transform: scale(1.06);
+}
+
+#mcHomeStory .passport-intro-card--inspect .passport-intro-card__photoWrap {
+  box-shadow: 0 0 0 2px rgba(215, 193, 109, 0.35), 0 12px 48px rgba(0, 0, 0, 0.35);
+  transform: scale(1.02);
+  transform-origin: center top;
+}
+
+#mcHomeStory .passport-intro-card__gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0.28;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0) 38%,
+    rgba(255, 255, 255, 0) 62%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  mix-blend-mode: soft-light;
+  transform: translate(var(--pi-gx, 0px), var(--pi-gy, 0px));
+  transition: opacity 0.35s ease, transform 0.12s ease-out;
+}
+
+#mcHomeStory .passport-intro-card__tilt {
+  transform-style: preserve-3d;
+  transform: rotateX(var(--pi-rx, 0deg)) rotateY(var(--pi-ry, 0deg)) rotateZ(var(--pi-rz, 0deg)) scale(var(--pi-sc, 1))
+    translate3d(var(--pi-dx, 0px), var(--pi-dy, 0px), 0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#mcHomeStory .passport-intro-card--dragging .passport-intro-card__tilt {
+  transition: none;
+}
+
+#mcHomeStory .passport-intro-card__flip {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#mcHomeStory .passport-intro-card--flipped .passport-intro-card__flip {
+  transform: rotateY(180deg);
+}
+
+#mcHomeStory .passport-intro-card__face {
+  position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 18px;
+  padding: 18px 18px 20px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 42%, rgba(0, 0, 0, 0.28) 100%);
+  border: 1px solid rgba(215, 193, 109, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 18px 50px rgba(0, 0, 0, 0.45);
+}
+
+#mcHomeStory .passport-intro-card__face--back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-height: 100%;
+  transform: rotateY(180deg);
+  padding: 20px 18px 22px;
+  background: linear-gradient(160deg, rgba(12, 22, 18, 0.96) 0%, rgba(4, 10, 8, 0.98) 100%);
+  border: 1px solid rgba(103, 232, 169, 0.18);
+}
+
+#mcHomeStory .passport-intro-card__face--front {
+  z-index: 2;
+}
+
+#mcHomeStory .passport-intro-card__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+#mcHomeStory .passport-intro-card__toolbar .passport-intro-iconbtn {
+  flex: 0 0 auto;
+}
+
+#mcHomeStory .passport-intro-iconbtn {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--pi-ivory);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 7px 10px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+#mcHomeStory .passport-intro-iconbtn:hover,
+#mcHomeStory .passport-intro-iconbtn:focus-visible {
+  border-color: rgba(215, 193, 109, 0.45);
+  outline: none;
+}
+
+#mcHomeStory .passport-intro-iconbtn[aria-pressed='true'] {
+  background: rgba(215, 193, 109, 0.18);
+  border-color: rgba(215, 193, 109, 0.55);
+  color: #fff9e6;
+}
+
+#mcHomeStory .passport-intro-card__photoWrap {
+  position: relative;
+  margin: 0 0 14px;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: box-shadow 0.45s ease, transform 0.45s ease;
+}
+
+#mcHomeStory .passport-intro-card__photoWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(var(--pi-photo-zoom, 1));
+  transform-origin: center center;
+  transition: transform 0.45s cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+
+#mcHomeStory .passport-intro-card--photoZoom .passport-intro-card__photoWrap img {
+  transform: scale(1.35);
+}
+
+#mcHomeStory .passport-intro-card__photoEvidence {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 4;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(215, 193, 109, 0.45);
+  background: rgba(4, 10, 8, 0.72);
+  color: #fff6dd;
+  cursor: pointer;
+}
+
+#mcHomeStory .passport-intro-card__photoCue {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.28);
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--pi-muted);
+}
+
+#mcHomeStory .passport-intro-card__photoCue ul {
+  margin: 6px 0 0;
+  padding-left: 1.1em;
+}
+
+#mcHomeStory .passport-intro-back__h {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pi-gold-soft);
+}
+
+#mcHomeStory .passport-intro-back__tax {
+  font-size: 12px;
+  line-height: 1.65;
+  color: rgba(244, 239, 225, 0.88);
+  margin-bottom: 14px;
+  font-family: 'Consolas', 'Cascadia Code', ui-monospace, monospace;
+}
+
+#mcHomeStory .passport-intro-back__rankList {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(72, 160, 120, 0.22);
+  background: rgba(0, 14, 10, 0.5);
+  font-family: 'Consolas', 'Cascadia Code', ui-monospace, monospace;
+  font-size: 11.5px;
+  line-height: 1.52;
+  color: rgba(232, 240, 232, 0.92);
+}
+
+#mcHomeStory .passport-intro-back__rankList li {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#mcHomeStory .passport-intro-back__rankList li:last-child {
+  border-bottom: 0;
+}
+
+#mcHomeStory .passport-intro-back__grid {
+  display: grid;
+  gap: 12px 16px;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 420px) {
+  #mcHomeStory .passport-intro-back__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+#mcHomeStory .passport-intro-back__block {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.22);
+  padding: 10px 12px;
+}
+
+#mcHomeStory .passport-intro-back__block h4 {
+  margin: 0 0 8px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(215, 193, 109, 0.75);
+}
+
+#mcHomeStory .passport-intro-back__block ul {
+  margin: 0;
+  padding-left: 1.1em;
+  font-size: 12px;
+  color: rgba(244, 239, 225, 0.82);
+  line-height: 1.5;
+}
+
+#mcHomeStory .passport-intro-back__timeline {
+  font-size: 11px;
+  color: rgba(244, 239, 225, 0.72);
+  line-height: 1.55;
+}
+
+#mcHomeStory .passport-intro-back__timeline div {
+  display: flex;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+#mcHomeStory .passport-intro-back__foot {
+  margin-top: 12px;
+  font-size: 11px;
+  color: rgba(200, 220, 210, 0.65);
+}
+
+/* Hover highlights from USP (scroll narrative still uses data-mc-phase) */
+#mcHomeStory .mc-home-passport[data-passport-hover='photo'] .passport-intro-card__photoWrap,
+#mcHomeStory .mc-home-passport[data-mc-phase='photo'] .passport-intro-card__photoWrap {
+  box-shadow: 0 0 0 2px rgba(215, 193, 109, 0.55), 0 0 40px rgba(215, 193, 109, 0.12);
+}
+
+#mcHomeStory .mc-home-passport[data-passport-hover='name'] .mc-home-passport__taxon,
+#mcHomeStory .mc-home-passport[data-mc-phase='name'] .mc-home-passport__taxon {
+  text-shadow: 0 0 24px rgba(215, 193, 109, 0.35);
+}
+
+#mcHomeStory .mc-home-passport[data-passport-hover='locality'] .mc-home-passport__dl > div[data-mc-field='locality'],
+#mcHomeStory .mc-home-passport[data-passport-hover='date'] .mc-home-passport__dl > div[data-mc-field='date'],
+#mcHomeStory .mc-home-passport[data-passport-hover='collector'] .mc-home-passport__dl > div[data-mc-field='collector'],
+#mcHomeStory .mc-home-passport[data-passport-hover='idcode'] .mc-home-passport__dl > div[data-mc-field='idcode'],
+#mcHomeStory .mc-home-passport[data-mc-phase='locality'] .mc-home-passport__dl > div[data-mc-field='locality'],
+#mcHomeStory .mc-home-passport[data-mc-phase='date'] .mc-home-passport__dl > div[data-mc-field='date'],
+#mcHomeStory .mc-home-passport[data-mc-phase='collector'] .mc-home-passport__dl > div[data-mc-field='collector'],
+#mcHomeStory .mc-home-passport[data-mc-phase='idcode'] .mc-home-passport__dl > div[data-mc-field='idcode'] {
+  border-color: rgba(215, 193, 109, 0.45);
+  background: rgba(30, 55, 42, 0.45);
+  box-shadow: 0 0 28px rgba(72, 160, 120, 0.1);
+}
+
+#mcHomeStory .mc-home-passport[data-passport-hover='meter'] .mc-home-passport__meter,
+#mcHomeStory .mc-home-passport[data-passport-hover='sat'] .mc-home-passport__dl > div[data-mc-field='idcode'] {
+  box-shadow: 0 0 0 1px rgba(215, 193, 109, 0.25);
+  border-radius: 12px;
+}
+
+#mcHomeStory .mc-home-passport[data-passport-hover='locality'] .mc-home-passport__dl > div[data-mc-field='date'] {
+  border-color: rgba(215, 193, 109, 0.45);
+  background: rgba(30, 55, 42, 0.45);
+  box-shadow: 0 0 28px rgba(72, 160, 120, 0.1);
+}
+
+#mcHomeStory .mc-home-passport[data-passport-hover='metadata'] .mc-home-passport__dl > div {
+  border-color: rgba(215, 193, 109, 0.35);
+  background: rgba(30, 55, 42, 0.35);
+  box-shadow: 0 0 20px rgba(72, 160, 120, 0.08);
+}
+
+#mcHomeStory .mc-home-passport[data-passport-hover='passport'] .mc-home-passport__dl > div[data-mc-field='idcode'],
+#mcHomeStory .mc-home-passport[data-passport-hover='passport'] .mc-home-passport__meter {
+  border-color: rgba(215, 193, 109, 0.45);
+  background: rgba(30, 55, 42, 0.4);
+  box-shadow: 0 0 32px rgba(215, 193, 109, 0.12);
+  border-radius: 12px;
+}
+
+#mcHomeStory .mc-home-passport[data-passport-hover='trace'] .mc-home-passport__dl > div[data-mc-field='idcode'],
+#mcHomeStory .mc-home-passport[data-passport-hover='trace'] .mc-home-passport__meter,
+#mcHomeStory .mc-home-passport[data-passport-hover='trace'] .passport-intro-back__block--prov {
+  box-shadow: 0 0 0 1px rgba(103, 232, 169, 0.35), 0 0 36px rgba(72, 160, 120, 0.15);
+  border-radius: 12px;
+}
+
+/* Right column intro */
+#mcHomeStory .passport-intro-section {
+  padding-bottom: clamp(40px, 8vh, 96px);
+}
+
+#mcHomeStory .passport-intro-section__top {
+  position: relative;
+  margin-bottom: clamp(20px, 3vh, 32px);
+}
+
+#mcHomeStory .passport-intro-section__lang {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+#mcHomeStory .passport-intro-section__lang button {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--pi-muted);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+#mcHomeStory .passport-intro-section__lang button.is-active {
+  border-color: rgba(215, 193, 109, 0.5);
+  color: #fff6dd;
+}
+
+#mcHomeStory .passport-intro-section__h {
+  margin: 0 0 14px;
+  font-family: 'Fraunces', 'Noto Serif TC', Georgia, serif;
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 600;
+  line-height: 1.12;
+  color: #faf6ec;
+  max-width: 22ch;
+}
+
+#mcHomeStory .passport-intro-section__dek {
+  margin: 0;
+  font-size: clamp(15px, 1.65vw, 18px);
+  line-height: 1.55;
+  color: rgba(244, 239, 225, 0.72);
+  max-width: 52ch;
+}
+
+#mcHomeStory .passport-intro-steps {
+  list-style: none;
+  margin: clamp(22px, 4vh, 36px) 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  #mcHomeStory .passport-intro-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+#mcHomeStory .passport-intro-steps li button {
+  width: 100%;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #faf6ec;
+  padding: 12px 12px 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+  min-height: 64px;
+}
+
+#mcHomeStory .passport-intro-steps li button:hover,
+#mcHomeStory .passport-intro-steps li button:focus-visible {
+  border-color: rgba(215, 193, 109, 0.35);
+  outline: none;
+}
+
+#mcHomeStory .passport-intro-steps li button.is-active {
+  border-color: rgba(215, 193, 109, 0.55);
+  box-shadow: 0 0 0 1px rgba(72, 160, 120, 0.15);
+}
+
+#mcHomeStory .passport-intro-steps__n {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(215, 193, 109, 0.85);
+  margin-bottom: 4px;
+}
+
+#mcHomeStory .passport-intro-steps__t {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+#mcHomeStory .passport-intro-usps {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vh, 22px);
+  margin-bottom: clamp(24px, 4vh, 40px);
+}
+
+@media (max-width: 960px) {
+  #mcHomeStory .passport-intro-usps {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding: 4px 4px 14px;
+    margin-left: -4px;
+    margin-right: -4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  #mcHomeStory .passport-intro-usp {
+    flex: 0 0 min(88vw, 380px);
+    scroll-snap-align: start;
+  }
+}
+
+#mcHomeStory .passport-intro-usp {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px 16px;
+  padding: 18px 18px 18px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+}
+
+#mcHomeStory .passport-intro-usp::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(215, 193, 109, 0.35));
+  opacity: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+@media (min-width: 961px) {
+  #mcHomeStory .passport-intro-usp::before {
+    left: -24px;
+    width: 22px;
+  }
+}
+
+@keyframes mcPassportUspPulseLine {
+  0%,
+  100% {
+    opacity: 0.45;
+    filter: drop-shadow(0 0 0 rgba(215, 193, 109, 0));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(215, 193, 109, 0.35));
+  }
+}
+
+#mcHomeStory .passport-intro-usp:hover::before,
+#mcHomeStory .passport-intro-usp:focus-within::before {
+  opacity: 1;
+  animation: mcPassportUspPulseLine 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcHomeStory .passport-intro-usp:hover::before,
+  #mcHomeStory .passport-intro-usp:focus-within::before {
+    animation: none;
+  }
+}
+
+#mcHomeStory .passport-intro-usp:hover,
+#mcHomeStory .passport-intro-usp:focus-within {
+  border-color: rgba(215, 193, 109, 0.28);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+#mcHomeStory .passport-intro-usp__ic {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  align-self: start;
+  margin-top: 2px;
+}
+
+#mcHomeStory .passport-intro-usp__title {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(215, 193, 109, 0.9);
+}
+
+#mcHomeStory .passport-intro-usp__title .passport-intro-usp__titleEn {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(244, 239, 225, 0.45);
+  margin-top: 2px;
+}
+
+#mcHomeStory .passport-intro-usp__body {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(244, 239, 225, 0.78);
+}
+
+#mcHomeStory .passport-intro-usp__bodyEn {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(244, 239, 225, 0.55);
+  font-style: italic;
+}
+
+#mcHomeStory .passport-intro-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+#mcHomeStory .passport-intro-btn {
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 22px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s, border-color 0.2s, background 0.2s;
+}
+
+#mcHomeStory .passport-intro-btn--primary {
+  background: linear-gradient(165deg, #e8d49a 0%, #a67c1f 52%, #6a5214 100%);
+  color: #0c0a06;
+  border-color: rgba(255, 246, 210, 0.35);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+}
+
+#mcHomeStory .passport-intro-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.42);
+}
+
+#mcHomeStory .passport-intro-btn--ghost {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f4efe1;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+#mcHomeStory .passport-intro-btn--ghost:hover {
+  border-color: rgba(215, 193, 109, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcHomeStory .passport-intro-card__tilt,
+  #mcHomeStory .passport-intro-card__flip,
+  #mcHomeStory .passport-intro-card__scene,
+  #mcHomeStory .passport-intro-card__photoWrap img,
+  #mcHomeStory .passport-intro-btn {
+    transition: none !important;
+  }
+  #mcHomeStory .passport-intro-card__scene {
+    transform: none !important;
+  }
+  #mcHomeStory .mc-home-floating {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,223 @@
+/**
+ * MCurator — readability & contrast (loads last).
+ * Raises minimum text/label contrast on dark and light shells without changing layout.
+ */
+
+:root {
+  --text-secondary: #d2dae6;
+  --muted: #b8c5d4;
+  --placeholder: rgba(168, 182, 198, 0.78);
+  --a11y-caption: rgba(241, 245, 249, 0.78);
+  --a11y-hint: rgba(241, 245, 249, 0.74);
+  --a11y-on-dark-body: rgba(236, 242, 238, 0.9);
+  --a11y-on-dark-muted: rgba(220, 232, 226, 0.8);
+  --a11y-on-dark-hint: rgba(210, 224, 218, 0.76);
+  --a11y-border-subtle: rgba(255, 255, 255, 0.16);
+}
+
+html[data-ui-scheme^="light"] {
+  --muted: #475569;
+  --text-secondary: #334155;
+  --placeholder: rgba(71, 85, 105, 0.72);
+  --a11y-caption: rgba(15, 23, 42, 0.72);
+  --a11y-hint: rgba(30, 41, 59, 0.68);
+}
+
+html[data-ui-scheme="medium"] {
+  --muted: #b0bcc8;
+  --text-secondary: #d0d8e4;
+}
+
+/* Museum / landing tokens */
+:root {
+  --mc-text-2: #c8d6d0;
+  --mc-text-3: #9eb0aa;
+}
+
+/* Passport studio + card generator */
+.cg-app,
+#mcCardPassportStudioV2 .cg-v2-app {
+  --card-muted: rgba(210, 224, 212, 0.84);
+  --card-text: rgba(239, 246, 238, 0.96);
+  --passport-muted: rgba(220, 232, 218, 0.82);
+}
+
+.passport-card-locked {
+  --passport-muted: rgba(220, 232, 218, 0.82);
+}
+
+/* Semantic utilities */
+.mc-lead,
+.mc-section-kicker {
+  color: var(--muted);
+}
+
+::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+/* Disabled controls: keep legible (avoid whole-control fade) */
+.cg-btn:disabled,
+.cg-btn[disabled],
+.soft-btn:disabled,
+button:disabled.soft-btn {
+  opacity: 1;
+  color: var(--a11y-on-dark-muted);
+  border-color: var(--a11y-border-subtle);
+  background: rgba(0, 0, 0, 0.28);
+}
+
+#mcCardPassportStudioV2 .cg-passport-img-menu__grid.is-disabled select,
+#mcCardPassportStudioV2 .cg-passport-img-menu__actions.is-disabled .cg-btn,
+#mcCardPassportStudioV2 .cg-paleo-evidence__grid.is-disabled select {
+  opacity: 1;
+  color: var(--a11y-on-dark-muted);
+  border-color: var(--a11y-border-subtle);
+}
+
+/* Passport Studio — simplified workflow copy */
+#mcCardPassportStudioV2 .cg-studio-simple :is(
+  .cg-step-lead,
+  .cg-step-notes,
+  .cg-panel__hint,
+  .cg-convenience-hint,
+  .cg-passport-img-menu__tip,
+  .cg-paleo-section__lead,
+  .cg-paleo-evidence__lead,
+  .cg-paleo-refs__hint,
+  .cg-paleo-api__status,
+  .cg-paleo-score__hint,
+  .cg-step-status,
+  .cg-taxonomy-status,
+  .cg-smart-fill-tip summary,
+  .cg-country-suggest__btn span,
+  .cg-ai-status,
+  .cg-missing-banner__hint
+) {
+  color: var(--a11y-on-dark-hint);
+}
+
+#mcCardPassportStudioV2 .cg-studio-simple :is(
+  .cg-step-block__title,
+  .cg-paleo-section__title,
+  .cg-passport-img-menu__title,
+  .cg-paleo-ev-card__title,
+  .cg-paleo-evidence legend
+) {
+  color: var(--a11y-on-dark-body);
+}
+
+#mcCardPassportStudioV2 .cg-studio-simple .cg-paleo-ev-card__hint,
+#mcCardPassportStudioV2 .cg-studio-simple .cg-paleo-logic-meter:not(.is-ok) {
+  color: var(--a11y-caption);
+}
+
+#mcCardPassportStudioV2 .cg-studio-simple .cg-paleo-checklist__item:not(.is-done) {
+  color: var(--a11y-caption);
+}
+
+#mcCardPassportStudioV2 .cg-studio-simple label > span,
+#mcCardPassportStudioV2 .cg-studio-simple .cg-field-deck label span {
+  color: var(--a11y-on-dark-muted);
+}
+
+/* Landing — decorative TCG panels: lift caption-sized copy */
+.somp-clueContext,
+.lp-spb-node__en,
+.lp-spb-compl__row,
+.lp-sol-hab,
+.lp-sol-compl,
+.lp-sol-tl__d,
+.lp-sol-uc__d,
+.lp-sol-foot,
+.somp-tcgHud__axis {
+  color: rgba(190, 210, 198, 0.72) !important;
+}
+
+.somp-eyebrow,
+.lp-sol-uc__n {
+  color: rgba(200, 210, 185, 0.68) !important;
+}
+
+.mc-wf-step p,
+.mc-trust-line {
+  color: rgba(245, 242, 234, 0.72);
+}
+
+/* Hero secondary ink */
+.mc-welcome-hero {
+  --mc-ink-2: rgba(245, 242, 234, 0.82);
+}
+
+/* Form inputs on dark panels */
+.cg-app input,
+.cg-app select,
+.cg-app textarea,
+#mcCardPassportStudioV2 input,
+#mcCardPassportStudioV2 select,
+#mcCardPassportStudioV2 textarea {
+  color: var(--text);
+}
+
+.cg-app input::placeholder,
+.cg-app textarea::placeholder,
+#mcCardPassportStudioV2 input::placeholder,
+#mcCardPassportStudioV2 textarea::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+/* Status chips — warn still readable */
+#mcCardPassportStudioV2 .cg-step-status--warn {
+  color: rgba(255, 220, 180, 0.95);
+  background: rgba(80, 48, 20, 0.45);
+  border-color: rgba(250, 204, 21, 0.45);
+}
+
+#mcCardPassportStudioV2 .cg-step-status--ok {
+  color: rgba(200, 245, 220, 0.95);
+}
+
+/* Focus visible for keyboard users */
+.cg-btn:focus-visible,
+.cg-paleo-ev-card:focus-within,
+.mc-nav-link:focus-visible,
+.lp-drawer__item:focus-visible {
+  outline: 2px solid rgba(143, 214, 180, 0.85);
+  outline-offset: 2px;
+}
+
+/* Research labs */
+.mc-etl-root {
+  --etl-muted: rgba(230, 240, 235, 0.78);
+}
+
+.mc-etl-root button:disabled,
+.mc-etl-root .mc-etl-btn:disabled {
+  opacity: 1;
+  color: var(--a11y-on-dark-muted);
+}
+
+.mc-rpc-dashboard {
+  --mc-rpc-muted: var(--muted);
+}
+
+/* Top navigation */
+.mc-nav-link,
+.lp-drawer__item,
+.mc-global-nav button {
+  color: var(--text-secondary);
+}
+
+.mc-nav-link:hover,
+.lp-drawer__item:hover {
+  color: var(--text);
+}
+
+/* Select options on dark UI */
+.cg-app option,
+#mcCardPassportStudioV2 option {
+  background: #0f1a16;
+  color: #eef6f2;
+}

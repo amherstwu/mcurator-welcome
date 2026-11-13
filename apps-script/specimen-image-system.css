@@ -1,0 +1,170 @@
+/**
+ * MCurator — portrait-first specimen image system.
+ * Use for: passport cards, specimen wall, 3D deck, USP trio, mini previews.
+ * Atmosphere / hero backdrops: use separate “cinematic” styles, not these frames.
+ */
+:root {
+  --sif-radius: 20px;
+  --sif-bg-base: radial-gradient(
+    circle at 50% 30%,
+    rgba(80, 150, 110, 0.18),
+    rgba(4, 12, 10, 0.96)
+  );
+}
+
+/* ---- Core frame ---- */
+.specimen-image-frame {
+  --sif-ar: 3/4;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  aspect-ratio: var(--sif-ar);
+  overflow: hidden;
+  border-radius: var(--sif-radius, 20px);
+  background: var(--sif-bg-base, radial-gradient(circle at 50% 30%, rgba(80, 150, 110, 0.18), rgba(4, 12, 10, 0.96)));
+}
+
+.specimen-image-frame--ratio-portrait {
+  --sif-ar: 3/4;
+}
+.specimen-image-frame--ratio-tall {
+  --sif-ar: 2/3;
+}
+.specimen-image-frame--ratio-passport {
+  --sif-ar: 4/5;
+}
+.specimen-image-frame--ratio-square {
+  --sif-ar: 1/1;
+}
+.specimen-image-frame--ratio-landscape {
+  --sif-ar: 16/10;
+}
+
+/* Mobile: avoid absurdly tall columns */
+@media (max-width: 480px) {
+  .specimen-image-frame--heroCap {
+    max-height: 320px;
+  }
+  .specimen-image-frame--heroCap,
+  .specimen-image-frame--cap430 {
+    aspect-ratio: 3/4;
+  }
+}
+
+@media (max-width: 430px) {
+  .specimen-image-frame--cap430 {
+    max-height: 300px;
+  }
+}
+
+/* ---- Object fit: cover (default) ---- */
+.specimen-image-frame--fit-cover .specimen-image-frame__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--sif-obj, center center);
+  display: block;
+}
+
+/* ---- Contain: full specimen + blurred duplicate backdrop ---- */
+.specimen-image-frame--fit-contain {
+  background: #0a0e0c;
+}
+.specimen-image-frame--fit-contain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--sif-bg-img);
+  background-size: cover;
+  background-position: var(--sif-obj, center center);
+  filter: blur(18px) brightness(0.55);
+  transform: scale(1.12);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+.specimen-image-frame--fit-contain .specimen-image-frame__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: var(--sif-obj, center center);
+  padding: 8px;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* ---- Optional label when empty / no src ---- */
+.specimen-image-frame__placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: rgba(200, 220, 210, 0.5);
+  padding: 0.5rem 0.75rem;
+  pointer-events: none;
+  background: linear-gradient(150deg, rgba(12, 20, 18, 0.6), rgba(4, 8, 6, 0.85));
+}
+
+/* ---- Deck / card variant: inner clip ---- */
+.specimen-image-frame--variant-deck {
+  --sif-radius: 16px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.specimen-image-frame--variant-wall {
+  --sif-radius: 8px 8px 6px 6px;
+}
+
+/* ---- Hero 3D integration: passport window ---- */
+#mcWelcomeHero .mc-hero3d__imgW,
+.mcurator-landing-preview .mc-hero3d__imgW {
+  min-height: 0;
+  /* Legacy fixed heights removed in mcurator-museum-v3; frame uses passport ratio */
+}
+
+.mc-hero3d__imgW .specimen-image-frame {
+  min-height: 0;
+  height: 100%;
+  border-radius: 12px 12px 8px 8px;
+}
+
+/* ---- USP trio: portrait frame + desktop split (image | mini data) ---- */
+#lpHeroUspTrio .lp-hero-tcard__imgFrame {
+  max-height: min(420px, 52vh);
+  aspect-ratio: 3/4;
+}
+
+@media (min-width: 900px) {
+  #lpHeroUspTrio .lp-hero-tcard__viz {
+    display: grid;
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+    column-gap: 0.9rem;
+    row-gap: 0.4rem;
+    align-items: start;
+  }
+  #lpHeroUspTrio .lp-hero-tcard__imgFrame {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+    width: 100%;
+  }
+  #lpHeroUspTrio .lp-hero-tcard__hover {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    max-width: none;
+    align-self: stretch;
+  }
+  #lpHeroUspTrio .lp-hero-tcard__status {
+    grid-column: 1 / -1;
+  }
+}

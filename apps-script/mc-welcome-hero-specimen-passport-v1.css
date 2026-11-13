@@ -1,0 +1,546 @@
+/**
+ * Welcome hero — specimen-passport-v1
+ * Strict 3-layer layout: hero-nav (shell) / hero-content / hero-atmosphere
+ * Scope: #mcWelcomeHero[data-mc-hero-layout="specimen-passport-v1"]
+ */
+
+/* ── Shell: full bleed, quiet background ── */
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  overflow-x: clip;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .welcome-ambient {
+  display: none !important;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .welcome-landing-body,
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .welcome-phase,
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .welcome-desktop-frame,
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .welcome-card-intro {
+  width: 100%;
+  max-width: none !important;
+}
+
+/* Hide legacy hero modules */
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] #lpHeroLandingMural,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .lp-hero-museum-canvas,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .welcome-video-layer,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .mc-welcome-hero__fallback,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .c-hero__atmos,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-orbit,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-stats-zone,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .mc-cine-chips,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-passport-layer,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-copy-zone,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-visual-zone,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .earth-bg {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ── Layer 2+3 container: hero-main ── */
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'].hero-main,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] {
+  --hero-mint: #6effe6;
+  --hero-teal: #66d9ba;
+  position: relative;
+  display: block !important;
+  align-items: stretch !important;
+  width: 100%;
+  max-width: none !important;
+  margin: 0;
+  min-height: 100svh;
+  min-height: 100dvh;
+  min-height: 100vh;
+  padding: 0 !important;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(70, 140, 255, 0.08), transparent 26%),
+    linear-gradient(180deg, #02060d 0%, #04101d 50%, #020812 100%) !important;
+  contain: paint;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'].c-hero {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(70, 140, 255, 0.08), transparent 26%),
+    linear-gradient(180deg, #02060d 0%, #04101d 50%, #020812 100%) !important;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Layer 2: hero-content (centered upper-middle) ── */
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .mc-welcome-hero__content {
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(110px, 12vh, 140px) clamp(24px, 4vw, 48px) clamp(48px, 8vh, 72px);
+  text-align: center;
+  pointer-events: none;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content h1,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content p,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content .hero-actions,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content .hero-search,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content button,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content input {
+  pointer-events: auto;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content__h1 {
+  max-width: 760px;
+  margin: 0 auto;
+  font-family: var(--font-welcome-serif, 'Noto Serif TC', 'Noto Serif SC', serif);
+  font-size: clamp(42px, 4.2vw, 72px);
+  font-weight: 650;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.96);
+  text-wrap: balance;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content__h1-line {
+  display: block;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content__lede {
+  margin: 20px auto 0;
+  max-width: 700px;
+  font-family: var(--font-body, 'Inter', system-ui, sans-serif);
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.8;
+  color: rgba(220, 230, 240, 0.72);
+}
+
+/* CTA row */
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-actions {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-actions__primary {
+  min-height: 54px;
+  padding: 0 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(110, 255, 230, 0.45);
+  background: linear-gradient(135deg, #7ef0d9 0%, var(--hero-teal) 100%);
+  color: #041018;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 10px 28px rgba(70, 220, 210, 0.22);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-actions__secondary {
+  min-height: 54px;
+  padding: 0 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-actions__play {
+  flex: 0 0 auto;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  position: relative;
+  box-sizing: border-box;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-actions__play::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-36%, -50%);
+  border-style: solid;
+  border-width: 4px 0 4px 7px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.9);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-actions__primary:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+  }
+  #mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-actions__secondary:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(110, 255, 230, 0.4);
+  }
+}
+
+/* Search */
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-search {
+  position: relative;
+  margin: 24px auto 0;
+  width: min(720px, 88vw);
+  height: 56px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-search__icon {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  opacity: 0.45;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 38% 38%, rgba(244, 251, 248, 0.88) 0 32%, transparent 34%),
+    conic-gradient(from 45deg, transparent 0 72%, rgba(244, 251, 248, 0.65) 72% 78%, transparent 78%);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-search__icon::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 7px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(244, 251, 248, 0.65);
+  transform: rotate(45deg);
+  transform-origin: right bottom;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-search__input {
+  display: block;
+  width: 100%;
+  height: 56px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 24px 0 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 1rem;
+  font-family: var(--font-body, 'Inter', system-ui, sans-serif);
+  outline: none;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-search__input::placeholder {
+  color: rgba(220, 230, 240, 0.42);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-search__input:focus {
+  border-color: rgba(110, 255, 230, 0.38);
+  box-shadow: 0 0 0 2px rgba(70, 220, 210, 0.12);
+}
+
+/* ── Layer 3: hero-atmosphere ── */
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-atmosphere {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: clamp(34vh, 38vh, 42vh);
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-horizon {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(66px, 9vh, 86px);
+  transform: translateX(-50%);
+  width: min(1200px, 92vw);
+  height: 120px;
+  border-top: 2px solid rgba(110, 255, 230, 0.28);
+  border-radius: 50%;
+  filter: blur(0.4px);
+  opacity: 0.8;
+  box-shadow:
+    0 -8px 48px rgba(70, 220, 210, 0.12),
+    0 0 80px rgba(70, 220, 210, 0.08);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-horizon::before {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 0;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(110, 255, 230, 0.5) 30%,
+    rgba(110, 255, 230, 0.75) 50%,
+    rgba(110, 255, 230, 0.5) 70%,
+    transparent 100%
+  );
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-earth {
+  position: absolute;
+  left: 50%;
+  bottom: -22px;
+  transform: translateX(-50%);
+  width: clamp(140px, 16vw, 200px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.88;
+  z-index: 0;
+  box-shadow: 0 0 60px rgba(70, 220, 210, 0.18);
+  clip-path: inset(0 0 42% 0);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-earth__globe,
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-earth .mcwhe3__globeWrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-earth #mcEarthThreeHost {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  pointer-events: none;
+  cursor: default;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-earth #mcEarthThreeHost canvas {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50%;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-earth.mcwhe3::before {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(10px, 2vh, 18px);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-scroll-hint__mouse {
+  width: 18px;
+  height: 28px;
+  border: 1.5px solid currentColor;
+  border-radius: 10px;
+  opacity: 0.65;
+  position: relative;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-scroll-hint__mouse::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 3px;
+  height: 5px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: currentColor;
+  animation: mc-hero-scroll-wheel 1.8s ease-in-out infinite;
+}
+
+@keyframes mc-hero-scroll-wheel {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 0.85;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-scroll-hint:hover {
+    color: rgba(110, 255, 230, 0.75);
+  }
+}
+
+/* ── Layer 1: hero-nav (top bar in shell) ── */
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .hero-nav,
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) #welcomeLandingTopbarWrap {
+  position: relative;
+  z-index: 20;
+  max-width: 1280px;
+  width: calc(100% - clamp(32px, 6vw, 64px));
+  margin: 0 auto;
+  padding: 0 clamp(32px, 4vw, 48px);
+  min-height: 72px;
+  max-height: 84px;
+  display: flex;
+  align-items: center;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  min-height: 72px;
+  border: 0;
+  background: transparent;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__brand {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__mark {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7ef0d9, #66d9ba);
+  flex-shrink: 0;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__logo__img {
+  display: none;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__passport-badge {
+  display: none;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__wordmark {
+  display: inline;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__nav--desktop {
+  justify-self: center;
+  display: flex;
+  gap: clamp(12px, 2vw, 28px);
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__link {
+  font-size: 0.88rem;
+  color: rgba(220, 230, 240, 0.72);
+  background: transparent;
+  border: 0;
+  padding: 6px 4px;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__link:hover,
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__link.is-active {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__login {
+  font-size: 0.88rem;
+  color: rgba(220, 230, 240, 0.78);
+  background: transparent;
+  border: 0;
+  padding: 8px 12px;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__cta.lp-topbar__signup {
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #7ef0d9, #66d9ba);
+  color: #041018;
+  border: 0;
+}
+
+.welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__lang .select {
+  font-size: 0.82rem;
+  max-height: 36px;
+}
+
+@media (max-width: 900px) {
+  .welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar {
+    grid-template-columns: 1fr auto;
+  }
+  .welcome-shell:has(#mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1']) .lp-topbar__nav--desktop {
+    display: none;
+  }
+  #mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content,
+  #mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .mc-welcome-hero__content {
+    padding-top: clamp(96px, 14vh, 120px);
+  }
+  #mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-content__h1 {
+    font-size: clamp(36px, 8vw, 48px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcWelcomeHero[data-mc-hero-layout='specimen-passport-v1'] .hero-scroll-hint__mouse::after {
+    animation: none;
+  }
+}

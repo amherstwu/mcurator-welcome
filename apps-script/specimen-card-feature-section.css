@@ -1,0 +1,506 @@
+/**
+ * 標本卡功能介紹 — 單一三欄：左流程 / 中卡片 / 右解釋。
+ * 作用域在 `.specimen-card-function-lab` 內，不影響 Hero、Coverflow。
+ */
+
+.specimen-card-function-lab {
+  position: relative;
+  z-index: 2;
+  width: min(1500px, calc(100vw - 48px));
+  margin: 0 auto;
+  padding: clamp(56px, 6vw, 96px) 0 clamp(40px, 5vw, 72px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* —— A. 區塊標題（全寬，在三欄之上） —— */
+.function-lab-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto clamp(28px, 4vw, 48px);
+}
+
+.function-lab-header .section-kicker {
+  color: #d7c16d;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  margin: 0 0 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.function-lab-header h2 {
+  margin: 0;
+  font-family: 'Noto Serif TC', Georgia, serif;
+  font-size: clamp(40px, 5vw, 76px);
+  line-height: 1.05;
+  color: #f4efe1;
+}
+
+.function-lab-header__dek {
+  display: block;
+  margin: 18px auto 0;
+  max-width: 680px;
+  color: rgba(244, 239, 225, 0.68);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* —— B. 三欄一體 —— */
+.specimen-function-system {
+  width: min(1500px, calc(100vw - 48px));
+  margin: 0 auto;
+  padding: clamp(24px, 3vw, 48px) 0 clamp(48px, 6vw, 88px);
+  display: grid;
+  /* 約 28% / 36% / 36% */
+  grid-template-columns: minmax(280px, 7fr) minmax(420px, 9fr) minmax(360px, 9fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.workflow-side,
+.field-explain-panel {
+  position: sticky;
+  top: 92px;
+  align-self: start;
+}
+
+.function-card-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 780px;
+}
+
+.function-card-center .hero-card-wrap.hero-card-area {
+  perspective: 1200px;
+}
+
+.function-card-center .specimen-record-card {
+  margin-inline: auto;
+  width: min(500px, 78vw);
+  max-width: 100%;
+}
+
+/* 示範卡比例與底部留白（蓋過 specimen-record-card.css 的 fragment 卡規則） */
+#lp-fragment-theater .specimen-function-system #lpFeaturePassportCard.specimen-record-card--feature {
+  aspect-ratio: 0.68;
+}
+
+#lp-fragment-theater .specimen-function-system #lpFeaturePassportCard .specimen-record-card__face.specimen-record-card__front {
+  padding-bottom: 38px;
+}
+
+#lp-fragment-theater .specimen-function-system #lpFeaturePassportCard .specimen-record-card__meta {
+  margin-bottom: 18px;
+}
+
+#lp-fragment-theater .specimen-function-system #lpFeaturePassportCard .specimen-record-card__steps {
+  margin-bottom: 12px;
+}
+
+#lp-fragment-theater .specimen-function-system #lpFeaturePassportCard .specimen-record-card__progress {
+  margin-top: 16px;
+}
+
+#lp-fragment-theater .specimen-function-system #lpFeaturePassportCard .specimen-record-card__export {
+  margin-top: 18px;
+}
+
+#lp-fragment-theater .specimen-function-system #lpFeaturePassportCard .specimen-record-card__registry {
+  margin-top: 14px;
+}
+
+.specimen-card-function-lab #lpFeaturePassportCard .specimen-record-card__photo {
+  background: #070809;
+  border-color: rgba(167, 243, 193, 0.22);
+}
+
+.specimen-card-function-lab #lpFeaturePassportCard .specimen-record-card__photo[data-fit='contain'] img {
+  background: #070809;
+}
+
+/* —— 左欄：流程導航 —— */
+.workflow-side {
+  color: #f4efe1;
+}
+
+.workflow-side .section-kicker {
+  color: #d7c16d;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  margin: 0 0 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.workflow-side h2 {
+  margin: 0;
+  font-family: 'Noto Serif TC', Georgia, serif;
+  font-size: clamp(30px, 3vw, 48px);
+  line-height: 1.12;
+  color: #f4efe1;
+}
+
+.workflow-side > p:not(.section-kicker) {
+  margin: 12px 0 0;
+  color: rgba(244, 239, 225, 0.62);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.workflow-nav {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: grid;
+  gap: 14px;
+  position: relative;
+}
+
+.workflow-nav::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, #d7c16d, rgba(143, 224, 186, 0.2));
+  pointer-events: none;
+}
+
+.workflow-nav li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 18px 18px 18px 22px;
+  border-radius: 22px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.workflow-nav li:hover,
+.workflow-nav li.is-workflow-active {
+  transform: translateX(6px);
+  border-color: rgba(215, 193, 109, 0.62);
+  background: rgba(215, 193, 109, 0.08);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+}
+
+.workflow-nav li > span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(143, 224, 186, 0.12);
+  border: 1px solid rgba(143, 224, 186, 0.28);
+  color: #a7f3c1;
+  font-weight: 900;
+}
+
+.workflow-nav li.is-workflow-active > span {
+  background: rgba(215, 193, 109, 0.18);
+  border-color: rgba(215, 193, 109, 0.56);
+  color: #f7e7a4;
+  box-shadow: 0 0 16px rgba(215, 193, 109, 0.22);
+}
+
+.workflow-nav strong {
+  display: block;
+  color: #f4efe1;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.workflow-nav p {
+  margin: 0;
+  color: rgba(244, 239, 225, 0.56);
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+.workflow-nav li:focus-visible {
+  outline: 2px solid rgba(215, 193, 109, 0.75);
+  outline-offset: 2px;
+}
+
+/* —— 右欄：解釋面板 —— */
+.field-explain-panel {
+  position: sticky;
+  top: 92px;
+  min-height: 560px;
+  isolation: isolate;
+  border-radius: 30px;
+  padding: 32px;
+  color: #f4efe1;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(215, 193, 109, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(10, 28, 24, 0.96), rgba(3, 12, 11, 0.98));
+  border: 1px solid rgba(167, 243, 193, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(215, 193, 109, 0.08),
+    0 30px 90px rgba(0, 0, 0, 0.38);
+  box-sizing: border-box;
+}
+
+.field-explain-panel::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: 22px;
+  pointer-events: none;
+  border: 1px solid rgba(215, 193, 109, 0.12);
+}
+
+.specimen-card-function-lab[data-active-workflow='id'] .field-explain-panel {
+  border-color: rgba(143, 224, 186, 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(143, 224, 186, 0.12),
+    0 30px 90px rgba(0, 0, 0, 0.38),
+    0 0 48px rgba(143, 224, 186, 0.08);
+}
+
+.specimen-card-function-lab[data-active-workflow='review'] .field-explain-panel,
+.specimen-card-function-lab[data-active-workflow='export'] .field-explain-panel {
+  border-color: rgba(215, 193, 109, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(215, 193, 109, 0.14),
+    0 30px 90px rgba(0, 0, 0, 0.38),
+    0 0 52px rgba(215, 193, 109, 0.1);
+}
+
+.specimen-card-function-lab[data-active-feature] .field-explain-panel {
+  border-color: rgba(215, 193, 109, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(215, 193, 109, 0.12),
+    0 30px 90px rgba(0, 0, 0, 0.4);
+}
+
+.panel-kicker {
+  margin: 0 0 10px;
+  color: #8fe0ba;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.field-explain-panel h3 {
+  margin: 0;
+  font-family: 'Noto Serif TC', Georgia, serif;
+  color: #fffaf0;
+  font-size: 34px;
+  line-height: 1.12;
+}
+
+.field-explain-panel [data-feature-association]:not([hidden]) {
+  display: block;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(167, 243, 193, 0.16);
+  background: rgba(143, 224, 186, 0.06);
+  color: rgba(244, 239, 225, 0.78);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.field-explain-panel [data-feature-association][hidden] {
+  display: none;
+}
+
+.field-explain-panel [data-feature-description] {
+  color: rgba(244, 239, 225, 0.74);
+  line-height: 1.85;
+  font-size: 16px;
+  margin: 14px 0 0;
+}
+
+.field-value-box {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(215, 193, 109, 0.2);
+}
+
+.field-value-box span {
+  display: block;
+  color: rgba(167, 243, 193, 0.58);
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.field-value-box strong {
+  color: #f7f1df;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.field-explain-panel [data-feature-points] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.field-explain-panel [data-feature-points] li {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(244, 239, 225, 0.82);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.field-explain-panel.is-updating {
+  animation: panelPulseLab 260ms ease;
+}
+
+@keyframes panelPulseLab {
+  from {
+    transform: translateY(8px) scale(0.985);
+    opacity: 0.65;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 卡片欄位可點 + 強化 active glow */
+.specimen-function-system [data-feature-key] {
+  cursor: pointer;
+  position: relative;
+}
+
+.specimen-function-system [data-feature-key]::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 14px;
+  pointer-events: none;
+  opacity: 0;
+  border: 1px solid rgba(215, 193, 109, 0.72);
+  box-shadow: 0 0 24px rgba(215, 193, 109, 0.22);
+  transition:
+    opacity 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+  z-index: 20;
+}
+
+.specimen-function-system [data-feature-key]:hover::before,
+.specimen-function-system [data-feature-key].is-feature-active::before {
+  opacity: 1;
+}
+
+.specimen-function-system [data-feature-key].is-feature-active::before {
+  border-color: rgba(215, 193, 109, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(215, 193, 109, 0.18),
+    0 0 32px rgba(215, 193, 109, 0.3);
+}
+
+.specimen-function-system .specimen-record-card__photo[data-feature-key]::before {
+  border-radius: 24px;
+}
+
+/* 卡片 pulse：避免覆蓋 3D tilt，用光暈 + 微亮度 */
+.specimen-function-system .specimen-record-card.is-card-pulsing {
+  animation: cardPulseLab 420ms ease;
+}
+
+@keyframes cardPulseLab {
+  0%,
+  100% {
+    filter: brightness(1);
+    box-shadow: 0 0 0 rgba(215, 193, 109, 0);
+  }
+  45% {
+    filter: brightness(1.06);
+    box-shadow: 0 0 36px rgba(215, 193, 109, 0.22);
+  }
+}
+
+@media (max-width: 1100px) {
+  .specimen-function-system {
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .workflow-side,
+  .field-explain-panel {
+    position: relative;
+    top: auto;
+  }
+
+  .function-card-center {
+    min-height: auto;
+    order: 1;
+  }
+
+  .field-explain-panel {
+    order: 2;
+  }
+
+  .workflow-side {
+    order: 3;
+  }
+}
+
+@media (max-width: 980px) {
+  .specimen-card-function-lab {
+    width: min(100%, calc(100vw - 32px));
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .function-lab-header h2 {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+
+  .function-card-center .specimen-record-card {
+    width: min(430px, 92vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-explain-panel.is-updating {
+    animation: none;
+  }
+
+  .specimen-function-system .specimen-record-card.is-card-pulsing {
+    animation: none;
+  }
+
+  .workflow-nav li {
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+
+  .workflow-nav li:hover,
+  .workflow-nav li.is-workflow-active {
+    transform: none;
+  }
+}

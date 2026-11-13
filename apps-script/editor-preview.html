@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>MCurator Landing Preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="stylesheet" href="mcurator-landing.css" />
+  <link rel="stylesheet" href="mc-hero-v2.css" />
+  <link rel="stylesheet" href="mc-product-hero.css" />
+  <link rel="stylesheet" href="entry-choice-section.css" />
+  <link rel="stylesheet" href="specimen-record-card.css" />
+  <link rel="stylesheet" href="workflow-quest-section.css" />
+  <link rel="stylesheet" href="editor-static-preview.css" />
+  <style>
+    html, body { margin: 0; background: #020806; color: #f4f0e6; }
+    .mc-editor-preview-root { min-height: 100vh; }
+  </style>
+  <script src="editor-mode.js"></script>
+</head>
+<body>
+  <div class="welcome-shell welcome-shell--glass mc-editor-preview-root" id="welcomeShell" data-mc-view="public-landing">
+    <div class="welcome-landing-body">
+      <div class="welcome-phase" id="welcomePhaseIntro">
+        <div class="welcome-card welcome-card-intro welcome-card--landing">
+          <div class="mc-welcome-page welcome-lp mc-home-narrative-v1" id="welcomeLandingPage" data-welcome-lp>
+            <section class="mc-product-hero" id="mcWelcomeHero" data-mc-product-hero="1" data-mc-hero-layout="hero-v2" data-zone="photo" aria-label="MCurator">
+              <div class="mc-hero-v2 mc-passport-hero" data-mc-hero-stage>
+                <div class="mc-hero-v2__bg" aria-hidden="true">
+                  <div class="mc-hero-v2__stars"></div>
+                  <div class="mc-hero-v2__cardBloom"></div>
+                </div>
+                <div class="mc-hero-v2__inner">
+                  <div class="mc-hero-v2__copy">
+                    <p class="mc-hero-v2__badge" id="welcomeHeroBadge">SPECIMEN PASSPORT PLATFORM</p>
+                    <h1 class="mc-hero-v2__title" id="welcomeContentTitle">
+                      把照片、標籤與產地，整理成可查詢的標本護照。
+                    </h1>
+                    <p class="mc-hero-v2__lead" id="welcomeContentLead">
+                      MCurator 將影像、手寫標籤、學名、採集地、審查紀錄與出處追蹤整合成一筆完整資料。
+                    </p>
+                    <div class="mc-hero-v2__actions">
+                      <button type="button" class="mc-hero-v2__btn mc-hero-v2__btn--primary" id="btnWelcomeHeroDemo">建立第一筆標本護照</button>
+                      <button type="button" class="mc-hero-v2__btn mc-hero-v2__btn--ghost" id="btnWelcomeHeroStart">查看互動示範</button>
+                    </div>
+                  </div>
+                  <div class="mc-hero-v2__visual">
+                    <div class="mc-hero-v2__stage" id="mcHeroPassportStage">
+                      <div class="mc-passport-card mc-passport-card--lead is-active" id="mcHeroPassportCard" data-specimen="insect" tabindex="0">
+                        <div class="mc-passport-card__inner">
+                          <article class="mc-passport-card__face mc-passport-card__face--front">
+                            <div class="mc-passport-card__body">
+                              <header class="mc-passport-card__head">
+                                <span class="mc-passport-card__review">Reviewed</span>
+                              </header>
+                              <figure class="mc-passport-card__photo mc-passport-card__photo--catalog">
+                                <img src="../assets/images/insect/hero-passport/allotopus-moellenkampi-babai.png" alt="Specimen demo" width="600" height="420" loading="lazy" decoding="async" />
+                              </figure>
+                              <div class="mc-passport-card__nameplate">
+                                <h2 class="mc-passport-card__sci">Allotopus moellenkampi babai</h2>
+                                <p class="mc-passport-card__common">Golden stag beetle</p>
+                              </div>
+                            </div>
+                          </article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="mc-museum-surface lp-surface lp-narrative-surface lp-landing-museum" id="welcomeMuseumBody">
+              <section class="specimen-card-function-lab" id="lpFeaturePassportScope" aria-labelledby="lpFragH">
+                <header class="function-lab-header">
+                  <p class="section-kicker">標本卡功能</p>
+                  <h2 id="lpFragH">一張標本護照，整合影像、館號、產地與審查</h2>
+                </header>
+                <main class="function-card-center">
+                  <div class="hero-card-wrap hero-card-area" id="lpFeaturePassportFlipHost">
+                    <article
+                      class="specimen-record-card specimen-record-card--feature rarity-rare"
+                      id="lpFeaturePassportCard"
+                      data-interactive-card
+                      data-flippable="1"
+                      tabindex="0"
+                      aria-label="Specimen data card"
+                    >
+                      <div class="specimen-record-card__inner">
+                        <section class="specimen-record-card__face specimen-record-card__front">
+                          <header class="specimen-record-card__top">
+                            <div>
+                              <span class="specimen-record-card__verified specimen-record-card__kicker">SPECIMEN PASSPORT</span>
+                              <strong class="specimen-record-card__number">MC-PLU-202104</strong>
+                            </div>
+                            <span class="specimen-record-card__status">Unverified</span>
+                          </header>
+                          <figure class="specimen-record-card__photo" data-fit="contain">
+                            <img src="../assets/images/insect/hero-passport/allotopus-moellenkampi-babai.png" alt="Specimen card demo" loading="lazy" decoding="async" />
+                          </figure>
+                          <div class="specimen-record-card__identity">
+                            <h3>Allotopus moellenkampi babai</h3>
+                            <p>Golden stag beetle</p>
+                          </div>
+                        </section>
+                      </div>
+                    </article>
+                  </div>
+                </main>
+              </section>
+
+              <section class="lp-section" id="welcomeFeatureGridSection" aria-labelledby="welcomeLpValuesH">
+                <div class="workflow-quest-section">
+                  <header class="workflow-quest-header">
+                    <p class="section-kicker">工作區域</p>
+                    <h2 id="welcomeLpValuesH">從標本護照延伸到完整館藏工作流。</h2>
+                    <p id="welcomeLpValuesDek">每張標本卡都能解鎖不同模組：整理、展示、討論、引用與匯出。</p>
+                  </header>
+                  <div class="workflow-quest-board" id="welcomeContentFeatures" role="list">
+                    <article class="quest-card" role="listitem">
+                      <p class="quest-card__label">Quest 01</p>
+                      <h3>典藏工作臺</h3>
+                      <p>在一致欄位、媒體與可見性規則中登錄標本。</p>
+                      <div class="quest-card__instruction">先建立這筆標本的身份，輸入館號與 SAT ID。</div>
+                    </article>
+                    <article class="quest-card" role="listitem">
+                      <p class="quest-card__label">Quest 02</p>
+                      <h3>典藏瀏覽</h3>
+                      <p>以牆面、列表與篩選快速找到標本。</p>
+                      <div class="quest-card__instruction">瀏覽既有標本卡並比對欄位完整性。</div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <section class="mc-welcome-gate welcome-lp__gate lp-conversion hero-section" id="welcomeGateSection" aria-labelledby="welcomeGateH">
+              <div class="lp-conv__bg" aria-hidden="true">
+                <video class="lp-conv__video hero-bg-video" muted playsinline loop autoplay preload="metadata">
+                  <source type="video/mp4" src="../assets/video/hero-background.mp4" />
+                </video>
+                <div class="lp-conv__scrim hero-video-overlay" aria-hidden="true"></div>
+              </div>
+              <div class="lp-conv__content">
+                <section class="entry-choice-section">
+                  <div class="entry-choice-content">
+                    <p class="entry-kicker">Start Your Digital Collection</p>
+                    <h2 id="welcomeGateH">開始建立你的數位典藏</h2>
+                    <p class="entry-lead" id="welcomeGateDek">先選擇瀏覽或登入模式。</p>
+                    <div class="entry-mode-grid">
+                      <article class="entry-mode-card entry-mode-card--enterprise">
+                        <p class="entry-mode-label" id="gwLabelEnterprise">企業聯絡</p>
+                        <h3>方案與導入</h3>
+                        <p class="entry-mode-intro" id="gwTEnterprise">歡迎機構與團隊洽詢授權、部署與教育／展示合作。</p>
+                        <a class="entry-mode-action entry-mode-action--partner" id="btnGatewayEnterprise" href="mailto:partners@mcurator.app">寫信聯絡</a>
+                      </article>
+                      <article class="entry-mode-card entry-mode-card--member">
+                        <p class="entry-mode-label" id="gwLabelMember">加入會員</p>
+                        <h3>建立與管理標本護照</h3>
+                        <p class="entry-mode-intro" id="gwTMember">註冊或登入後可上傳影像、編輯欄位、保存館號與產地。</p>
+                        <button type="button" class="entry-mode-action entry-mode-action--primary" id="btnGatewayMember">註冊／登入</button>
+                      </article>
+                      <article class="entry-mode-card entry-mode-card--coop">
+                        <p class="entry-mode-label" id="gwLabelCoop">合作聯繫</p>
+                        <h3>研究、策展與跨界合作</h3>
+                        <p class="entry-mode-intro" id="gwTCoop">歡迎學會、展覽、媒體與品牌洽談共製內容、資料串接與活動合作。</p>
+                        <a class="entry-mode-action entry-mode-action--partner" id="btnGatewayCoop" href="mailto:partners@mcurator.app">洽談合作</a>
+                      </article>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.state = window.state || { lang: 'zh-TW' };
+    window.MCt = window.MCt || function (k) { return k; };
+    window.applyI18n = window.applyI18n || function () {};
+    (function () {
+      function scrollToHash() {
+        var id = (location.hash || '').replace(/^#/, '');
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', scrollToHash);
+      } else {
+        scrollToHash();
+      }
+    })();
+  </script>
+  <script src="welcome-museum.js?v=editor-save-fix-2026-05-31" defer></script>
+</body>
+</html>

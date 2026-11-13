@@ -1,0 +1,73 @@
+/* =========================================================
+   EDITOR STATIC PREVIEW MODE
+   Applies only when editor-static-preview class is present.
+========================================================= */
+
+html.editor-static-preview,
+body.editor-static-preview {
+  scroll-behavior: auto !important;
+  overflow-anchor: none !important;
+}
+
+html.editor-static-preview *,
+html.editor-static-preview *::before,
+html.editor-static-preview *::after,
+body.editor-static-preview *,
+body.editor-static-preview *::before,
+body.editor-static-preview *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0ms !important;
+  animation-iteration-count: 1 !important;
+  animation-play-state: paused !important;
+  transition-duration: 0ms !important;
+  transition-delay: 0ms !important;
+  scroll-behavior: auto !important;
+}
+
+html.editor-static-preview .parallax,
+html.editor-static-preview .floating,
+html.editor-static-preview .tilt,
+html.editor-static-preview .magnetic,
+html.editor-static-preview .auto-marquee,
+html.editor-static-preview .motion-layer,
+html.editor-static-preview .animated-bg,
+html.editor-static-preview .background-video,
+html.editor-static-preview .motion-card,
+html.editor-static-preview .hero-motion,
+html.editor-static-preview .reveal,
+html.editor-static-preview .scroll-reveal,
+html.editor-static-preview [data-parallax],
+html.editor-static-preview [data-motion],
+html.editor-static-preview [data-animate],
+html.editor-static-preview [data-scroll],
+html.editor-static-preview [data-marquee],
+html.editor-static-preview [data-tilt],
+html.editor-static-preview [data-autoplay] {
+  animation: none !important;
+  transition: none !important;
+}
+
+html.editor-static-preview .snap-container,
+html.editor-static-preview [class*="snap"],
+html.editor-static-preview [style*="scroll-snap"] {
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
+}
+
+html.editor-static-preview *:hover {
+  transition: none !important;
+}
+
+html.editor-static-preview video {
+  animation: none !important;
+  transition: none !important;
+}
+
+.editor-selection-overlay,
+.editor-resize-box,
+.editor-inspector-highlight,
+.editor-hover-outline {
+  position: fixed;
+  z-index: 999999 !important;
+  pointer-events: none;
+}

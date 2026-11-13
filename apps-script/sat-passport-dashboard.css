@@ -1,0 +1,260 @@
+/* Dashboard specimen passports — distinct from public marketplace */
+
+#satPassportRoot.mc-pass-dash {
+  width: 100%;
+  min-height: min(78vh, 880px);
+  color: var(--text, #e8e4dc);
+}
+
+.mc-pass-dash__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.1));
+}
+
+.mc-pass-dash__header h2 {
+  margin: 0 0 6px;
+  font-size: 1.35rem;
+}
+
+.mc-pass-dash__sub {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted, #9aa89a);
+  max-width: 62ch;
+  line-height: 1.55;
+}
+
+.mc-pass-dash__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.mc-pass-dash__actions button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text, #e8e4dc);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mc-pass-dash__actions button.mc-pass-dash__primary {
+  background: rgba(45, 62, 48, 0.85);
+  border-color: rgba(201, 184, 120, 0.35);
+  color: #f4f1e8;
+}
+
+.mc-pass-dash__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.mc-pass-card {
+  border: 1px solid rgba(120, 160, 200, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(12, 20, 28, 0.55);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.mc-pass-card__media {
+  aspect-ratio: 16 / 10;
+  background: #0a1014;
+}
+
+.mc-pass-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mc-pass-card__body {
+  padding: 12px 14px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mc-pass-card__id {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: #8eb8d4;
+}
+
+.mc-pass-card__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.mc-pass-card__sci {
+  margin: 0;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted, #9aa89a);
+}
+
+.mc-pass-card__meta {
+  font-size: 12px;
+  color: #a8b4bc;
+}
+
+.mc-pass-card__bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.mc-pass-card__bar > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #3a5a6a, #6a9aa8);
+  border-radius: 999px;
+}
+
+.mc-pass-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mc-pass-card__actions button {
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.2);
+  color: #dce4ea;
+  cursor: pointer;
+}
+
+.mc-pass-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mc-pass-editor__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.mc-pass-editor__bar button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.mc-pass-fieldset {
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.1));
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.mc-pass-fieldset h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8eb8d4;
+}
+
+.mc-pass-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px 12px;
+}
+
+.mc-pass-fields label {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.mc-pass-fields input,
+.mc-pass-fields textarea,
+.mc-pass-fields select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  font-size: 13px;
+}
+
+.mc-pass-fields textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.mc-pass-preview {
+  border: 1px solid rgba(201, 184, 120, 0.35);
+  border-radius: 16px;
+  padding: 20px;
+  background: linear-gradient(165deg, rgba(20, 28, 32, 0.95), rgba(8, 12, 14, 0.98));
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.mc-pass-preview__head {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.mc-pass-preview__head img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(201, 184, 120, 0.4);
+}
+
+.mc-pass-preview__seal {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: rgba(80, 120, 90, 0.25);
+  border: 1px solid rgba(140, 180, 140, 0.45);
+  color: #b8d4b0;
+}
+
+.mc-pass-warn {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(200, 140, 80, 0.4);
+  background: rgba(60, 40, 20, 0.25);
+  color: #e8c8a0;
+  font-size: 13px;
+  line-height: 1.5;
+}

@@ -1,0 +1,600 @@
+/**
+ * Hero passport cards — 1:1 from mc-cine-hero-showcase reference (fan deck).
+ * Scoped to passport-hero-rebuild-v3 only.
+ */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] {
+  --hero-passport-card-ratio: 0.671583;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card {
+  --card-surface-top: #173325;
+  --card-surface-mid: #0b2117;
+  --card-surface-bottom: #050f0b;
+  border: 1px solid rgba(190, 214, 142, 0.32);
+  border-radius: 34px;
+  background-color: #0b2117;
+  background:
+    radial-gradient(circle at 50% -4%, rgba(221, 204, 124, 0.095), transparent 32%),
+    radial-gradient(circle at 100% 14%, rgba(112, 255, 226, 0.052), transparent 35%),
+    linear-gradient(160deg, var(--card-surface-top) 0%, var(--card-surface-mid) 54%, var(--card-surface-bottom) 100%);
+  color: #eef8f1;
+  box-shadow:
+    0 34px 92px rgba(0, 0, 0, 0.6),
+    0 10px 28px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(126, 255, 217, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  text-align: left;
+  opacity: 1 !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  transition: opacity 0.32s ease, background 0.32s ease;
+  background:
+    radial-gradient(circle at 24% 12%, rgba(255, 255, 255, 0.065), transparent 18%),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.075), transparent 24%, transparent 72%, rgba(217, 198, 111, 0.045)),
+    repeating-linear-gradient(145deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 9px);
+  mix-blend-mode: soft-light;
+  z-index: 1;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 32px;
+  pointer-events: none;
+  z-index: 1;
+  box-shadow:
+    inset 0 0 40px rgba(122, 255, 216, 0.052),
+    inset 0 -38px 76px rgba(0, 0, 0, 0.36),
+    inset 1px 0 0 rgba(229, 213, 137, 0.16),
+    inset -1px 0 0 rgba(112, 255, 226, 0.08);
+}
+
+/* 中央主卡：與圖二相同的不透明實心卡面（showcase 的 face 預設無底色） */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip .mc-hero-passport-face--front,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip .mc-hero-passport-face--back {
+  --card-surface-top: #173325;
+  --card-surface-mid: #0b2117;
+  --card-surface-bottom: #050f0b;
+  background-color: #0b2117 !important;
+  background:
+    radial-gradient(circle at 50% -4%, rgba(221, 204, 124, 0.095), transparent 32%),
+    radial-gradient(circle at 100% 14%, rgba(112, 255, 226, 0.052), transparent 35%),
+    linear-gradient(160deg, var(--card-surface-top) 0%, var(--card-surface-mid) 54%, var(--card-surface-bottom) 100%) !important;
+  border: 1px solid rgba(190, 214, 142, 0.32) !important;
+  overflow: hidden;
+  opacity: 1 !important;
+  filter: none !important;
+  box-shadow:
+    0 34px 92px rgba(0, 0, 0, 0.6),
+    0 10px 28px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(126, 255, 217, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip .mc-hero-passport-face::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 24% 12%, rgba(255, 255, 255, 0.065), transparent 18%),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.075), transparent 24%, transparent 72%, rgba(217, 198, 111, 0.045)),
+    repeating-linear-gradient(145deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 9px);
+  mix-blend-mode: soft-light;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip .mc-hero-passport-face::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 32px;
+  pointer-events: none;
+  z-index: 1;
+  box-shadow:
+    inset 0 0 40px rgba(122, 255, 216, 0.052),
+    inset 0 -38px 76px rgba(0, 0, 0, 0.36),
+    inset 1px 0 0 rgba(229, 213, 137, 0.16),
+    inset -1px 0 0 rgba(112, 255, 226, 0.08);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-hero-passport-flip.is-active .mc-hero-passport-face--front {
+  box-shadow:
+    0 54px 132px rgba(0, 0, 0, 0.72),
+    0 18px 48px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(190, 214, 142, 0.22),
+    0 0 56px rgba(112, 255, 226, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--front,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--back,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip .mc-hero-passport-face--front,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip .mc-hero-passport-face--back {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.6vw, 9px);
+  padding: clamp(18px, 1.45vw, 24px);
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-head,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-id,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-subid,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-photo,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-nameplate,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-meta-grid,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-chip-grid,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-progress,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-export,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-foot {
+  flex-shrink: 0;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-status,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-top-pill {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid rgba(218, 200, 116, 0.48);
+  background: rgba(218, 200, 116, 0.09);
+  color: rgba(237, 214, 126, 0.98);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+
+/* 圖二：頂列 FIELD VERIFIED + 右上空白／已核 */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-status {
+  min-height: 30px;
+  padding: 0 12px;
+  font-size: 0.66rem;
+  margin-top: 0;
+  align-self: flex-start;
+  width: auto;
+  max-width: calc(100% - 52px);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-status.is-template {
+  border-color: rgba(99, 235, 196, 0.42);
+  background: rgba(99, 235, 196, 0.1);
+  color: rgba(168, 255, 230, 0.96);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-state-pill {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.38);
+  color: rgba(240, 248, 245, 0.82);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-top-pill {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  min-height: 34px;
+  padding: 0 12px;
+  border-color: rgba(255, 255, 255, 0.16);
+  color: rgba(240, 248, 245, 0.76);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-head .mc-card-verified {
+  position: static;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-verified {
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(113, 255, 222, 0.55);
+  background:
+    radial-gradient(circle at 35% 28%, rgba(196, 255, 236, 0.35), transparent 58%),
+    linear-gradient(145deg, rgba(46, 168, 118, 0.95), rgba(18, 98, 68, 0.98));
+  box-shadow: 0 0 22px rgba(112, 255, 226, 0.28);
+  opacity: 0;
+  transform: scale(0.82);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card.is-verified .mc-card-verified,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip.is-verified .mc-card-verified {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] :is(.mc-passport-card, .mc-hero-passport-flip):not(.is-verified) .mc-card-verified {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] :is(.mc-passport-card, .mc-hero-passport-flip):not(.is-verified) .mc-card-state-pill:empty {
+  display: none;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] :is(.mc-passport-card, .mc-hero-passport-flip).is-verified .mc-card-state-pill {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-verified::after {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  width: 9px;
+  height: 14px;
+  border-right: 2.5px solid rgba(248, 255, 252, 0.98);
+  border-bottom: 2.5px solid rgba(248, 255, 252, 0.98);
+  transform: rotate(42deg);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--user-done .mc-card-progress b {
+  width: 100%;
+  background: linear-gradient(90deg, #5fe6a0, #8ef5c8);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-id {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: clamp(4px, 0.45vw, 8px);
+  color: #fbfffd;
+  font-size: clamp(1.5rem, 2.05vw, 2rem);
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-subid {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 6px;
+  color: rgba(206, 218, 213, 0.46);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-subid.is-ready {
+  color: rgba(143, 255, 227, 0.9);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='insect'] .mc-card-photo {
+  background: #ffffff;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-photo {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin: clamp(6px, 0.7vw, 9px) 0 clamp(5px, 0.55vw, 8px);
+  width: 100%;
+  height: clamp(145px, 17vh, 205px);
+  max-height: clamp(145px, 17vh, 205px);
+  border-radius: clamp(18px, 1.8vw, 26px);
+  border: 1px solid rgba(13, 22, 15, 0.14);
+  background: #f8f8f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-photo img {
+  width: 80%;
+  height: 88%;
+  object-fit: contain;
+  object-position: center;
+  filter: contrast(1.05) saturate(1.05);
+  background: #f8f8f5;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-photo.has-photo img.is-photo-loaded {
+  width: 88%;
+  height: 92%;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='marine'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='plant'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='fossil'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='dinosaur'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip[data-specimen='marine'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip[data-specimen='plant'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip[data-specimen='fossil'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip[data-specimen='dinosaur'] .mc-card-photo.has-photo img.is-photo-loaded {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip .mc-card-photo:not(.has-photo)::after,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card .mc-card-photo:not(.has-photo)::after {
+  content: 'Image placeholder';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(120, 140, 128, 0.55);
+  font: 600 12px/1.2 system-ui, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip.is-active.is-hover-lift .mc-card-photo,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-passport-flip.is-active:hover .mc-card-photo {
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.34), 0 0 24px rgba(132, 255, 226, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-tax-pill {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  padding: 7px 12px;
+  border-radius: 11px;
+  border: 1px solid rgba(99, 235, 196, 0.28);
+  background: rgba(0, 0, 0, 0.24);
+  color: rgba(214, 255, 239, 0.9);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+/* 圖二：分類標籤疊在照片左下角 */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-photo .mc-card-tax-pill {
+  position: absolute;
+  left: clamp(12px, 1.15vw, 16px);
+  bottom: clamp(12px, 1.15vw, 16px);
+  z-index: 4;
+  margin: 0;
+  background: rgba(18, 28, 24, 0.78);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(245, 250, 247, 0.95);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-tax-pill.is-pending {
+  color: rgba(255, 210, 120, 0.92);
+  border-color: rgba(255, 180, 90, 0.45);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-nameplate {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  padding: 7px 10px;
+  border: 1px solid rgba(218, 200, 116, 0.32);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-nameplate h3 {
+  margin: 0;
+  color: #fffdf2;
+  font-family: Georgia, 'Noto Serif TC', serif;
+  font-size: clamp(1.05rem, 1.35vw, 1.34rem);
+  font-style: italic;
+  line-height: 1.06;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-nameplate p {
+  margin: 4px 0 0;
+  color: rgba(224, 230, 220, 0.78);
+  font-size: clamp(0.72rem, 0.82vw, 0.82rem);
+  font-weight: 700;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-meta-grid {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-meta-grid div {
+  padding: clamp(7px, 0.7vw, 9px) clamp(9px, 0.8vw, 11px);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-meta-grid div:nth-child(2n) {
+  border-right: 0;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-meta-grid div:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-meta-grid dt {
+  margin: 0 0 4px;
+  color: rgba(196, 214, 203, 0.62);
+  font-size: clamp(0.58rem, 0.68vw, 0.66rem);
+  font-weight: 800;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-meta-grid dd {
+  margin: 0;
+  color: rgba(251, 255, 252, 0.9);
+  font-size: clamp(0.68rem, 0.78vw, 0.78rem);
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-chip-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 0;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-chip-grid span {
+  min-width: 0;
+  padding: clamp(5px, 0.55vw, 7px) 5px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(230, 241, 235, 0.74);
+  text-align: center;
+  font-size: clamp(0.56rem, 0.62vw, 0.64rem);
+  font-weight: 800;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-progress {
+  position: relative;
+  z-index: 2;
+  margin-top: 2px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-progress > span {
+  color: rgba(247, 253, 249, 0.86);
+  font-size: clamp(0.72rem, 0.8vw, 0.82rem);
+  font-weight: 900;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-progress > span:nth-child(2) {
+  text-align: right;
+  color: rgba(229, 222, 151, 0.86);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-progress i {
+  grid-column: 1 / -1;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.16);
+  border: 0;
+  font-style: normal;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-progress b {
+  display: block;
+  width: 58%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5fe6a0 0%, #6ee8a4 72%, #d8cb7c 92%, rgba(255, 255, 255, 0.14) 92%);
+  font-weight: normal;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-export {
+  position: relative;
+  z-index: 2;
+  margin: 2px 0 0;
+  color: rgba(229, 215, 139, 0.92);
+  font-size: clamp(0.62rem, 0.72vw, 0.72rem);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-card-foot {
+  position: relative;
+  z-index: 2;
+  margin: auto 0 0;
+  color: rgba(228, 231, 222, 0.38);
+  font-size: clamp(0.74rem, 0.86vw, 0.86rem);
+  font-weight: 900;
+  text-align: center;
+}
+
+/* Flip wrapper: no second surface chrome */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__face {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__face::before,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__face::after {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--deck-back {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--deck-back.mc-passport-card--front {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.6vw, 9px);
+  padding: clamp(18px, 1.45vw, 24px);
+  box-sizing: border-box;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--deck-back .mc-card-export,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--deck-back .mc-card-foot,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--deck-back .mc-card-chip-grid {
+  display: none;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__face .mc-passport-card--front {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}

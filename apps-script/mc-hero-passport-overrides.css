@@ -1,0 +1,82 @@
+/**
+ * Hero v2 deck — overrides on top of mc-cine-hero-showcase card template (04 Metadata).
+ */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-v2__deck .mc-passport-card {
+  inset: auto;
+  width: var(--passport-card-w, clamp(360px, 28vw, 460px));
+  height: auto;
+  aspect-ratio: 0.64 / 1;
+  max-height: min(560px, 64vh);
+  box-sizing: border-box;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--lead .mc-passport-card__face,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--deck-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--lead .mc-passport-card__face {
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--lead .mc-passport-card__face--back {
+  transform: rotateY(180deg);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--deck-back {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+  text-align: left;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card--deck-back.mc-passport-card--front {
+  display: flex;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='insect'] .mc-card-photo {
+  background: #ffffff;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='marine'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='plant'] .mc-card-photo.has-photo img.is-photo-loaded,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card[data-specimen='fossil'] .mc-card-photo.has-photo img.is-photo-loaded {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'][data-zone='metadata'] .mc-card-meta-grid,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'][data-hero-demo-step='metadata'] .mc-card-meta-grid {
+  border-color: rgba(114, 243, 214, 0.55);
+  box-shadow:
+    inset 0 0 0 1px rgba(114, 243, 214, 0.28),
+    0 0 28px rgba(114, 243, 214, 0.14);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'][data-zone='metadata'] .mc-card-meta-grid div {
+  background: rgba(114, 243, 214, 0.04);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backList {
+  display: none;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backTitle,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-passport-card__backSub {
+  display: none;
+}

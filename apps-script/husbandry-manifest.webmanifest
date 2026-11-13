@@ -1,0 +1,11 @@
+{
+  "name": "MCurator Husbandry Log",
+  "short_name": "Husbandry",
+  "description": "Local husbandry records and care passport",
+  "start_url": "./UI.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0f14",
+  "theme_color": "#0f766e",
+  "lang": "zh-TW"
+}

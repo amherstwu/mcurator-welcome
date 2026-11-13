@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="420" viewBox="0 0 600 420" role="img" aria-label="Scientific asset preview">
+  <defs>
+    <radialGradient id="gn" cx="50%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#1a2420"/>
+      <stop offset="100%" stop-color="#030504"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="420" fill="url(#gn)"/>
+  <rect x="120" y="140" width="360" height="140" rx="12" fill="#0a100e" stroke="#8fd8b3" stroke-opacity="0.2"/>
+  <rect x="32" y="32" width="536" height="356" rx="18" fill="none" stroke="#c9a84a" stroke-opacity="0.2" stroke-width="1.5"/>
+</svg>

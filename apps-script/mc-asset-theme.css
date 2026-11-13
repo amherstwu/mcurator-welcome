@@ -1,0 +1,7 @@
+/**
+ * MCurator — optional theme overrides (SAT / museum chrome).
+ * Loaded after specimen-image-system.css in local preview; bundled for Apps Script via bundle-mc-ui-styles.mjs
+ */
+:root {
+  --mc-asset-theme-loaded: 1;
+}

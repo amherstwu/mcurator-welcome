@@ -1,0 +1,197 @@
+/**
+ * MCurator — Cover Flow: 3D carousel + premium specimen cards.
+ * With .mc-coverflow-section: no full-bleed photo wall; cabinet title/filters stay visible.
+ */
+#welcomeLandingPage.welcome-lp.mc-coverflow-solo p.lp-continuity[data-i18n='lp_tr_before_cab'] {
+  display: none !important;
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section {
+  background: radial-gradient(ellipse 140% 90% at 50% 120%, rgba(18, 42, 38, 0.35), transparent 55%),
+    linear-gradient(180deg, rgba(6, 10, 12, 0.4) 0%, rgba(4, 7, 9, 0.92) 100%) !important;
+  background-image: none !important;
+  overflow: visible;
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section > .specimen-wall-bg {
+  display: none !important;
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-wall__inner {
+  padding-bottom: clamp(0.5rem, 2vh, 1.5rem);
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section #mcStwStack.mc-stw-stack {
+  margin-top: clamp(0.25rem, 1.2vh, 0.75rem);
+}
+
+/* Light edge fade only — avoids “wallpaper” of side card photos */
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .mc-coverflow-viewport {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* Strip noisy chrome; keep category pill, accession id, label legible */
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__status-dot,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .mc-cab__pin,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__scan,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__corners,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__grad,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__prog,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__exports,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-stw-peek,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__revTag,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__meta--hover {
+  display: none !important;
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .mc-cab__fig::before,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .mc-cab__fig::after {
+  display: none !important;
+  content: none !important;
+}
+
+.mc-coverflow.mc-coverflow__stage {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.mc-coverflow-viewport {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  min-height: min(420px, 58vh);
+  max-height: min(560px, 72vh);
+  overflow: hidden;
+  outline: none;
+  box-sizing: border-box;
+  background: transparent;
+  perspective: 1200px;
+  perspective-origin: 50% 45%;
+}
+
+.mc-coverflow-viewport:focus-visible {
+  outline: 2px solid rgba(120, 200, 160, 0.45);
+  outline-offset: 2px;
+}
+
+#mcSpecimenCabinet .mc-coverflow-track.mc-cab__wall {
+  display: block !important;
+}
+
+.mc-coverflow-track.mc-cab__wall {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: min(440px, 56vh);
+  min-height: 360px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  grid-template-columns: none !important;
+  grid-auto-rows: unset !important;
+}
+
+.mc-coverflow-slide {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(200px, 34vw);
+  max-width: 220px;
+  margin: 0;
+  padding: 0;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  transition: transform 0.55s cubic-bezier(0.2, 0.85, 0.25, 1), opacity 0.4s ease;
+  pointer-events: auto;
+  filter: none;
+}
+
+.mc-coverflow-track.mc-coverflow--reduce .mc-coverflow-slide {
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.mc-coverflow-slide.is-cf-center {
+  z-index: 40 !important;
+  cursor: pointer;
+}
+
+.mc-coverflow-slide > .mc-cab__frame.specimen-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  transform-style: preserve-3d;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.1) 0%, transparent 42%),
+    linear-gradient(210deg, rgba(12, 20, 24, 0.98), rgba(4, 8, 10, 0.99));
+  background-clip: padding-box;
+  box-shadow:
+    0 0 0 1px rgba(180, 210, 200, 0.22) inset,
+    0 0 0 1px rgba(60, 90, 80, 0.5),
+    0 18px 40px rgba(0, 0, 0, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+.mc-coverflow-slide > .mc-cab__frame.specimen-card:hover,
+.mc-coverflow-slide > .mc-cab__frame.specimen-card:focus-visible {
+  box-shadow:
+    0 0 0 1px rgba(200, 235, 210, 0.35) inset,
+    0 0 0 1px rgba(100, 200, 160, 0.45),
+    0 22px 48px rgba(0, 0, 0, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__topMeta {
+  top: 8px;
+  left: 8px;
+  right: auto;
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .specimen-card__catPill {
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(160, 210, 185, 0.35);
+  background: rgba(4, 10, 12, 0.65);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .mc-cab__id,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .mc-cab__label {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+@media (max-width: 767.98px) {
+  .mc-coverflow-viewport {
+    min-height: 400px;
+    max-height: 70vh;
+  }
+  .mc-coverflow-slide {
+    width: min(176px, 72vw);
+    max-width: 200px;
+  }
+}
+
+#mcSpecimenCabinet.specimen-wall--interactive .mc-coverflow-track.mc-cab__wall {
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-coverflow-slide {
+    transition-duration: 0.01ms !important;
+  }
+}

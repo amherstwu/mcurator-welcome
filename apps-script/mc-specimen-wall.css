@@ -1,0 +1,1154 @@
+/**
+ * ACTIVE FILE — used by UI.html
+ * Do not import old landing / museum versions at the same time.
+ *
+ * Interactive digital specimen wall — 典藏牆
+ * Load after mcurator-museum.css (bundle) in UI.html.
+ */
+#mcSpecimenCabinet.specimen-wall--interactive {
+  --stw-glow: rgba(120, 220, 160, 0.45);
+  --stw-depth: 1.05;
+  --stw-border: rgba(160, 220, 180, 0.32);
+  --stw-anim: 0.55s;
+  --stw-bg-grad: linear-gradient(180deg, rgba(8, 16, 12, 0.2) 0%, rgba(4, 8, 6, 0.75) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.specimen-wall-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.specimen-wall-bg__grid {
+  position: absolute;
+  inset: -1px;
+  background-image: linear-gradient(rgba(100, 160, 120, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 160, 120, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 100%);
+  opacity: 0.5;
+}
+.specimen-wall-bg__glow {
+  position: absolute;
+  width: 60%;
+  height: 50%;
+  left: 20%;
+  top: 20%;
+  background: radial-gradient(closest-side, rgba(60, 140, 100, 0.12), transparent 70%);
+  filter: blur(20px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .specimen-wall-bg__dust {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle 1.5px at 12% 40%,
+        rgba(200, 230, 200, 0.08) 0%,
+        transparent 40%
+      ),
+      radial-gradient(circle 1.5px at 78% 22%, rgba(180, 220, 190, 0.08) 0%, transparent 40%),
+      radial-gradient(circle 1px at 50% 88%, rgba(160, 200, 170, 0.05) 0%, transparent 40%);
+    animation: stwDust 24s ease-in-out infinite;
+    opacity: 0.4;
+  }
+  @keyframes stwDust {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(6px, -3px) scale(1.02);
+    }
+  }
+}
+#mcSpecimenCabinet .specimen-wall__inner {
+  position: relative;
+  z-index: 1;
+}
+#mcSpecimenCabinet .specimen-wall-header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.25rem;
+  max-width: min(52rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 0.5rem;
+}
+#mcSpecimenCabinet .specimen-wall-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+#mcSpecimenCabinet .specimen-wall-eyebrow.stw-eyebrow-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcSpecimenCabinet .specimen-wall-eyebrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+.specimen-wall-eyebrow__badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b8f0d0;
+  border: 1px solid var(--stw-border);
+  background: rgba(30, 60, 45, 0.75);
+  box-shadow: 0 0 18px -4px var(--stw-glow);
+  cursor: help;
+}
+#mcSpecimenCabinet .specimen-wall-title {
+  font-size: clamp(1.25rem, 3.5vw, 1.7rem) !important;
+  line-height: 1.35;
+}
+#mcSpecimenCabinet .specimen-wall-title .specimen-keyword {
+  color: #d0f4e0;
+  border-bottom: 1px dashed rgba(150, 220, 180, 0.35);
+  cursor: help;
+  transition: color 0.2s, text-shadow 0.2s;
+  padding: 0 0.08em;
+}
+#mcSpecimenCabinet .specimen-wall-title .specimen-keyword:hover,
+#mcSpecimenCabinet .specimen-wall-title .specimen-keyword:focus-visible {
+  text-shadow: 0 0 20px var(--stw-glow);
+  color: #fff;
+  outline: none;
+}
+#mcSpecimenCabinet .specimen-wall-title[data-stw-reveal-ready] {
+  animation: stwH2in 0.7s ease forwards;
+}
+@keyframes stwH2in {
+  from {
+    opacity: 0;
+    transform: translateY(0.3em);
+    filter: blur(1px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: none;
+  }
+}
+#mcSpecimenCabinet .specimen-wall-dek {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.15rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0.5rem 0 0.75rem;
+  max-width: 46rem;
+}
+#mcSpecimenCabinet .specimen-dek__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.35rem 0.12rem;
+  margin: 0 0.1rem 0.15rem;
+  font: inherit;
+  color: #c0edd4;
+  background: rgba(20, 50, 36, 0.65);
+  border: 1px solid rgba(100, 180, 130, 0.35);
+  border-radius: 5px;
+  font-size: 0.8em;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+#mcSpecimenCabinet .specimen-dek__chip:hover,
+#mcSpecimenCabinet .specimen-dek__chip:focus-visible {
+  background: rgba(40, 100, 70, 0.5);
+  box-shadow: 0 0 0 1px rgba(150, 220, 180, 0.25);
+  transform: translateY(-1px);
+  outline: none;
+}
+#mcSpecimenCabinet .specimen-dek__chip.is-pulsing {
+  animation: stwChipFlash 0.6s ease;
+  box-shadow: 0 0 16px var(--stw-glow);
+}
+#mcSpecimenCabinet [data-stw-magnet].is-pulsing,
+#mcSpecimenCabinet .stw-magnet--active {
+  animation: stwMagnet 0.75s ease;
+  outline: 1px solid rgba(150, 240, 190, 0.4);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+@keyframes stwChipFlash {
+  0%,
+  100% {
+    box-shadow: none;
+  }
+  40% {
+    box-shadow: 0 0 18px var(--stw-glow);
+  }
+}
+@keyframes stwMagnet {
+  0%,
+  100% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0 0 14px var(--stw-glow);
+  }
+}
+.specimen-wall__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin: 0 0.5rem 0.75rem;
+  max-width: min(56rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+.specimen-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 12px;
+  background: rgba(4, 12, 8, 0.55);
+  border: 1px solid rgba(100, 150, 120, 0.2);
+  flex: 1 1 auto;
+}
+.specimen-filter-bar[role] button {
+  font-size: 0.68rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid rgba(100, 160, 130, 0.2);
+  background: rgba(12, 32, 22, 0.5);
+  color: #a8d0bc;
+  cursor: pointer;
+  transition: color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  white-space: nowrap;
+  outline: none;
+}
+.specimen-filter-bar[role] button.is-active,
+.specimen-filter-bar[role] button[aria-pressed="true"] {
+  color: #d8ffe8;
+  background: rgba(30, 90, 60, 0.55);
+  border-color: rgba(130, 220, 160, 0.45);
+  box-shadow: 0 0 20px -6px var(--stw-glow);
+}
+#mcSpecimenCabinet .mc-cab__frame.stw--nomatch {
+  opacity: 0.36;
+  transform: scale(0.94) translateY(0.2rem) !important;
+  filter: grayscale(0.25) brightness(0.6);
+  pointer-events: auto;
+  transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease, box-shadow 0.45s;
+}
+#mcSpecimenCabinet .mc-cab__frame.stw--match,
+#mcSpecimenCabinet .mc-cab__frame[data-stw-matched] {
+  box-shadow: 0 0 28px -4px var(--stw-glow) !important;
+  border-color: var(--stw-border) !important;
+}
+#mcSpecimenCabinet .mc-cab__frame .specimen-stw-peek {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  top: 38%;
+  text-align: center;
+  font-size: 0.5rem;
+  color: #c8f0dc;
+  text-shadow: 0 0 6px #000;
+  padding: 0.15rem 0.25rem;
+  opacity: 0;
+  transform: translateY(2px);
+  pointer-events: none;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 800;
+  transition: opacity 0.35s, transform 0.35s;
+}
+#mcSpecimenCabinet .mc-cab__frame:hover .specimen-stw-peek,
+#mcSpecimenCabinet .mc-cab__frame:focus-visible .specimen-stw-peek {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+#mcSpecimenCabinet .specimen-card__scan {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 14px 14px 0 0;
+}
+#mcSpecimenCabinet .specimen-card__scan::after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  height: 40%;
+  top: 0;
+  background: linear-gradient(180deg, transparent, rgba(200, 255, 220, 0.06) 50%, transparent);
+  animation: stwScan 3.5s ease-in-out infinite;
+  animation-play-state: paused;
+}
+#mcSpecimenCabinet .mc-cab__frame:hover .specimen-card__scan::after,
+#mcSpecimenCabinet .mc-cab__frame:focus-visible .specimen-card__scan::after,
+#mcSpecimenCabinet.specimen-wall--inspect .mc-cab__frame[aria-pressed="true"] .specimen-card__scan::after {
+  animation-play-state: running;
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcSpecimenCabinet .specimen-card__scan::after,
+  .specimen-wall-bg__dust {
+    animation: none !important;
+  }
+}
+@keyframes stwScan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(280%);
+  }
+}
+#mcSpecimenCabinet .specimen-card__corners {
+  position: absolute;
+  inset: 5px 5px auto 5px;
+  z-index: 2;
+  height: min(32%, 120px);
+  border: 1px solid rgba(200, 240, 200, 0.15);
+  border-width: 1px 0 0 1px;
+  width: 28%;
+  pointer-events: none;
+  opacity: 0.35;
+  border-radius: 3px 0 0 0;
+}
+#mcSpecimenCabinet .specimen-card__corners::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(200, 240, 200, 0.15);
+  border-width: 0 1px 0 0;
+  transform: translate(220%, 0) rotate(0deg);
+  left: 100%;
+  width: 28%;
+  top: 0;
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  border-right-width: 1px;
+}
+#mcSpecimenCabinet .specimen-card__prog {
+  position: absolute;
+  z-index: 3;
+  bottom: 2.35rem;
+  left: 7px;
+  right: 7px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  pointer-events: none;
+}
+#mcSpecimenCabinet .specimen-card__prog > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(80, 200, 140, 0.2), #5dd0a0);
+  border-radius: 2px;
+  transition: width 0.5s;
+}
+#mcSpecimenCabinet .specimen-card__exports {
+  position: absolute;
+  z-index: 4;
+  right: 6px;
+  bottom: 0.3rem;
+  display: flex;
+  gap: 0.2rem;
+  font-size: 0.4rem;
+  color: #a0e0c0;
+  text-shadow: 0 0 4px #000;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+#mcSpecimenCabinet .mc-cab__frame:hover .specimen-card__exports,
+#mcSpecimenCabinet .mc-cab__frame:focus-visible .specimen-card__exports,
+#mcSpecimenCabinet.specimen-wall--inspect .mc-cab__frame[aria-pressed="true"] .specimen-card__exports {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+/* id / label: keep mcurator-landing-trio-cab absolute layout */
+#mcSpecimenCabinet .mc-cab__fig {
+  flex: 1 1 56%;
+  aspect-ratio: 1 / 1.35;
+}
+#mcSpecimenCabinet .mc-cab__frame {
+  min-height: clamp(300px, 42vw, 360px) !important;
+  width: clamp(180px, 18vw, 220px) !important;
+}
+#mcSpecimenCabinet .mc-cab__fig::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(0, 8, 4, 0.1) 0%, transparent 35%),
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(0, 0, 0, 0.25) 0%, transparent 50%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+#mcSpecimenCabinet .mc-cab__fig::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  box-shadow: inset 0 0 32px 8px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  border-radius: 14px 14px 0 0;
+}
+#mcSpecimenCabinet .specimen-wall-hint {
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgba(150, 190, 160, 0.75);
+  max-width: 32rem;
+  margin: 0.25rem auto 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+#mcSpecimenCabinet .specimen-wall-hint::before {
+  content: "↓";
+  display: inline-block;
+  font-size: 0.6rem;
+  animation: stwBounceY 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcSpecimenCabinet .specimen-wall-hint::before {
+    animation: none;
+  }
+}
+@keyframes stwBounceY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+#mcSpecimenCabinet .mc-cab__wall--carousel {
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 0.5rem 1.25rem 0.8rem;
+  -webkit-overflow-scrolling: touch;
+  gap: 1.25rem;
+  scroll-behavior: smooth;
+}
+#mcSpecimenCabinet .mc-cab__wall--carousel .mc-cab__frame {
+  flex: 0 0 76vw;
+  max-width: 20rem;
+  min-height: 105vw !important;
+  max-height: 520px;
+  scroll-snap-align: center;
+}
+#mcSpecimenCabinet .mc-cab__wall--carousel .mc-cab__fig {
+  aspect-ratio: 1/1.15;
+}
+#mcSpecimenCabinet .mc-cab__wall--carousel .stw-carousel-nav {
+  position: static;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+#mcSpecimenCabinet .mc-cab__wall.stw-entrance .mc-cab__frame {
+  animation: stwDrawIn 0.65s cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  animation-delay: var(--stw-idx, 0s);
+  /* 保持可讀不透明度，避免動畫前像「整片沒有卡」 */
+  opacity: 0.98;
+  transform: translateY(4px) translateZ(-2px) scale(0.995);
+}
+#mcSpecimenCabinet .mc-cab__wall.stw-entrancedone .mc-cab__frame,
+#mcSpecimenCabinet .mc-cab__wall:not(.stw-entrance) .mc-cab__frame {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcSpecimenCabinet .mc-cab__wall.stw-entrance .mc-cab__frame {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  #mcSpecimenCabinet .specimen-wall-title[data-stw-reveal-ready] {
+    animation: none;
+  }
+}
+@keyframes stwDrawIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) translateZ(0);
+  }
+}
+#mcSpecimenCabinet.specimen-wall--inspect {
+  z-index: 5;
+  transition: background 0.4s;
+}
+#mcSpecimenCabinet.specimen-wall--inspect::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+  pointer-events: none;
+}
+#mcSpecimenCabinet #mcCabPreview {
+  z-index: 200;
+}
+#mcSpecimenCabinet .mc-cab__frame .specimen-card__meta--hover {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 44%;
+  border-radius: 0 0 0 0;
+  padding: 0.15rem 0.35rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  pointer-events: none;
+  gap: 0.05rem;
+  opacity: 0.85;
+}
+#mcSpecimenCabinet .mc-cab__frame .specimen-card__metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.1rem;
+  font-size: 0.4rem;
+  line-height: 1.1;
+  color: #b0dec8;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+#mcSpecimenCabinet .mc-cab__frame .specimen-card__meta--hover {
+  display: none;
+}
+#mcSpecimenCabinet .mc-cab__frame:hover .specimen-card__meta--hover,
+#mcSpecimenCabinet .mc-cab__frame:focus-within .specimen-card__meta--hover,
+#mcSpecimenCabinet.specimen-wall--inspect .mc-cab__frame[aria-pressed="true"] .specimen-card__meta--hover {
+  display: flex;
+}
+#mcSpecimenCabinet .mc-cab__frame {
+  will-change: transform;
+}
+#mcSpecimenCabinet .mc-cab__frame.magnet-on .mc-cab__fig,
+#mcSpecimenCabinet [data-stw-magnet="image"].stw-magnet--active .mc-cab__fig {
+  box-shadow: inset 0 0 20px 2px rgba(200, 255, 200, 0.15);
+  filter: brightness(1.08) contrast(1.04);
+}
+#mcSpecimenCabinet .stw-btm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0.5rem 0.4rem;
+}
+#mcSpecimenCabinet .stw-btm-actions button {
+  font-size: 0.7rem;
+  min-height: 2rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(120, 200, 150, 0.3);
+  background: rgba(12, 32, 22, 0.5);
+  color: #a8e0c0;
+  cursor: pointer;
+}
+#mcSpecimenCabinet .stw-btm-actions button:focus-visible,
+.specimen-dek__chip:focus-visible,
+.specimen-filter-bar button:focus-visible,
+.specimen-keyword:focus-visible {
+  outline: 2px solid rgba(120, 220, 180, 0.8);
+  outline-offset: 2px;
+}
+.mc-cab-preview__rowGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem 0.5rem;
+  width: 100%;
+  margin: 0.2rem 0 0.5rem;
+}
+@media (max-width: 520px) {
+  .mc-cab-preview__rowGroup {
+    grid-template-columns: 1fr;
+  }
+}
+.mc-cab-preview__fig.specimen-inspection-mag {
+  position: relative;
+  overflow: hidden;
+}
+.stw-tt[role="tooltip"] {
+  position: fixed;
+  z-index: 2000;
+  max-width: 18rem;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  padding: 0.4rem 0.55rem;
+  border-radius: 8px;
+  background: rgba(8, 20, 14, 0.95);
+  border: 1px solid rgba(120, 200, 160, 0.35);
+  color: #d0f0e0;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.stw-tt[role="tooltip"][data-stw-tt-on="1"] {
+  visibility: visible;
+  opacity: 1;
+}
+
+#mcSpecimenCabinet [data-stw-mag="image"] .mc-cab__fig,
+#mcSpecimenCabinet [data-stw-mag="image"] [data-stw-magnet-fig] {
+  filter: brightness(1.1) contrast(1.05);
+  box-shadow: 0 0 20px 2px rgba(120, 200, 160, 0.2);
+}
+#mcSpecimenCabinet [data-stw-mag="id"] [data-stw-magnet-id],
+#mcSpecimenCabinet [data-stw-mag="id"] p.mc-cab__id {
+  text-shadow: 0 0 8px var(--stw-glow) !important;
+  color: #d8ffe8 !important;
+}
+#mcSpecimenCabinet [data-stw-mag="tax"] [data-stw-magnet-topMeta] {
+  filter: drop-shadow(0 0 6px var(--stw-glow));
+}
+#mcSpecimenCabinet [data-stw-mag="status"] [data-stw-magnet-rev],
+#mcSpecimenCabinet [data-stw-mag="status"] .specimen-card__revTag {
+  box-shadow: 0 0 0 1px var(--stw-glow) !important;
+  animation: stwMagnet 0.5s ease;
+}
+#mcSpecimenCabinet [data-stw-mag="public"] [data-stw-magnet-pvis] {
+  outline: 1px solid var(--stw-glow);
+  border-radius: 2px;
+}
+#mcSpecimenCabinet [data-stw-mag="loc"] .mc-cab__fig {
+  outline: 1px solid rgba(160, 220, 200, 0.35);
+  outline-offset: 2px;
+}
+.mc-cab-preview__btns,
+.mc-cab-preview__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0.3rem 0 0.6rem;
+  width: 100%;
+}
+
+/* —— v2: 典藏牆深度、抽屜感、預覽時鄰卡變暗、標題關鍵字、入場預演 —— */
+#mcSpecimenCabinet .mc-cab__wall {
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+}
+#mcSpecimenCabinet .mc-cab__frame {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    opacity 0.5s ease,
+    transform 0.45s cubic-bezier(0.2, 0.75, 0.2, 1),
+    box-shadow 0.4s ease,
+    filter 0.5s ease;
+}
+#mcSpecimenCabinet .mc-cab__frame .mc-cab__fig,
+#mcSpecimenCabinet .mc-cab__frame .specimen-card__img {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+}
+#mcSpecimenCabinet .mc-cab__frame:hover .specimen-card__img,
+#mcSpecimenCabinet .mc-cab__frame:focus-within .specimen-card__img {
+  transform: scale(1.08);
+  filter: contrast(1.05) saturate(1.05);
+}
+#mcSpecimenCabinet .mc-cab__frame:hover[data-stw-tilt='1'] {
+  transform: translate3d(0, calc(-1 * clamp(18px, 2.2vw, 28px)), 12px) scale(1.04) rotateX(calc(4deg + var(--tlt-x, 0deg)))
+    rotateY(var(--tlt-y, 0deg));
+  box-shadow:
+    0 0 0 1px rgba(200, 255, 220, 0.14) inset,
+    0 36px 80px rgba(0, 0, 0, 0.55),
+    0 0 40px -2px var(--stw-glow) !important;
+  z-index: 8;
+  filter: saturate(1.02);
+}
+#mcSpecimenCabinet.mc-cab--focus .mc-cab__frame:not(.is-pulled) {
+  opacity: 0.38;
+  transform: scale(0.94) translateY(4px);
+  filter: brightness(0.7) saturate(0.9);
+  pointer-events: auto;
+}
+#mcSpecimenCabinet.mc-cab--focus .mc-cab__frame.is-pulled {
+  opacity: 1;
+  filter: none;
+  z-index: 6;
+  transform: translate3d(0, -8px, 24px) scale(1.05);
+  box-shadow: 0 0 0 1px rgba(160, 255, 200, 0.2) inset, 0 40px 90px rgba(0, 0, 0, 0.5), 0 0 32px -2px var(--stw-glow) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcSpecimenCabinet .mc-cab__frame:hover .specimen-card__img,
+  #mcSpecimenCabinet .mc-cab__frame:hover[data-stw-tilt='1'],
+  #mcSpecimenCabinet .mc-cab__frame,
+  #mcSpecimenCabinet.mc-cab--focus .mc-cab__frame:not(.is-pulled) {
+    transform: none !important;
+    filter: none !important;
+  }
+  #mcSpecimenCabinet .mc-cab__frame:hover .specimen-card__img {
+    transform: none !important;
+  }
+}
+
+/* 入場後第一張卡「抽起」示範 */
+#mcSpecimenCabinet .mc-cab__frame.stw-card-peek {
+  animation: stwDeckPeek 1.05s cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  z-index: 5;
+}
+@keyframes stwDeckPeek {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+  }
+  35% {
+    transform: translate3d(0, -12px, 20px) rotateX(-2deg) scale(1.04);
+    box-shadow: 0 28px 64px rgba(0, 0, 0, 0.45);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcSpecimenCabinet .mc-cab__frame.stw-card-peek {
+    animation: none;
+  }
+}
+
+/* 標題關鍵字依次微亮 */
+#mcSpecimenCabinet .specimen-wall-title[data-stw-reveal-ready] .specimen-keyword {
+  animation: stwKwGlow 1.2s ease-out both;
+}
+#mcSpecimenCabinet .specimen-wall-title[data-stw-reveal-ready] .specimen-keyword:nth-of-type(1) {
+  animation-delay: 0.15s;
+}
+#mcSpecimenCabinet .specimen-wall-title[data-stw-reveal-ready] .specimen-keyword:nth-of-type(2) {
+  animation-delay: 0.45s;
+}
+#mcSpecimenCabinet .specimen-wall-title[data-stw-reveal-ready] .specimen-keyword:nth-of-type(3) {
+  animation-delay: 0.75s;
+}
+@keyframes stwKwGlow {
+  0% {
+    color: inherit;
+    text-shadow: none;
+  }
+  50% {
+    color: #f4fff8;
+    text-shadow: 0 0 20px var(--stw-glow);
+  }
+  100% {
+    color: #d0f4e0;
+    text-shadow: 0 0 8px rgba(120, 200, 160, 0.2);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcSpecimenCabinet .specimen-wall-title .specimen-keyword {
+    animation: none !important;
+  }
+}
+
+#mcSpecimenCabinet .lp-sec-eyebrow__txt {
+  text-shadow: 0 0 10px rgba(100, 200, 150, 0.15);
+}
+
+/* 篩選：更柔的過渡 */
+#mcSpecimenCabinet .mc-cab__frame.stw--nomatch {
+  transition: opacity 0.55s ease, transform 0.55s ease, filter 0.55s ease, box-shadow 0.5s;
+}
+
+/* 手機：略放大主卡寬，維持 deck */
+#mcSpecimenCabinet .mc-cab__wall--carousel .mc-cab__frame {
+  flex: 0 0 78vw;
+  max-width: 22rem;
+  min-height: min(120vw, 520px) !important;
+  max-height: 520px;
+}
+
+/* 護照預覽面板 */
+.mc-cab-preview__kicker {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(150, 210, 180, 0.85);
+  margin: 0 0 0.35rem;
+  text-align: left;
+  width: 100%;
+}
+.specimen-passport-preview {
+  position: relative;
+}
+.specimen-passport-preview .mc-cab-preview__x {
+  top: 0.4rem;
+}
+
+/* 檢視：放大掃描線 */
+#mcSpecimenCabinet.specimen-wall--inspect .mc-cab__frame[aria-pressed='true'] .specimen-card__scan::after {
+  animation-play-state: running;
+  animation-duration: 2.2s;
+}
+#mcSpecimenCabinet .mc-cab__fig::after {
+  box-shadow: inset 0 0 24px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* ========== 典藏牆 v3：全幅密列網格、博物館櫥窗感、強化 hover / 篩選 ========== */
+#mcSpecimenCabinet.specimen-wall--interactive {
+  min-height: min(88vh, 1200px);
+  padding: clamp(0.75rem, 2vh, 1.5rem) 0 2.5rem;
+  box-sizing: border-box;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall-bg {
+  z-index: 0;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall-bg__glow {
+  width: 85%;
+  height: 70%;
+  left: 7.5%;
+  top: 8%;
+  background: radial-gradient(ellipse 100% 70% at 50% 35%, rgba(80, 200, 140, 0.1), transparent 60%);
+  filter: blur(28px);
+  opacity: 0.9;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 100% 80% at 50% 100%, rgba(0, 0, 0, 0.55) 0%, transparent 50%);
+  z-index: 0;
+  opacity: 0.6;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall__inner {
+  max-width: 100% !important;
+  width: 100%;
+  padding: 0 clamp(0.5rem, 1.2vw, 1.25rem);
+  box-sizing: border-box;
+  z-index: 1;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall-header,
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall-eyebrow,
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall-dek,
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall__controls,
+#mcSpecimenCabinet.specimen-wall--interactive .specimen-wall-hint {
+  max-width: min(72rem, 100%) !important;
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .lp-sec-h,
+#mcSpecimenCabinet.specimen-wall--interactive h2#mcCabH {
+  text-align: left;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .stw-ambient-spotlight {
+  position: fixed;
+  /* Avoid 100vw (scrollbar gap); fixed % uses layout viewport width */
+  width: min(900px, 100%);
+  height: min(100vh, 700px);
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  background: radial-gradient(circle at 50% 50%, rgba(100, 220, 150, 0.35) 0%, transparent 50%);
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+#mcSpecimenCabinet.specimen-wall--interactive.stw--scan::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 40, 30, 0.12) 0, rgba(0, 40, 30, 0.12) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  animation: stwScanV 8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcSpecimenCabinet.specimen-wall--interactive.stw--scan::before {
+    animation: none;
+  }
+}
+@keyframes stwScanV {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 12px;
+  }
+}
+#mcSpecimenCabinet.specimen-wall--interactive .mc-cab__wall {
+  display: grid !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto;
+  padding: 0.35rem 0.25rem 1.25rem !important;
+  gap: 0.65rem 0.7rem;
+  align-items: stretch;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  box-sizing: border-box;
+  justify-content: stretch;
+  justify-items: stretch;
+  perspective: 1600px;
+  perspective-origin: 50% 30%;
+  min-height: 0;
+}
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  #mcSpecimenCabinet.specimen-wall--interactive .mc-cab__wall {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1200px) {
+  #mcSpecimenCabinet.specimen-wall--interactive .mc-cab__wall {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  #mcSpecimenCabinet.specimen-wall--interactive .mc-cab__wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem 0.45rem;
+  }
+  #mcSpecimenCabinet.specimen-wall--interactive .mc-cab__wall--carousel {
+    display: flex !important;
+  }
+}
+#mcSpecimenCabinet.specimen-wall--interactive .mc-cab__frame.specimen-card,
+#mcSpecimenCabinet.specimen-wall--interactive .mc-cab__frame {
+  width: 100% !important;
+  min-width: 0;
+  min-height: clamp(200px, 32vw, 300px);
+  --cab-card-w: 100%;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .mc-cab__fig {
+  aspect-ratio: 3/4.1;
+  flex: 1 1 auto;
+  object-position: center 40%;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .mc-cab__fig .specimen-card__img,
+#mcSpecimenCabinet.specimen-wall--interactive .mc-cab__fig img {
+  object-fit: cover;
+  object-position: 50% 40%;
+  transition: transform 0.55s cubic-bezier(0.2, 0.75, 0.2, 1), filter 0.45s ease;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .filter-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.65rem;
+  margin: 0 0.25rem 0.5rem;
+  max-width: min(72rem, 100%) !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .filter-toolbar__aux {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0.25rem 0.5rem 0.25rem;
+  max-width: min(72rem, 100%) !important;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .stw-aux {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  min-height: 2.1rem;
+  padding: 0.15rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(120, 200, 150, 0.3);
+  background: rgba(8, 32, 22, 0.5);
+  color: #9ee0c0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.25s, border-color 0.25s, background 0.25s;
+  outline: none;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .stw-aux[aria-pressed="true"] {
+  box-shadow: 0 0 0 1px rgba(100, 220, 150, 0.45) inset, 0 0 20px -4px var(--stw-glow, rgba(120, 255, 160, 0.45));
+  border-color: rgba(150, 240, 200, 0.55);
+  color: #d8ffe8;
+  background: rgba(25, 90, 55, 0.4);
+}
+#mcSpecimenCabinet.specimen-wall--interactive .stw-aux--draw {
+  border-color: rgba(200, 220, 100, 0.45);
+  color: #f2ffd8;
+  background: linear-gradient(150deg, rgba(40, 100, 70, 0.45), rgba(6, 16, 10, 0.6));
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  font-weight: 750;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .stw-fbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  min-height: 1.9rem;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .stw-fbtn__i {
+  font-size: 0.65rem;
+  opacity: 0.7;
+  line-height: 1;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .stw-fbtn__c {
+  min-width: 1.1rem;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.1rem 0.28rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #8fd4b0;
+  border: 1px solid rgba(100, 180, 120, 0.25);
+}
+#mcSpecimenCabinet.specimen-wall--interactive .stw-fbtn.is-active .stw-fbtn__c {
+  color: #0a1f14;
+  background: rgba(150, 250, 200, 0.85);
+  border-color: rgba(150, 250, 200, 0.4);
+}
+#mcSpecimenCabinet .specimen-dek__chip--export {
+  font-size: 0.72em;
+  letter-spacing: 0.02em;
+}
+#mcSpecimenCabinet [data-stw-mag="exportchips"] .specimen-card__exports,
+#mcSpecimenCabinet [data-stw-mag="exportchips"] .stw-peek,
+#mcSpecimenCabinet [data-stw-mag="ex"] .specimen-card__exports span {
+  box-shadow: 0 0 0 1px var(--stw-glow) !important;
+  animation: stwMagnet 0.5s ease;
+  border-radius: 2px;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .mc-cab__frame.stw--neighbor-dim {
+  opacity: 0.42;
+  filter: brightness(0.6) blur(0.3px) saturate(0.85) !important;
+  transform: scale(0.97) translateY(0.1rem) !important;
+  transition: opacity 0.35s ease, filter 0.4s ease, transform 0.4s ease;
+}
+#mcSpecimenCabinet.specimen-wall--interactive .mc-cab__frame.stw-pull-anim {
+  z-index: 20 !important;
+  box-shadow: 0 0 0 1px rgba(200, 255, 200, 0.22) inset, 0 48px 100px rgba(0, 0, 0, 0.55) !important;
+  transition: transform 0.42s cubic-bezier(0.2, 0.85, 0.2, 1), box-shadow 0.42s ease, filter 0.3s;
+}
+#mcSpecimenCabinet .mc-cab__frame .specimen-card__meta--hover {
+  top: 38% !important;
+  padding-bottom: 0.2rem;
+}
+#mcSpecimenCabinet .mc-cab__frame .specimen-card__hoverSci {
+  font-size: 0.42rem;
+  color: #d4f0e0;
+  margin: 0.05rem 0;
+  line-height: 1.2;
+  font-style: italic;
+  opacity: 0.95;
+}
+#mcSpecimenCabinet .mc-cab__frame .specimen-card__hoverSub {
+  font-size: 0.38rem;
+  color: rgba(180, 220, 200, 0.85);
+  margin: 0.02rem 0 0.08rem;
+  line-height: 1.15;
+}
+#mcSpecimenCabinet .mc-cab__frame:hover .specimen-card__meta--hover .specimen-card__ctaRow,
+#mcSpecimenCabinet .mc-cab__frame:focus-within .specimen-card__meta--hover .specimen-card__ctaRow,
+#mcSpecimenCabinet.specimen-wall--inspect .mc-cab__frame[aria-pressed="true"] .specimen-card__ctaRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.12rem;
+  font-size: 0.42rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b8f8d0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+#mcSpecimenCabinet [data-stw-mag="exportchips"] [data-stw-magnet-exports] {
+  outline: 1px solid rgba(120, 220, 150, 0.45);
+  outline-offset: 1px;
+  border-radius: 3px;
+}
+.specimen-dek__chips-exports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.25rem;
+  align-items: center;
+  margin: 0.2rem 0 0.35rem;
+  width: 100%;
+  max-width: 46rem;
+  font-size: 0.78em;
+  color: rgba(160, 210, 180, 0.85);
+}
+.specimen-dek__chips-exports::before {
+  content: "·";
+  color: rgba(100, 160, 120, 0.4);
+  margin-right: 0.15rem;
+  font-size: 0.9em;
+  align-self: center;
+}
+#mcSpecimenCabinet .mc-cab__fig.stw--shine::after {
+  content: "";
+  position: absolute;
+  width: 55%;
+  height: 30%;
+  left: var(--stw-shx, 50%);
+  top: var(--stw-shy, 20%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.1), transparent 80%);
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 50%;
+  transition: left 0.1s, top 0.1s;
+  mix-blend-mode: screen;
+  opacity: 0.65;
+}
+
+/* Wall stack (Digital Specimen Collection Pack UI removed) */
+#mcStwStack.mc-stw-stack {
+  position: relative;
+  width: 100%;
+  max-width: 100% !important;
+  margin: 0.35rem 0 0.25rem;
+  min-height: 0;
+  overflow: visible;
+}
+
+/* Premium Cover Flow: layout / chrome / BG — see mc-coverflow-wall.css (.mc-coverflow-section) */
+/* Side cards: disable hover image scale so photos cannot bleed outside the frame (looked like a huge BG) */
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .mc-coverflow-slide:not(.is-cf-center) .mc-cab__fig img,
+#mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section .mc-coverflow-slide:not(.is-cf-center) .mc-cab__figImg {
+  transform: none !important;
+}

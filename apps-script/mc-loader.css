@@ -1,0 +1,582 @@
+/* MCurator premium boot loader — scoped to .mc-loader only */
+#mcBootSplash.mc-loader {
+  z-index: 200000;
+}
+
+#sat-boot-splash.mc-loader {
+  z-index: 10000;
+}
+
+.mc-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #05070b;
+  color: #ece8df;
+  overflow: hidden;
+  font-family: Inter, 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mc-loader.mc-loader--out,
+#mcBootSplash.mc-boot-splash--out {
+  opacity: 0;
+  transform: scale(0.988);
+  pointer-events: none;
+  transition: opacity 0.48s ease, transform 0.48s ease;
+}
+
+.mc-loader.mc-loader--out .mc-loader__shell,
+#mcBootSplash.mc-boot-splash--out .mc-loader__shell {
+  transform: translateY(8px) scale(0.992);
+  transition: transform 0.48s ease;
+}
+
+/* ── Background layers ── */
+.mc-loader__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mc-loader__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.mc-loader__glow--a {
+  width: min(58vw, 480px);
+  height: min(58vw, 480px);
+  top: -12%;
+  left: 42%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(94, 196, 182, 0.2) 0%, transparent 68%);
+  animation: mc-loader-glow-a 14s ease-in-out infinite;
+}
+
+.mc-loader__glow--b {
+  width: min(48vw, 400px);
+  height: min(48vw, 400px);
+  bottom: -6%;
+  right: -4%;
+  background: radial-gradient(circle, rgba(196, 168, 88, 0.12) 0%, transparent 70%);
+  animation: mc-loader-glow-b 17s ease-in-out infinite;
+}
+
+.mc-loader__glow--c {
+  width: min(36vw, 280px);
+  height: min(36vw, 280px);
+  top: 38%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(72, 130, 180, 0.1) 0%, transparent 72%);
+  animation: mc-loader-glow-c 20s ease-in-out infinite;
+}
+
+.mc-loader__grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 82% 72% at 50% 44%, black 8%, transparent 100%);
+  opacity: 0.55;
+}
+
+.mc-loader__network {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 10%, transparent 78%);
+}
+
+.mc-loader__network svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mc-loader__particles {
+  position: absolute;
+  inset: 0;
+}
+
+.mc-loader__particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(180, 210, 200, 0.45);
+  box-shadow: 0 0 6px rgba(110, 196, 182, 0.25);
+  animation-name: mc-loader-particle-drift;
+  animation-duration: var(--drift, 18s);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: var(--opacity, 0.35);
+}
+
+.mc-loader__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 72% 58% at 50% 42%, transparent 0%, rgba(5, 7, 11, 0.35) 72%, rgba(5, 7, 11, 0.88) 100%);
+}
+
+/* ── Panel shell ── */
+.mc-loader__shell {
+  position: relative;
+  z-index: 1;
+  width: min(540px, 88vw);
+  animation: mc-loader-enter 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mc-loader__panel {
+  position: relative;
+  padding: 2rem 2rem 1.85rem;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, transparent 18%),
+    linear-gradient(165deg, rgba(16, 20, 26, 0.88), rgba(7, 9, 13, 0.78));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 32px 96px rgba(0, 0, 0, 0.55),
+    0 8px 24px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.mc-loader__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02) 42%, rgba(110, 196, 182, 0.08) 100%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.mc-loader__panel-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.1rem;
+  margin-bottom: 1.65rem;
+}
+
+/* ── Logo + orbit ── */
+.mc-loader__logo-wrap {
+  position: relative;
+  width: 6.25rem;
+  height: 6.25rem;
+  display: grid;
+  place-items: center;
+}
+
+.mc-loader__orbit {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(110, 196, 182, 0.22);
+  box-shadow: 0 0 24px rgba(110, 196, 182, 0.06);
+  animation: mc-loader-orbit-spin 12s linear infinite;
+}
+
+.mc-loader__orbit::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: rgba(212, 188, 122, 0.85);
+  box-shadow: 0 0 8px rgba(212, 188, 122, 0.45);
+}
+
+.mc-loader__logo {
+  position: relative;
+  z-index: 1;
+  width: 4.75rem;
+  height: 4.75rem;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.32);
+  animation: mc-loader-logo-pulse 3.4s ease-in-out infinite;
+}
+
+.mc-loader__logo img {
+  width: 152%;
+  height: 152%;
+  max-width: none;
+  margin: -26%;
+  object-fit: cover;
+  display: block;
+  clip-path: none;
+}
+
+/* ── Brand typography ── */
+.mc-loader__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.28rem;
+}
+
+.mc-loader__label {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(142, 196, 186, 0.88);
+}
+
+.mc-loader__title {
+  margin: 0.15rem 0 0;
+  font-size: clamp(1.85rem, 5vw, 2.35rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #f8f4eb;
+}
+
+.mc-loader__subtitle {
+  margin: 0.2rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(210, 214, 222, 0.82);
+  line-height: 1.45;
+}
+
+.mc-loader__init-label {
+  margin: 0.55rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(168, 178, 192, 0.72);
+}
+
+/* ── Panel main: passport + progress ── */
+.mc-loader__panel-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.35rem;
+}
+
+@media (min-width: 480px) {
+  .mc-loader__panel-main {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+}
+
+/* ── Mini passport preview ── */
+.mc-loader__passport {
+  position: relative;
+  padding: 0.85rem 0.9rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(160deg, rgba(12, 16, 22, 0.92), rgba(6, 8, 12, 0.78));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  min-height: 7.5rem;
+}
+
+.mc-loader__passport-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 28%;
+  background: linear-gradient(180deg, transparent, rgba(110, 196, 182, 0.07), transparent);
+  animation: mc-loader-passport-scan 3.6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.mc-loader__passport-head {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.mc-loader__passport-thumb {
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(110, 196, 182, 0.12), rgba(255, 255, 255, 0.04)),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0 2px, transparent 2px 6px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mc-loader__passport-id {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mc-loader__passport-k {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(142, 196, 186, 0.75);
+}
+
+.mc-loader__passport-v {
+  display: block;
+  height: 0.45rem;
+  width: 72%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mc-loader__passport-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+  font-size: 0.62rem;
+  color: rgba(168, 176, 188, 0.75);
+}
+
+.mc-loader__passport-row span:last-child {
+  display: block;
+  height: 0.35rem;
+  width: 42%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ── Progress block ── */
+.mc-loader__progress-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.mc-loader__milestones {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+.mc-loader__milestone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.mc-loader__milestone-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.mc-loader__milestone.is-active .mc-loader__milestone-dot {
+  background: linear-gradient(135deg, #6ec4b6, #d4bc7a);
+  box-shadow: 0 0 10px rgba(110, 196, 182, 0.35);
+  transform: scale(1.15);
+}
+
+.mc-loader__milestone-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(140, 148, 162, 0.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  transition: color 0.35s ease;
+}
+
+.mc-loader__milestone.is-active .mc-loader__milestone-label {
+  color: rgba(220, 226, 234, 0.88);
+}
+
+.mc-loader__progress {
+  width: 100%;
+}
+
+.mc-loader__progress-track {
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  overflow: hidden;
+}
+
+.mc-loader__progress-fill {
+  position: relative;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(78, 168, 154, 0.85) 0%, #8ed9cc 38%, #c9b87a 100%);
+  box-shadow: 0 0 20px rgba(110, 196, 182, 0.22);
+  transition: width 0.22s ease-out;
+  overflow: hidden;
+}
+
+.mc-loader__progress-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.28) 48%, transparent 100%);
+  transform: translateX(-120%);
+  animation: mc-loader-shimmer 2.4s ease-in-out infinite;
+}
+
+/* ── Status text crossfade ── */
+.mc-loader__status-wrap {
+  position: relative;
+  min-height: 1.35rem;
+}
+
+.mc-loader__status {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: rgba(196, 202, 212, 0.92);
+  transition: opacity 0.45s ease;
+}
+
+.mc-loader__status.is-fading {
+  opacity: 0;
+}
+
+/* ── Keyframes ── */
+@keyframes mc-loader-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mc-loader-glow-a {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-46%) translateY(14px); }
+}
+
+@keyframes mc-loader-glow-b {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-16px, -12px); }
+}
+
+@keyframes mc-loader-glow-c {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(12px, 8px); }
+}
+
+@keyframes mc-loader-particle-drift {
+  0%, 100% { transform: translate(0, 0); opacity: var(--opacity, 0.35); }
+  50% { transform: translate(var(--dx, 8px), var(--dy, -12px)); opacity: calc(var(--opacity, 0.35) * 1.4); }
+}
+
+@keyframes mc-loader-orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes mc-loader-logo-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4) inset, 0 14px 36px rgba(0, 0, 0, 0.32), 0 0 24px rgba(110, 196, 182, 0.08);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(110, 196, 182, 0.18) inset, 0 16px 40px rgba(0, 0, 0, 0.36), 0 0 36px rgba(110, 196, 182, 0.16);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes mc-loader-passport-scan {
+  0% { top: -30%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes mc-loader-shimmer {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+
+/* ── Mobile refinements ── */
+@media (max-width: 479px) {
+  .mc-loader__panel {
+    padding: 1.65rem 1.35rem 1.5rem;
+    border-radius: 28px;
+  }
+
+  .mc-loader__milestone-label {
+    font-size: 0.48rem;
+    letter-spacing: 0.02em;
+  }
+
+  .mc-loader__milestones .mc-loader__milestone:nth-child(4) .mc-loader__milestone-label,
+  .mc-loader__milestones .mc-loader__milestone:nth-child(5) .mc-loader__milestone-label {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .mc-loader__milestone-label {
+    display: none;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .mc-loader__glow,
+  .mc-loader__particle,
+  .mc-loader__orbit,
+  .mc-loader__logo,
+  .mc-loader__passport-scan,
+  .mc-loader__progress-shimmer,
+  .mc-loader__shell {
+    animation: none !important;
+  }
+
+  .mc-loader__progress-fill {
+    transition: width 0.15s linear;
+  }
+
+  .mc-loader.mc-loader--out,
+  #mcBootSplash.mc-boot-splash--out {
+    transition: opacity 0.25s ease;
+    transform: none;
+  }
+}

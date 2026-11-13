@@ -1,0 +1,1999 @@
+/**
+ * LOCKED CARD PASSPORT STANDARD
+ * Do not change proportions, spacing, MC/SAT placement, image frame, metadata grid, footer,
+ * or front/back card ratio without explicit design approval.
+ * This stylesheet is the single source of truth for `.passport-card-locked` specimen passport
+ * cards (generator preview, export, 3D flip). Preview wrappers may transform scale only; never
+ * rely on preview mode to change these inner dimensions.
+ */
+
+/* -------------------------------------------------------------------------- */
+/* Design tokens — match reference 640×1010 museum passport                    */
+/* -------------------------------------------------------------------------- */
+.passport-card-locked,
+#mcCardPassportStudioV2 .cg-v2-app {
+  --passport-width: clamp(360px, 38vw, 640px);
+  --passport-ratio-w: 640;
+  --passport-ratio-h: 1010;
+  --passport-radius: 42px;
+  --passport-pad-x: 34px;
+  --passport-pad-y: 34px;
+  --passport-gold: rgba(216, 196, 112, 0.92);
+  --passport-gold-muted: rgba(216, 196, 112, 0.72);
+  --passport-border: rgba(190, 180, 118, 0.45);
+  --passport-bg: #061e16;
+  --passport-text: #edf4e8;
+  --passport-muted: rgba(220, 232, 218, 0.82);
+  --passport-safe-footer: 108px;
+}
+
+/* Root card shell — fixed ratio; internal layout never scales with Fit/100% */
+.passport-card-locked.passport-card-stage {
+  position: relative;
+  width: var(--passport-width);
+  max-width: 100%;
+  margin: 0 auto;
+  aspect-ratio: var(--passport-ratio-w) / var(--passport-ratio-h);
+  border-radius: var(--passport-radius);
+  box-sizing: border-box;
+  border: 1px solid var(--passport-border);
+  background: var(--passport-bg);
+  color: var(--passport-text);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.passport-card-locked.passport-card-front {
+  background:
+    radial-gradient(circle at 50% -8%, rgba(142, 230, 183, 0.14), transparent 38%),
+    linear-gradient(160deg, #0a3026 0%, #061e16 55%, #030a08 100%);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+.passport-card-locked.passport-card-back {
+  background: var(--passport-bg);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+.passport-card-locked .passport-card-safe {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: var(--passport-pad-y) var(--passport-pad-x);
+  padding-bottom: max(var(--passport-pad-y), var(--passport-safe-footer));
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* -------------------------------------------------------------------------- */
+/* PassportCardFront                                                         */
+/* -------------------------------------------------------------------------- */
+.passport-card-locked .ppc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.passport-card-locked .ppc-badge-review {
+  display: inline-block;
+  padding: 5px 11px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(230, 248, 238, 0.95);
+  border-radius: 999px;
+  border: 1px solid rgba(116, 228, 173, 0.35);
+  background: rgba(18, 62, 48, 0.92);
+}
+
+.passport-card-locked.review-not-reviewed .ppc-badge-review {
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.34);
+}
+
+.passport-card-locked .ppc-badge-status {
+  display: inline-block;
+  padding: 5px 11px;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(230, 248, 238, 0.95);
+  border-radius: 999px;
+  background: rgba(18, 62, 48, 0.92);
+  border: 1px solid rgba(116, 228, 173, 0.35);
+}
+
+.passport-card-locked.review-badge-variant--mesa.review-not-reviewed .ppc-badge-status {
+  border-radius: 6px;
+  padding: 4px 10px 4px 8px;
+  color: rgba(226, 232, 240, 0.98);
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.22), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(129, 140, 248, 0.45);
+  border-left: 3px solid rgba(165, 180, 252, 0.95);
+  letter-spacing: 0.08em;
+}
+
+.passport-card-locked .ppc-header__end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.passport-card-locked .ppc-rarity-gem__halo {
+  display: none !important;
+}
+
+.passport-card-locked .ppc-rarity-gem--medal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  min-height: 52px;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  isolation: isolate;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.4));
+}
+
+.passport-card-locked .ppc-rarity-gem__plate {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -8px 14px rgba(0, 0, 0, 0.22),
+    0 1px 0 rgba(0, 0, 0, 0.35);
+  transform: none;
+  transform-style: flat;
+  overflow: hidden;
+}
+
+.passport-card-locked .ppc-rarity-gem__plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.14) 0%, transparent 42%, rgba(0, 0, 0, 0.12) 100%);
+}
+
+.passport-card-locked .ppc-rarity-gem__code {
+  position: relative;
+  z-index: 1;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgba(252, 252, 253, 0.98);
+  font-size: 19px;
+  filter: none;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.45),
+    0 0 12px rgba(255, 255, 255, 0.12);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-mg .ppc-rarity-gem__code,
+.passport-card-locked .ppc-rarity-gem--tier-ssr .ppc-rarity-gem__code,
+.passport-card-locked .ppc-rarity-gem--tier-ur .ppc-rarity-gem__code,
+.passport-card-locked .ppc-rarity-gem--tier-hr .ppc-rarity-gem__code,
+.passport-card-locked .ppc-rarity-gem--tier-sec .ppc-rarity-gem__code,
+.passport-card-locked .ppc-rarity-gem--tier-ar .ppc-rarity-gem__code,
+.passport-card-locked .ppc-rarity-gem--tier-sar .ppc-rarity-gem__code {
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-c .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #64748b, #334155 55%, #1e293b);
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-n .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #94a3b8, #475569 50%, #1e293b);
+  border-color: rgba(203, 213, 225, 0.4);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-u .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #5eead4, #0d9488 55%, #134e4a);
+  border-color: rgba(45, 212, 191, 0.5);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-r .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #7dd3fc, #2563eb 50%, #1e3a8a);
+  border-color: rgba(125, 211, 252, 0.55);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-sr .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #c4b5fd, #6d28d9 48%, #3b0764);
+  border-color: rgba(196, 181, 253, 0.55);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-ssr .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #fde68a, #d97706 42%, #7c2d12);
+  border-color: rgba(253, 224, 71, 0.55);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-ur .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #fecdd3, #e11d48 40%, #4c0519);
+  border-color: rgba(251, 113, 133, 0.55);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-hr .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #a5f3fc, #06b6d4 42%, #164e63);
+  border-color: rgba(165, 243, 252, 0.55);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-sec .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #312e81, #1e1b4b 55%, #0f172a);
+  border-color: rgba(129, 140, 248, 0.55);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-ar .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #fbcfe8, #db2777 45%, #831843);
+  border-color: rgba(251, 207, 232, 0.55);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-sar .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #fef3c7, #f59e0b 40%, #78350f);
+  border-color: rgba(254, 243, 199, 0.6);
+}
+
+.passport-card-locked .ppc-rarity-gem--tier-mg .ppc-rarity-gem__plate {
+  background: linear-gradient(145deg, #fcd34d, #b45309 45%, #422006);
+  border-color: rgba(252, 211, 77, 0.6);
+}
+
+.passport-card-locked .ppc-rarity-gem--pending {
+  width: 52px;
+  height: 52px;
+  min-height: 52px;
+  padding: 0;
+  border-radius: 11px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: linear-gradient(155deg, rgba(100, 116, 139, 0.5), rgba(30, 41, 59, 0.95));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 2px 8px rgba(0, 0, 0, 0.35);
+  transform: none;
+}
+
+.passport-card-locked .ppc-rarity-gem__pending-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 4px;
+}
+
+.passport-card-locked .ppc-rarity-gem__pending-line {
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  color: rgba(241, 245, 249, 0.92);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+
+.passport-card-locked .ppc-ids {
+  flex: 0 0 auto;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.passport-card-locked .ppc-ids__mc {
+  margin: 0;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--passport-text);
+  line-height: 1.15;
+}
+
+.passport-card-locked .ppc-ids__sat {
+  margin: 4px 0 0;
+  font-family: ui-monospace, "Cascadia Mono", "Consolas", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(206, 218, 213, 0.55);
+}
+
+.passport-card-locked .ppc-ids__sat.is-issued {
+  color: rgba(143, 255, 227, 0.92);
+}
+
+.passport-card-locked .ppc-image-frame {
+  position: relative;
+  flex: 0 1 auto;
+  min-height: 0;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 42%;
+  border-radius: 22px;
+  background: #f7f7f0;
+  overflow: hidden;
+  margin: 0 0 12px;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55);
+}
+
+.passport-card-locked .ppc-image-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #fff;
+}
+
+.passport-card-locked .ppc-image-frame.has-nobg-img,
+.passport-card-locked .ppc-image-frame.pc-img-bg-transparent {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(36, 72, 58, 0.55), rgba(4, 12, 10, 0.92));
+  box-shadow: inset 0 0 0 1px rgba(120, 220, 180, 0.14);
+}
+
+.passport-card-locked .ppc-image-frame.has-nobg-img img,
+.passport-card-locked .ppc-image-frame.pc-img-bg-transparent img,
+.passport-card-locked .ppc-specimen-img--nobg {
+  background: transparent !important;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.42));
+}
+
+.passport-card-locked .ppc-image-frame .pc-image-frame__empty {
+  display: block;
+  min-height: 120px;
+  width: 100%;
+  background: linear-gradient(145deg, #e8ebe8, #cfd6cf);
+}
+
+.passport-card-locked .ppc-cat-chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  margin: 0 0 8px;
+  padding: 5px 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(183, 247, 207, 0.88);
+  border: 1px solid rgba(116, 228, 173, 0.35);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.passport-card-locked .ppc-sci {
+  margin: 0;
+  font-family: "Noto Serif TC", Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 3.8vw, 30px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.12;
+  color: var(--passport-text);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  word-break: break-word;
+  min-width: 0;
+}
+
+.passport-card-locked .ppc-common {
+  margin: 6px 0 10px;
+  font-size: 15px;
+  color: rgba(211, 230, 218, 0.82);
+}
+
+.passport-card-locked .ppc-metadata-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.passport-card-locked .ppc-metadata-grid > div {
+  padding: 8px 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  min-width: 0;
+}
+
+.passport-card-locked .ppc-metadata-grid > div:nth-child(2n) {
+  border-right: none;
+}
+
+.passport-card-locked .ppc-metadata-grid dt {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--passport-muted);
+}
+
+.passport-card-locked .ppc-metadata-grid dd {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--passport-text);
+  overflow-wrap: anywhere;
+}
+
+.passport-card-locked .ppc-lanes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  flex: 0 0 auto;
+  margin-bottom: 8px;
+  font-size: 10px;
+  line-height: 1.25;
+  color: rgba(230, 240, 232, 0.72);
+  text-align: center;
+}
+
+.passport-card-locked .ppc-lanes span {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 5px 4px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.passport-card-locked .ppc-progress-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  flex: 0 0 auto;
+  margin-top: auto;
+  font-size: 11px;
+  color: rgba(230, 240, 232, 0.82);
+}
+
+.passport-card-locked .ppc-progress-row strong {
+  font-weight: 800;
+}
+
+.passport-card-locked .ppc-progress-bar {
+  flex: 0 0 auto;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+  margin: 6px 0 8px;
+}
+
+.passport-card-locked .ppc-progress-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5fe6a0, #8ef5c8);
+}
+
+.passport-card-locked .ppc-export-line {
+  flex: 0 0 auto;
+  margin: 0 0 6px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--passport-gold-muted);
+}
+
+.passport-card-locked .ppc-footer-registry {
+  flex: 0 0 auto;
+  margin: 0;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(220, 230, 214, 0.42);
+}
+
+/* -------------------------------------------------------------------------- */
+/* PassportCardBack                                                          */
+/* -------------------------------------------------------------------------- */
+.passport-card-locked.passport-card-back .pc-back-bg {
+  opacity: 0.4;
+  filter: saturate(0.85) brightness(0.65);
+}
+
+.passport-card-locked.passport-card-back .pc-back-shade {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 30, 22, 0.82) 0%,
+    rgba(4, 18, 14, 0.92) 45%,
+    rgba(2, 10, 8, 0.94) 100%
+  );
+}
+
+.passport-card-locked .ppc-back-title {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 14px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--passport-text);
+}
+
+.passport-card-locked .ppc-back-rows {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+.passport-card-locked .ppc-back-rows dl {
+  margin: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.passport-card-locked .ppc-back-rows .ppc-row {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.passport-card-locked .ppc-back-rows dt {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--passport-muted);
+}
+
+.passport-card-locked .ppc-back-rows dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--passport-text);
+  overflow-wrap: anywhere;
+}
+
+.passport-card-locked .ppc-back-rows dd.ppc-dd-sci {
+  font-family: "Noto Serif TC", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.passport-card-locked .ppc-back-footer {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--passport-gold-muted);
+}
+
+/* QR inside locked card — max coordinates follow 640×1010 */
+.passport-card-locked .qr-layer {
+  z-index: 12;
+}
+
+/* Do not let legacy #mc rules shrink locked cards or giant MC/SAT */
+#mcCardPassportStudioV2 .passport-card-locked.passport-card-stage {
+  width: var(--passport-width) !important;
+  max-width: 100%;
+  aspect-ratio: 640 / 1010;
+}
+
+#mcCardPassportStudioV2 .passport-flip-scene--locked {
+  width: min(var(--passport-width), 94vw);
+  aspect-ratio: 640 / 1010;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#mcCardPassportStudioV2 .passport-flip-scene--locked .passport-flip-card {
+  width: 100%;
+  height: 100%;
+}
+
+#mcCardPassportStudioV2 .cg-export-sink {
+  width: 640px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Defeat legacy #mcCardPassportStudioV2 rules in specimen-card-generator.css */
+/* (same-ID + .passport-card-stage selectors load earlier; some tie on spec.) */
+/* -------------------------------------------------------------------------- */
+#mcCardPassportStudioV2 .passport-card-locked .passport-card-safe {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  padding: var(--passport-pad-y) var(--passport-pad-x) !important;
+  padding-bottom: max(var(--passport-pad-y), var(--passport-safe-footer)) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  z-index: 3;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked.passport-card-back .passport-card-safe {
+  z-index: 4;
+}
+
+#mcCardPassportStudioV2 .passport-flip-scene--locked .passport-face {
+  border-radius: var(--passport-radius) !important;
+}
+
+#mcCardPassportStudioV2 .passport-flip-scene--locked .passport-face > .passport-card-locked.passport-card-stage {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  aspect-ratio: 640 / 1010 !important;
+  border-radius: inherit !important;
+}
+
+#mcCardPassportStudioV2 .passport-preview-stage--locked {
+  min-height: min(920px, calc((min(94vw, var(--passport-width))) * 1010 / 640 + 120px));
+}
+
+#mcCardPassportStudioV2 .cg-preview-scale-inner.passport-card-preview {
+  transform-origin: top center;
+}
+
+#mcCardPassportStudioV2 .passport-card-preview {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+
+#mcCardPassportStudioV2 .cg-side-by-side .passport-card-preview,
+#mcCardPassportStudioV2 .cg-print-preview-frame .passport-card-preview {
+  width: 100%;
+}
+
+#mcCardPassportStudioV2 .cg-preview-dual__passport {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked.passport-card-front h3.ppc-sci,
+#mcCardPassportStudioV2 .passport-card-locked .ppc-sci {
+  display: -webkit-box !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+  line-clamp: 3 !important;
+  word-break: break-word;
+}
+#mcCardPassportStudioV2 .passport-card-locked .ppc-common {
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-image-frame {
+  flex: 0 1 auto !important;
+  height: auto !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked.passport-card-back .pc-back-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked.passport-card-back .pc-back-shade {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   HARD LOCK: Card Passport Studio final standard
+   This block intentionally loads after the older generator CSS and wins all
+   passport-card conflicts. Preview modes may scale wrappers only.
+   ========================================================================== */
+#mcCardPassportStudioV2 .cg-v2-app,
+#mcCardPassportStudioV2 .passport-card-locked {
+  --passport-w: 640px;
+  --passport-h: 1010px;
+  --passport-ratio: 640 / 1010;
+  --passport-width: var(--passport-w);
+  --passport-radius: 42px;
+  --passport-pad-x: 34px;
+  --passport-pad-y: 34px;
+  --passport-border: rgba(190, 180, 118, 0.45);
+  --passport-gold: rgba(216, 196, 112, 0.72);
+  --passport-bg: #061e16;
+  --passport-text: #edf4e8;
+  --passport-muted: rgba(220, 232, 218, 0.82);
+  --passport-safe-bottom: 86px;
+  --cg-preview-fit-scale: 0.72;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked.passport-card-stage {
+  width: var(--passport-w) !important;
+  height: auto !important;
+  aspect-ratio: var(--passport-ratio) !important;
+  border-radius: var(--passport-radius) !important;
+  border: 1.5px solid var(--passport-border) !important;
+  overflow: hidden !important;
+  transform: none !important;
+  color: var(--passport-text) !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .passport-card-safe {
+  position: absolute !important;
+  inset: 0 !important;
+  padding: var(--passport-pad-y) var(--passport-pad-x) !important;
+  padding-bottom: var(--passport-safe-bottom) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+#mcCardPassportStudioV2 .passport-id-block {
+  flex: 0 0 auto;
+  margin: 0 0 16px;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  margin: 0 0 14px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-badge-review,
+#mcCardPassportStudioV2 .passport-card-locked .ppc-badge-status {
+  position: static !important;
+  transform: none !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-header__end {
+  gap: 12px !important;
+  align-items: flex-end !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-rarity-gem--medal {
+  width: 52px !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.4)) !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-rarity-gem__code {
+  font-size: 19px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-rarity-gem--tier-ssr .ppc-rarity-gem__code,
+#mcCardPassportStudioV2 .passport-card-locked .ppc-rarity-gem--tier-ur .ppc-rarity-gem__code,
+#mcCardPassportStudioV2 .passport-card-locked .ppc-rarity-gem--tier-mg .ppc-rarity-gem__code {
+  font-size: 13px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-rarity-gem--pending {
+  width: 52px !important;
+  height: 52px !important;
+  min-height: 52px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-ids {
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-ids__mc {
+  margin: 0 !important;
+  font: 800 21px/1.15 "DM Sans", ui-monospace, "Cascadia Mono", monospace !important;
+  letter-spacing: 0.08em !important;
+  text-align: left !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-ids__sat {
+  margin: 10px 0 0 !important;
+  font: 700 12px/1.2 ui-monospace, "Cascadia Mono", "Consolas", monospace !important;
+  letter-spacing: 0.08em !important;
+  color: var(--passport-muted) !important;
+  text-align: left !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-image-frame {
+  position: relative !important;
+  flex: 0 0 300px !important;
+  width: 100% !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  margin: 0 0 22px !important;
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  background: #f7f7f1 !important;
+  cursor: grab;
+  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.62), 0 14px 30px rgba(0,0,0,0.14) !important;
+  touch-action: none;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-image-frame:active {
+  cursor: grabbing;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-specimen-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-position: center !important;
+  transform:
+    translate(var(--img-x, 0px), var(--img-y, 0px))
+    scale(var(--img-zoom, 1))
+    rotate(var(--img-rotate, 0deg))
+    scaleX(var(--img-flip-x, 1)) !important;
+  transform-origin: center !important;
+  transition: transform 0.12s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-cat-chip {
+  margin: 0 0 12px !important;
+  padding: 6px 14px !important;
+  font-size: 11px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-sci {
+  margin: 0 !important;
+  font: italic 800 34px/1.08 "Noto Serif TC", Georgia, serif !important;
+  color: var(--passport-text) !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-common {
+  margin: 9px 0 18px !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  color: rgba(220,235,225,0.82) !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-metadata-grid {
+  flex: 0 0 auto !important;
+  margin: 0 0 12px !important;
+  border-radius: 12px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-metadata-grid > div {
+  min-height: 54px !important;
+  padding: 10px 12px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-metadata-grid dt {
+  font-size: 11px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-metadata-grid dd {
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-lanes {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+  margin-bottom: 16px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-lanes span {
+  min-height: 28px;
+  padding: 5px 4px !important;
+  font-size: 10px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-progress-row {
+  margin-top: auto !important;
+  font-size: 13px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-progress-bar {
+  height: 8px !important;
+  margin: 8px 0 14px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-export-line {
+  margin: 0 0 12px !important;
+  font-size: 14px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-footer-registry {
+  margin: 0 !important;
+  font-size: 12px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked.passport-visual-priority .ppc-image-frame {
+  flex-basis: 390px !important;
+}
+
+/* Workflow screenshot rebuild — slightly taller than studio 640×1010 for scroll narrative */
+.mc-workflow-screenshot-rebuild .passport-card-locked {
+  --passport-w: 640px;
+  --passport-h: 1080px;
+  --passport-ratio: 640 / 1080;
+  --passport-width: var(--passport-w);
+  --passport-radius: 42px;
+  --passport-pad-x: 34px;
+  --passport-pad-y: 34px;
+  --passport-border: rgba(190, 180, 118, 0.45);
+  --passport-gold: rgba(216, 196, 112, 0.72);
+  --passport-bg: #061e16;
+  --passport-text: #edf4e8;
+  --passport-muted: rgba(220, 232, 218, 0.82);
+  --passport-safe-bottom: 86px;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked.passport-card-stage {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: var(--passport-ratio) !important;
+  border-radius: var(--passport-radius) !important;
+  border: 1.5px solid rgba(190, 180, 118, 0.58) !important;
+  overflow: hidden !important;
+  transform: none !important;
+  color: var(--passport-text) !important;
+  box-shadow:
+    0 0 0 1px rgba(109, 245, 186, .1),
+    inset 0 1px 0 rgba(255, 255, 255, .06) !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .passport-card-safe {
+  position: absolute !important;
+  inset: 0 !important;
+  padding: var(--passport-pad-y) var(--passport-pad-x) !important;
+  padding-bottom: var(--passport-safe-bottom) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-id-block {
+  flex: 0 0 auto;
+  margin: 0 0 16px;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  margin: 0 0 14px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-badge-review,
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-badge-status {
+  position: static !important;
+  transform: none !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(146, 227, 186, 0.34) !important;
+  background: rgba(8, 40, 31, 0.82) !important;
+  color: rgba(234, 248, 241, 0.94) !important;
+  letter-spacing: 0.05em !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-badge-review {
+  padding: 6px 14px !important;
+  font-size: 11px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-badge-status {
+  padding: 6px 10px !important;
+  font-size: 10px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-header__end {
+  flex-direction: row !important;
+  gap: 8px !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-rarity-gem--medal {
+  width: 42px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.36)) !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-rarity-gem__code {
+  font-size: 17px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-ids {
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-ids__mc {
+  margin: 0 !important;
+  font: 800 21px/1.15 "DM Sans", ui-monospace, "Cascadia Mono", monospace !important;
+  letter-spacing: 0.08em !important;
+  text-align: left !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-ids__sat {
+  margin: 10px 0 0 !important;
+  font: 700 12px/1.2 ui-monospace, "Cascadia Mono", "Consolas", monospace !important;
+  letter-spacing: 0.08em !important;
+  color: rgba(143, 255, 227, 0.92) !important;
+  text-align: left !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-image-frame {
+  position: relative !important;
+  flex: 0 0 300px !important;
+  width: 100% !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  margin: 0 0 22px !important;
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  background: #f7f7f1 !important;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.62), 0 14px 30px rgba(0, 0, 0, 0.14) !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-specimen-img,
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-image-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform:
+    translate(var(--img-x, 0px), var(--img-y, 0px))
+    scale(var(--img-zoom, 1))
+    rotate(var(--img-rotate, 0deg))
+    scaleX(var(--img-flip-x, 1)) !important;
+  transform-origin: center !important;
+  background: #ffffff !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-cat-chip {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 0 10px !important;
+  padding: 7px 14px !important;
+  border-radius: 16px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.12em !important;
+  color: rgba(181, 238, 255, 0.9) !important;
+  border: 1px solid rgba(137, 184, 255, 0.34) !important;
+  background: rgba(2, 10, 14, 0.58) !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-sci-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-sci {
+  margin: 0 !important;
+  font: italic 800 48px/1.05 "Noto Serif TC", Georgia, serif !important;
+  color: var(--passport-text) !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+}
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-common {
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-common {
+  margin: 8px 0 16px !important;
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+  color: rgba(220, 235, 225, 0.9) !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-metadata-grid {
+  flex: 0 0 auto !important;
+  margin: 0 0 12px !important;
+  border-radius: 12px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-metadata-grid > div {
+  min-height: 54px !important;
+  padding: 10px 12px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-metadata-grid dt {
+  font-size: 11px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-metadata-grid dd {
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-progress-row {
+  margin-top: auto !important;
+  font-size: 13px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-progress-bar {
+  height: 10px !important;
+  margin: 8px 0 14px !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-progress-bar > i {
+  background: linear-gradient(90deg, #5fe6a0, #8ef5c8);
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-export-line {
+  margin: 0 0 12px !important;
+  font-size: 14px !important;
+  color: var(--passport-gold) !important;
+}
+
+.mc-workflow-screenshot-rebuild .passport-card-locked .ppc-footer-registry {
+  margin: 0 !important;
+  font-size: 12px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked.passport-card-back .passport-card-safe {
+  padding-bottom: 52px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-back-title {
+  margin: 0 0 10px !important;
+  font-size: 30px !important;
+  letter-spacing: 0.04em !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-back-subtitle {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 16px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--passport-muted);
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-back-rows,
+#mcCardPassportStudioV2 .passport-card-locked .ppc-back-rows dl {
+  overflow: hidden !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-back-rows .ppc-row {
+  grid-template-columns: 172px minmax(0, 1fr) !important;
+  gap: 16px !important;
+  padding: 10px 0 !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-back-rows dt {
+  font-size: 12px !important;
+  color: rgba(216,196,112,0.78) !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-back-rows dd {
+  font-size: 15px !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked .ppc-back-footer {
+  position: relative !important;
+  margin-top: auto !important;
+  font-size: 16px !important;
+  color: var(--passport-gold) !important;
+}
+
+#mcCardPassportStudioV2 .passport-scale-target {
+  transform-origin: top center !important;
+}
+
+#mcCardPassportStudioV2 .cg-preview-stage.passport-mode.is-zoom-fit .passport-scale-target {
+  transform: scale(var(--cg-preview-fit-scale)) !important;
+}
+
+#mcCardPassportStudioV2 .cg-preview-stage.passport-mode.preview-sideBySide.is-zoom-fit .passport-scale-target {
+  --cg-preview-fit-scale: 0.42;
+}
+
+#mcCardPassportStudioV2 .cg-preview-stage.passport-mode.preview-flip3d.is-zoom-fit .passport-scale-target {
+  --cg-preview-fit-scale: 0.58;
+}
+
+#mcCardPassportStudioV2 .cg-preview-stage.passport-mode.is-zoom-100 .passport-scale-target {
+  transform: none !important;
+}
+
+#mcCardPassportStudioV2 .passport-card-preview {
+  width: var(--passport-w) !important;
+  flex: 0 0 var(--passport-w) !important;
+  display: block !important;
+}
+
+/* 游標跟隨傾斜僅用於 3D 預覽（.preview-flip3d）；正面／背面等不套用 */
+#mcCardPassportStudioV2 .preview-flip3d .passport-flip-scene.passport-flip-scene--locked {
+  transform-style: preserve-3d !important;
+  transition: transform 0.1s ease-out, box-shadow 0.35s ease, filter 0.28s ease !important;
+  transform: perspective(1200px) rotateX(var(--cg-tilt-rx, 0deg)) rotateZ(var(--cg-tilt-rz, 0deg)) !important;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  #mcCardPassportStudioV2 .preview-flip3d .passport-flip-scene.passport-flip-scene--locked:hover {
+    filter: brightness(1.04) !important;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5), 0 0 48px rgba(116, 228, 173, 0.1) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #mcCardPassportStudioV2 .preview-flip3d .passport-flip-scene.passport-flip-scene--locked {
+    transform: none !important;
+  }
+}
+
+#mcCardPassportStudioV2 .passport-side-by-side {
+  display: flex !important;
+  gap: 28px !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  width: max-content !important;
+}
+
+#mcCardPassportStudioV2 .passport-3d-scene {
+  width: var(--passport-w) !important;
+  height: var(--passport-h) !important;
+  perspective: 1800px !important;
+  overflow: visible !important;
+}
+
+#mcCardPassportStudioV2 .passport-3d-inner {
+  position: relative !important;
+  width: var(--passport-w) !important;
+  height: var(--passport-h) !important;
+  transform-style: preserve-3d !important;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: transform;
+}
+
+#mcCardPassportStudioV2 .passport-3d-inner.is-flipped {
+  transform: rotateY(180deg) !important;
+}
+
+#mcCardPassportStudioV2 .passport-3d-face {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  border-radius: var(--passport-radius) !important;
+  overflow: hidden !important;
+}
+
+#mcCardPassportStudioV2 .passport-3d-front {
+  transform: rotateY(0deg) translateZ(0.1px) !important;
+}
+
+#mcCardPassportStudioV2 .passport-3d-back {
+  transform: rotateY(180deg) translateZ(0.1px) !important;
+}
+
+#mcCardPassportStudioV2 .passport-3d-face > .passport-card-locked.passport-card-stage {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  max-width: none !important;
+  box-shadow: none !important;
+  isolation: auto !important;
+}
+
+#mcCardPassportStudioV2 .cg-preview-stage {
+  overflow: auto !important;
+  background: linear-gradient(180deg, rgba(9,28,21,0.96), rgba(4,13,10,0.98)) !important;
+  isolation: isolate !important;
+}
+
+#mcCardPassportStudioV2 .cg-preview-scale-wrap {
+  min-height: 700px !important;
+  overflow: auto !important;
+  max-width: 100% !important;
+}
+
+#mcCardPassportStudioV2 .cg-preview-controls,
+#mcCardPassportStudioV2 .cg-export-bar,
+#mcCardPassportStudioV2 .cg-image-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+#mcCardPassportStudioV2 .cg-v2-shell {
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+  box-sizing: border-box !important;
+}
+
+#mcCardPassportStudioV2 .cg-v2-layout.cg-v2-layout--studio {
+  display: grid !important;
+  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr) !important;
+  gap: 20px !important;
+  align-items: start !important;
+}
+
+#mcCardPassportStudioV2 .cg-inspector {
+  grid-column: 1 / -1 !important;
+  position: relative !important;
+  top: auto !important;
+}
+
+#mcCardPassportStudioV2 .cg-v2-preview {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  position: relative !important;
+  top: auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  z-index: 2 !important;
+}
+
+#mcCardPassportStudioV2 .cg-v2-editor {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  position: relative !important;
+  z-index: 0 !important;
+  min-width: 0 !important;
+}
+
+#mcCardPassportStudioV2 .cg-mission--guided {
+  padding: 16px !important;
+  overflow: hidden !important;
+}
+
+/* Studio workflow panel (card generator); wraps — no horizontal scroll */
+#mcCardPassportStudioV2 .workflow-studio-panel {
+  border-radius: 28px !important;
+  padding: 28px !important;
+  margin-bottom: 20px !important;
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  background:
+    radial-gradient(circle at top left, rgba(110, 220, 170, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(6, 34, 24, 0.95), rgba(2, 16, 12, 0.96)) !important;
+  border: 1px solid rgba(140, 190, 150, 0.22) !important;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-panel.cg-mission.cg-mission--studio {
+  padding: 8px 10px 10px !important;
+  margin-bottom: 8px !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-header {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 10px 14px !important;
+  align-items: start !important;
+  margin-bottom: 8px !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-title {
+  margin: 0 0 4px !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #f4efe1 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-sub {
+  margin: 0 !important;
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  color: rgba(244, 239, 225, 0.58) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-header__meta {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 6px !important;
+  text-align: right !important;
+  font-size: 12px !important;
+  color: rgba(244, 239, 225, 0.72) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-pct {
+  font-weight: 700 !important;
+  color: #e7d77f !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-cur-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 4px !important;
+  max-width: min(320px, 46vw) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-cur {
+  display: block !important;
+  line-height: 1.35 !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-cur--zh {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: rgba(244, 239, 225, 0.92) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-cur--en {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: rgba(186, 210, 205, 0.78) !important;
+  letter-spacing: 0.02em !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-backplate {
+  font-size: 11px !important;
+  color: rgba(180, 220, 190, 0.55) !important;
+  max-width: 220px !important;
+  overflow-wrap: anywhere !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-progress {
+  position: relative !important;
+  height: 3px !important;
+  border-radius: 999px !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  margin-bottom: 8px !important;
+  overflow: hidden !important;
+}
+
+#mcCardPassportStudioV2 .workflow-studio-progress__fill {
+  display: block !important;
+  height: 100% !important;
+  border-radius: inherit !important;
+  background: linear-gradient(90deg, rgba(110, 200, 150, 0.55), rgba(216, 196, 112, 0.95)) !important;
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  box-shadow: 0 0 12px rgba(216, 196, 112, 0.35) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(106px, 1fr)) !important;
+  gap: 5px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: visible !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill {
+  min-height: 0 !important;
+  border-radius: 12px !important;
+  padding: 5px 7px 6px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: rgba(244, 239, 225, 0.78) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-top {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  flex-wrap: wrap !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-num {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 21px !important;
+  height: 21px !important;
+  border-radius: 50% !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  background: rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-num--check {
+  background: rgba(72, 180, 120, 0.35) !important;
+  border-color: rgba(116, 228, 173, 0.45) !important;
+  color: #c9f8dc !important;
+  animation: wsp-check-in 0.35s ease-out !important;
+}
+
+@keyframes wsp-check-in {
+  from {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-live {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: #e7d77f !important;
+  border: 1px solid rgba(216, 196, 112, 0.45) !important;
+  border-radius: 999px !important;
+  padding: 2px 6px !important;
+  background: rgba(216, 196, 112, 0.1) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-warn-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #f0a020 !important;
+  box-shadow: 0 0 0 3px rgba(240, 160, 32, 0.25) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  min-width: 0 !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-titles {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  padding: 1px 0 3px !important;
+  margin-bottom: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-zh {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  color: rgba(244, 239, 225, 0.95) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-en {
+  font-size: 8.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.02em !important;
+  color: rgba(178, 206, 198, 0.82) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-st {
+  margin-top: 2px !important;
+  font-size: 8.5px !important;
+  color: rgba(244, 239, 225, 0.52) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill.is-locked:not(.is-active) {
+  opacity: 0.58 !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill.is-done {
+  background: rgba(72, 160, 110, 0.12) !important;
+  border-color: rgba(116, 228, 173, 0.28) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill.is-active {
+  border-color: rgba(216, 196, 112, 0.85) !important;
+  box-shadow:
+    0 0 0 1px rgba(216, 196, 112, 0.2),
+    0 0 16px rgba(216, 196, 112, 0.16),
+    0 8px 20px rgba(0, 0, 0, 0.2) !important;
+  animation: wsp-active-pulse 2.4s ease-in-out infinite !important;
+}
+
+@keyframes wsp-active-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(216, 196, 112, 0.18),
+      0 0 12px rgba(216, 196, 112, 0.12),
+      0 6px 16px rgba(0, 0, 0, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(216, 196, 112, 0.28),
+      0 0 18px rgba(216, 196, 112, 0.18),
+      0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill.is-warn:not(.is-done) {
+  border-color: rgba(240, 160, 32, 0.45) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill.is-skipped {
+  opacity: 0.72 !important;
+  border-color: rgba(200, 180, 120, 0.28) !important;
+  background: rgba(120, 100, 60, 0.08) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill.is-skipped .wsp-st {
+  color: rgba(216, 196, 140, 0.72) !important;
+}
+
+#mcCardPassportStudioV2 .workflow-step-pill .wsp-num--skip {
+  font-size: 11px !important;
+  color: rgba(200, 180, 130, 0.78) !important;
+}
+
+#mcCardPassportStudioV2 .cg-step6-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  #mcCardPassportStudioV2 .cg-step6-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+#mcCardPassportStudioV2 .cg-step6-preview-frame {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 10px;
+  overflow: auto;
+  max-height: min(70vh, 640px);
+  max-width: 100%;
+  background: rgba(4, 20, 16, 0.6);
+  contain: layout paint;
+  isolation: isolate;
+}
+
+#mcCardPassportStudioV2 .cg-step6-preview-frame .sample-label-preview {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+#mcCardPassportStudioV2 .cg-label-workflow-choice__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+#mcCardPassportStudioV2 .cg-export-actions--stack .cg-btn {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  #mcCardPassportStudioV2 .workflow-studio-header {
+    grid-template-columns: 1fr !important;
+  }
+
+  #mcCardPassportStudioV2 .workflow-studio-header__meta {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+}
+
+#mcCardPassportStudioV2 .cg-mission--guided .cg-mission__bar {
+  height: 8px !important;
+  margin-bottom: 14px !important;
+}
+
+#mcCardPassportStudioV2 .cg-mission__head {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 14px !important;
+  align-items: end !important;
+  margin-bottom: 14px !important;
+}
+
+#mcCardPassportStudioV2 .cg-mission__head strong {
+  display: block;
+  font-size: 17px;
+  line-height: 1.25;
+  color: #f4efe1;
+}
+
+#mcCardPassportStudioV2 .cg-mission__head span {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(244,239,225,.62);
+}
+
+#mcCardPassportStudioV2 .cg-mission__head p {
+  margin: 0;
+  max-width: 260px;
+  border: 1px solid rgba(216,196,112,.28);
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: #e7d77f;
+  background: rgba(216,196,112,.08);
+  font-size: 12px;
+  line-height: 1.35;
+  text-align: right;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  max-height: none !important;
+  scroll-snap-type: none;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide li {
+  min-height: 96px !important;
+  display: grid !important;
+  grid-template-columns: 34px minmax(0, 1fr) !important;
+  align-items: start !important;
+  gap: 10px !important;
+  padding: 14px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  background: rgba(255,255,255,.045) !important;
+  color: rgba(244,239,225,.72) !important;
+  scroll-snap-align: start;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide li.is-current {
+  border-color: rgba(216,196,112,.72) !important;
+  background: linear-gradient(180deg, rgba(216,196,112,.16), rgba(12,34,25,.72)) !important;
+  box-shadow: 0 0 0 1px rgba(216,196,112,.14), 0 18px 44px rgba(0,0,0,.22) !important;
+  color: #f4efe1 !important;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide li.is-done {
+  border-color: rgba(116,228,173,.32) !important;
+  background: rgba(116,228,173,.09) !important;
+  color: #c9f8dc !important;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide li.is-future {
+  opacity: .82;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide li button {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  background: rgba(0,0,0,.22) !important;
+  color: inherit !important;
+  font-weight: 800 !important;
+  cursor: pointer;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide__text {
+  display: grid !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide__text strong {
+  font-size: 14px !important;
+  line-height: 1.28 !important;
+  color: inherit !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide__text em {
+  font-style: normal !important;
+  font-size: 11px !important;
+  line-height: 1.25 !important;
+  color: rgba(244,239,225,.58) !important;
+}
+
+#mcCardPassportStudioV2 .cg-step-guide__text small {
+  width: fit-content;
+  margin-top: 3px;
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: rgba(0,0,0,.22);
+  color: rgba(244,239,225,.62);
+  font-size: 10px;
+}
+
+#mcCardPassportStudioV2 .cg-missing-line {
+  color: #ffe18a;
+  background: rgba(120,70,20,0.18);
+  border: 1px solid rgba(255,225,138,0.24);
+  border-radius: 12px;
+  padding: 9px 11px;
+}
+
+#mcCardPassportStudioV2 select,
+#mcCardPassportStudioV2 option {
+  background-color: #04110d !important;
+  color: #edf4e8 !important;
+}
+
+#mcCardPassportStudioV2 select:focus {
+  outline: 2px solid rgba(216,196,112,0.45);
+  outline-offset: 2px;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked::before,
+#mcCardPassportStudioV2 .passport-card-locked::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked::before {
+  z-index: 1;
+  opacity: var(--material-texture-opacity, 0.18);
+  background: var(--material-texture, radial-gradient(circle at 20% 12%, rgba(255,255,255,0.06), transparent 28%));
+  mix-blend-mode: soft-light;
+}
+
+#mcCardPassportStudioV2 .passport-card-locked::after {
+  z-index: 2;
+  opacity: var(--material-sheen-opacity, 0);
+  background: var(--material-sheen, linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.18) 48%, transparent 68%));
+  mix-blend-mode: screen;
+}
+
+#mcCardPassportStudioV2 .passport-material-reference-standard { --material-texture-opacity: .1; --material-texture: radial-gradient(circle at 22% 14%, rgba(255,255,255,.04), transparent 30%); --material-sheen-opacity: 0; --passport-border: rgba(190, 180, 118, 0.45); }
+#mcCardPassportStudioV2 .passport-material-museum-matte { --material-texture-opacity: .16; --material-texture: radial-gradient(circle at 30% 20%, rgba(255,255,255,.05), transparent 20%), repeating-linear-gradient(12deg, rgba(255,255,255,.025) 0 1px, transparent 1px 5px); }
+#mcCardPassportStudioV2 .passport-material-dark-premium { --material-texture-opacity: .22; --material-texture: radial-gradient(circle at 70% 0%, rgba(90,220,150,.16), transparent 32%); }
+#mcCardPassportStudioV2 .passport-material-archival-paper { --material-texture-opacity: .28; --material-texture: repeating-linear-gradient(35deg, rgba(230,210,160,.06) 0 1px, transparent 1px 7px), radial-gradient(circle at 15% 80%, rgba(230,210,160,.08), transparent 24%); }
+#mcCardPassportStudioV2 .passport-material-metallic-gold { --material-sheen-opacity: .42; --passport-border: rgba(255,219,112,.86); --material-sheen: linear-gradient(125deg, transparent 22%, rgba(255,221,120,.28) 46%, rgba(255,255,255,.16) 52%, transparent 70%); }
+#mcCardPassportStudioV2 .passport-material-metallic-silver { --material-sheen-opacity: .38; --passport-border: rgba(220,235,245,.78); --material-sheen: linear-gradient(125deg, transparent 20%, rgba(210,235,245,.24) 47%, rgba(255,255,255,.2) 53%, transparent 70%); }
+#mcCardPassportStudioV2 .passport-material-bronze-patina { --material-texture-opacity: .3; --passport-border: rgba(178,126,70,.72); --material-texture: radial-gradient(circle at 18% 28%, rgba(54,170,132,.16), transparent 18%), radial-gradient(circle at 80% 70%, rgba(180,100,45,.14), transparent 24%); }
+#mcCardPassportStudioV2 .passport-material-holographic-foil { --material-sheen-opacity: .34; --passport-border: rgba(160, 220, 200, 0.5); --material-sheen: linear-gradient(125deg, rgba(255,0,220,.1), rgba(0,255,255,.14), rgba(255,238,120,.12), rgba(120,180,255,.14)); }
+#mcCardPassportStudioV2 .passport-material-holographic-foil.passport-card-locked::after {
+  background-size: 240% 240%;
+  animation: mc-holo-shift 6s ease-in-out infinite;
+}
+#mcCardPassportStudioV2 .passport-material-glass-specimen { --material-sheen-opacity: .34; --material-sheen: linear-gradient(145deg, rgba(255,255,255,.28) 0 9%, transparent 10% 42%, rgba(255,255,255,.1) 50%, transparent 68%); }
+#mcCardPassportStudioV2 .passport-material-carbon-black { --material-texture-opacity: .24; --passport-border: rgba(120,125,130,.6); --material-texture: repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 1px, transparent 1px 6px), repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 1px, transparent 1px 6px); }
+#mcCardPassportStudioV2 .passport-material-field-notebook { --material-texture-opacity: .28; --passport-border: rgba(190,150,95,.58); --material-texture: repeating-linear-gradient(0deg, rgba(235,205,140,.05) 0 1px, transparent 1px 18px), radial-gradient(circle at 20% 15%, rgba(210,170,110,.1), transparent 26%); }
+#mcCardPassportStudioV2 .passport-material-research-archive { --material-texture-opacity: .24; --passport-border: rgba(150,175,210,.58); --material-texture: linear-gradient(90deg, rgba(120,160,210,.05), transparent 30%), repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 12px); }
+#mcCardPassportStudioV2 .passport-material-parchment { --material-texture-opacity: .32; --passport-border: rgba(210, 175, 120, 0.55); --material-texture: repeating-linear-gradient(88deg, rgba(200, 170, 120, 0.07) 0 2px, transparent 2px 9px), radial-gradient(circle at 70% 20%, rgba(255, 230, 190, 0.08), transparent 35%); }
+#mcCardPassportStudioV2 .passport-material-obsidian { --material-texture-opacity: .26; --material-sheen-opacity: .22; --passport-border: rgba(90, 110, 140, 0.55); --material-texture: radial-gradient(ellipse at 30% 0%, rgba(120, 160, 220, 0.12), transparent 40%); --material-sheen: linear-gradient(160deg, rgba(255, 255, 255, 0.12), transparent 45%, rgba(0, 0, 0, 0.15)); }
+#mcCardPassportStudioV2 .passport-material-jade-specimen { --material-texture-opacity: .24; --passport-border: rgba(72, 200, 160, 0.5); --material-texture: radial-gradient(circle at 25% 30%, rgba(40, 200, 150, 0.18), transparent 42%), radial-gradient(circle at 80% 70%, rgba(10, 80, 60, 0.25), transparent 38%); --material-sheen-opacity: .18; --material-sheen: linear-gradient(135deg, transparent 40%, rgba(160, 255, 220, 0.12) 52%, transparent 65%); }
+#mcCardPassportStudioV2 .passport-material-nocturnal-forest { --material-texture-opacity: .35; --passport-border: rgba(60, 110, 80, 0.45); --material-texture: repeating-linear-gradient(0deg, rgba(20, 60, 40, 0.35) 0 1px, transparent 1px 4px), radial-gradient(circle at 50% 100%, rgba(0, 40, 25, 0.45), transparent 55%); }
+#mcCardPassportStudioV2 .passport-material-wetland-survey { --material-texture-opacity: .22; --material-sheen-opacity: .28; --passport-border: rgba(80, 160, 150, 0.52); --material-texture: radial-gradient(circle at 80% 10%, rgba(100, 200, 210, 0.12), transparent 38%); --material-sheen: linear-gradient(185deg, rgba(120, 220, 230, 0.1), transparent 55%, rgba(20, 80, 70, 0.12)); }
+#mcCardPassportStudioV2 .passport-material-blueprint-archive { --material-texture-opacity: .3; --passport-border: rgba(100, 160, 220, 0.5); --material-texture: repeating-linear-gradient(0deg, rgba(80, 140, 200, 0.08) 0 1px, transparent 1px 11px), repeating-linear-gradient(90deg, rgba(80, 140, 200, 0.06) 0 1px, transparent 1px 14px); }
+#mcCardPassportStudioV2 .passport-material-microscope-slide { --material-sheen-opacity: .4; --passport-border: rgba(140, 200, 210, 0.55); --material-texture-opacity: .12; --material-texture: linear-gradient(90deg, rgba(200, 240, 255, 0.08), transparent 35%, rgba(200, 240, 255, 0.06)); --material-sheen: linear-gradient(170deg, rgba(255, 255, 255, 0.2), transparent 40%, rgba(255, 255, 255, 0.08)); }
+#mcCardPassportStudioV2 .passport-material-insect-drawer-wood { --material-texture-opacity: .34; --passport-border: rgba(160, 120, 70, 0.52); --material-texture: repeating-linear-gradient(95deg, rgba(90, 60, 35, 0.12) 0 1px, transparent 1px 6px), radial-gradient(circle at 20% 80%, rgba(120, 80, 45, 0.15), transparent 40%); }
+#mcCardPassportStudioV2 .passport-material-specimen-box-liner { --material-texture-opacity: .3; --passport-border: rgba(200, 185, 150, 0.48); --material-texture: radial-gradient(circle at 50% 40%, rgba(240, 225, 200, 0.1), transparent 50%), repeating-linear-gradient(0deg, rgba(220, 200, 170, 0.06) 0 1px, transparent 1px 16px); }
+#mcCardPassportStudioV2 .passport-material-herbarium-paper { --material-texture-opacity: .32; --passport-border: rgba(150, 190, 130, 0.45); --material-texture: repeating-linear-gradient(12deg, rgba(180, 220, 160, 0.07) 0 2px, transparent 2px 8px), radial-gradient(circle at 10% 90%, rgba(100, 160, 90, 0.1), transparent 45%); }
+#mcCardPassportStudioV2 .passport-material-mineral-crystal { --material-texture-opacity: .22; --material-sheen-opacity: .32; --passport-border: rgba(180, 190, 230, 0.55); --material-texture: linear-gradient(52deg, rgba(200, 210, 255, 0.08), transparent 40%, rgba(120, 130, 180, 0.1)); --material-sheen: linear-gradient(128deg, transparent 30%, rgba(255, 255, 255, 0.18) 48%, transparent 62%); }
+#mcCardPassportStudioV2 .passport-material-marine-specimen { --material-texture-opacity: .26; --passport-border: rgba(60, 140, 160, 0.52); --material-texture: radial-gradient(ellipse at 70% 20%, rgba(40, 160, 180, 0.15), transparent 50%), radial-gradient(circle at 20% 80%, rgba(10, 50, 70, 0.2), transparent 45%); }
+#mcCardPassportStudioV2 .passport-material-fossil-slate { --material-texture-opacity: .36; --passport-border: rgba(110, 110, 120, 0.5); --material-texture: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 5px), repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.12) 0 1px, transparent 1px 7px); }
+#mcCardPassportStudioV2 .passport-material-institutional-verified { --material-texture-opacity: .14; --material-sheen-opacity: .12; --passport-border: rgba(200, 200, 210, 0.55); --material-texture: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 60%); --material-sheen: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.1) 50%, transparent 65%); }
+#mcCardPassportStudioV2 .passport-material-gloss-paper-card { --material-sheen-opacity: .32; --passport-border: rgba(200, 210, 225, 0.55); --material-sheen: linear-gradient(165deg, rgba(255, 255, 255, 0.45) 0%, transparent 38%, rgba(148, 163, 184, 0.12) 100%); --material-texture-opacity: .08; --material-texture: radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.2), transparent 35%); }
+#mcCardPassportStudioV2 .passport-material-pearl-card { --material-sheen-opacity: .38; --passport-border: rgba(236, 72, 153, 0.45); --material-sheen: linear-gradient(125deg, rgba(253, 242, 248, 0.35), rgba(233, 213, 255, 0.22) 40%, rgba(252, 231, 243, 0.28) 62%, transparent 85%); --material-texture-opacity: .12; --material-texture: radial-gradient(circle at 70% 80%, rgba(244, 114, 182, 0.12), transparent 40%); }
+#mcCardPassportStudioV2 .passport-material-metal-feel-card { --material-sheen-opacity: .42; --passport-border: rgba(255, 219, 112, 0.86); --material-sheen: linear-gradient(125deg, transparent 22%, rgba(255, 221, 120, 0.28) 46%, rgba(255, 255, 255, 0.16) 52%, transparent 70%); }
+#mcCardPassportStudioV2 .passport-material-acrylic-clear-card { --material-sheen-opacity: .34; --material-sheen: linear-gradient(145deg, rgba(255, 255, 255, 0.28) 0 9%, transparent 10% 42%, rgba(255, 255, 255, 0.1) 50%, transparent 68%); --passport-border: rgba(125, 211, 252, 0.5); }
+
+@keyframes mc-holo-shift {
+  0%,
+  100% {
+    background-position: 0% 40%;
+    opacity: 0.82;
+  }
+  50% {
+    background-position: 100% 60%;
+    opacity: 1;
+  }
+}
+
+#mcCardPassportStudioV2 .qr-position-front-bottom-left { left: 34px !important; bottom: 128px !important; }
+#mcCardPassportStudioV2 .qr-position-front-bottom-right { right: 34px !important; bottom: 128px !important; }
+#mcCardPassportStudioV2 .qr-position-back-bottom-left { left: 34px !important; bottom: 74px !important; }
+#mcCardPassportStudioV2 .qr-position-back-bottom-right { right: 34px !important; bottom: 74px !important; }
+#mcCardPassportStudioV2 .qr-position-custom { left: var(--qr-x) !important; top: var(--qr-y) !important; }
+
+@media (max-width: 720px) {
+  #mcCardPassportStudioV2 .cg-mission__head {
+    grid-template-columns: 1fr !important;
+  }
+
+  #mcCardPassportStudioV2 .cg-mission__head p {
+    max-width: none;
+    text-align: left;
+  }
+
+  #mcCardPassportStudioV2 .cg-v2-layout.cg-v2-layout--studio {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #mcCardPassportStudioV2 .cg-v2-editor,
+  #mcCardPassportStudioV2 .cg-v2-preview {
+    grid-column: 1 !important;
+  }
+
+  #mcCardPassportStudioV2 .cg-v2-preview {
+    grid-row: 1 !important;
+  }
+
+  #mcCardPassportStudioV2 .cg-v2-editor {
+    grid-row: 2 !important;
+  }
+
+  #mcCardPassportStudioV2 .cg-preview-stage.passport-mode.preview-sideBySide.is-zoom-fit .passport-scale-target {
+    --cg-preview-fit-scale: 0.52;
+  }
+
+  #mcCardPassportStudioV2 .passport-side-by-side {
+    flex-direction: column;
+  }
+}

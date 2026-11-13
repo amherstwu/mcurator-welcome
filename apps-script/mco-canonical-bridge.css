@@ -1,0 +1,71 @@
+/**
+ * MCurator Museum OS — Apps Script canonical bridge (OPTIONAL / OPT-IN ONLY)
+ *
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║  FORBIDDEN: Do NOT <link> this file from apps-script/UI.html head.  ║
+ * ║  Linking it into the welcome shell broke the dark cinematic         ║
+ * ║  marketing hero (#mcWelcomeHero) on 2026-07-21.                     ║
+ * ║  Gate: npm run check:landing-hero                                   ║
+ * ║  Spec: docs/audits/LANDING_HERO_CANONICAL_2026-07-13.md             ║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Intended use (future): load only after enterApp / on workbench roots that
+ * explicitly opt into `mco-app-chrome`. Marketing heroes stay dark cinematic
+ * (no mco-app-chrome, no mco token import on the welcome head).
+ *
+ * @see sat-marketplace/docs/design/MUSEUM_OS_DESIGN_SYSTEM_IMPLEMENTATION.md
+ * @see .cursor/rules/landing-hero-lock.mdc
+ */
+
+@import url('../sat-marketplace/src/styles/mco/index.css');
+
+/*
+ * Preserve Apps Script shell identity: if mco :root tokens conflict with dark
+ * canvas consumers that read --mco-color-surface-canvas, prefer opt-in surfaces.
+ * Dark cinematic marketing exception — do not force bone canvas on body / hero.
+ */
+
+/* Opt-in: institutional app chrome (workbench tools migrating to Museum OS) */
+.mco-app-chrome,
+html.mco-app-chrome {
+  --primary: var(--mco-color-action-primary);
+  --primary-2: color-mix(in srgb, var(--mco-palette-museum-blue) 82%, #0a0d12);
+  --primary-soft: var(--mco-color-action-primary-soft);
+  --accent: var(--mco-color-action-primary);
+  --rgb-brand: 26, 79, 140;
+  --focus-ring: var(--mco-focus-ring);
+  --success: var(--mco-color-state-success);
+  --warning: var(--mco-color-state-warning);
+  --danger: var(--mco-color-state-danger);
+  --info: var(--mco-color-state-info);
+  --success-soft: var(--mco-color-state-success-soft);
+  --warning-soft: var(--mco-color-state-warning-soft);
+  --danger-soft: var(--mco-color-state-danger-soft);
+  --info-soft: var(--mco-color-state-info-soft);
+}
+
+/* Opt-in husbandry bridge — apply on #mcHusbandryLogShell when ready */
+#mcHusbandryLogShell.mco-token-bridge,
+.mco-token-bridge.hlc-bridge {
+  --hlc-accent: var(--mco-tool-husbandry);
+  --hlc-accent-soft: var(--mco-tool-husbandry-soft);
+  --hlc-success: var(--mco-color-state-success);
+  --hlc-warning: var(--mco-color-state-warning);
+  --hlc-danger: var(--mco-color-state-danger);
+  --hlc-info: var(--mco-color-state-info);
+  --hlc-radius-lg: var(--mco-radius-lg);
+  --hlc-radius-md: var(--mco-radius-md);
+}
+
+/*
+ * Passport chrome opt-in — NOT applied to physical card face (green vault / gold foil).
+ * Use on studio chrome panels only: .mc-passport-studio-chrome.mco-token-bridge
+ */
+.mc-passport-studio-chrome.mco-token-bridge,
+.mco-passport-chrome.mco-token-bridge {
+  --passport-compat-verified: var(--mco-color-state-verified);
+  --passport-tool-accent: var(--mco-tool-passport);
+  --cg-compat-accent: var(--mco-tool-passport);
+}
+
+/* Material utility classes are provided by styles/mco/materials.css (via @import). */

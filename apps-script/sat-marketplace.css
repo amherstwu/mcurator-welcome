@@ -1,0 +1,1228 @@
+/* SAT public marketplace — museum-grade scientific asset marketplace UI
+   Scope: #satPublicMarketplaceHost only (loaded only with marketplace overlay) */
+
+#satPublicMarketplaceHost.mc-sat-pub-host {
+  position: fixed;
+  inset: 0;
+  z-index: 12000; /* below [data-global-header-mount] (12500) so global nav stays usable */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: var(--font-display, "DM Sans", "Noto Sans TC", system-ui, sans-serif);
+}
+
+.sat-public-marketplace {
+  min-height: 100vh;
+  padding-top: calc(var(--mc-global-header-height, 88px) + 40px);
+  color: #f4efe1;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(143, 224, 186, 0.12), transparent 32%),
+    radial-gradient(circle at 80% 20%, rgba(215, 193, 109, 0.08), transparent 28%),
+    linear-gradient(180deg, #020806 0%, #07110f 42%, #050809 100%);
+}
+
+.sat-marketplace-shell {
+  width: min(1680px, calc(100vw - 48px));
+  margin: 0 auto;
+  padding: 0 0 96px;
+}
+
+/* Local marketplace header removed — navigation is mc-global-header only (see UI.html). */
+
+.mc-sat-mp-route-badge {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #0a100e;
+  background: linear-gradient(90deg, #e8d89a, #c9a84a);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+/* CSS-only specimen stage (no <img>) — Phase 6 no-image test */
+.sat-card-media-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(205, 178, 95, 0.12), transparent 42%),
+    #020403;
+}
+.sat-placeholder-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: rgba(240, 230, 200, 0.92);
+  border: 1px solid rgba(205, 178, 95, 0.35);
+  background: rgba(8, 14, 12, 0.9);
+}
+.sat-placeholder-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(186, 198, 178, 0.78);
+  max-width: 90%;
+}
+.sat-coll-thumb--ph {
+  display: inline-block;
+  width: 100%;
+  min-height: 44px;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #1a2420, #0a1010);
+  border: 1px solid rgba(205, 178, 95, 0.15);
+}
+
+/* ----- Hero ----- */
+.sat-market-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 44px;
+  padding: 28px 32px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(ellipse 90% 80% at 10% 20%, rgba(60, 110, 88, 0.22), transparent 50%),
+    linear-gradient(165deg, rgba(12, 22, 20, 0.92), rgba(3, 8, 7, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 80px rgba(0, 0, 0, 0.36);
+  position: relative;
+  overflow: hidden;
+}
+.sat-market-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath fill='%238fd8b3' d='M60 4l6 18h18l-14 10 6 18-16-10-16 10 6-18-14-10h18z'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  pointer-events: none;
+}
+.sat-market-hero__text {
+  position: relative;
+  z-index: 1;
+}
+.sat-market-kicker {
+  margin: 0 0 10px;
+  color: rgba(167, 243, 193, 0.75);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.sat-market-title {
+  margin: 0 0 12px;
+  font-family: "Noto Serif TC", Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-weight: 650;
+}
+.sat-market-sub {
+  margin: 0 0 10px;
+  font-size: clamp(16px, 1.8vw, 20px);
+  color: rgba(220, 228, 210, 0.88);
+  line-height: 1.45;
+}
+.sat-market-desc {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(190, 200, 184, 0.88);
+  max-width: 52ch;
+}
+.sat-market-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.sat-market-stats {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.sat-market-stats span {
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: rgba(0, 0, 0, 0.28);
+}
+.sat-market-trust {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sat-trust-badge {
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 6px 11px;
+  border: 1px solid rgba(143, 224, 186, 0.22);
+  background: rgba(143, 224, 186, 0.08);
+  color: #c8f0d6;
+}
+
+.sat-market-hero__preview {
+  position: relative;
+  z-index: 1;
+}
+.sat-market-card {
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(20, 33, 31, 0.86), rgba(4, 12, 10, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 80px rgba(0, 0, 0, 0.36);
+  overflow: hidden;
+  max-width: 400px;
+  margin-left: auto;
+}
+.sat-market-card__media {
+  height: 200px;
+  position: relative;
+}
+.sat-market-card__body {
+  padding: 16px 18px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sat-market-card__body h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+.sat-market-card__body .sci {
+  margin: 0;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(180, 200, 175, 0.85);
+}
+.sat-market-card__meta {
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(200, 210, 195, 0.75);
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+@media (max-width: 980px) {
+  .sat-market-hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .sat-market-card {
+    margin-left: 0;
+    max-width: none;
+  }
+}
+
+/* ----- Buttons ----- */
+.sat-btn {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f4efe1;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.sat-btn--primary {
+  background: linear-gradient(165deg, #3a5244, #243028);
+  border-color: rgba(215, 193, 109, 0.45);
+  color: #faf6e8;
+}
+.sat-btn--ghost {
+  background: transparent;
+}
+
+/* ----- Collections rail ----- */
+.sat-coll-section {
+  margin-bottom: 36px;
+}
+.sat-coll-section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.sat-coll-section__head h2 {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(200, 215, 195, 0.65);
+}
+.sat-coll-rail {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+.sat-coll-card {
+  flex: 0 0 min(320px, 82vw);
+  height: 160px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(22, 40, 34, 0.75), rgba(6, 12, 10, 0.92));
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.sat-coll-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(215, 193, 109, 0.45);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.45), 0 0 28px rgba(215, 193, 109, 0.12);
+}
+.sat-coll-card__bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.sat-coll-card__inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sat-coll-card h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+.sat-coll-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(210, 220, 205, 0.8);
+}
+.sat-coll-card__thumbs {
+  display: flex;
+  gap: -8px;
+}
+.sat-coll-card__thumbs span {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 2px solid rgba(8, 16, 14, 0.9);
+  margin-left: -10px;
+  background: rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+.sat-coll-card__thumbs span:first-child {
+  margin-left: 0;
+}
+
+/* ----- Command bar ----- */
+.sat-command {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(6, 14, 12, 0.65);
+}
+.sat-command__search {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(215, 193, 109, 0.28);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f4efe1;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+.sat-command__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.sat-pill {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: #e8e4dc;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+.sat-pill.is-active {
+  border-color: rgba(215, 193, 109, 0.55);
+  color: #f0e6bc;
+  background: rgba(215, 193, 109, 0.1);
+}
+.sat-pill:active {
+  transform: scale(0.98);
+}
+.sat-command__right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.sat-command__sort {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ece9de;
+  padding: 9px 12px;
+  font-size: 12px;
+}
+.sat-view-toggle {
+  display: flex;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.sat-view-toggle button {
+  border: 0;
+  background: transparent;
+  color: #ccc;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.sat-view-toggle button.is-active {
+  background: rgba(215, 193, 109, 0.15);
+  color: #f4e8c0;
+}
+.sat-command__filter-mob {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .sat-command {
+    grid-template-columns: 1fr;
+  }
+  .sat-command__pills {
+    justify-content: flex-start;
+  }
+  .sat-command__filter-mob {
+    display: inline-flex;
+  }
+}
+
+/* ----- Layout: sidebar + main ----- */
+.sat-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.sat-sidebar {
+  position: sticky;
+  top: 64px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 18, 15, 0.72);
+  padding: 16px 14px 18px;
+}
+.sat-sidebar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.sat-sidebar__head h3 {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(180, 200, 175, 0.7);
+}
+.sat-sidebar__clear {
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(215, 193, 109, 0.35);
+  background: rgba(215, 193, 109, 0.08);
+  color: #e8dfc8;
+  cursor: pointer;
+}
+.sat-filter-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sat-filter-block:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+.sat-filter-block h4 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(160, 185, 168, 0.75);
+}
+.sat-filter-block label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(230, 235, 225, 0.88);
+  margin: 6px 0;
+  cursor: pointer;
+}
+.sat-filter-block input[type="checkbox"],
+.sat-filter-block input[type="radio"] {
+  accent-color: #7abf91;
+}
+
+@media (max-width: 900px) {
+  .sat-layout {
+    grid-template-columns: 1fr;
+  }
+  .sat-sidebar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    max-height: 62vh;
+    overflow-y: auto;
+    z-index: 50;
+    border-radius: 22px 22px 0 0;
+    transform: translateY(110%);
+    transition: transform 0.28s ease;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.55);
+  }
+  .sat-sidebar.is-open {
+    transform: translateY(0);
+  }
+  .sat-sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 40;
+  }
+  .sat-sidebar-backdrop.is-visible {
+    display: block;
+  }
+}
+
+/* ----- SAT passport grid cards (public marketplace) ----- */
+.sat-passport-card.sat-asset-card {
+  min-width: 300px;
+  max-width: 340px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  transition: none;
+}
+.sat-passport-card.sat-asset-card:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+.sat-passport-card.sat-asset-card:hover .sat-passport-card__frame {
+  border-color: rgba(215, 193, 109, 0.48);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.sat-passport-card__frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(16, 24, 20, 0.96), rgba(4, 7, 6, 0.98));
+  border: 1px solid rgba(205, 178, 95, 0.28);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.sat-passport-card__frame::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border-radius: 16px;
+  border: 1px solid rgba(205, 178, 95, 0.14);
+  pointer-events: none;
+  z-index: 2;
+}
+.sat-passport-card__top {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px 8px;
+}
+.sat-passport-card__id {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(240, 230, 200, 0.88);
+}
+.sat-passport-card__tier {
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(205, 178, 95, 0.35);
+  color: #e8d89a;
+  background: rgba(6, 12, 10, 0.75);
+}
+.sat-passport-card .sat-asset-media {
+  position: relative;
+  z-index: 1;
+  height: auto;
+  min-height: 200px;
+  aspect-ratio: 4 / 3;
+  margin: 0 12px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(205, 178, 95, 0.1), transparent 42%),
+    #020403;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sat-passport-card .sat-asset-media::after {
+  background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 5, 0.55));
+}
+.sat-passport-card .sat-asset-image {
+  object-fit: contain;
+  transform: none;
+  max-height: 100%;
+}
+.sat-passport-card.sat-asset-card:hover .sat-asset-image {
+  transform: scale(1.03);
+}
+.sat-passport-card__ribbon {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: rgba(167, 243, 193, 0.55);
+  padding: 10px 12px 4px;
+}
+.sat-passport-card__titles {
+  position: relative;
+  z-index: 3;
+  padding: 0 16px 8px;
+}
+.sat-passport-card__sci {
+  margin: 0;
+  font-family: "Noto Serif TC", Georgia, "Times New Roman", serif;
+  font-size: clamp(17px, 2.1vw, 22px);
+  line-height: 1.25;
+  font-style: italic;
+  font-weight: 600;
+  color: rgba(244, 248, 236, 0.96);
+}
+.sat-passport-card__common {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(186, 198, 178, 0.88);
+}
+.sat-passport-card__meta-grid {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  padding: 10px 16px 12px;
+}
+.sat-passport-card__meta-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.sat-passport-card__lbl {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(160, 175, 155, 0.75);
+}
+.sat-passport-card__val {
+  font-size: 12px;
+  color: rgba(228, 232, 220, 0.92);
+  line-height: 1.35;
+}
+.sat-passport-card__bar {
+  position: relative;
+  z-index: 3;
+  height: 3px;
+  margin: 4px 16px 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.sat-passport-card__bar-fill {
+  display: block;
+  width: 72%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(100, 140, 110, 0.5), rgba(205, 178, 95, 0.65));
+}
+.sat-passport-card .sat-asset-footer {
+  position: relative;
+  z-index: 3;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(4, 8, 7, 0.35);
+}
+.sat-market-card__media .sat-asset-image {
+  object-fit: contain;
+}
+
+/* ----- Grid toolbar + assets ----- */
+.sat-main-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.sat-main-toolbar__count {
+  font-size: 13px;
+  color: rgba(200, 210, 195, 0.85);
+}
+
+.sat-asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+}
+.sat-asset-grid--compact {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.sat-asset-grid--compact .sat-asset-card {
+  min-height: 0;
+}
+.sat-asset-grid--compact .sat-asset-media {
+  height: 180px;
+}
+.sat-asset-grid--compact .sat-passport-card__frame {
+  min-height: 460px;
+}
+.sat-asset-grid--compact .sat-passport-card__sci {
+  font-size: 16px;
+}
+
+.sat-asset-grid--skeleton .sat-asset-card {
+  pointer-events: none;
+  animation: sat-skel-pulse 1.1s ease-in-out infinite;
+}
+@keyframes sat-skel-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.sat-asset-card:not(.sat-passport-card) {
+  min-width: 280px;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(143, 224, 186, 0.08), transparent 36%),
+    linear-gradient(180deg, rgba(17, 28, 26, 0.96), rgba(5, 10, 9, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+.sat-asset-card:not(.sat-passport-card):hover {
+  transform: translateY(-7px);
+  border-color: rgba(215, 193, 109, 0.45);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.42),
+    0 0 32px rgba(215, 193, 109, 0.1);
+}
+.sat-asset-card:focus-visible {
+  outline: 2px solid rgba(215, 193, 109, 0.7);
+  outline-offset: 3px;
+}
+
+.sat-asset-media {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.035);
+}
+.sat-asset-media::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45%;
+  background: linear-gradient(180deg, transparent, rgba(2, 6, 5, 0.75));
+  pointer-events: none;
+}
+.sat-asset-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  display: block;
+}
+.sat-asset-card:hover .sat-asset-image {
+  transform: scale(1.045);
+}
+
+/* Category placeholders (no images) */
+.sat-asset-media--ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  padding: 16px;
+}
+.sat-ph-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(235, 230, 200, 0.72);
+  max-width: 90%;
+}
+.sat-ph-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  border: 1px solid rgba(215, 193, 109, 0.35);
+}
+.sat-ph--beetle .sat-ph-icon {
+  background: radial-gradient(circle at 30% 20%, rgba(215, 193, 109, 0.35), transparent 55%), linear-gradient(145deg, #1a2e24, #0a1210);
+}
+.sat-ph--marine .sat-ph-icon {
+  background: radial-gradient(circle at 70% 30%, rgba(100, 180, 220, 0.35), transparent 50%), linear-gradient(145deg, #0f2430, #061018);
+}
+.sat-ph--plant .sat-ph-icon {
+  background: radial-gradient(circle at 40% 40%, rgba(120, 200, 130, 0.35), transparent 55%), linear-gradient(145deg, #142818, #08100c);
+}
+.sat-ph--fossil .sat-ph-icon {
+  background: radial-gradient(circle at 50% 10%, rgba(200, 180, 140, 0.3), transparent 45%), linear-gradient(145deg, #252018, #0c0a08);
+}
+.sat-ph--research .sat-ph-icon {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px) 0 0 / 12px 12px,
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 12px 12px, linear-gradient(145deg, #121a22, #060a0e);
+}
+.sat-ph--neutral .sat-ph-icon {
+  background: radial-gradient(circle at 50% 50%, rgba(143, 224, 186, 0.15), transparent 60%), linear-gradient(145deg, #141c18, #080c0a);
+}
+
+.sat-asset-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  z-index: 2;
+  pointer-events: none;
+}
+.sat-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(10, 18, 16, 0.82);
+  border: 1px solid rgba(143, 224, 186, 0.22);
+  color: #a7f3c1;
+  font-size: 11px;
+  font-weight: 800;
+  pointer-events: none;
+}
+.sat-badge--muted {
+  color: rgba(240, 235, 220, 0.9);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.sat-badge--gold {
+  border-color: rgba(215, 193, 109, 0.45);
+  color: #f0e6bc;
+}
+
+.sat-asset-hover-actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 3;
+}
+.sat-asset-card:hover .sat-asset-hover-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sat-asset-hover-actions button {
+  pointer-events: auto;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(4, 10, 8, 0.88);
+  color: #f4efe1;
+  cursor: pointer;
+}
+
+.sat-asset-body {
+  padding: 14px 16px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sat-asset-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 650;
+}
+.sat-asset-sci {
+  margin: 0;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(180, 200, 175, 0.88);
+}
+.sat-asset-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(195, 205, 188, 0.88);
+}
+.sat-price {
+  color: #d7c16d;
+  font-weight: 900;
+}
+.sat-asset-meta {
+  font-size: 11px;
+  color: rgba(170, 185, 170, 0.85);
+  margin-top: 4px;
+}
+.sat-asset-footer {
+  margin-top: auto;
+  padding: 12px 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sat-asset-footer__btn {
+  flex: 1;
+  border-radius: 12px;
+  border: 1px solid rgba(215, 193, 109, 0.38);
+  background: rgba(45, 62, 52, 0.65);
+  color: #faf6e8;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sat-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.35);
+  color: #e8e4dc;
+  cursor: pointer;
+  font-size: 16px;
+}
+.sat-license-ready {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(167, 243, 193, 0.75);
+}
+
+.sat-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  border-radius: 20px;
+  border: 1px dashed rgba(215, 193, 109, 0.25);
+  color: rgba(190, 200, 185, 0.9);
+}
+.sat-empty h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #f0ebe0;
+}
+
+.sat-load-more {
+  margin-top: 22px;
+  width: 100%;
+  border: 1px dashed rgba(215, 193, 109, 0.34);
+  border-radius: 14px;
+  background: transparent;
+  color: #d6c79e;
+  padding: 13px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ----- Trust + CTA bands ----- */
+.sat-trust-band {
+  margin-top: 56px;
+  padding: 28px 24px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(6, 14, 12, 0.55);
+}
+.sat-trust-band h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+.sat-trust-band p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(190, 200, 185, 0.9);
+  max-width: 72ch;
+}
+.sat-trust-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.sat-creator-cta {
+  margin-top: 28px;
+  padding: 24px;
+  border-radius: 22px;
+  border: 1px solid rgba(215, 193, 109, 0.22);
+  background: linear-gradient(120deg, rgba(40, 56, 48, 0.5), rgba(8, 14, 12, 0.85));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.sat-creator-cta p {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(210, 218, 205, 0.9);
+}
+
+/* ----- Drawer ----- */
+.sat-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.52);
+  z-index: 80;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.sat-drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+body.mc-global-header-on .sat-drawer-backdrop {
+  top: var(--mc-global-header-height, 88px);
+  height: calc(100% - var(--mc-global-header-height, 88px));
+}
+.sat-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(520px, 100vw);
+  height: 100%;
+  z-index: 90;
+  background: linear-gradient(195deg, rgba(12, 22, 20, 0.98), rgba(3, 8, 7, 0.99));
+  border-left: 1px solid rgba(215, 193, 109, 0.22);
+  box-shadow: -24px 0 80px rgba(0, 0, 0, 0.5);
+  transform: translateX(104%);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sat-drawer.is-open {
+  transform: translateX(0);
+}
+body.mc-global-header-on .sat-drawer {
+  top: var(--mc-global-header-height, 88px);
+  height: calc(100% - var(--mc-global-header-height, 88px));
+}
+.sat-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+.sat-drawer__close {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f4efe1;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.sat-drawer__scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 18px 100px;
+}
+.sat-drawer__media {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 16px;
+  min-height: 220px;
+  background: rgba(0, 0, 0, 0.35);
+}
+.sat-drawer__media .sat-asset-image {
+  max-height: 320px;
+}
+.sat-drawer h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+.sat-drawer .sci {
+  font-style: italic;
+  color: rgba(180, 200, 175, 0.9);
+  margin: 0 0 12px;
+}
+.sat-drawer__price {
+  font-size: 22px;
+  font-weight: 900;
+  color: #d7c16d;
+  margin-bottom: 14px;
+}
+.sat-drawer__cta-bar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 18px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(4, 10, 8, 0.96);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.sat-drawer__section {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sat-drawer__section h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(160, 185, 168, 0.8);
+}
+.sat-drawer__dl {
+  margin: 0;
+  font-size: 13px;
+}
+.sat-drawer__dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.sat-drawer__dl dt {
+  color: rgba(170, 185, 170, 0.85);
+}
+.sat-drawer__dl dd {
+  margin: 0;
+  text-align: right;
+  color: #e8e6dc;
+}
+
+/* Toast */
+.sat-public-marketplace > .sat-toast-host {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  pointer-events: none;
+}
+.sat-toast {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(20, 40, 32, 0.95);
+  border: 1px solid rgba(143, 224, 186, 0.35);
+  color: #e8f8ec;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  white-space: nowrap;
+  max-width: min(92vw, 520px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sat-toast.is-visible {
+  opacity: 1;
+}

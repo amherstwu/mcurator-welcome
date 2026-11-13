@@ -1,0 +1,129 @@
+/**
+ * MCurator — fullscreen / wide-viewport compositing stability.
+ * In UI.html: load LAST — the <link> is placed immediately before </head> (after inline <style>) so these rules win in the cascade.
+ * Debug (add to URL): ?nofx  | ?noglow  | ?no3d  (also accepts =1)
+ *   nofx  — strip animation / filter / backdrop / mix-blend (isolate cause)
+ *   noglow — hide hero noise, canvas, coverflow grid pseudo, mural scrim, welcome video layer
+ *   no3d  — disable 3D transforms on hero + coverflow
+ * UI.html must NOT load parallel bundles (mcurator-landing-v4–v6, museum-v2/v3, welcome-museum-v1/v3, etc.).
+ */
+
+/* ---- Welcome landing: clip horizontal subpixel jitter (scrollbar / vw) ---- */
+#welcomeLandingPage.welcome-lp {
+  overflow-x: clip;
+}
+
+/* ---- Hero + coverflow: isolate expensive layers from the rest of the page ---- */
+#mcWelcomeHero.c-hero.mc-welcome-hero,
+#lpCinematicHero,
+#lpHeroLandingMural,
+.mc-coverflow.mc-coverflow__stage,
+.mc-coverflow-viewport,
+#mcSpecimenCabinet.specimen-wall--interactive {
+  isolation: isolate;
+}
+
+#mcWelcomeHero.c-hero.mc-welcome-hero,
+.mc-coverflow.mc-coverflow__stage,
+.mc-coverflow-viewport {
+  contain: layout paint;
+}
+
+/* ---- 3D cards: stable compositing (no filter on the same node as 3D tilt) ---- */
+#mcHero3d.mc-hero3d,
+.mc-coverflow-slide > .mc-cab__frame {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ---- Wide / fullscreen: drop the worst GPU stackers (mix-blend + filter on huge layers) ---- */
+@media (min-width: 1440px) {
+  #mcWelcomeHero.c-hero.mc-welcome-hero {
+    contain: layout paint style;
+  }
+
+  #mcWelcomeHero .lp-hero-museum-canvas {
+    mix-blend-mode: normal !important;
+    opacity: 0.42;
+  }
+
+  #mcWelcomeHero .mc-hero-noise {
+    mix-blend-mode: normal !important;
+    opacity: 0.05;
+  }
+
+  /* Full-width blurred video is expensive when large — keep dimming, remove blur */
+  #welcomeShell .welcome-video-layer video,
+  #welcomeShell .mc-welcome-hero__video video {
+    filter: brightness(0.48) saturate(1.05) !important;
+  }
+
+  /* Large glass buttons: backdrop-filter repaints wide regions */
+  #mcWelcomeHero .lp-hero__cta-secondary.soft-btn {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .mc-coverflow-slide {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    contain: layout style;
+  }
+
+  .mc-coverflow.mc-coverflow__stage,
+  .mc-coverflow-viewport {
+    contain: layout paint style;
+  }
+
+  #mcSpecimenCabinet.specimen-wall--interactive.mc-coverflow-section #mcStwStack {
+    contain: layout paint;
+  }
+
+  .mc-coverflow-slide > .mc-cab__frame {
+    contain: layout paint style;
+  }
+
+  /* Slow cinematic video motion: avoid animating filter at wide size */
+  .lp-hero--cinematic .welcome-video-layer video {
+    transition: opacity 0.6s ease, transform 14s ease-out !important;
+  }
+}
+
+/* ============================================================
+   URL debug switches — append ?nofx=1 / ?noglow=1 / ?no3d=1
+   (inline script in UI.html adds classes on <html>)
+   ============================================================ */
+
+html.mc-debug-no-fx *,
+html.mc-debug-no-fx *::before,
+html.mc-debug-no-fx *::after {
+  animation: none !important;
+  transition-property: transform, opacity !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+html.mc-debug-no-glow #mcWelcomeHero .mc-hero-noise,
+html.mc-debug-no-glow #mcWelcomeHero .lp-hero-museum-canvas,
+html.mc-debug-no-glow .mc-coverflow-viewport::before,
+html.mc-debug-no-glow #lpHeroLandingMural .lp-hero-landing-mural__scrim,
+html.mc-debug-no-glow #welcomeShell .welcome-video-layer,
+html.mc-debug-no-glow #welcomeShell .mc-welcome-hero__video {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+html.mc-debug-no-3d .mc-coverflow-slide,
+html.mc-debug-no-3d .mc-coverflow-slide > .mc-cab__frame,
+html.mc-debug-no-3d #mcHero3d .mc-hero3d__scene,
+html.mc-debug-no-3d #mcHero3d.mc-hero3d {
+  transform: none !important;
+}
+
+html.mc-debug-no-3d .mc-coverflow-track.mc-cab__wall {
+  perspective: none !important;
+}

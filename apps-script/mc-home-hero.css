@@ -1,0 +1,855 @@
+/**
+ * MCurator Home Hero — strict reference layout
+ * Scope: #mcWelcomeHero[data-mc-hero-layout="home-v2"]
+ */
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-hero-premium {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'].mc-product-hero {
+  --mch-mint: #64f3d4;
+  --mch-cyan: #6ee7f5;
+  --mch-gold: #d9c16b;
+  --mch-text: #f6fbf8;
+  --mch-body: rgba(230, 245, 240, 0.78);
+  --mch-dim: rgba(230, 245, 240, 0.65);
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  background: #020809 !important;
+  color: var(--mch-text);
+  overflow-x: hidden;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'].mc-product-hero::before {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-product-nav {
+  position: relative;
+  z-index: 50;
+  background: transparent;
+  border-bottom: none;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-logo {
+  color: var(--mch-text);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-nav-link,
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-nav-login {
+  color: var(--mch-dim);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-nav-cta {
+  background: linear-gradient(180deg, #9effe8, var(--mch-mint));
+  color: #041018;
+}
+
+/* —— Hero shell —— */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: calc(100svh - 64px);
+  min-height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 45% at 72% 88%, rgba(50, 140, 200, 0.14) 0%, transparent 55%),
+    linear-gradient(180deg, #020809 0%, #041313 55%, #061a18 100%);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.55) 0.4px, transparent 0.65px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 100% 70% at 50% 20%, #000 10%, transparent 80%);
+}
+
+/* —— Earth: globe-explorer technique (github.com/alexandrayuyi/globe-explorer) —— */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthWrap {
+  --ge-tile: 1100px;
+  position: absolute;
+  right: -8vw;
+  bottom: -40vh;
+  width: 78vw;
+  height: 78vw;
+  max-width: 1100px;
+  max-height: 1100px;
+  pointer-events: none;
+  z-index: 1;
+  animation: mcEarthWrapFloat 18s ease-in-out infinite;
+}
+
+@keyframes mcEarthWrapFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-10px, -8px, 0);
+  }
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthGlow {
+  position: absolute;
+  inset: -6%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 42% 30%,
+    rgba(130, 246, 255, 0.42) 0%,
+    rgba(72, 220, 255, 0.24) 28%,
+    rgba(30, 120, 180, 0.14) 50%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  filter: blur(34px);
+  z-index: 0;
+}
+
+/* .circle — circular mask + axial tilt */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthCircle {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  transform: rotateZ(23.5deg);
+  z-index: 1;
+  box-shadow: 0 0 120px rgba(86, 231, 255, 0.3), 0 0 220px rgba(50, 180, 255, 0.14);
+}
+
+/* .earth — wide equirectangular strip (NOT flat background-position on a panel) */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthStrip {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10000px;
+  height: 1000px;
+  margin-top: -500px;
+  background-image: url('../assets/images/globe-explorer/bg.jpeg');
+  background-size: var(--ge-tile);
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  will-change: transform;
+  animation: mcEarthStripScroll 88s linear infinite;
+}
+
+@keyframes mcEarthStripScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-1 * var(--ge-tile)));
+  }
+}
+
+/* .content — sphere inset shading */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthShade {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: -20px -20px 40px 10px rgba(0, 0, 0, 0.82) inset;
+  z-index: 2;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthRim {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(110, 231, 245, 0.28);
+  background: radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.14), transparent 36%);
+  mix-blend-mode: screen;
+  z-index: 3;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__cardGlow {
+  position: absolute;
+  right: 8%;
+  bottom: 18%;
+  width: 42%;
+  height: 50%;
+  background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(100, 243, 212, 0.08) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* —— Two-column content —— */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__inner {
+  position: relative;
+  z-index: 8;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  align-items: center;
+  gap: clamp(16px, 2vw, 32px);
+  width: min(1520px, 100%);
+  margin: 0 auto;
+  padding: clamp(96px, 10vh, 120px) clamp(20px, 3vw, 48px) clamp(48px, 6vh, 72px);
+  box-sizing: border-box;
+  min-height: inherit;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__copy {
+  position: relative;
+  z-index: 8;
+  max-width: 620px;
+  padding: 8px 0;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__copy::before {
+  content: '';
+  position: absolute;
+  left: -12%;
+  top: -8%;
+  width: 120%;
+  height: 116%;
+  background: radial-gradient(ellipse 90% 80% at 0% 50%, rgba(2, 8, 9, 0.72) 0%, transparent 72%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__badge {
+  display: inline-block;
+  margin: 0 0 24px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(100, 243, 212, 0.45);
+  background: rgba(8, 24, 20, 0.55);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--mch-mint);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__title {
+  margin: 0;
+  font-family: var(--font-welcome-serif, 'Noto Serif TC', Georgia, serif);
+  font-size: clamp(52px, 5.2vw, 88px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__title em {
+  font-style: normal;
+  color: var(--mch-mint);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__lead {
+  margin: 22px 0 0;
+  font-size: clamp(18px, 1.35vw, 21px);
+  line-height: 1.75;
+  color: var(--mch-body);
+  max-width: 540px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__btn {
+  border-radius: 12px;
+  padding: 14px 24px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__btn--primary {
+  border: 1px solid rgba(100, 243, 212, 0.5);
+  background: linear-gradient(180deg, #b8fff0, var(--mch-mint) 50%, #4eddb8);
+  color: #041018;
+  box-shadow: 0 0 32px rgba(100, 243, 212, 0.28);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__btn--ghost {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(8, 20, 18, 0.45);
+  color: var(--mch-text);
+  backdrop-filter: blur(8px);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__btn:hover {
+  transform: translateY(-2px);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__usp {
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__usp li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__uspIcon {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(100, 243, 212, 0.28);
+  background: rgba(100, 243, 212, 0.08);
+  display: grid;
+  place-items: center;
+  color: var(--mch-mint);
+  font-size: 0.85rem;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__usp strong {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__usp span {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--mch-dim);
+}
+
+/* —— Right visual —— */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__visual {
+  position: relative;
+  z-index: 6;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-stage {
+  position: relative;
+  width: min(520px, 34vw);
+  height: min(720px, 46vw);
+  max-width: 500px;
+  transform-style: preserve-3d;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-stage__shadow {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -4%;
+  height: 18%;
+  background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
+  filter: blur(12px);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Feature hints */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint {
+  position: absolute;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid rgba(100, 243, 212, 0.28);
+  border-radius: 10px;
+  background: rgba(6, 18, 16, 0.82);
+  color: var(--mch-dim);
+  font: inherit;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  cursor: default;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint::after {
+  content: '';
+  position: absolute;
+  right: -24px;
+  width: 22px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(100, 243, 212, 0.45), transparent);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint--photo {
+  left: -28%;
+  top: 14%;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint--label {
+  left: -32%;
+  top: 42%;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint--locality {
+  left: -30%;
+  top: 62%;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint i {
+  font-style: normal;
+  color: var(--mch-mint);
+  font-size: 0.7rem;
+}
+
+/* —— 3D passport card —— */
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-card3d {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(100%, 470px);
+  aspect-ratio: 0.7 / 1;
+  max-height: calc(100% - 24px);
+  transform: translate(-50%, -50%) rotateY(-6deg) rotateX(2deg);
+  transform-style: preserve-3d;
+  z-index: 6;
+  cursor: pointer;
+  animation: mcCardIdle 7.5s ease-in-out infinite;
+}
+
+@keyframes mcCardIdle {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotateY(-6deg) rotateX(2deg) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotateY(-6deg) rotateX(2deg) translateY(-8px);
+  }
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-card3d.is-tilting {
+  animation: none;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-card3d__inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-card3d.is-flipped .mc-passport-card3d__inner {
+  transform: rotateY(180deg);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 36px;
+  overflow: hidden;
+  border: 1.5px solid rgba(202, 214, 128, 0.45);
+  background: radial-gradient(circle at 18% 10%, rgba(95, 151, 112, 0.28), transparent 42%),
+    radial-gradient(circle at 88% 88%, rgba(217, 193, 107, 0.1), transparent 38%),
+    linear-gradient(180deg, #102b1b 0%, #0b2014 48%, #071610 100%);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5), 0 0 48px rgba(104, 255, 220, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: var(--mch-text);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 20%),
+    rgba(255, 255, 255, 0.22),
+    transparent 28%
+  );
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  z-index: 5;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face--back {
+  transform: rotateY(180deg);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__scroll {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  height: 100%;
+  padding: 18px 18px 14px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: start;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__pill {
+  min-height: 24px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(202, 214, 128, 0.38);
+  background: rgba(16, 43, 27, 0.72);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  display: inline-flex;
+  align-items: center;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__pill--muted {
+  color: rgba(180, 200, 190, 0.45);
+  border-color: rgba(180, 200, 190, 0.2);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__mcId {
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw, 1.62rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.05;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__sat {
+  margin: 4px 0 0;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.68rem;
+  color: rgba(176, 205, 187, 0.75);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__photo {
+  width: 86%;
+  margin: 2px auto 0;
+  flex: 0 0 auto;
+  max-height: 26%;
+  aspect-ratio: 1.35 / 1;
+  border-radius: 22px;
+  background: #f5f3ec;
+  border: 1px solid rgba(235, 244, 238, 0.85);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__taxon {
+  width: fit-content;
+  padding: 0 10px;
+  min-height: 22px;
+  border-radius: 8px;
+  border: 1px solid rgba(202, 214, 128, 0.38);
+  background: rgba(13, 40, 30, 0.72);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  display: inline-flex;
+  align-items: center;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__sci {
+  margin: 4px 0 0;
+  font-family: Georgia, 'Noto Serif TC', serif;
+  font-style: italic;
+  font-size: clamp(0.92rem, 1.4vw, 1.08rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__common {
+  margin: 2px 0 0;
+  font-size: 0.76rem;
+  color: rgba(203, 228, 211, 0.92);
+  font-weight: 600;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid rgba(188, 205, 193, 0.24);
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__meta div {
+  padding: 7px 9px;
+  background: rgba(2, 17, 12, 0.28);
+  border-right: 1px solid rgba(188, 205, 193, 0.16);
+  border-bottom: 1px solid rgba(188, 205, 193, 0.16);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__meta div:nth-child(2n) {
+  border-right: none;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__meta div:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__meta dt {
+  margin: 0 0 2px;
+  font-size: 0.58rem;
+  color: rgba(148, 207, 174, 0.88);
+  font-weight: 600;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__meta dd {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__chip {
+  min-height: 20px;
+  padding: 0 7px;
+  border-radius: 7px;
+  border: 1px solid rgba(188, 205, 193, 0.28);
+  font-size: 0.54rem;
+  letter-spacing: 0.03em;
+  color: rgba(230, 245, 236, 0.88);
+  background: rgba(10, 32, 24, 0.75);
+  display: inline-flex;
+  align-items: center;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__progress {
+  margin-top: auto;
+  display: grid;
+  gap: 5px;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__progressHead {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.66rem;
+  color: rgba(211, 224, 216, 0.92);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__progressHead strong {
+  color: var(--mch-mint);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__progressHead em {
+  font-style: normal;
+  font-size: 0.6rem;
+  color: var(--mch-gold);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__bar {
+  height: 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(188, 205, 193, 0.3);
+  background: rgba(1, 10, 6, 0.55);
+  overflow: hidden;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__bar span {
+  display: block;
+  height: 100%;
+  width: 58%;
+  background: linear-gradient(90deg, var(--mch-mint), var(--mch-gold));
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__exportLine {
+  margin: 0;
+  font-size: 0.64rem;
+  color: rgba(217, 193, 107, 0.88);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__catalog {
+  margin: 0;
+  font-size: 0.6rem;
+  color: rgba(180, 200, 190, 0.62);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__backTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__backSub {
+  margin: 0 0 10px;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: rgba(148, 207, 174, 0.85);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__backList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 1 1 auto;
+  overflow: auto;
+  font-size: 0.66rem;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__backList li {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  line-height: 1.35;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__backList span {
+  color: rgba(148, 207, 174, 0.88);
+  font-weight: 600;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__backList em {
+  font-style: normal;
+  word-break: break-word;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-face__backFoot {
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid rgba(100, 243, 212, 0.2);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--mch-mint);
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-flipHint {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 8px 16px;
+  border: 1px solid rgba(100, 243, 212, 0.28);
+  border-radius: 999px;
+  background: rgba(6, 18, 16, 0.82);
+  color: var(--mch-dim);
+  font: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+  z-index: 8;
+  white-space: nowrap;
+}
+
+#mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-flipHint:hover {
+  color: var(--mch-text);
+  border-color: rgba(100, 243, 212, 0.5);
+}
+
+/* —— Responsive —— */
+@media (max-width: 1199px) {
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__inner {
+    grid-template-columns: 1fr;
+    padding-top: 100px;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__visual {
+    min-height: 640px;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthWrap {
+    right: -18vw;
+    bottom: -32vh;
+    width: 95vw;
+    height: 95vw;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint::after {
+    display: none;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint--photo {
+    left: 2%;
+    top: 6%;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint--label {
+    left: 2%;
+    top: 38%;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint--locality {
+    left: 2%;
+    top: 58%;
+  }
+}
+
+@media (max-width: 767px) {
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthWrap {
+    right: 50%;
+    bottom: -28vh;
+    width: 140vw;
+    height: 140vw;
+    transform: translateX(50%);
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-stage {
+    width: min(92vw, 430px);
+    height: auto;
+    min-height: 580px;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-card3d {
+    width: min(92vw, 430px);
+    animation: none;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthWrap,
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-home-hero__earthStrip,
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-card3d {
+    animation: none !important;
+  }
+
+  #mcWelcomeHero[data-mc-hero-layout='home-v2'] .mc-passport-card3d__inner {
+    transition-duration: 0.01ms;
+  }
+}

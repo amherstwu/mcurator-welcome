@@ -1,0 +1,639 @@
+/**
+ * SAT unified system: metallic passport cards + coverflow + admin + logo.
+ * Flicker-safe: no backdrop-filter on large surfaces; explicit transitions only.
+ */
+
+/* ---- Logo (square transparent container) ---- */
+.mc-logo-square {
+  width: 96px;
+  height: 96px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  background: transparent;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.mc-logo-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ---- Metallic passport card (shared) ---- */
+.sat-metal-card {
+  --metal-a: rgba(255, 255, 255, 0.55);
+  --metal-b: rgba(148, 163, 184, 0.35);
+  --metal-c: rgba(15, 23, 42, 0.95);
+  position: relative;
+  width: clamp(210px, 22vw, 340px);
+  max-width: 100%;
+  aspect-ratio: 0.68;
+  border-radius: 28px;
+  padding: 1px;
+  background:
+    linear-gradient(135deg, var(--metal-a), var(--metal-b) 38%, rgba(255, 255, 255, 0.18) 52%, var(--metal-a)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  contain: layout paint style;
+}
+.sat-metal-card[data-rarity='common'] {
+  --metal-a: rgba(226, 232, 240, 0.95);
+  --metal-b: rgba(100, 116, 139, 0.55);
+}
+.sat-metal-card[data-rarity='rare'] {
+  --metal-a: rgba(202, 138, 4, 0.95);
+  --metal-b: rgba(120, 53, 15, 0.55);
+}
+.sat-metal-card[data-rarity='epic'] {
+  --metal-a: rgba(52, 211, 153, 0.95);
+  --metal-b: rgba(6, 95, 70, 0.55);
+}
+.sat-metal-card[data-rarity='legendary'] {
+  --metal-a: rgba(250, 204, 21, 0.95);
+  --metal-b: rgba(146, 64, 14, 0.65);
+}
+.sat-metal-card[data-rarity='mythic'] {
+  --metal-a: rgba(216, 180, 254, 0.95);
+  --metal-b: rgba(45, 212, 191, 0.75);
+}
+.sat-metal-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 27px;
+  transform-style: preserve-3d;
+  transition: transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.sat-metal-card.is-flipped .sat-metal-card__inner {
+  transform: rotateY(180deg);
+}
+.sat-metal-card__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 27px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.98));
+  display: flex;
+  flex-direction: column;
+}
+.sat-metal-card__back {
+  transform: rotateY(180deg);
+  padding: 16px 18px;
+  overflow-y: auto;
+  text-align: left;
+}
+.sat-metal-card__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: #0f172a;
+}
+.sat-metal-card__body {
+  padding: 10px 14px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #f8fafc;
+}
+.sat-metal-card__kicker {
+  font: 800 10px/1.1 Inter, system-ui, sans-serif;
+  letter-spacing: 0.14em;
+  color: rgba(250, 204, 21, 0.88);
+  margin: 0;
+}
+.sat-metal-card__title {
+  font: 700 15px/1.2 Inter, system-ui, sans-serif;
+  margin: 0;
+  color: #f1f5f9;
+}
+.sat-metal-card__sci {
+  font: italic 600 16px/1.15 Fraunces, Georgia, serif;
+  margin: 0;
+  color: #e2e8f0;
+}
+.sat-metal-card__origin {
+  font: 600 12px/1.3 Inter, system-ui, sans-serif;
+  color: rgba(226, 232, 240, 0.75);
+  margin: 0;
+}
+.sat-metal-card__id {
+  font: 700 11px/1.2 ui-monospace, monospace;
+  color: rgba(167, 243, 208, 0.9);
+  margin: 0;
+}
+.sat-metal-card__badge {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font: 700 9px/1 Inter, system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fef3c7;
+}
+.sat-metal-card__verify {
+  font: 600 11px/1.2 Inter, system-ui, sans-serif;
+  color: rgba(134, 239, 172, 0.9);
+  margin: 4px 0 0;
+}
+.sat-metal-card__dl {
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #e2e8f0;
+}
+.sat-metal-card__dl > div {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sat-metal-card__dl dt {
+  font: 700 9px/1.2 Inter, system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.85);
+  margin: 0 0 2px;
+}
+.sat-metal-card__dl dd {
+  margin: 0;
+}
+.sat-metal-card__exports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.sat-metal-card__exports span {
+  padding: 4px 8px;
+  border-radius: 8px;
+  font: 600 10px/1 Inter, system-ui, sans-serif;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sat-metal-card__inner,
+  .card-tilt,
+  .card-inner,
+  #mcHero3dTumbler.specimen-record-card--hero {
+    transition: none !important;
+  }
+}
+
+/* ---- Hero: compact SAT passport (same metal system) ---- */
+#mcHero3d .sat-metal-card--hero .sat-metal-card__face.mc-hero3d__face--satFront {
+  padding: 0;
+  overflow: visible;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.98));
+}
+#mcHero3d .sat-metal-card--hero {
+  width: min(100%, 340px);
+  margin: 0 auto;
+  aspect-ratio: 0.7;
+}
+#mcHero3d .sat-metal-card--hero .sat-metal-card__image {
+  max-height: 48%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* =============================================================================
+   Interactive game-card / SAT passport (shell → tilt → inner flip ONLY)
+   Tilt + float + specular on .card-tilt; flip on .card-inner only.
+   ============================================================================= */
+
+.card-shell.sat-passport-shell {
+  --metal-a: rgba(255, 255, 255, 0.55);
+  --metal-b: rgba(148, 163, 184, 0.35);
+  --shell-glow: rgba(52, 211, 153, 0.22);
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 28px;
+  padding: 1px;
+  background:
+    linear-gradient(135deg, var(--metal-a), var(--metal-b) 38%, rgba(255, 255, 255, 0.18) 52%, var(--metal-a)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  transform: none !important;
+  filter: none;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  contain: layout paint style;
+}
+.card-shell.sat-passport-shell[data-rarity='common'] {
+  --metal-a: rgba(226, 232, 240, 0.95);
+  --metal-b: rgba(100, 116, 139, 0.55);
+  --shell-glow: rgba(148, 163, 184, 0.35);
+}
+.card-shell.sat-passport-shell[data-rarity='rare'] {
+  --metal-a: rgba(202, 138, 4, 0.95);
+  --metal-b: rgba(120, 53, 15, 0.55);
+  --shell-glow: rgba(250, 204, 21, 0.35);
+}
+.card-shell.sat-passport-shell[data-rarity='epic'] {
+  --metal-a: rgba(52, 211, 153, 0.95);
+  --metal-b: rgba(6, 95, 70, 0.55);
+  --shell-glow: rgba(45, 212, 191, 0.4);
+}
+.card-shell.sat-passport-shell[data-rarity='legendary'] {
+  --metal-a: rgba(250, 204, 21, 0.95);
+  --metal-b: rgba(146, 64, 14, 0.65);
+  --shell-glow: rgba(251, 191, 36, 0.45);
+}
+.card-shell.sat-passport-shell[data-rarity='mythic'] {
+  --metal-a: rgba(216, 180, 254, 0.95);
+  --metal-b: rgba(45, 212, 191, 0.75);
+  --shell-glow: rgba(167, 139, 250, 0.45);
+}
+
+.card-shell.sat-passport-shell:hover {
+  box-shadow:
+    0 28px 88px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 28px var(--shell-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+
+.card-tilt {
+  --lift-y: 0px;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --mx: 50;
+  --my: 50;
+  position: relative;
+  border-radius: 27px;
+  transform-style: preserve-3d;
+  transform: translateY(var(--lift-y)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 0.14s ease-out, box-shadow 0.18s ease;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+  background: rgba(2, 6, 23, 0.2);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.card-shell.sat-passport-shell:hover .card-tilt {
+  --lift-y: -6px;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.48), 0 0 22px var(--shell-glow);
+}
+
+.card-tilt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+  background: radial-gradient(
+    120% 90% at calc(var(--mx) * 1%) calc(var(--my) * 1%),
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.12) 28%,
+    transparent 58%
+  );
+  transition: opacity 0.12s ease;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 26px;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: transform 0.58s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.99));
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.card-face.back {
+  transform: rotateY(180deg);
+  padding: 14px 16px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* Hero: legacy museum rules must not rotate the shell or merge tilt+flip */
+#mcHero3d .mc-hero3d__card.card-shell,
+#mcHero3d .mc-hero3d__card.card-shell.is-flipped {
+  transform: none !important;
+  transition: box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+/* Welcome hero: static premium layout (no ghost scrim, no scene drift, no coverflow transforms) */
+#mcWelcomeHero.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 80px 40px 160px;
+  box-sizing: border-box;
+}
+
+#mcWelcomeHero.hero-section::before,
+#mcWelcomeHero.hero-section::after {
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Above #mcWelcomeHero .c-hero__atmos (z-index 3) and gradient Earth fallback (z-index 4); never obscure hero copy */
+#mcWelcomeHero.hero-section > .mc-welcome-hero__content.lp-hero__content {
+  position: relative;
+  z-index: 12;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 0 !important;
+  padding-top: clamp(0.5rem, 2vh, 1.5rem) !important;
+  padding-bottom: 0 !important;
+  box-sizing: border-box;
+}
+
+#mcWelcomeHero .hero-inner.lp-hero__row {
+  display: grid;
+  /* Cinematic hero: narrower copy, wide Earth stage (matches design comp). */
+  grid-template-columns: minmax(0, 0.38fr) minmax(0, 0.62fr);
+  gap: clamp(24px, 3.5vw, 48px);
+  align-items: center;
+  width: 100%;
+  max-width: min(1280px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 999.98px) {
+  #mcWelcomeHero .hero-inner.lp-hero__row {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+#mcWelcomeHero .lp-hero__stage.lp-hero__stage--showcase,
+#mcWelcomeHero .c-hero__mediaStage {
+  perspective: 1400px;
+  min-height: 0 !important;
+}
+
+#mcWelcomeHero #mcHero3d.mc-hero3d {
+  min-height: 0 !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100%;
+  margin: 0;
+  transform: none !important;
+  perspective: none;
+  align-items: center;
+}
+
+#mcWelcomeHero .hero-card-wrap.hero-card-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  min-height: 0;
+  width: 100%;
+  transform: none !important;
+  perspective: 1400px;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-record-card--hero {
+  width: 100%;
+  max-width: min(360px, 100%);
+  margin-bottom: 40px;
+  box-sizing: border-box;
+}
+
+#mcWelcomeHero .c-hero__media {
+  margin-right: 0 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+#mcWelcomeHero.c-hero--inview .c-hero__media {
+  animation: none !important;
+}
+
+#mcWelcomeHero .mc-hero-cabinet-depth {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Welcome hero: specimen record card (tilt on #mcHero3dTumbler, flip on __inner) */
+#mcHero3d .hero-card-wrap.hero-card-area {
+  position: relative;
+  overflow: visible;
+  min-height: 0;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+#mcHero3d .hero-card-wrap.hero-card-area .specimen-record-card__inner {
+  flex: 1;
+  min-height: 0;
+}
+
+#mcHero3d .mc-hero3d__flipBtn {
+  display: none !important;
+}
+
+#mcHero3d .hero-card-wrap.hero-card-area .specimen-record-card__face.specimen-record-card__front {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#mcHero3d .hero-card-wrap.hero-card-area .specimen-record-card__face.specimen-record-card__back {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  text-align: left;
+}
+
+#mcHero3d .hero-card-wrap.hero-card-area .mc-hero3d__tooltip {
+  position: fixed;
+  z-index: 80;
+}
+
+html.mc-hero-passport--flip-anim .hero-card-wrap.hero-card-area.is-flip-anim .specimen-record-card__inner,
+.hero-card-wrap.hero-card-area.is-flip-anim .specimen-record-card__inner {
+  transition: transform 0.72s cubic-bezier(0.2, 0.85, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-shell.sat-passport-shell:hover .card-tilt {
+    --lift-y: 0px;
+  }
+  .card-tilt::before {
+    opacity: 0 !important;
+    display: none !important;
+  }
+  #mcHero3dTumbler.specimen-record-card--hero {
+    --lift: 0px !important;
+  }
+  #mcHero3d .specimen-record-card--hero .specimen-record-card__face::after {
+    opacity: 0 !important;
+  }
+}
+
+/* ---- Admin metallic cards ---- */
+.sat-admin-card {
+  position: relative;
+  border-radius: 22px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--sat-admin-a, rgba(148, 163, 184, 0.6)), rgba(255, 255, 255, 0.1), var(--sat-admin-b, rgba(71, 85, 105, 0.5)));
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.14);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.sat-admin-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.2);
+}
+.sat-admin-card:focus-within {
+  outline: 2px solid rgba(52, 211, 153, 0.45);
+  outline-offset: 2px;
+}
+.sat-admin-card__inner {
+  border-radius: 21px;
+  background: rgba(15, 23, 42, 0.94);
+  padding: 16px 18px;
+  min-height: 120px;
+  color: #f1f5f9;
+}
+.sat-admin-card[data-admin-category='plant'] {
+  --sat-admin-a: rgba(52, 211, 153, 0.75);
+  --sat-admin-b: rgba(6, 78, 59, 0.65);
+}
+.sat-admin-card[data-admin-category='insect'] {
+  --sat-admin-a: rgba(250, 204, 21, 0.85);
+  --sat-admin-b: rgba(120, 53, 15, 0.55);
+}
+.sat-admin-card[data-admin-category='invertebrate'] {
+  --sat-admin-a: rgba(45, 212, 191, 0.75);
+  --sat-admin-b: rgba(15, 118, 110, 0.55);
+}
+.sat-admin-card[data-admin-category='fossil'] {
+  --sat-admin-a: rgba(202, 138, 4, 0.8);
+  --sat-admin-b: rgba(87, 83, 78, 0.55);
+}
+.sat-admin-card[data-admin-category='mineral'] {
+  --sat-admin-a: rgba(186, 230, 253, 0.75);
+  --sat-admin-b: rgba(51, 65, 85, 0.6);
+}
+.sat-admin-card[data-admin-category='microbiology'] {
+  --sat-admin-a: rgba(196, 181, 253, 0.85);
+  --sat-admin-b: rgba(91, 33, 182, 0.45);
+}
+.sat-admin-card[data-admin-category='default'] {
+  --sat-admin-a: rgba(148, 163, 184, 0.55);
+  --sat-admin-b: rgba(51, 65, 85, 0.5);
+}
+
+.admin-list .sat-admin-card .name {
+  font-weight: 650;
+  font-size: 15px;
+  margin: 0 0 4px;
+  color: #f8fafc;
+}
+.admin-list .sat-admin-card .subline {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(226, 232, 240, 0.82);
+}
+
+.mc-ui-studio-editor {
+  contain: layout style;
+}
+
+/* Studio / alternate markup: legacy diagonal foil layer (safe no-op if unused) */
+.mc-card-foil,
+.sat-card-foil,
+.mc-game-card__foil,
+.sat-game-card__foil {
+  display: none !important;
+}
+
+.mc-game-card-face::after,
+.mc-game-card-face::before,
+.sat-game-card::after,
+.sat-game-card::before,
+.mc-game-card-tilt::after,
+.mc-game-card-tilt::before {
+  background-image: none !important;
+  opacity: 0 !important;
+}
+
+/* Specimen record card chrome: specimen-record-card.css (bundled after this file). */
+.mc-card-corner,
+.card-corner,
+.corner,
+.corner--tl,
+.corner--tr,
+.corner--bl,
+.corner--br {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Landing vs backend: never show both shells (html.mc-entered = app session). */
+html.mc-entered #welcomeShell,
+html.mc-entered .welcome-shell,
+html.mc-entered .landing-shell {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+html:not(.mc-entered) #responsiveShell,
+html:not(.mc-entered) .app-shell {
+  display: none !important;
+}

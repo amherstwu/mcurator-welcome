@@ -1,0 +1,15 @@
+/**
+ * Homepage journey line — disabled sitewide.
+ */
+
+.mc-journey-line,
+#welcomeShell .mc-journey-line,
+#welcomeShell[data-mc-journey='1'] .mc-journey-line {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#welcomeShell[data-mc-journey='1'] {
+  position: relative !important;
+}

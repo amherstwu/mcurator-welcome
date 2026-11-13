@@ -1,0 +1,413 @@
+/**
+ * Landing "開始建立你的數位典藏" — entry choice + flow strip.
+ * Foreground only; background stays `.lp-conv__bg` on `#welcomeGateSection`.
+ */
+
+.welcome-lp__gate.lp-conversion .lp-conv__content {
+  position: relative;
+}
+
+.entry-choice-section {
+  position: relative;
+  min-height: min(100vh, 960px);
+  display: grid;
+  place-items: center;
+  padding: clamp(80px, 8vw, 140px) 24px;
+  color: #f4efe1;
+}
+
+.entry-choice-content {
+  width: min(1180px, calc(100% - 8px));
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.entry-kicker {
+  margin: 0 0 14px;
+  color: #d7c16d;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.entry-choice-content h2 {
+  margin: 0;
+  font-family: 'Noto Serif TC', Georgia, serif;
+  font-size: clamp(42px, 6vw, 78px);
+  line-height: 1.05;
+  color: #fffaf0;
+}
+
+.entry-lead {
+  max-width: 760px;
+  margin: 22px auto 0;
+  color: rgba(244, 239, 225, 0.72);
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+.entry-mode-grid {
+  margin: clamp(28px, 4vw, 48px) auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 18px);
+  max-width: 100%;
+}
+
+.entry-mode-card {
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  min-height: 280px;
+  padding: 22px 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(14, 22, 20, 0.92), rgba(6, 10, 9, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.entry-mode-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.34);
+}
+
+.entry-mode-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: rgba(215, 193, 109, 0.95);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.entry-mode-label {
+  margin: 0 0 8px;
+  color: rgba(167, 243, 193, 0.78);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.entry-mode-card h3 {
+  margin: 0;
+  font-family: 'Noto Serif TC', Georgia, serif;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.2;
+  color: #fffaf0;
+}
+
+.entry-mode-card .entry-mode-intro {
+  margin: 12px 0 0;
+  color: rgba(244, 239, 225, 0.68);
+  line-height: 1.75;
+  font-size: 15px;
+}
+
+.entry-mode-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 24px;
+  display: grid;
+  gap: 8px;
+}
+
+.entry-mode-card li {
+  color: rgba(244, 239, 225, 0.76);
+  font-size: 14px;
+}
+
+.entry-mode-card li::before {
+  content: '✓';
+  color: #8fe0ba;
+  margin-right: 8px;
+}
+
+.entry-mode-card--enterprise .entry-mode-label {
+  color: rgba(215, 193, 109, 0.88);
+}
+
+.entry-mode-card--enterprise li::before {
+  color: rgba(215, 193, 109, 0.85);
+}
+
+.entry-mode-card--coop .entry-mode-label {
+  color: rgba(167, 243, 193, 0.78);
+}
+
+.entry-mode-card--coop li::before {
+  color: rgba(143, 224, 186, 0.9);
+}
+
+.entry-mode-action {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f4efe1;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 13px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.entry-mode-action--primary {
+  background: rgba(143, 224, 186, 0.22);
+  color: #f4efe1;
+  border: 1px solid rgba(143, 224, 186, 0.45);
+}
+
+.entry-mode-action--partner {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #f4efe1;
+  box-sizing: border-box;
+}
+
+.entry-mode-action--partner:hover {
+  border-color: rgba(255, 255, 255, 0.26);
+  color: #fffaf0;
+}
+
+.entry-mode-action:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.entry-mode-action--primary:hover {
+  background: rgba(143, 224, 186, 0.3);
+}
+
+.entry-mode-action:active {
+  transform: scale(0.99);
+}
+
+.entry-flow-strip {
+  margin: 34px auto 0;
+  max-width: 820px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.entry-flow-strip span {
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: rgba(244, 239, 225, 0.72);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+}
+
+.entry-admin-row {
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+.entry-admin-link {
+  border: none;
+  background: transparent;
+  color: rgba(215, 193, 109, 0.85);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.entry-admin-link:hover {
+  color: #f4efe1;
+}
+
+.entry-admin-hint {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: rgba(244, 239, 225, 0.45);
+  line-height: 1.5;
+}
+
+.entry-social {
+  margin: clamp(28px, 4vw, 40px) auto 0;
+  padding-top: clamp(20px, 3vw, 28px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.entry-social-label {
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 225, 0.42);
+}
+
+.entry-social-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.entry-social-link {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  color: rgba(244, 239, 225, 0.78);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.entry-social-link:hover {
+  color: #fffaf0;
+  border-color: rgba(215, 193, 109, 0.45);
+  background: rgba(215, 193, 109, 0.12);
+  transform: translateY(-2px);
+}
+
+.entry-social-link:focus-visible {
+  outline: 2px solid rgba(143, 224, 186, 0.75);
+  outline-offset: 3px;
+}
+
+.entry-social-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: currentColor;
+}
+
+.entry-social-link svg use {
+  fill: currentColor;
+}
+
+.mc-account-social.entry-social {
+  margin: 0;
+  padding-top: 0;
+  border-top: 0;
+  text-align: left;
+}
+
+.mc-account-section--social {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 900px) {
+  .mc-account-section--social {
+    grid-column: 2;
+  }
+}
+
+.entry-choice-section .lp-conv-m-launch {
+  position: absolute;
+  top: clamp(8px, 2vw, 20px);
+  right: clamp(8px, 2vw, 20px);
+  margin: 0;
+  width: auto;
+  min-height: 44px;
+  padding: 0 14px;
+  z-index: 4;
+}
+
+@media (max-width: 760px) {
+  .entry-mode-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-mode-card {
+    min-height: auto;
+  }
+
+  .entry-choice-content h2 {
+    font-size: clamp(36px, 11vw, 52px);
+  }
+}
+
+@media (max-width: 767px) {
+  .entry-choice-section {
+    min-height: 0;
+    padding: 48px 16px 56px;
+  }
+
+  .entry-choice-content {
+    width: 100%;
+  }
+
+  .entry-choice-content h2 {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .entry-mode-card,
+  .entry-choice-section button {
+    min-height: 44px;
+  }
+}
+
+/* Gate cinematic background — scoped to #welcomeGateSection only (mirrors head inline critical props). */
+#welcomeGateSection.hero-section {
+  background: #020806;
+}
+
+#welcomeGateSection .lp-conv__bg {
+  overflow: hidden;
+}
+
+#welcomeGateSection .hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.12);
+  filter: blur(8px) brightness(0.38) contrast(1.1) saturate(0.7);
+  z-index: 0;
+}
+
+#welcomeGateSection .hero-video-overlay {
+  background:
+    radial-gradient(circle at 40% 40%, rgba(91, 196, 150, 0.14), transparent 35%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry-mode-card {
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .entry-mode-card:hover {
+    transform: none;
+  }
+
+  #welcomeGateSection .hero-bg-video {
+    display: none;
+  }
+}

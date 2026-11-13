@@ -1,0 +1,2376 @@
+/**
+ * Global specimen card standard ??all specimen-related surfaces use this layout.
+ * Tilt on .specimen-record-card; flip on .specimen-record-card__inner (is-flipped on article).
+ *
+ * Card Passport Studio / exports use `.passport-card-locked` + `locked-passport-standard.css`
+ * as the locked museum passport (640?1010). Hero / feature cards here are marketing shells;
+ * align new work to that locked component when showing the same product preview.
+ */
+
+.specimen-record-card {
+  --metal-a: #d7c16d;
+  --metal-b: #5c5025;
+  --glow: rgba(215, 193, 109, 0.26);
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50;
+  --my: 50;
+  --lift: 0px;
+
+  position: relative;
+  width: min(504px, 76vw);
+  aspect-ratio: 0.72;
+  border-radius: 34px;
+  padding: 3px;
+  transform: translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition:
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 180ms ease;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.38) 0%,
+    rgba(215, 193, 109, 0.78) 16%,
+    rgba(75, 68, 38, 0.46) 38%,
+    rgba(255, 255, 255, 0.12) 54%,
+    rgba(110, 92, 43, 0.68) 76%,
+    rgba(255, 255, 255, 0.24) 100%
+  );
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 42px var(--glow);
+  will-change: transform;
+}
+
+.specimen-record-card:hover {
+  --lift: -8px;
+  box-shadow:
+    0 46px 120px rgba(0, 0, 0, 0.58),
+    0 0 55px var(--glow);
+}
+
+.specimen-record-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 31px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 560ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.specimen-record-card.is-flipped .specimen-record-card__inner {
+  transform: rotateY(180deg);
+}
+
+/* Welcome hero: inner overflow clips 3D ??back reads as mirrored front (WebKit/Blink). */
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#mcWelcomeHero .mc-hero-deck__card.specimen-record-card--hero .specimen-record-card__inner,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__inner {
+  overflow: visible;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__face.specimen-record-card__front {
+  transform: translateZ(1px);
+}
+
+.specimen-record-card__face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 31px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 28px 34px;
+  box-sizing: border-box;
+  color: #f4efe1;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(215, 193, 109, 0.12), transparent 35%),
+    linear-gradient(160deg, rgba(31, 49, 39, 0.98), rgba(5, 20, 16, 0.98) 48%, rgba(1, 8, 7, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 -24px 50px rgba(0, 0, 0, 0.22);
+}
+
+.specimen-record-card__face.specimen-record-card__back {
+  transform: rotateY(180deg);
+}
+
+.specimen-record-card__face::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.04) 0,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+.specimen-record-card__face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    circle at calc(var(--mx, 50) * 1%) calc(var(--my, 50) * 1%),
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.08) 18%,
+    transparent 38%
+  );
+  transition: opacity 160ms ease;
+  mix-blend-mode: screen;
+}
+
+.specimen-record-card:hover .specimen-record-card__face::after {
+  opacity: 0.38;
+}
+
+.specimen-record-card__top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.specimen-record-card__verified,
+.specimen-record-card__kicker {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(215, 193, 109, 0.5);
+  background: rgba(215, 193, 109, 0.16);
+  color: #d7c16d;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.specimen-record-card__kicker {
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.specimen-record-card__number {
+  display: block;
+  margin-top: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  color: #f6f0dc;
+}
+
+.specimen-record-card__satLine,
+.specimen-record-card__sat {
+  display: block;
+  margin-top: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(244, 239, 225, 0.45);
+}
+
+.specimen-record-card__status {
+  border: 1px solid rgba(126, 231, 166, 0.45);
+  background: rgba(36, 142, 84, 0.18);
+  color: #a7f3c1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.specimen-record-card__photo {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 14px 0 18px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #f7f5ed;
+  border: 1px solid rgba(238, 232, 205, 0.72);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.22),
+    0 12px 32px rgba(0, 0, 0, 0.34);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.specimen-record-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-position: center center;
+  display: block;
+}
+
+.specimen-record-card__photo[data-fit='cover'] img {
+  object-fit: cover;
+}
+
+.specimen-record-card__photo[data-fit='contain'] img {
+  object-fit: contain;
+  background: #f7f5ed;
+}
+
+.specimen-record-card__identity {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.specimen-record-card__type {
+  display: inline-flex;
+  padding: 2px 8px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(167, 243, 193, 0.22);
+  color: rgba(167, 243, 193, 0.7);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+
+.specimen-record-card__identity h3,
+.specimen-record-card__sci-fit {
+  margin: 0;
+  font-family: Georgia, 'Noto Serif TC', serif;
+  font-size: clamp(14px, 3.2cqi + 0.35rem, 46px);
+  font-style: italic;
+  line-height: 1.02;
+  color: #fffaf0;
+  container-type: inline-size;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.specimen-record-card__identity p {
+  margin: 10px 0 0;
+  color: rgba(244, 239, 225, 0.64);
+  font-size: 16px;
+}
+
+.specimen-record-card__meta {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 28px 0 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.specimen-record-card__meta div {
+  padding: 12px 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.specimen-record-card__meta dt {
+  color: rgba(167, 243, 193, 0.34);
+  font-weight: 800;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.specimen-record-card__meta dd {
+  margin: 0;
+  color: #f8f3e8;
+  font-size: 18px;
+  line-height: 1.35;
+  word-break: break-word;
+  overflow: visible;
+}
+
+.specimen-record-card__steps {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px 10px;
+  margin-top: 8px;
+  opacity: 0.62;
+  flex-shrink: 0;
+}
+
+.specimen-record-card__steps span {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 8px 7px;
+  text-align: center;
+  line-height: 1.35;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: clamp(9.5px, 2.15vw, 11px);
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  white-space: normal;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+@media (max-width: 520px) {
+  .specimen-record-card__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+.specimen-record-card__progress {
+  position: relative;
+  z-index: 2;
+  margin-top: 12px;
+}
+
+.specimen-record-card__progress > span:not(.mc-hero3d__for) {
+  display: block;
+  color: rgba(244, 239, 225, 0.78);
+  font-size: 13px;
+}
+
+.specimen-record-card__progress > strong {
+  display: block;
+  font-weight: 800;
+  margin-top: 2px;
+  color: rgba(244, 239, 225, 0.78);
+  font-size: 13px;
+}
+
+.specimen-record-card__progress i {
+  font-style: normal;
+  display: block;
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(167, 243, 193, 0.18);
+  margin-top: 6px;
+}
+
+.specimen-record-card__progress i::before {
+  content: '';
+  display: block;
+  width: var(--value, 86%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #56c787, #d7c16d);
+}
+
+.specimen-record-card__export {
+  position: relative;
+  z-index: 2;
+  margin-top: 12px;
+  text-align: center;
+  color: #d7c16d;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.specimen-record-card__registry {
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  text-align: center;
+  color: rgba(244, 239, 225, 0.42);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.specimen-record-card__back h3 {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 14px;
+  font-size: 20px;
+  color: #fffaf0;
+}
+
+.specimen-record-card__back-data {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+}
+
+.specimen-record-card__back-data > div {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.specimen-record-card__back-data dt {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(167, 243, 193, 0.45);
+}
+
+.specimen-record-card__back-data dd {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #f8f3e8;
+}
+
+.specimen-record-card__backFoot,
+.specimen-record-card__back-export {
+  position: relative;
+  z-index: 2;
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #d7c16d;
+}
+
+/* Size variants */
+.specimen-record-card--hero {
+  width: min(504px, 76vw);
+}
+
+.specimen-record-card--coverflow {
+  width: min(390px, 62vw);
+}
+
+.specimen-record-card--admin {
+  width: 100%;
+  max-width: 360px;
+}
+
+.specimen-record-card--compact {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Rarity */
+.specimen-record-card.rarity-common {
+  --metal-a: #d8dee4;
+  --metal-b: #64748b;
+  --glow: rgba(216, 222, 228, 0.2);
+}
+
+.specimen-record-card.rarity-rare {
+  --metal-a: #7dd3fc;
+  --metal-b: #1e3a8a;
+  --glow: rgba(125, 211, 252, 0.26);
+}
+
+.specimen-record-card.rarity-epic {
+  --metal-a: #c4b5fd;
+  --metal-b: #5b21b6;
+  --glow: rgba(196, 181, 253, 0.28);
+}
+
+.specimen-record-card.rarity-legendary {
+  --metal-a: #f7d774;
+  --metal-b: #9f6b21;
+  --glow: rgba(247, 215, 116, 0.34);
+}
+
+.specimen-record-card.rarity-museum {
+  --metal-a: #e6d7a4;
+  --metal-b: #6f6237;
+  --glow: rgba(230, 215, 164, 0.28);
+}
+
+.specimen-record-card.rarity-mythic {
+  --metal-a: #d8b4fe;
+  --metal-b: #5b21b6;
+  --glow: rgba(216, 180, 254, 0.3);
+}
+
+/* Coverflow: width lives on track item; card fills item */
+.specimen-coverflow-item .specimen-record-card--coverflow {
+  width: 100%;
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .specimen-record-card,
+  .specimen-record-card__inner {
+    transition: none !important;
+  }
+  .specimen-record-card:hover {
+    --lift: 0px;
+  }
+  .specimen-record-card:hover .specimen-record-card__face::after {
+    opacity: 0 !important;
+  }
+}
+
+/* ??Welcome hero: photo placeholder + glare (layout in sat-unified) ??*/
+#mcHero3d #mcHero3dTumbler:hover .specimen-record-card__face.specimen-record-card__front::after,
+#lp-fragment-theater #lpFeaturePassportCard:hover .specimen-record-card__face.specimen-record-card__front::after {
+  opacity: 0.38;
+}
+
+#mcHero3d .specimen-record-card__photo .mc-specimen-ph,
+#lp-fragment-theater #lpFeaturePassportCard .specimen-record-card__photo .mc-specimen-ph {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#mcHero3d .specimen-record-card__photo:has(.mc-hero3d__img.mc-welcome-img--loaded) .mc-specimen-ph,
+#lp-fragment-theater #lpFeaturePassportCard .specimen-record-card__photo:has(.mc-hero3d__img.mc-welcome-img--loaded) .mc-specimen-ph {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.specimen-record-card__progress .mc-hero3d__for {
+  display: none;
+}
+
+.specimen-record-card__progress .mc-hero3d__for.is-visible {
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(244, 239, 225, 0.78);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.specimen-record-card__progress .mc-hero3d__for em {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  font-style: normal;
+  color: rgba(244, 239, 225, 0.55);
+}
+
+/* Welcome hero SAT card: smaller type + calmer highlight (reference specimen sheet layout) */
+/* Hero passport: taller card, larger photo band, slightly smaller type */
+#mcWelcomeHero #mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#mcWelcomeHero .mc-hero-deck__card.specimen-record-card--hero {
+  aspect-ratio: 0.58;
+}
+
+/* Feature intro card: standard passport proportions (not hero tall frame). */
+#lp-fragment-theater #lpFeaturePassportCard.specimen-record-card--feature {
+  aspect-ratio: 0.72;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__face {
+  padding: 12px 14px 12px;
+  background:
+    radial-gradient(circle at 50% -8%, rgba(100, 190, 150, 0.1), transparent 34%),
+    linear-gradient(160deg, rgba(24, 40, 34, 0.99), rgba(6, 18, 15, 0.99) 50%, rgba(2, 12, 10, 0.99));
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__face::after {
+  opacity: 0.08;
+  mix-blend-mode: normal;
+  background: radial-gradient(
+    circle at calc(var(--mx, 50) * 1%) calc(var(--my, 50) * 1%),
+    rgba(255, 255, 255, 0.12),
+    transparent 38%
+  );
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature:hover .specimen-record-card__face::after {
+  opacity: 0.14;
+}
+
+#mcHero3d #mcHero3dTumbler:hover .specimen-record-card__face.specimen-record-card__front::after,
+#lp-fragment-theater #lpFeaturePassportCard:hover .specimen-record-card__face.specimen-record-card__front::after {
+  opacity: 0.14;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__verified {
+  font-size: 9px;
+  padding: 2px 7px;
+  letter-spacing: 0.1em;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__number {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__satLine,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__sat {
+  font-size: 9px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__status {
+  padding: 3px 8px;
+  font-size: 11px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero .specimen-record-card__photo,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero .specimen-record-card__photo {
+  margin: 8px 0 8px;
+  /* Taller frame — more vertical room for specimen image (contain) */
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+}
+
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__photo {
+  margin: 8px 0 8px;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero .specimen-record-card__photo img,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero .specimen-record-card__photo img {
+  transform: scale(1.06);
+  transform-origin: center center;
+}
+
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__photo img {
+  transform: none;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__type {
+  font-size: 9px;
+  margin-bottom: 3px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__identity h3 {
+  font-size: clamp(16px, 1.65vw, 22px);
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__identity p {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__meta {
+  margin: 10px 0 6px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__meta div {
+  padding: 6px 8px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__meta dt {
+  font-size: 9px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__meta dd {
+  font-size: 12px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__steps span {
+  font-size: clamp(9px, 1.35vw, 10px);
+  padding: 6px 5px;
+  line-height: 1.3;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__progress .mc-hero3d__for.is-visible {
+  font-size: 10px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__progress .mc-hero3d__for em {
+  font-size: 10px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__export {
+  font-size: 11px;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__registry {
+  font-size: 9px;
+}
+
+/* Hero flip back: full-bleed art via <img> (same path pattern as front img ??reliable in GAS HtmlService) */
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__face.specimen-record-card__back {
+  transform: rotateY(180deg) translateZ(0.5px);
+  padding: 12px 14px 14px;
+  /* Override .specimen-record-card__face gold/green fill so back art reads clearly */
+  background: #060a08;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__face.specimen-record-card__back::before {
+  opacity: 0.06;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__face.specimen-record-card__back::after {
+  mix-blend-mode: normal;
+  opacity: 0 !important;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .mc-hero-card-back-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .mc-hero-card-back-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 12, 10, 0.42) 0%,
+    rgba(4, 12, 10, 0.08) 34%,
+    rgba(4, 12, 10, 0.82) 68%,
+    rgba(2, 8, 7, 0.94) 100%
+  );
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__face.specimen-record-card__back > :not(.mc-hero-card-back-img):not(.mc-hero-card-back-scrim) {
+  position: relative;
+  z-index: 2;
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__back-data > div {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__back h3 {
+  font-size: 14px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.75);
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__back-data dt {
+  font-size: 9px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__back-data dd {
+  font-size: 12px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+}
+
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__backFoot,
+#lpFeaturePassportCard.specimen-record-card--feature .specimen-record-card__back-export {
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.75);
+}
+
+/* ========= Welcome hero: specimen-passport-demo + staged demo (scoped #mcWelcomeHero) ========= */
+
+#mcWelcomeHero .lp-hero__stage.lp-hero__stage--showcase {
+  position: relative;
+  isolation: isolate;
+}
+
+#mcWelcomeHero .mc-welcome-hero__earth-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  transform: translate3d(
+    calc(var(--mc-hero-parallax-x, 0) * 10px),
+    calc(var(--mc-hero-parallax-y, 0) * 6px),
+    0
+  );
+  transition: transform 0.45s ease-out;
+}
+
+#mcWelcomeHero .lp-hero__showcase {
+  position: relative;
+  z-index: 2;
+}
+
+#mcWelcomeHero .mc-welcome-hero__earth-link-path {
+  stroke-dasharray: 42 120;
+  stroke-dashoffset: 162;
+  opacity: 0.22;
+  transition: opacity 0.5s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='linking'],
+    [data-mc-hero-demo-stage='scanning'],
+    [data-mc-hero-demo-stage='photo-ready']
+  )
+  .mc-welcome-hero__earth-link-path {
+  opacity: 0.92;
+  animation: mcWelcomeHeroLinkTravel 1.8s ease-in-out infinite;
+}
+
+#mcWelcomeHero[data-mc-hero-demo-stage='earth-focus'] .mc-welcome-hero__earth-link-path {
+  opacity: 0.55;
+}
+
+@keyframes mcWelcomeHeroLinkTravel {
+  0% {
+    stroke-dashoffset: 162;
+  }
+  55% {
+    stroke-dashoffset: 40;
+  }
+  100% {
+    stroke-dashoffset: 162;
+  }
+}
+
+#mcWelcomeHero .mc-welcome-hero__earth-link-node {
+  opacity: 0.35;
+  transition: opacity 0.35s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='earth-focus'],
+    [data-mc-hero-demo-stage='linking'],
+    [data-mc-hero-demo-stage='scanning'],
+    [data-mc-hero-demo-stage='photo-ready'],
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  .mc-welcome-hero__earth-link-node--a {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(120, 255, 200, 0.65));
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='linking'],
+    [data-mc-hero-demo-stage='scanning'],
+    [data-mc-hero-demo-stage='photo-ready'],
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  .mc-welcome-hero__earth-link-node--b {
+  opacity: 1;
+  filter: drop-shadow(0 0 5px rgba(160, 255, 220, 0.55));
+}
+
+#mcWelcomeHero .c-hero__atmos {
+  transform: translate3d(
+    calc(var(--mc-hero-parallax-x, 0) * -8px),
+    calc(var(--mc-hero-parallax-y, 0) * -6px),
+    0
+  );
+  transition: transform 0.45s ease-out;
+}
+
+#mcWelcomeHero .c-hero__orbitHalo,
+#mcWelcomeHero .c-hero__scanRings {
+  opacity: 0.55;
+  transition: opacity 0.4s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='earth-focus'],
+    [data-mc-hero-demo-stage='linking'],
+    [data-mc-hero-demo-stage='scanning'],
+    [data-mc-hero-demo-stage='photo-ready'],
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  .c-hero__orbitHalo,
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='earth-focus'],
+    [data-mc-hero-demo-stage='linking'],
+    [data-mc-hero-demo-stage='scanning'],
+    [data-mc-hero-demo-stage='photo-ready'],
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  .c-hero__scanRings {
+  opacity: 0.88;
+}
+
+#mcWelcomeHero .c-hero__snode--1 {
+  transition: box-shadow 0.35s ease, transform 0.35s ease, opacity 0.35s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='earth-focus'],
+    [data-mc-hero-demo-stage='linking'],
+    [data-mc-hero-demo-stage='scanning'],
+    [data-mc-hero-demo-stage='photo-ready'],
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  .c-hero__snode--1 {
+  box-shadow: 0 0 0 2px rgba(140, 255, 200, 0.35), 0 0 22px rgba(100, 220, 170, 0.45);
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+#mcWelcomeHero:has(#mcHero3dTumbler:hover) .c-hero__snode--1,
+#mcWelcomeHero:has(#mcHero3dTumbler:hover) .c-hero__orbitHalo {
+  opacity: 1 !important;
+  box-shadow: 0 0 0 2px rgba(160, 255, 210, 0.4), 0 0 26px rgba(120, 240, 190, 0.5);
+}
+
+#mcWelcomeHero:has(.mc-earth-hero-bg__globe-wrap:hover) #mcHero3dTumbler.specimen-passport-demo {
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(140, 240, 200, 0.22),
+    0 0 48px rgba(100, 220, 170, 0.28);
+}
+
+#mcWelcomeHero[data-mc-hero-earth-hover='1'] #mcHero3dTumbler.specimen-passport-demo {
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(140, 240, 200, 0.24),
+    0 0 40px rgba(100, 220, 170, 0.22);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-record-card--hero,
+#mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero {
+  width: clamp(340px, 25vw, 430px);
+  max-width: 100%;
+  aspect-ratio: 10 / 16.4;
+  border-radius: 32px;
+  padding: 2px;
+  box-sizing: border-box;
+  --glow: rgba(100, 220, 170, 0.22);
+  background: linear-gradient(
+    145deg,
+    rgba(120, 220, 180, 0.45) 0%,
+    rgba(40, 90, 72, 0.55) 22%,
+    rgba(8, 28, 22, 0.75) 55%,
+    rgba(90, 200, 160, 0.28) 100%
+  );
+  transform: translateY(var(--lift, 0)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))
+    translate3d(calc(var(--mc-hero-parallax-x, 0) * 14px), calc(var(--mc-hero-parallax-y, 0) * 10px), 0);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.22s ease-out,
+    box-shadow 0.35s ease;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__face.specimen-record-card__front {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 14px;
+  background:
+    radial-gradient(circle at calc(var(--card-glow-x, var(--mx, 50)) * 1%) calc(var(--card-glow-y, var(--my, 50)) * 1%), rgba(120, 220, 180, 0.12), transparent 42%),
+    linear-gradient(165deg, rgba(12, 32, 26, 0.99), rgba(4, 14, 12, 0.99) 55%, rgba(2, 8, 7, 0.99));
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__face::after {
+  background: radial-gradient(
+    circle at calc(var(--card-glow-x, var(--mx, 50)) * 1%) calc(var(--card-glow-y, var(--my, 50)) * 1%),
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.04) 22%,
+    transparent 46%
+  );
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-passport-demo__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'hdr'
+    'photo'
+    'tax'
+    'meta'
+    'chips'
+    'foot';
+  gap: 8px 10px;
+  flex: 1;
+  min-height: 0;
+  align-content: start;
+}
+
+/* Front face ??specimen record reference (badges, white tray, bordered meta grid, serif epithet) */
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__top {
+  grid-area: hdr;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__verified {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(200, 235, 215, 0.42);
+  background: rgba(4, 14, 12, 0.35);
+  box-shadow: none;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__number {
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__satLine {
+  color: rgba(160, 190, 175, 0.72);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__status {
+  flex-shrink: 0;
+  background: rgba(40, 120, 88, 0.95);
+  border: 1px solid rgba(120, 220, 175, 0.35);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo {
+  grid-area: photo;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+  position: relative;
+  background:
+    linear-gradient(180deg, #fdfdfb 0%, #f0f1ee 48%, #e8eae6 100%);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+    inset 0 10px 28px rgba(0, 0, 0, 0.06);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__type {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(6, 36, 26, 0.92);
+  color: rgba(150, 235, 195, 0.92);
+  letter-spacing: 0.14em;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__identity h3 {
+  font-family: ui-serif, Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__identity p {
+  color: rgba(220, 232, 225, 0.72);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo #mcHeroSpecimenProgressBar i::before {
+  background: linear-gradient(90deg, #3ecf86, #56c787 42%, #e8b84a 88%, #f0a64a);
+}
+
+/* Back face ??璅霅瑞 reference (forest scrim, mint labels, gold rim + footer) */
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__face.specimen-record-card__back {
+  padding: 16px 18px 18px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(90, 160, 120, 0.14), transparent 42%),
+    linear-gradient(165deg, rgba(10, 34, 26, 0.97), rgba(4, 14, 11, 0.99) 55%, rgba(2, 10, 8, 0.99));
+  box-shadow:
+    inset 0 0 0 1px rgba(212, 175, 55, 0.38),
+    inset 0 0 36px rgba(212, 175, 55, 0.06);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__face.specimen-record-card__back .mc-hero-card-back-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(4, 18, 14, 0.55) 0%,
+    rgba(4, 14, 12, 0.18) 38%,
+    rgba(2, 12, 10, 0.82) 72%,
+    rgba(1, 8, 7, 0.94) 100%
+  );
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__back h3 {
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__back-data dt {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: rgba(136, 160, 144, 0.95);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__back-data dd {
+  font-size: 13px;
+  color: #f5faf7;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo #mcHeroBackSci {
+  font-style: italic;
+  font-family: ui-serif, Georgia, 'Times New Roman', Times, serif;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__back-data > div {
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__backFoot {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #d4af37;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(120, 220, 180, 0.08) 48%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(120, 220, 180, 0.06) 52%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.3s ease;
+}
+
+#mcWelcomeHero[data-mc-hero-demo-stage='scanning'] #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo::after {
+  opacity: 1;
+  animation: mcWelcomeHeroScanline 1.45s ease-in-out infinite;
+}
+
+@keyframes mcWelcomeHeroScanline {
+  0% {
+    transform: translateY(-108%);
+  }
+  100% {
+    transform: translateY(108%);
+  }
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 2;
+  opacity: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.18), transparent 62%);
+  animation: mcWelcomeHeroShimmer 2.4s ease-in-out infinite;
+}
+
+#mcWelcomeHero[data-mc-hero-demo-stage='scanning'] #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo::before {
+  opacity: 0.35;
+}
+
+@keyframes mcWelcomeHeroShimmer {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(60%);
+  }
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo .mc-hero3d__img {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(1.03);
+  filter: blur(6px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.85s ease;
+  object-fit: contain;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  transform-origin: center center;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='photo-ready'],
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__photo
+  .mc-hero3d__img {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo .mc-specimen-ph {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='photo-ready'],
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__photo:has(.mc-welcome-img--loaded)
+  .mc-specimen-ph {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__identity {
+  grid-area: tax;
+  margin: 0;
+  opacity: 0.2;
+  transform: translateY(6px);
+  filter: blur(1px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease,
+    filter 0.55s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__identity {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition-delay: 40ms;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__meta {
+  grid-area: meta;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__meta > div {
+  margin: 0;
+  padding: 8px 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(2, 10, 9, 0.28);
+  opacity: 0.18;
+  transform: translateY(5px);
+  filter: blur(0.5px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__meta
+  > div:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
+  transition-delay: 90ms;
+}
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__meta
+  > div:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
+  transition-delay: 160ms;
+}
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__meta
+  > div:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
+  transition-delay: 230ms;
+}
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__meta
+  > div:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
+  transition-delay: 300ms;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__meta > div:nth-child(2n) {
+  border-right: none;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__meta > div:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__steps {
+  grid-area: chips;
+  margin: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px 6px;
+  min-height: auto;
+  align-content: start;
+  opacity: 0.16;
+  transform: translateY(4px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__steps {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 120ms;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__steps span {
+  padding: 5px 4px;
+  font-size: clamp(8px, 1.25vw, 9.5px);
+  border-radius: 6px;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__steps span:hover {
+  transform: translateY(-1px);
+  border-color: rgba(140, 240, 200, 0.35);
+}
+
+#mcWelcomeHero .specimen-passport-demo__footer {
+  grid-area: foot;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__progress {
+  margin-top: 0;
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__export,
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__registry {
+  margin-top: 0;
+  opacity: 0.22;
+  transition: opacity 0.5s ease;
+}
+
+#mcWelcomeHero:is([data-mc-hero-demo-stage='verified'], [data-mc-hero-demo-stage='completed'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__export,
+#mcWelcomeHero:is([data-mc-hero-demo-stage='verified'], [data-mc-hero-demo-stage='completed'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__registry {
+  opacity: 1;
+}
+
+#mcWelcomeHero #mcHeroSpecimenProgressBar i::before {
+  transition: width 1.1s cubic-bezier(0.2, 0.85, 0.2, 1);
+}
+
+#mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__verified {
+  opacity: 0.35;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+}
+
+#mcWelcomeHero:is([data-mc-hero-demo-stage='verified'], [data-mc-hero-demo-stage='completed'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__verified {
+  opacity: 1;
+  box-shadow: 0 0 14px rgba(120, 220, 170, 0.35);
+}
+
+#mcWelcomeHero #mcHero3dVerify {
+  opacity: 0.4;
+  transition:
+    opacity 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+#mcWelcomeHero:is([data-mc-hero-demo-stage='verified'], [data-mc-hero-demo-stage='completed']) #mcHero3dVerify {
+  opacity: 1;
+  box-shadow: 0 0 18px rgba(100, 220, 160, 0.35);
+}
+
+#mcWelcomeHero[data-mc-hero-demo-stage='verified'] #mcHero3dTumbler.specimen-passport-demo {
+  animation: mcWelcomeHeroCardPulse 0.9s ease-out 1;
+}
+
+@keyframes mcWelcomeHeroCardPulse {
+  0% {
+    box-shadow:
+      0 34px 90px rgba(0, 0, 0, 0.48),
+      0 0 0 1px rgba(140, 240, 200, 0.2),
+      0 0 36px rgba(100, 220, 170, 0.22);
+  }
+  45% {
+    box-shadow:
+      0 40px 100px rgba(0, 0, 0, 0.52),
+      0 0 0 2px rgba(160, 255, 210, 0.45),
+      0 0 56px rgba(120, 240, 200, 0.42);
+  }
+  100% {
+    box-shadow:
+      0 34px 90px rgba(0, 0, 0, 0.48),
+      0 0 0 1px rgba(140, 240, 200, 0.22),
+      0 0 40px rgba(100, 220, 170, 0.28);
+  }
+}
+
+#mcWelcomeHero[data-mc-hero-demo-stage='photo-ready'] #mcHero3dTumbler.specimen-passport-demo {
+  animation: mcWelcomeHeroCardPhotoNudge 0.65s ease-out 1;
+}
+
+@keyframes mcWelcomeHeroCardPhotoNudge {
+  0%,
+  100% {
+    box-shadow:
+      0 34px 90px rgba(0, 0, 0, 0.48),
+      0 0 0 1px rgba(140, 240, 200, 0.18),
+      0 0 32px rgba(100, 220, 170, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 38px 96px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(160, 255, 210, 0.32),
+      0 0 44px rgba(120, 240, 190, 0.3);
+  }
+}
+
+#mcWelcomeHero #welcomeContentLead,
+#mcWelcomeHero #lpHeroIdea,
+#mcWelcomeHero .lp-hero__modeDek {
+  opacity: 0.32;
+  transition: opacity 0.55s ease;
+}
+
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #welcomeContentLead,
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  #lpHeroIdea,
+#mcWelcomeHero:is(
+    [data-mc-hero-demo-stage='data-ready'],
+    [data-mc-hero-demo-stage='verified'],
+    [data-mc-hero-demo-stage='completed']
+  )
+  .lp-hero__modeDek {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  #mcWelcomeHero #mcHero3dTumbler.specimen-record-card--hero,
+  #mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero {
+    width: min(92vw, 390px);
+    transform: translateY(var(--lift, 0)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  }
+
+  #mcWelcomeHero .c-hero__atmos {
+    transform: none;
+  }
+
+  #mcWelcomeHero .mc-welcome-hero__earth-link {
+    transform: none;
+    opacity: 0.85;
+  }
+}
+
+/* Resting hero (no transition): show full default passport */
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__photo
+  .mc-hero3d__img {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__photo:has(.mc-welcome-img--loaded)
+  .mc-specimen-ph {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__identity,
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__meta
+  > div,
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__steps,
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__export,
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__registry {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  transition-delay: 0ms !important;
+}
+
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1'])
+  #mcHero3dTumbler.specimen-passport-demo
+  .specimen-record-card__verified,
+#mcWelcomeHero[data-mc-hero-demo-stage='idle']:not([data-mc-hero-demo-running='1']) #mcHero3dVerify {
+  opacity: 1 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcWelcomeHero .mc-welcome-hero__earth-link-path,
+  #mcWelcomeHero .mc-welcome-hero__earth-link,
+  #mcWelcomeHero .c-hero__atmos,
+  #mcWelcomeHero #mcHero3dTumbler.specimen-record-card--hero,
+  #mcWelcomeHero #mcProductHeroPassport.specimen-record-card--hero {
+    animation: none !important;
+    transition: opacity 0.35s ease !important;
+    transform: none !important;
+  }
+
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo::after,
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo .mc-hero3d__img {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__photo .mc-specimen-ph {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__identity,
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__meta > div,
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__steps,
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__export,
+  #mcWelcomeHero #mcHero3dTumbler.specimen-passport-demo .specimen-record-card__registry {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition-delay: 0ms !important;
+  }
+
+  #mcWelcomeHero #welcomeContentLead,
+  #mcWelcomeHero #lpHeroIdea,
+  #mcWelcomeHero .lp-hero__modeDek {
+    opacity: 1 !important;
+  }
+}
+
+/* ??Earth hotspot layer + pills (welcome hero) ??*/
+
+#mcWelcomeHero .mc-earth-hotspots-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+#mcWelcomeHero .mc-earth-hotspots-layer__hint {
+  position: absolute;
+  left: 50%;
+  bottom: -36px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 140%;
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(200, 240, 220, 0.55);
+  text-align: center;
+  pointer-events: none;
+  line-height: 1.35;
+}
+
+@media (min-width: 901px) {
+  #mcWelcomeHero .mc-earth-hotspots-layer__hint {
+    bottom: -28px;
+    font-size: 10px;
+  }
+}
+
+#mcWelcomeHero .earth-hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+#mcWelcomeHero .earth-hotspot.earth-hotspot--occluded {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+#mcWelcomeHero .earth-hotspot.earth-hotspot--occluded .earth-hotspot__pulse {
+  opacity: 0.08;
+  animation: none;
+}
+
+#mcWelcomeHero .earth-hotspot__dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.55), rgba(100, 220, 170, 0.95));
+  box-shadow: 0 0 0 1px rgba(120, 240, 200, 0.45), 0 0 12px rgba(80, 200, 150, 0.55);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#mcWelcomeHero .earth-hotspot__pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  border: 1px solid rgba(140, 240, 200, 0.35);
+  opacity: 0.55;
+  animation: mcEarthHotspotPulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes mcEarthHotspotPulse {
+  0% {
+    transform: scale(0.72);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 0.12;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+#mcWelcomeHero .earth-hotspot__label {
+  position: absolute;
+  left: 50%;
+  top: -22px;
+  transform: translateX(-50%) translateY(4px);
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(220, 255, 240, 0.92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+#mcWelcomeHero .earth-hotspot.is-hovered .earth-hotspot__label,
+#mcWelcomeHero .earth-hotspot.is-active .earth-hotspot__label,
+#mcWelcomeHero .earth-hotspot:focus-visible .earth-hotspot__label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+#mcWelcomeHero .earth-hotspot.is-hovered .earth-hotspot__dot,
+#mcWelcomeHero .earth-hotspot.is-active .earth-hotspot__dot {
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 2px rgba(160, 255, 220, 0.55),
+    0 0 18px rgba(100, 220, 170, 0.65);
+}
+
+#mcWelcomeHero .earth-hotspot.is-active .earth-hotspot__pulse {
+  opacity: 0.85;
+  border-color: rgba(180, 255, 220, 0.55);
+  animation-duration: 1.6s;
+}
+
+#mcWelcomeHero .earth-hotspot:focus-visible {
+  outline: 2px solid rgba(160, 255, 220, 0.75);
+  outline-offset: 4px;
+}
+
+#mcWelcomeHero .mc-earth-hotspot-pills {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  width: 100%;
+  max-width: min(92vw, 420px);
+  margin: 0 auto 10px;
+  z-index: 3;
+  position: relative;
+}
+
+#mcWelcomeHero .earth-hotspot-pill {
+  appearance: none;
+  border: 1px solid rgba(120, 220, 180, 0.35);
+  background: rgba(8, 28, 22, 0.55);
+  color: rgba(230, 255, 245, 0.88);
+  font-size: 12px;
+  font-weight: 650;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#mcWelcomeHero .earth-hotspot-pill.is-active {
+  border-color: rgba(160, 255, 220, 0.55);
+  background: rgba(20, 60, 48, 0.75);
+  box-shadow: 0 0 18px rgba(80, 200, 150, 0.28);
+}
+
+#mcWelcomeHero .earth-hotspot-pill:hover {
+  border-color: rgba(160, 255, 220, 0.45);
+}
+
+@media (max-width: 900px) {
+  #mcWelcomeHero .mc-earth-hotspot-pills {
+    display: flex;
+  }
+
+  #mcWelcomeHero .earth-hotspot {
+    width: 44px;
+    height: 44px;
+  }
+
+  #mcWelcomeHero .earth-hotspot__dot {
+    width: 9px;
+    height: 9px;
+    margin: -4.5px 0 0 -4.5px;
+  }
+
+  #mcWelcomeHero .earth-hotspot__pulse {
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+  }
+}
+
+/* ========= Earth menu: Three.js Earth + hotspots + passport (after first pick) ========= */
+
+/* Passport placeholder vs card slot */
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__passport-await {
+  box-sizing: border-box;
+  width: clamp(340px, 25vw, 430px);
+  max-width: 100%;
+  aspect-ratio: 10 / 16.4;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 32px;
+  background:
+    linear-gradient(145deg, rgba(22, 48, 40, 0.65) 0%, rgba(6, 16, 14, 0.92) 100%);
+  border: 1px solid rgba(120, 220, 180, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+/* Passport slot: placeholder stacks with card; crossfade on first pick */
+#mcWelcomeHero[data-mc-earth-menu='1'] .lp-hero__showcase {
+  position: relative;
+  z-index: 8;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: clamp(360px, 56vmin, 580px);
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__passport-await {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  z-index: 3;
+  transition:
+    opacity 0.45s cubic-bezier(0.2, 0.75, 0.2, 1),
+    transform 0.52s cubic-bezier(0.18, 0.82, 0.22, 1),
+    visibility 0s linear 0.48s;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1'] .mc-welcome-hero__passport-await {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px) scale(0.96);
+  z-index: 1;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__passport-await__frame {
+  text-align: center;
+  max-width: 22rem;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__passport-await__glyph {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(140, 240, 200, 0.35);
+  box-shadow: 0 0 28px rgba(80, 200, 150, 0.22);
+  background: radial-gradient(circle at 35% 30%, rgba(200, 255, 230, 0.3), transparent 55%);
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__passport-await__hint {
+  margin: 0;
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: rgba(220, 245, 232, 0.82);
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='0'] #mcHero3d.mc-hero3d {
+  display: none !important;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1'] #mcHero3d.mc-hero3d {
+  display: flex !important;
+  position: relative;
+  z-index: 9;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Entrance: start hidden, then animate when data-mc-hero-passport-anim-ready is set (after paint) */
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1'] #mcHero3d .mc-hero-card-entrance {
+  visibility: visible !important;
+  pointer-events: auto !important;
+  opacity: 0;
+  transform: translate3d(0, 28px, 0) scale(0.94);
+  filter: blur(5px);
+  transition:
+    opacity 0.58s cubic-bezier(0.2, 0.78, 0.2, 1),
+    transform 0.68s cubic-bezier(0.18, 0.82, 0.22, 1),
+    filter 0.55s ease;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1'][data-mc-hero-passport-anim-ready='1']
+  #mcHero3d
+  .mc-hero-card-entrance {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  filter: blur(0);
+}
+
+/* Overrides UI.html rule that forces entrance visible whenever Three.js is active */
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='0'] #mcHero3d .mc-hero-card-entrance {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__passport-await {
+    transition: opacity 0.25s ease, visibility 0s linear 0.22s;
+  }
+
+  #mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1'] #mcHero3d .mc-hero-card-entrance {
+    filter: none !important;
+    transition: opacity 0.22s ease !important;
+  }
+
+  #mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-demo-stage='linking'] .mc-earth-hero-bg__globe-wrap--menu {
+    filter: none;
+    box-shadow: none;
+  }
+}
+
+/* Card shell: dim / lift on region switch (Stage B out) */
+#mcWelcomeHero[data-mc-earth-menu='1'] #mcHero3dTumbler[data-card-state='leaving'] .specimen-record-card__inner {
+  opacity: 0.62;
+  transform: translateY(10px) scale(0.988);
+  filter: blur(3px);
+  transition:
+    opacity 0.38s cubic-bezier(0.2, 0.75, 0.2, 1),
+    transform 0.44s cubic-bezier(0.18, 0.82, 0.22, 1),
+    filter 0.36s ease;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] #mcHero3dTumbler[data-card-state='ready'] .specimen-record-card__inner {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition:
+    opacity 0.48s cubic-bezier(0.2, 0.78, 0.2, 1),
+    transform 0.55s cubic-bezier(0.18, 0.82, 0.22, 1),
+    filter 0.42s ease;
+}
+
+/*
+ * sat-unified caps the showcase column at min(420px, 42vw) ??too narrow for globe + card side-by-side.
+ * Reset row + stage width so the Earth menu reads as a primary control, not a tiny decoration.
+ */
+@media (min-width: 901px) {
+  #mcWelcomeHero[data-mc-earth-menu='1'] .hero-inner.lp-hero__row {
+    grid-template-columns: minmax(280px, 0.82fr) minmax(min(760px, 62vw), 1.45fr) !important;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+  }
+
+  #mcWelcomeHero[data-mc-earth-menu='1'] .lp-hero__stage.lp-hero__stage--showcase,
+  #mcWelcomeHero[data-mc-earth-menu='1'] .c-hero__mediaStage {
+    max-width: none !important;
+    width: 100%;
+  }
+}
+
+/* Left column: headline must stay above atmosphere layers (some builds stack oddly at md widths) */
+#mcWelcomeHero[data-mc-earth-menu='1'] .lp-hero__copy.c-hero__text {
+  position: relative;
+  z-index: 4;
+  min-width: 0;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] #welcomeContentTitle,
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-hero-title.c-hero__h1 {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  color: #faf6ec !important;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-hero-sub.lp-hero__sub {
+  opacity: 1 !important;
+  color: rgba(246, 241, 223, 0.72) !important;
+}
+
+/* Globe + passport share one grid: hotspots stay on the sphere; link SVG maps with JS rects */
+#mcWelcomeHero[data-mc-earth-menu='1'] .lp-hero__stage.lp-hero__stage--showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  overflow: visible;
+  /* Let globe / card z-index sort above the full-bleed link SVG (sibling after this layout) */
+  isolation: auto;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__earth-menu-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.92fr);
+  gap: clamp(16px, 3vw, 36px);
+  align-items: start;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+/* Link layer sits under the grid so it cannot paint over the passport card */
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__earth-link {
+  z-index: 0;
+}
+
+@media (max-width: 900px) {
+  #mcWelcomeHero[data-mc-earth-menu='1'] .mc-earth-hero-bg__globe-wrap--menu {
+    width: min(100%, min(88vw, 440px)) !important;
+  }
+
+  #mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__earth-menu-layout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  #mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__earth-globe-slot {
+    min-height: min(48vmin, 400px);
+  }
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-welcome-hero__earth-globe-slot {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  max-width: 100%;
+  min-height: min(52vmin, 520px);
+  overflow: visible;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-earth-hero-bg__globe-wrap--menu {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  /* Stay inside grid column ??never paint over the passport column */
+  width: min(100%, clamp(380px, 36vw, 560px)) !important;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto !important;
+  margin: 0 auto;
+  flex-shrink: 1;
+  transition:
+    box-shadow 0.55s cubic-bezier(0.2, 0.75, 0.2, 1),
+    filter 0.55s ease !important;
+}
+
+/* Stage A ??hotspot / link: subtle globe focus while signal travels */
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-demo-stage='linking'] .mc-earth-hero-bg__globe-wrap--menu {
+  box-shadow:
+    0 0 0 1px rgba(120, 240, 200, 0.35),
+    0 0 52px rgba(60, 200, 150, 0.28),
+    0 28px 80px rgba(0, 0, 0, 0.35);
+  filter: saturate(1.06);
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-earth-hotspot-pills {
+  margin-top: 2px;
+  position: relative;
+  z-index: 6;
+}
+
+/* WebGL Earth ??canvas sits under hotspot layer (z-index in UI.html); ignore drag (script disables listeners). */
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-earth-hero-bg__three-host {
+  display: block !important;
+  pointer-events: none !important;
+}
+
+/* CSS fallback globe: static (hotspots stay fixed; same as WebGL menu mode) */
+#mcWelcomeHero[data-mc-earth-menu='1']:not([data-mc-earth-three-live='1'])
+  .mc-earth-hero-bg__globe-wrap--menu
+  .mc-earth-hero-bg__globe {
+  animation: none !important;
+  transform: rotate(-12deg) translateZ(0);
+  will-change: auto;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1']:not([data-mc-earth-three-live='1'])
+  .mc-earth-hero-bg__globe-wrap--menu
+  .mc-earth-hero-bg__texture {
+  background-position: 42% 50%;
+  filter: saturate(1.22) brightness(1.18);
+  animation: none !important;
+  will-change: auto;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-earth-hero-bg__orbit--one,
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-earth-hero-bg__orbit--two {
+  animation: none !important;
+}
+
+/* When Three.js hides the CSS sphere, these rules are inert */
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-earth-hero-bg__globe {
+  transform: rotate(-12deg) translateZ(0);
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] .mc-earth-hero-bg__stars {
+  animation: none !important;
+  transform: none !important;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'] #welcomeContentLead,
+#mcWelcomeHero[data-mc-earth-menu='1'] #lpHeroIdea,
+#mcWelcomeHero[data-mc-earth-menu='1'] .lp-hero__modeDek {
+  opacity: 1;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='0'] .mc-welcome-hero__earth-link {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1'] .mc-welcome-hero__earth-link-path {
+  opacity: 0.42;
+  transition: opacity 0.35s ease;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1']:has(#mcHero3dTumbler[data-card-state='switching'])
+  .mc-welcome-hero__earth-link-path {
+  opacity: 0.9;
+  animation: mcWelcomeHeroLinkTravel 1.35s ease-in-out infinite;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1']
+  .mc-welcome-hero__earth-link-node--a,
+#mcWelcomeHero[data-mc-earth-menu='1'][data-mc-hero-passport-revealed='1']
+  .mc-welcome-hero__earth-link-node--b {
+  opacity: 0.88;
+  filter: drop-shadow(0 0 5px rgba(120, 255, 200, 0.5));
+}
+
+#mcWelcomeHero .earth-hotspot.is-preview .earth-hotspot__label,
+#mcWelcomeHero .earth-hotspot.is-preview.is-hovered .earth-hotspot__label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+#mcWelcomeHero .earth-hotspot.is-preview .earth-hotspot__dot {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 0 2px rgba(200, 255, 230, 0.65),
+    0 0 20px rgba(120, 240, 190, 0.55);
+}
+
+#mcWelcomeHero .earth-hotspot.is-preview .earth-hotspot__pulse {
+  opacity: 0.75;
+  border-color: rgba(200, 255, 230, 0.5);
+}
+
+#mcWelcomeHero .earth-hotspot-pill.is-preview {
+  border-color: rgba(200, 255, 230, 0.55);
+  box-shadow: 0 0 14px rgba(100, 220, 170, 0.22);
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1']
+  #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+  .specimen-record-card__photo
+  .mc-hero3d__img {
+  opacity: 0.4 !important;
+  filter: blur(4px) !important;
+  transform: scale(1.02) !important;
+  transition:
+    opacity 0.22s ease,
+    filter 0.22s ease,
+    transform 0.22s ease;
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1']
+  #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+  .specimen-record-card__photo::after {
+  opacity: 1;
+  animation: mcWelcomeHeroScanlineOnce 0.52s ease-out 1 forwards;
+}
+
+@keyframes mcWelcomeHeroScanlineOnce {
+  0% {
+    transform: translateY(-108%);
+  }
+  100% {
+    transform: translateY(108%);
+  }
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1']
+  #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+  .specimen-record-card__photo::before {
+  opacity: 0.28;
+  animation: mcWelcomeHeroShimmerOnce 0.48s ease-out 1 forwards;
+}
+
+@keyframes mcWelcomeHeroShimmerOnce {
+  0% {
+    transform: translateX(-55%);
+  }
+  100% {
+    transform: translateX(55%);
+  }
+}
+
+#mcWelcomeHero[data-mc-earth-menu='1']
+  #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+  .specimen-record-card__identity,
+#mcWelcomeHero[data-mc-earth-menu='1']
+  #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+  .specimen-record-card__meta
+  > div,
+#mcWelcomeHero[data-mc-earth-menu='1']
+  #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+  .specimen-record-card__steps,
+#mcWelcomeHero[data-mc-earth-menu='1']
+  #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+  .specimen-record-card__export,
+#mcWelcomeHero[data-mc-earth-menu='1']
+  #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+  .specimen-record-card__registry {
+  opacity: 0.5 !important;
+  filter: blur(0.35px);
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcWelcomeHero[data-mc-earth-menu='1']:not([data-mc-earth-three-live='1'])
+    .mc-earth-hero-bg__globe-wrap--menu
+    .mc-earth-hero-bg__globe,
+  #mcWelcomeHero[data-mc-earth-menu='1']:not([data-mc-earth-three-live='1'])
+    .mc-earth-hero-bg__globe-wrap--menu
+    .mc-earth-hero-bg__texture {
+    animation: none !important;
+  }
+
+  #mcWelcomeHero[data-mc-earth-menu='1']:has(#mcHero3dTumbler[data-card-state='switching'])
+    .mc-welcome-hero__earth-link-path {
+    animation: none !important;
+    opacity: 0.52 !important;
+  }
+
+  #mcWelcomeHero[data-mc-earth-menu='1']
+    #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+    .specimen-record-card__photo::after,
+  #mcWelcomeHero[data-mc-earth-menu='1']
+    #mcHero3dTumbler.specimen-passport-demo[data-card-state='switching']
+    .specimen-record-card__photo::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}

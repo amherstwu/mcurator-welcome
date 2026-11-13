@@ -1,0 +1,182 @@
+/**
+ * Hero v2 — fan deck layout (card chrome: mc-hero-passport-ref.css).
+ */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck {
+  display: block !important;
+  position: relative;
+  z-index: 6;
+  margin-left: auto;
+  margin-right: auto;
+  width: min(100%, var(--hero-deck-span, calc(var(--hero-passport-card-w, 479.57px) + 380px)));
+  height: min(100%, calc(var(--hero-passport-card-h, 714.09px) + 40px));
+  min-height: calc(var(--hero-passport-card-h, 714.09px) + 24px);
+  padding: clamp(8px, 1.2vh, 16px) 0;
+  box-sizing: border-box;
+  perspective: 2400px;
+  perspective-origin: 50% 44%;
+  transform-style: preserve-3d;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-cutting > .mc-passport-card,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-cutting > .mc-hero-passport-flip {
+  transition-duration: 780ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Specimen handoff — background cards fade (never snap to invisible). */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-deck-handoff > .mc-passport-card--deck-back {
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s ease,
+    box-shadow 0.55s ease;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-deck-handoff > .mc-passport-card--deck-back.is-handoff-dim {
+  opacity: 0.58 !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-deck-handoff > .mc-passport-card--deck-back.is-handoff-promote {
+  opacity: 1 !important;
+  z-index: 28;
+  filter: brightness(1) saturate(1) !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-deck-handoff > .mc-hero-passport-flip.is-handoff-lead {
+  transition:
+    opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.48s ease;
+  opacity: 0.55;
+  filter: blur(2px);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-deck-handoff.is-deck-handoff-swap > .mc-hero-passport-flip.is-handoff-lead {
+  opacity: 1;
+  filter: none;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card.mc-passport-card--front,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-hero-passport-flip {
+  position: absolute;
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  width: var(--hero-passport-card-w, 479.57px);
+  height: var(--hero-passport-card-h, 714.09px);
+  min-height: var(--hero-passport-card-h, 714.09px);
+  max-height: var(--hero-passport-card-h, 714.09px);
+  aspect-ratio: 479.57 / 714.09;
+  margin: 0;
+  transform-style: preserve-3d;
+  transition:
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 680ms ease,
+    box-shadow 680ms ease;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-hero-passport-flip {
+  opacity: 1 !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card[data-deck-depth],
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card--deck-back {
+  opacity: 1 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card[data-deck-side='left'][data-deck-depth='1'] {
+  z-index: 22;
+  filter: brightness(0.92) saturate(0.96);
+  transform: translate(-50%, -50%) translate3d(calc(-1 * var(--hero-deck-offset-1, 124px)), 22px, -64px)
+    rotateX(2deg) rotateY(14deg) rotateZ(-3deg) scale(0.9);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card[data-deck-side='left'][data-deck-depth='2'] {
+  z-index: 16;
+  filter: brightness(0.86) saturate(0.92);
+  transform: translate(-50%, -50%) translate3d(calc(-1 * var(--hero-deck-offset-2, 178px)), 38px, -112px)
+    rotateX(3deg) rotateY(18deg) rotateZ(-5deg) scale(0.85);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card[data-deck-side='right'][data-deck-depth='1'] {
+  z-index: 22;
+  filter: brightness(0.92) saturate(0.96);
+  transform: translate(-50%, -50%) translate3d(var(--hero-deck-offset-1, 124px), 24px, -64px)
+    rotateX(2deg) rotateY(-12deg) rotateZ(3deg) scale(0.9);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card[data-deck-side='right'][data-deck-depth='2'] {
+  z-index: 16;
+  filter: brightness(0.86) saturate(0.92);
+  transform: translate(-50%, -50%) translate3d(var(--hero-deck-offset-2, 178px), 40px, -112px)
+    rotateX(3deg) rotateY(-16deg) rotateZ(5deg) scale(0.85);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card--deck-back:hover {
+  filter: brightness(0.98) saturate(1);
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-hero-passport-flip {
+  z-index: 30;
+  transform: translate(-50%, calc(-50% - 8px)) rotateX(-1deg) rotateY(-5deg);
+  cursor: pointer;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-hero-passport-flip .mc-hero-passport-flip__tilt,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-hero-passport-flip .mc-hero-passport-flip__inner {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+@keyframes mcHeroDeckLeadFloat {
+  0%,
+  100% {
+    transform: translate(-50%, calc(-50% - 8px)) rotateX(-1deg) rotateY(-5deg);
+  }
+  50% {
+    transform: translate(-50%, calc(-50% - 12px)) rotateX(-1deg) rotateY(-5deg);
+  }
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3']:not(.is-hero-entered) .mc-hero-card-deck > .mc-hero-passport-flip.is-active {
+  animation: none !important;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-hero-passport-flip.is-active:not([data-card-face='back']):not(.is-hover-lift) {
+  animation: mcHeroDeckLeadFloat 7s ease-in-out infinite;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-card-deck > .mc-hero-passport-flip.is-active:not([data-card-face='back']):not(.is-hover-lift) {
+  animation: mcHeroDeckLeadFloat 7s ease-in-out 1.15s infinite;
+}
+
+@media (max-width: 900px) {
+  #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck {
+    margin-right: 0;
+    width: 100%;
+    height: min(100%, calc(var(--hero-passport-card-h, 714.09px) + 32px));
+  }
+
+  #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card[data-deck-side='left'][data-deck-depth='2'],
+  #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-passport-card[data-deck-side='right'][data-deck-depth='2'] {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck > .mc-hero-passport-flip.is-active {
+    animation: none;
+  }
+
+  #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-deck-handoff > .mc-hero-passport-flip.is-handoff-lead {
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'] .mc-hero-card-deck.is-deck-handoff > .mc-passport-card--deck-back.is-handoff-dim {
+    opacity: 1 !important;
+  }
+}
