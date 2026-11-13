@@ -2443,8 +2443,6 @@
     hero.setAttribute('data-hero-entrance', 'done');
   }
 
-  var HERO_ENTRANCE_FAILSAFE_MS = 2600;
-
   function initHeroEntrance_(hero) {
     if (!hero) return;
     if (hero.getAttribute('data-hero-entrance') === 'done') return;
@@ -2460,7 +2458,7 @@
 
     var failsafe = window.setTimeout(function () {
       ensureHeroVisible_(hero);
-    }, HERO_ENTRANCE_FAILSAFE_MS);
+    }, 8000);
 
     function finishEntrance_() {
       hero.classList.add('is-hero-entered');
@@ -2468,15 +2466,43 @@
       window.setTimeout(function () {
         hero.classList.remove('is-hero-entrance-running');
         window.clearTimeout(failsafe);
-      }, 1280);
+      }, 1600);
+    }
+
+    function whenLandingUncovered_(callback) {
+      var html = document.documentElement;
+      var fired = false;
+      function go() {
+        if (fired) return;
+        fired = true;
+        window.clearTimeout(giveUp);
+        if (observer) observer.disconnect();
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(callback);
+        });
+      }
+      function covered() {
+        return html.classList.contains('mc-boot-active') || !!document.getElementById('mcBootSplash');
+      }
+      var observer = null;
+      var giveUp = window.setTimeout(go, 7000);
+      if (!covered()) {
+        go();
+        return;
+      }
+      observer = new MutationObserver(function () {
+        if (!covered()) go();
+      });
+      observer.observe(html, {
+        attributes: true,
+        attributeFilter: ['class'],
+        childList: true,
+        subtree: true
+      });
     }
 
     function scheduleEntrance_() {
-      window.requestAnimationFrame(function () {
-        window.requestAnimationFrame(function () {
-          window.setTimeout(finishEntrance_, 36);
-        });
-      });
+      whenLandingUncovered_(finishEntrance_);
     }
 
     if (document.fonts && document.fonts.ready) {

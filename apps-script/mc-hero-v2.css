@@ -2237,11 +2237,20 @@ html:not(.mc-entered):has(#mcWelcomeHero[data-hero-version='passport-hero-rebuil
 }
 
 #mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2 {
-  animation: mcHeroEntranceFadeIn 920ms var(--hero-entrance-ease) both;
+  animation: mcHeroEntranceFadeIn 1400ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 html:not(.mc-entered):has(#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered) [data-global-header] {
-  animation: mcHeroEntranceFadeIn 920ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: mcHeroEntranceFadeIn 1400ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Boot splash covers the page with visibility:hidden. Freeze the scene until it lifts,
+   otherwise the fade finishes underneath and the uncover looks like a hard cut. */
+html.mc-boot-active #mcWelcomeHero .mc-hero-v2,
+html.mc-boot-active #mcWelcomeHero .mc-product-nav,
+html.mc-boot-active [data-global-header] {
+  opacity: 0 !important;
+  animation: none !important;
 }
 
 /* Hide pieces only once JS adds .is-hero-entrance-running, before .is-hero-entered. */
@@ -2399,6 +2408,31 @@ html:not(.mc-entered):has(#mcWelcomeHero[data-hero-version='passport-hero-rebuil
   animation:
     mcHeroLeadEntrance 920ms var(--hero-entrance-ease) both,
     mcPassportCardFloat 7s ease-in-out 920ms infinite;
+}
+
+/* First reveal stays in place. Slide, scale, and card-fly entrances read as a jump. */
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__stars,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__cardBloom,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__badge,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__title,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__lead,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__btn,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__specimenNav,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__usp li,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__visual,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__stageShadow,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__hotspot,
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-passport-card--deck-back[data-deck-depth='1'],
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-passport-card--deck-back[data-deck-depth='2'] {
+  animation: none;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-hero-v2__earth {
+  animation: mcHeroEarthDrift 22s ease-in-out 1.4s infinite;
+}
+
+#mcWelcomeHero[data-hero-version='passport-hero-rebuild-v3'].is-hero-entered .mc-passport-card[data-deck-depth='0'] {
+  animation: mcPassportCardFloat 7s ease-in-out 1.4s infinite;
 }
 
 /* English locales — Inter sentence case (en-001 / en-US / en-GB) */

@@ -6286,31 +6286,114 @@
     applyProvenanceFieldSelection(next.getAttribute('data-select-provenance'), next);
   }
 
+  var SCENE_CROSSFADE_MS = 780;
+
+  function clearPinnedLayout(element) {
+    var nodes = [element].concat(Array.prototype.slice.call(element.querySelectorAll('[data-mcwf-pinned]')));
+    nodes.forEach(function (node) {
+      if (!node || node.getAttribute('data-mcwf-pinned') !== '1') return;
+      node.removeAttribute('data-mcwf-pinned');
+      node.style.position = '';
+      node.style.left = '';
+      node.style.top = '';
+      node.style.width = '';
+      node.style.height = '';
+      node.style.right = '';
+      node.style.bottom = '';
+      node.style.margin = '';
+      node.style.transform = '';
+      node.style.transition = '';
+      node.style.maxWidth = '';
+      node.style.maxHeight = '';
+      node.style.zIndex = '';
+      node.style.pointerEvents = '';
+    });
+  }
+
+  function fixedContainingOrigin(el) {
+    var node = el.parentElement;
+    while (node && node !== document.documentElement) {
+      var style = window.getComputedStyle(node);
+      if (style.transform !== 'none' || style.perspective !== 'none' || style.filter !== 'none' || style.contain === 'paint') {
+        return node.getBoundingClientRect();
+      }
+      node = node.parentElement;
+    }
+    return { left: 0, top: 0 };
+  }
+
+  function pinLeavingScene(frame) {
+    var cardSelector = '.mcwf-discipline-pick, .mc-stage-photo-option, .mcwf-mini, .mcwf-hero-backdrop, .mcwf-panel, .mcwf-thumbs button, .mcwf-capabilities button';
+    Array.prototype.forEach.call(frame.querySelectorAll('.mcwf-live-layer.is-active, .mcwf-story-panel.is-active'), function (el) {
+      var cards = el.querySelectorAll(cardSelector);
+      var cardRects = Array.prototype.map.call(cards, function (card) {
+        return card.getBoundingClientRect();
+      });
+      var layerRect = el.getBoundingClientRect();
+      if (layerRect.width < 1 && layerRect.height < 1) return;
+      var origin = fixedContainingOrigin(el);
+      el.setAttribute('data-mcwf-pinned', '1');
+      el.style.position = 'fixed';
+      el.style.left = (layerRect.left - origin.left) + 'px';
+      el.style.top = (layerRect.top - origin.top) + 'px';
+      el.style.width = layerRect.width + 'px';
+      el.style.height = layerRect.height + 'px';
+      el.style.right = 'auto';
+      el.style.bottom = 'auto';
+      el.style.margin = '0';
+      el.style.transform = 'none';
+      el.style.transition = 'opacity 780ms cubic-bezier(0.4, 0, 0.2, 1)';
+      el.style.maxWidth = 'none';
+      el.style.maxHeight = 'none';
+      el.style.zIndex = '40';
+      el.style.pointerEvents = 'none';
+      Array.prototype.forEach.call(cards, function (card, index) {
+        var rect = cardRects[index];
+        if (!rect || (rect.width < 1 && rect.height < 1)) return;
+        card.setAttribute('data-mcwf-pinned', '1');
+        card.style.position = 'absolute';
+        card.style.left = (rect.left - layerRect.left) + 'px';
+        card.style.top = (rect.top - layerRect.top) + 'px';
+        card.style.width = rect.width + 'px';
+        card.style.height = rect.height + 'px';
+        card.style.right = 'auto';
+        card.style.bottom = 'auto';
+        card.style.margin = '0';
+        card.style.transform = 'none';
+        card.style.transition = 'opacity 780ms cubic-bezier(0.4, 0, 0.2, 1)';
+        card.style.maxWidth = 'none';
+        card.style.maxHeight = 'none';
+      });
+    });
+  }
+
   function transitionElementSet(selector, stageIndex) {
     Array.prototype.forEach.call(workflowState.frame.querySelectorAll(selector), function (element) {
       var active = Number(element.getAttribute(selector === '[data-layer]' ? 'data-layer' : 'data-copy')) === stageIndex;
       window.clearTimeout(element._mcwfHideTimer);
       if (active) {
+        clearPinnedLayout(element);
         element.classList.remove('is-hidden', 'is-leaving', 'is-active');
         element.classList.add('is-entering');
+        void element.offsetWidth;
         window.requestAnimationFrame(function () {
-          element.classList.remove('is-entering');
-          element.classList.add('is-active');
+          window.requestAnimationFrame(function () {
+            if (!element.classList.contains('is-entering')) return;
+            element.classList.remove('is-entering');
+            element.classList.add('is-active');
+          });
         });
         return;
       }
       if (element.classList.contains('is-active') || element.classList.contains('is-entering')) {
         element.classList.remove('is-active', 'is-entering');
-        if (selector === '[data-copy]') {
-          element.classList.add('is-hidden');
-          return;
-        }
         element.classList.add('is-leaving');
         element._mcwfHideTimer = window.setTimeout(function () {
           element.classList.remove('is-leaving');
           element.classList.add('is-hidden');
-        }, 920);
-      } else {
+          clearPinnedLayout(element);
+        }, SCENE_CROSSFADE_MS);
+      } else if (!element.classList.contains('is-leaving')) {
         element.classList.add('is-hidden');
       }
     });
@@ -6367,13 +6450,13 @@
           window.setTimeout(function () {
             nextBody.classList.remove('is-content-swap-settled');
             workflowState.front.classList.remove('is-content-fading');
-          }, 420);
+          }, 560);
         });
       } else {
         workflowState.front.classList.remove('is-content-fading');
         triggerCardReveal(displayedProgress(stage), priorProgress || 0);
       }
-    }, 220);
+    }, 420);
   }
 
   function separateSidePanelsFromCard() {
@@ -6429,6 +6512,9 @@
     } else if (stageChanged && !workflowState.specimenTouched) {
       workflowState.selectedSpecimenId = 'kaniska-canace';
       syncTaxonomyFromSpecimen(specimenById(workflowState.selectedSpecimenId));
+    }
+    if (stageChanged && !immediate && workflowState.index >= 0 && workflowState.frame) {
+      pinLeavingScene(workflowState.frame);
     }
     if (workflowState.index >= 0) workflowState.frame.classList.remove('stage-0' + (workflowState.index + 1));
     workflowState.index = next;
@@ -6584,20 +6670,55 @@
       return;
     }
     var revealed = false;
+    function reveal() {
+      root.classList.remove('is-scene-hold');
+      if (root.classList.contains('is-scene-fade')) {
+        root.classList.remove('is-scene-fade');
+        void root.offsetWidth;
+      }
+      root.classList.add('is-scene-fade');
+    }
+    function whenUncovered(callback) {
+      var html = document.documentElement;
+      function covered() {
+        return html.classList.contains('mc-boot-active') || !!document.getElementById('mcBootSplash');
+      }
+      if (!covered()) {
+        callback();
+        return;
+      }
+      var done = false;
+      function go() {
+        if (done || covered()) return;
+        done = true;
+        observer.disconnect();
+        window.clearTimeout(giveUp);
+        callback();
+      }
+      var observer = new MutationObserver(go);
+      var giveUp = window.setTimeout(function () {
+        done = true;
+        observer.disconnect();
+        callback();
+      }, 7000);
+      observer.observe(html, {
+        attributes: true,
+        attributeFilter: ['class'],
+        childList: true,
+        subtree: true
+      });
+    }
     var observer = new IntersectionObserver(function (entries) {
       if (revealed) return;
       var visible = false;
       entries.forEach(function (entry) {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.22) visible = true;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) visible = true;
       });
       if (!visible) return;
       revealed = true;
       observer.disconnect();
-      window.requestAnimationFrame(function () {
-        root.classList.remove('is-scene-hold');
-        root.classList.add('is-scene-fade');
-      });
-    }, { threshold: [0, 0.22, 0.4] });
+      whenUncovered(reveal);
+    }, { threshold: [0, 0.35, 0.6] });
     observer.observe(sticky);
   }
 
