@@ -110,6 +110,35 @@ html.mc-boot-active .mc-workflow-screenshot-rebuild .mcwf-sticky {
   opacity: 0 !important;
   animation: none !important;
 }
+/* Stage-to-stage cinema: fade the stage layer only. Opacity stays off ancestors of .mcwf-sticky. */
+.mc-workflow-screenshot-rebuild .mcwf-stage.is-stage-swap {
+  animation: mcwfStageSwapFade 620ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.mc-workflow-screenshot-rebuild .mcwf-stage.is-stage-swap * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+.mc-workflow-screenshot-rebuild .mcwf-stage.mcwf-stage-ghost {
+  position: absolute;
+  z-index: 6;
+  margin: 0;
+  pointer-events: none;
+  animation: none;
+}
+.mc-workflow-screenshot-rebuild .mcwf-stage.mcwf-stage-ghost.is-ghost-fade {
+  animation: mcwfStageSwapFadeOut 620ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.mc-workflow-screenshot-rebuild .mcwf-stage.mcwf-stage-ghost * {
+  transition: none !important;
+}
+@keyframes mcwfStageSwapFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes mcwfStageSwapFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 .mc-workflow-screenshot-rebuild .mcwf-stage {
   width: min(1340px, calc(100vw - 42px));
   height: min(720px, calc(100vh - var(--mcwf-nav-offset) - 16px));
@@ -125,7 +154,6 @@ html.mc-boot-active .mc-workflow-screenshot-rebuild .mcwf-sticky {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   background: transparent;
-  transition: opacity 880ms cubic-bezier(.22, 1, .36, 1);
 }
 .mc-workflow-screenshot-rebuild .mcwf-stage.stage-01 {
   overflow: visible;
@@ -5035,6 +5063,12 @@ html.ui-layout-mobile .mcwf-phone-pager {
   .mc-workflow-screenshot-rebuild.is-scene-fade .mcwf-sticky {
     opacity: 1 !important;
     pointer-events: auto;
+    animation: none !important;
+  }
+  .mc-workflow-screenshot-rebuild .mcwf-stage.is-stage-swap,
+  .mc-workflow-screenshot-rebuild .mcwf-stage.mcwf-stage-ghost,
+  .mc-workflow-screenshot-rebuild .mcwf-stage.mcwf-stage-ghost.is-ghost-fade {
+    opacity: 1 !important;
     animation: none !important;
   }
   .mc-workflow-screenshot-rebuild .mcwf-prov-scroll {

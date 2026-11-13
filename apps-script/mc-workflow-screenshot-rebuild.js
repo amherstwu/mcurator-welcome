@@ -6415,6 +6415,120 @@
     }, waitForCard ? 820 : 48);
   }
 
+  var STAGE_SWAP_MS = 620;
+
+  function workflowMotionReduced() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
+  function workflowBootCovered() {
+    var html = document.documentElement;
+    return html.classList.contains('mc-boot-active') || !!document.getElementById('mcBootSplash');
+  }
+
+  function canCrossfadeStages() {
+    if (workflowMotionReduced() || workflowBootCovered()) return false;
+    if (workflowState.root && workflowState.root.classList.contains('is-scene-hold')) return false;
+    return true;
+  }
+
+  function clearStageGhost(sticky) {
+    if (!sticky) return;
+    var previous = sticky.querySelector('.mcwf-stage-ghost');
+    if (!previous) return;
+    if (previous._mcwfGhostTimer) window.clearTimeout(previous._mcwfGhostTimer);
+    if (previous.parentNode) previous.parentNode.removeChild(previous);
+  }
+
+  function freezeGhostMotion(source, ghost) {
+    var selector = '.mcwf-card-float, .mcwf-card-sway-wrap, .mcwf-hero-deck__row';
+    var liveNodes = source.querySelectorAll(selector);
+    var ghostNodes = ghost.querySelectorAll(selector);
+    Array.prototype.forEach.call(liveNodes, function (node, index) {
+      var twin = ghostNodes[index];
+      if (!twin) return;
+      var computed = window.getComputedStyle(node);
+      if (computed.transform && computed.transform !== 'none') twin.style.transform = computed.transform;
+      twin.style.animation = 'none';
+    });
+  }
+
+  function mountStageGhost(stageEl) {
+    var sticky = stageEl && stageEl.parentElement;
+    if (!sticky) return null;
+    clearStageGhost(sticky);
+    var box = stageEl.getBoundingClientRect();
+    if (!box.width || !box.height) return null;
+    var ghost = stageEl.cloneNode(true);
+    ghost.removeAttribute('id');
+    ghost.classList.remove('is-stage-swap');
+    ghost.classList.add('mcwf-stage-ghost');
+    ghost.setAttribute('aria-hidden', 'true');
+    ghost.setAttribute('inert', '');
+    Array.prototype.forEach.call(ghost.querySelectorAll('[id]'), function (node) {
+      node.removeAttribute('id');
+    });
+    freezeGhostMotion(stageEl, ghost);
+    var stickyBox = sticky.getBoundingClientRect();
+    ghost.style.left = (box.left - stickyBox.left) + 'px';
+    ghost.style.top = (box.top - stickyBox.top) + 'px';
+    ghost.style.width = box.width + 'px';
+    ghost.style.height = box.height + 'px';
+    ghost.style.margin = '0';
+    sticky.appendChild(ghost);
+    return ghost;
+  }
+
+  function animationPaused(node) {
+    if (!node || !node.getAnimations) return false;
+    var anims = node.getAnimations();
+    for (var i = 0; i < anims.length; i++) {
+      if (anims[i].playState === 'paused') return true;
+    }
+    return false;
+  }
+
+  function releaseStageGhost(ghost) {
+    if (!ghost) return;
+    function drop(event) {
+      if (event && event.target !== ghost) return;
+      if (!event && animationPaused(ghost)) return;
+      if (ghost._mcwfGhostTimer) window.clearTimeout(ghost._mcwfGhostTimer);
+      ghost.removeEventListener('animationend', drop);
+      if (ghost.parentNode) ghost.parentNode.removeChild(ghost);
+    }
+    ghost.addEventListener('animationend', drop);
+    ghost._mcwfGhostTimer = window.setTimeout(function () { drop(null); }, 8000);
+  }
+
+  function restartStageSwapFade(stageEl) {
+    if (!stageEl) return;
+    if (workflowMotionReduced() || workflowBootCovered()) {
+      stageEl.classList.remove('is-stage-swap');
+      return;
+    }
+    workflowState.swapFadeToken = (workflowState.swapFadeToken || 0) + 1;
+    var token = workflowState.swapFadeToken;
+    if (stageEl._mcwfSwapFinish) {
+      stageEl.removeEventListener('animationend', stageEl._mcwfSwapFinish);
+      stageEl._mcwfSwapFinish = null;
+    }
+    stageEl.classList.remove('is-stage-swap');
+    void stageEl.offsetWidth;
+    stageEl.classList.add('is-stage-swap');
+    function finish(event) {
+      if (event && event.target !== stageEl) return;
+      if (workflowState.swapFadeToken !== token) return;
+      if (!event && animationPaused(stageEl)) return;
+      stageEl.classList.remove('is-stage-swap');
+      stageEl.removeEventListener('animationend', finish);
+      if (stageEl._mcwfSwapFinish === finish) stageEl._mcwfSwapFinish = null;
+    }
+    stageEl._mcwfSwapFinish = finish;
+    stageEl.addEventListener('animationend', finish);
+    window.setTimeout(function () { finish(null); }, 8000);
+  }
+
   function updateMCuratorWorkflowStage(stageIndex, immediate) {
     if (!workflowState.frame || !workflowState.card) return;
     var next = clamp(Math.round(stageIndex), 0, mcuratorWorkflowStages.length - 1);
@@ -6422,6 +6536,9 @@
     var stage = mcuratorWorkflowStages[next];
     var previous = workflowState.index >= 0 ? mcuratorWorkflowStages[workflowState.index] : stage;
     var stageChanged = workflowState.index !== next;
+    var crossfade = stageChanged && !immediate && canCrossfadeStages();
+    var stageGhost = crossfade ? mountStageGhost(workflowState.frame) : null;
+    if (crossfade) workflowState.frame.classList.add('is-stage-swap');
     if (stageChanged && next === 2) {
       workflowState.selectedSpecimenId = defaultPhotoSpecimenId(workflowState.selectedDiscipline);
       syncTaxonomyFromSpecimen(specimenById(workflowState.selectedSpecimenId));
@@ -6456,7 +6573,7 @@
       }
     }
     applyCardTransform();
-    transitionFrontFace(stage, !!immediate, previous.progress);
+    transitionFrontFace(stage, !!immediate || crossfade, previous.progress);
     refreshInteractivePanels();
     transitionElementSet('[data-layer]', next);
     transitionElementSet('[data-copy]', next);
@@ -6471,6 +6588,13 @@
       dot.classList.toggle('active', index === next);
     });
     schedulePanelClearance(!immediate);
+    if (crossfade) {
+      if (stageGhost) {
+        stageGhost.classList.add('is-ghost-fade');
+        releaseStageGhost(stageGhost);
+      }
+      restartStageSwapFade(workflowState.frame);
+    }
   }
 
   function findScrollParent(element) {
