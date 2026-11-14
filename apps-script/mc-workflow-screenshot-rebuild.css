@@ -2075,19 +2075,20 @@ html.mc-boot-active .mc-workflow-screenshot-rebuild .mcwf-sticky {
 }
 .mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch {
   z-index: 12;
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
-  max-width: 44px;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  max-width: 52px;
   padding: 0;
-  border: 1px solid rgba(120, 176, 255, 0.55);
+  border: 0;
   border-radius: 50%;
-  background: #05080d;
-  color: #d7e7ff;
-  box-shadow: 0 0 14px rgba(70, 140, 255, 0.38), inset 0 0 0 1px rgba(8, 16, 28, 0.8);
+  background: transparent;
+  color: #e8f4ff;
+  box-shadow: none;
   overflow: visible;
   animation: mc-time-rewind-float 3.4s ease-in-out infinite;
+  transition: transform 180ms ease;
 }
 @media (min-width: 768px) {
   .mc-workflow-screenshot-rebuild .mcwf-stage.stage-05 .mcwf-time-restore.is-age-launch {
@@ -2099,13 +2100,13 @@ html.mc-boot-active .mc-workflow-screenshot-rebuild .mcwf-sticky {
   content: "";
   display: block;
   position: absolute;
-  right: calc(100% + 6px);
+  right: calc(100% + 8px);
   top: 50%;
-  width: 22px;
-  height: 2px;
+  width: 28px;
+  height: 1px;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(168, 206, 255, 0.95));
-  box-shadow: 0 0 8px rgba(90, 160, 255, 0.75);
+  background: linear-gradient(90deg, transparent, rgba(154, 214, 255, 0.15) 35%, rgba(200, 230, 255, 0.95));
+  box-shadow: 0 0 10px rgba(110, 180, 255, 0.55);
   transform: translateY(-50%);
   pointer-events: none;
   animation: mc-time-rewind-trail 2.2s ease-in-out infinite;
@@ -2113,40 +2114,90 @@ html.mc-boot-active .mc-workflow-screenshot-rebuild .mcwf-sticky {
 .mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch::after {
   content: "";
   position: absolute;
-  inset: -5px;
+  inset: -7px;
   border-radius: 50%;
-  border: 1px solid rgba(150, 196, 255, 0.72);
-  box-shadow: 0 0 12px rgba(90, 160, 255, 0.45);
+  border: 1px solid rgba(160, 210, 255, 0.45);
+  box-shadow: 0 0 0 1px rgba(201, 178, 122, 0.12), 0 0 18px rgba(90, 160, 255, 0.28);
   pointer-events: none;
-  animation: mc-time-rewind-pulse 2.4s ease-out infinite;
+  animation: mc-time-rewind-pulse 2.8s ease-out infinite;
+}
+.mc-workflow-screenshot-rebuild .mc-time-rewind__orb {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(210, 240, 255, 0.28), transparent 42%),
+    radial-gradient(circle at 70% 78%, rgba(201, 178, 122, 0.16), transparent 48%),
+    linear-gradient(160deg, rgba(18, 36, 58, 0.96), rgba(4, 10, 18, 0.98));
+  border: 1px solid rgba(168, 206, 255, 0.55);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(8, 16, 28, 0.85) inset,
+    0 0 22px rgba(80, 150, 255, 0.32),
+    inset 0 1px 0 rgba(220, 240, 255, 0.22);
+  pointer-events: none;
 }
 .mc-workflow-screenshot-rebuild .mc-time-rewind__cue {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 22px;
+  padding: 5px 11px;
+  border: 1px solid rgba(186, 220, 255, 0.42);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(18, 36, 56, 0.96), rgba(8, 16, 28, 0.94));
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4), 0 0 14px rgba(80, 150, 255, 0.18), inset 0 1px 0 rgba(230, 245, 255, 0.18);
   font: 600 10px/1.2 "Noto Sans TC", "Segoe UI", sans-serif;
-  letter-spacing: 0.08em;
-  color: rgba(186, 214, 255, 0.92);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f2f7ff;
   white-space: nowrap;
   pointer-events: none;
-  text-shadow: 0 1px 6px rgba(4, 10, 20, 0.85);
+  text-shadow: 0 0 10px rgba(120, 190, 255, 0.45), 0 1px 6px rgba(4, 12, 24, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .mc-workflow-screenshot-rebuild .mc-time-rewind__mark {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
   border-radius: 50%;
   pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(130, 200, 255, 0.55));
 }
 .mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:hover,
 .mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:focus-visible {
-  border-color: rgba(168, 206, 255, 0.95);
-  background: #071018;
-  box-shadow: 0 0 22px rgba(90, 160, 255, 0.72);
-  outline: 2px solid rgba(150, 196, 255, 0.95);
-  outline-offset: 3px;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+}
+.mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:hover .mc-time-rewind__orb,
+.mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:focus-visible .mc-time-rewind__orb {
+  border-color: rgba(200, 230, 255, 0.92);
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(8, 16, 28, 0.85) inset,
+    0 0 28px rgba(100, 170, 255, 0.55),
+    inset 0 1px 0 rgba(230, 245, 255, 0.3);
+}
+.mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:focus-visible .mc-time-rewind__orb {
+  outline: 2px solid rgba(180, 215, 255, 0.95);
+  outline-offset: 4px;
+}
+.mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:hover .mc-time-rewind__cue,
+.mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:focus-visible .mc-time-rewind__cue {
+  border-color: rgba(200, 230, 255, 0.48);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 14px rgba(90, 160, 255, 0.22);
 }
 .mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:hover .mc-time-rewind__mark,
 .mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch:focus-visible .mc-time-rewind__mark {
@@ -2176,9 +2227,9 @@ html.mc-boot-active .mc-workflow-screenshot-rebuild .mcwf-sticky {
   50% { transform: translate3d(0, -3px, 0) rotate(-2deg); }
 }
 @keyframes mc-time-rewind-pulse {
-  0% { transform: scale(0.88); opacity: 0.75; }
-  70% { transform: scale(1.38); opacity: 0; }
-  100% { transform: scale(1.38); opacity: 0; }
+  0% { transform: scale(0.92); opacity: 0.7; }
+  70% { transform: scale(1.42); opacity: 0; }
+  100% { transform: scale(1.42); opacity: 0; }
 }
 @keyframes mc-time-rewind-trail {
   0%, 100% { opacity: 0.35; transform: translateY(-50%) translateX(4px); }
@@ -4902,10 +4953,10 @@ html.ui-layout-mobile .mcwf-phone-pager {
   }
 
   .mc-workflow-screenshot-rebuild .mcwf-time-restore.is-age-launch {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    max-width: 44px;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    max-width: 52px;
     margin: 12px auto 0;
   }
 
@@ -4950,11 +5001,11 @@ html.ui-layout-mobile .mcwf-phone-pager {
     right: 10px;
     top: 112px;
     margin: 0;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    max-width: 44px;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    min-height: 52px;
+    max-width: 52px;
   }
 
   .mc-workflow-screenshot-rebuild .mcwf-stage.stage-05 .mc-time-rewind__cue {

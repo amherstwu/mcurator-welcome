@@ -2795,7 +2795,8 @@
   }
 
   function originSurfaceForModule(module) {
-    if (module === 'exhibition' || module === 'home') return 'immersive';
+    /* Explore home shares the paper museum surface with ATLAS / PULSE. */
+    if (module === 'exhibition') return 'immersive';
     if (
       module === 'studio' ||
       module === 'my' ||
@@ -2817,7 +2818,7 @@
     var state = loadState();
     var signed = isSignedIn();
     var landing = parsed.module === 'home';
-    var surface = originSurfaceForModule(parsed.module);
+    var surface = landing ? 'paper' : originSurfaceForModule(parsed.module);
     if (parsed.module === 'atlas' && !parsed.specimenId) {
       try {
         var remembered = loadState();

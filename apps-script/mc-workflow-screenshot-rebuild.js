@@ -3628,7 +3628,28 @@
   }
 
   function timeMachineIconMarkup() {
-    return '<img class="mc-time-rewind__mark" src="' + WORKFLOW_PALEO_IMAGE_BASE + 'time-rewind-mark.jpg" alt="" width="44" height="44" decoding="async">';
+    return '<span class="mc-time-rewind__orb" aria-hidden="true">' +
+      '<svg class="mc-time-rewind__mark" viewBox="0 0 44 44" width="44" height="44" focusable="false">' +
+      '<defs>' +
+      '<radialGradient id="mcTimeRewindGlow" cx="38%" cy="32%" r="62%">' +
+      '<stop offset="0%" stop-color="#f0fbff"/>' +
+      '<stop offset="40%" stop-color="#8ed2ff"/>' +
+      '<stop offset="100%" stop-color="#245a96"/>' +
+      '</radialGradient>' +
+      '<linearGradient id="mcTimeRewindRing" x1="0%" y1="0%" x2="100%" y2="100%">' +
+      '<stop offset="0%" stop-color="#e4f4ff"/>' +
+      '<stop offset="50%" stop-color="#7eb8ff"/>' +
+      '<stop offset="100%" stop-color="#e0c98a"/>' +
+      '</linearGradient>' +
+      '</defs>' +
+      '<circle cx="22" cy="22" r="20" fill="url(#mcTimeRewindGlow)" opacity="0.34"/>' +
+      '<circle cx="22" cy="22" r="16.5" fill="none" stroke="url(#mcTimeRewindRing)" stroke-width="1.85"/>' +
+      '<path d="M31.2 14.2a11.2 11.2 0 1 0 1.1 12.4" fill="none" stroke="#c8e7ff" stroke-width="2.15" stroke-linecap="round"/>' +
+      '<path d="M31.6 10.8v5.2h-5.2" fill="none" stroke="#ffffff" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<circle cx="22" cy="22" r="8.4" fill="rgba(4,12,22,0.82)" stroke="#d7ebff" stroke-width="1.35"/>' +
+      '<path d="M22 16.6v5.6l3.6 2.2" fill="none" stroke="#ffe9b0" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<circle cx="22" cy="22" r="1.45" fill="#fff6df"/>' +
+      '</svg></span>';
   }
 
   function fossilTimeRestoreMarkup(specimen) {
