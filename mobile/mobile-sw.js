@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mcurator-mobile-shell-v4';
+const CACHE_NAME = 'mcurator-mobile-shell-v5';
 const SHELL_URLS = [
   './mobile.html',
   './index.html',
