@@ -1,0 +1,1987 @@
+{
+  "generatedAt": "2026-11-14T19:37:46.292Z",
+  "items": [
+    {
+      "id": "algae",
+      "fileName": "Algae.png",
+      "baseName": "Algae",
+      "displayName": "Algae",
+      "url": "/card-back-image/Algae.png",
+      "thumbnailUrl": "/card-back-image/Algae.png",
+      "src": "/card-back-image/Algae.png",
+      "thumbnailSrc": "/card-back-image/Algae.png",
+      "normalizedTokens": [
+        "algae"
+      ],
+      "scientificTokens": [
+        "algae"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "algae"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T19:15:01.000Z"
+    },
+    {
+      "id": "ambulacraria",
+      "fileName": "Ambulacraria.png",
+      "baseName": "Ambulacraria",
+      "displayName": "Ambulacraria",
+      "url": "/card-back-image/Ambulacraria.png",
+      "thumbnailUrl": "/card-back-image/Ambulacraria.png",
+      "src": "/card-back-image/Ambulacraria.png",
+      "thumbnailSrc": "/card-back-image/Ambulacraria.png",
+      "normalizedTokens": [
+        "ambulacraria"
+      ],
+      "scientificTokens": [
+        "ambulacraria"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "ambulacraria"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T22:48:14.000Z"
+    },
+    {
+      "id": "amphibia",
+      "fileName": "Amphibia.png",
+      "baseName": "Amphibia",
+      "displayName": "Amphibia",
+      "url": "/card-back-image/Amphibia.png",
+      "thumbnailUrl": "/card-back-image/Amphibia.png",
+      "src": "/card-back-image/Amphibia.png",
+      "thumbnailSrc": "/card-back-image/Amphibia.png",
+      "normalizedTokens": [
+        "amphibia"
+      ],
+      "scientificTokens": [
+        "amphibia"
+      ],
+      "broadGroups": [
+        "amphibia"
+      ],
+      "taxonomyKeywords": [
+        "amphibia"
+      ],
+      "categoryKeywords": [
+        "amphibia"
+      ],
+      "lastModified": "2026-04-29T18:08:58.000Z"
+    },
+    {
+      "id": "anapsida",
+      "fileName": "Anapsida.png",
+      "baseName": "Anapsida",
+      "displayName": "Anapsida",
+      "url": "/card-back-image/Anapsida.png",
+      "thumbnailUrl": "/card-back-image/Anapsida.png",
+      "src": "/card-back-image/Anapsida.png",
+      "thumbnailSrc": "/card-back-image/Anapsida.png",
+      "normalizedTokens": [
+        "anapsida"
+      ],
+      "scientificTokens": [
+        "anapsida"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "anapsida"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-04T16:13:27.000Z"
+    },
+    {
+      "id": "animalia-2",
+      "fileName": "Animalia - 2.png",
+      "baseName": "Animalia - 2",
+      "displayName": "Animalia 2",
+      "url": "/card-back-image/Animalia%20-%202.png",
+      "thumbnailUrl": "/card-back-image/Animalia%20-%202.png",
+      "src": "/card-back-image/Animalia%20-%202.png",
+      "thumbnailSrc": "/card-back-image/Animalia%20-%202.png",
+      "normalizedTokens": [
+        "animalia",
+        "2"
+      ],
+      "scientificTokens": [
+        "animalia",
+        "2"
+      ],
+      "broadGroups": [
+        "animalia"
+      ],
+      "taxonomyKeywords": [
+        "animalia",
+        "2"
+      ],
+      "categoryKeywords": [
+        "animalia"
+      ],
+      "lastModified": "2026-04-29T12:19:39.000Z"
+    },
+    {
+      "id": "animalia",
+      "fileName": "Animalia.png",
+      "baseName": "Animalia",
+      "displayName": "Animalia",
+      "url": "/card-back-image/Animalia.png",
+      "thumbnailUrl": "/card-back-image/Animalia.png",
+      "src": "/card-back-image/Animalia.png",
+      "thumbnailSrc": "/card-back-image/Animalia.png",
+      "normalizedTokens": [
+        "animalia"
+      ],
+      "scientificTokens": [
+        "animalia"
+      ],
+      "broadGroups": [
+        "animalia"
+      ],
+      "taxonomyKeywords": [
+        "animalia"
+      ],
+      "categoryKeywords": [
+        "animalia"
+      ],
+      "lastModified": "2026-04-27T19:28:26.000Z"
+    },
+    {
+      "id": "annelida",
+      "fileName": "Annelida.png",
+      "baseName": "Annelida",
+      "displayName": "Annelida",
+      "url": "/card-back-image/Annelida.png",
+      "thumbnailUrl": "/card-back-image/Annelida.png",
+      "src": "/card-back-image/Annelida.png",
+      "thumbnailSrc": "/card-back-image/Annelida.png",
+      "normalizedTokens": [
+        "annelida"
+      ],
+      "scientificTokens": [
+        "annelida"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "annelida"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T22:42:59.000Z"
+    },
+    {
+      "id": "arachnomorpha",
+      "fileName": "Arachnomorpha.png",
+      "baseName": "Arachnomorpha",
+      "displayName": "Arachnomorpha",
+      "url": "/card-back-image/Arachnomorpha.png",
+      "thumbnailUrl": "/card-back-image/Arachnomorpha.png",
+      "src": "/card-back-image/Arachnomorpha.png",
+      "thumbnailSrc": "/card-back-image/Arachnomorpha.png",
+      "normalizedTokens": [
+        "arachnomorpha"
+      ],
+      "scientificTokens": [
+        "arachnomorpha"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "arachnomorpha"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-04T11:40:08.000Z"
+    },
+    {
+      "id": "archaea",
+      "fileName": "Archaea.png",
+      "baseName": "Archaea",
+      "displayName": "Archaea",
+      "url": "/card-back-image/Archaea.png",
+      "thumbnailUrl": "/card-back-image/Archaea.png",
+      "src": "/card-back-image/Archaea.png",
+      "thumbnailSrc": "/card-back-image/Archaea.png",
+      "normalizedTokens": [
+        "archaea"
+      ],
+      "scientificTokens": [
+        "archaea"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "archaea"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T21:04:56.000Z"
+    },
+    {
+      "id": "arthropoda",
+      "fileName": "Arthropoda.png",
+      "baseName": "Arthropoda",
+      "displayName": "Arthropoda",
+      "url": "/card-back-image/Arthropoda.png",
+      "thumbnailUrl": "/card-back-image/Arthropoda.png",
+      "src": "/card-back-image/Arthropoda.png",
+      "thumbnailSrc": "/card-back-image/Arthropoda.png",
+      "normalizedTokens": [
+        "arthropoda"
+      ],
+      "scientificTokens": [
+        "arthropoda"
+      ],
+      "broadGroups": [
+        "arthropoda"
+      ],
+      "taxonomyKeywords": [
+        "arthropoda"
+      ],
+      "categoryKeywords": [
+        "arthropoda"
+      ],
+      "lastModified": "2026-04-27T20:14:35.000Z"
+    },
+    {
+      "id": "atlantogenata",
+      "fileName": "Atlantogenata.png",
+      "baseName": "Atlantogenata",
+      "displayName": "Atlantogenata",
+      "url": "/card-back-image/Atlantogenata.png",
+      "thumbnailUrl": "/card-back-image/Atlantogenata.png",
+      "src": "/card-back-image/Atlantogenata.png",
+      "thumbnailSrc": "/card-back-image/Atlantogenata.png",
+      "normalizedTokens": [
+        "atlantogenata"
+      ],
+      "scientificTokens": [
+        "atlantogenata"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "atlantogenata"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T19:59:16.000Z"
+    },
+    {
+      "id": "aves",
+      "fileName": "Aves.png",
+      "baseName": "Aves",
+      "displayName": "Aves",
+      "url": "/card-back-image/Aves.png",
+      "thumbnailUrl": "/card-back-image/Aves.png",
+      "src": "/card-back-image/Aves.png",
+      "thumbnailSrc": "/card-back-image/Aves.png",
+      "normalizedTokens": [
+        "aves"
+      ],
+      "scientificTokens": [
+        "aves"
+      ],
+      "broadGroups": [
+        "aves"
+      ],
+      "taxonomyKeywords": [
+        "aves"
+      ],
+      "categoryKeywords": [
+        "aves"
+      ],
+      "lastModified": "2026-04-27T19:39:21.000Z"
+    },
+    {
+      "id": "bacteria",
+      "fileName": "Bacteria.png",
+      "baseName": "Bacteria",
+      "displayName": "Bacteria",
+      "url": "/card-back-image/Bacteria.png",
+      "thumbnailUrl": "/card-back-image/Bacteria.png",
+      "src": "/card-back-image/Bacteria.png",
+      "thumbnailSrc": "/card-back-image/Bacteria.png",
+      "normalizedTokens": [
+        "bacteria"
+      ],
+      "scientificTokens": [
+        "bacteria"
+      ],
+      "broadGroups": [
+        "bacteria"
+      ],
+      "taxonomyKeywords": [
+        "bacteria"
+      ],
+      "categoryKeywords": [
+        "bacteria"
+      ],
+      "lastModified": "2026-04-27T20:07:42.000Z"
+    },
+    {
+      "id": "basilosauridae",
+      "fileName": "Basilosauridae.png",
+      "baseName": "Basilosauridae",
+      "displayName": "Basilosauridae",
+      "url": "/card-back-image/Basilosauridae.png",
+      "thumbnailUrl": "/card-back-image/Basilosauridae.png",
+      "src": "/card-back-image/Basilosauridae.png",
+      "thumbnailSrc": "/card-back-image/Basilosauridae.png",
+      "normalizedTokens": [
+        "basilosauridae"
+      ],
+      "scientificTokens": [
+        "basilosauridae"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "basilosauridae"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T19:36:14.000Z"
+    },
+    {
+      "id": "batrachomorpha",
+      "fileName": "Batrachomorpha.png",
+      "baseName": "Batrachomorpha",
+      "displayName": "Batrachomorpha",
+      "url": "/card-back-image/Batrachomorpha.png",
+      "thumbnailUrl": "/card-back-image/Batrachomorpha.png",
+      "src": "/card-back-image/Batrachomorpha.png",
+      "thumbnailSrc": "/card-back-image/Batrachomorpha.png",
+      "normalizedTokens": [
+        "batrachomorpha"
+      ],
+      "scientificTokens": [
+        "batrachomorpha"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "batrachomorpha"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T14:12:15.000Z"
+    },
+    {
+      "id": "blattodea",
+      "fileName": "Blattodea.png",
+      "baseName": "Blattodea",
+      "displayName": "Blattodea",
+      "url": "/card-back-image/Blattodea.png",
+      "thumbnailUrl": "/card-back-image/Blattodea.png",
+      "src": "/card-back-image/Blattodea.png",
+      "thumbnailSrc": "/card-back-image/Blattodea.png",
+      "normalizedTokens": [
+        "blattodea"
+      ],
+      "scientificTokens": [
+        "blattodea"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "blattodea"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T18:03:50.000Z"
+    },
+    {
+      "id": "bryophytes",
+      "fileName": "bryophytes.png",
+      "baseName": "bryophytes",
+      "displayName": "Bryophytes",
+      "url": "/card-back-image/bryophytes.png",
+      "thumbnailUrl": "/card-back-image/bryophytes.png",
+      "src": "/card-back-image/bryophytes.png",
+      "thumbnailSrc": "/card-back-image/bryophytes.png",
+      "normalizedTokens": [
+        "bryophytes"
+      ],
+      "scientificTokens": [
+        "bryophytes"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "bryophytes"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T19:28:31.000Z"
+    },
+    {
+      "id": "cetacea",
+      "fileName": "Cetacea.png",
+      "baseName": "Cetacea",
+      "displayName": "Cetacea",
+      "url": "/card-back-image/Cetacea.png",
+      "thumbnailUrl": "/card-back-image/Cetacea.png",
+      "src": "/card-back-image/Cetacea.png",
+      "thumbnailSrc": "/card-back-image/Cetacea.png",
+      "normalizedTokens": [
+        "cetacea"
+      ],
+      "scientificTokens": [
+        "cetacea"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "cetacea"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T20:16:26.000Z"
+    },
+    {
+      "id": "chelicerata",
+      "fileName": "Chelicerata.png",
+      "baseName": "Chelicerata",
+      "displayName": "Chelicerata",
+      "url": "/card-back-image/Chelicerata.png",
+      "thumbnailUrl": "/card-back-image/Chelicerata.png",
+      "src": "/card-back-image/Chelicerata.png",
+      "thumbnailSrc": "/card-back-image/Chelicerata.png",
+      "normalizedTokens": [
+        "chelicerata"
+      ],
+      "scientificTokens": [
+        "chelicerata"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "chelicerata"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T13:00:42.000Z"
+    },
+    {
+      "id": "chondrichthyes",
+      "fileName": "Chondrichthyes.png",
+      "baseName": "Chondrichthyes",
+      "displayName": "Chondrichthyes",
+      "url": "/card-back-image/Chondrichthyes.png",
+      "thumbnailUrl": "/card-back-image/Chondrichthyes.png",
+      "src": "/card-back-image/Chondrichthyes.png",
+      "thumbnailSrc": "/card-back-image/Chondrichthyes.png",
+      "normalizedTokens": [
+        "chondrichthyes"
+      ],
+      "scientificTokens": [
+        "chondrichthyes"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "chondrichthyes"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T20:22:38.000Z"
+    },
+    {
+      "id": "chordate",
+      "fileName": "Chordate.png",
+      "baseName": "Chordate",
+      "displayName": "Chordate",
+      "url": "/card-back-image/Chordate.png",
+      "thumbnailUrl": "/card-back-image/Chordate.png",
+      "src": "/card-back-image/Chordate.png",
+      "thumbnailSrc": "/card-back-image/Chordate.png",
+      "normalizedTokens": [
+        "chordate"
+      ],
+      "scientificTokens": [
+        "chordate"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "chordate"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T14:34:41.000Z"
+    },
+    {
+      "id": "cnidaria",
+      "fileName": "Cnidaria.png",
+      "baseName": "Cnidaria",
+      "displayName": "Cnidaria",
+      "url": "/card-back-image/Cnidaria.png",
+      "thumbnailUrl": "/card-back-image/Cnidaria.png",
+      "src": "/card-back-image/Cnidaria.png",
+      "thumbnailSrc": "/card-back-image/Cnidaria.png",
+      "normalizedTokens": [
+        "cnidaria"
+      ],
+      "scientificTokens": [
+        "cnidaria"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "cnidaria"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T21:18:01.000Z"
+    },
+    {
+      "id": "coleoptera",
+      "fileName": "Coleoptera.png",
+      "baseName": "Coleoptera",
+      "displayName": "Coleoptera",
+      "url": "/card-back-image/Coleoptera.png",
+      "thumbnailUrl": "/card-back-image/Coleoptera.png",
+      "src": "/card-back-image/Coleoptera.png",
+      "thumbnailSrc": "/card-back-image/Coleoptera.png",
+      "normalizedTokens": [
+        "coleoptera"
+      ],
+      "scientificTokens": [
+        "coleoptera"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "coleoptera"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T17:16:13.000Z"
+    },
+    {
+      "id": "common",
+      "fileName": "common.png",
+      "baseName": "common",
+      "displayName": "Common",
+      "url": "/card-back-image/common.png",
+      "thumbnailUrl": "/card-back-image/common.png",
+      "src": "/card-back-image/common.png",
+      "thumbnailSrc": "/card-back-image/common.png",
+      "normalizedTokens": [
+        "common"
+      ],
+      "scientificTokens": [
+        "common"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "common"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T12:25:22.000Z"
+    },
+    {
+      "id": "deuterostomia",
+      "fileName": "Deuterostomia.png",
+      "baseName": "Deuterostomia",
+      "displayName": "Deuterostomia",
+      "url": "/card-back-image/Deuterostomia.png",
+      "thumbnailUrl": "/card-back-image/Deuterostomia.png",
+      "src": "/card-back-image/Deuterostomia.png",
+      "thumbnailSrc": "/card-back-image/Deuterostomia.png",
+      "normalizedTokens": [
+        "deuterostomia"
+      ],
+      "scientificTokens": [
+        "deuterostomia"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "deuterostomia"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T14:44:16.000Z"
+    },
+    {
+      "id": "dinocaridida",
+      "fileName": "Dinocaridida.png",
+      "baseName": "Dinocaridida",
+      "displayName": "Dinocaridida",
+      "url": "/card-back-image/Dinocaridida.png",
+      "thumbnailUrl": "/card-back-image/Dinocaridida.png",
+      "src": "/card-back-image/Dinocaridida.png",
+      "thumbnailSrc": "/card-back-image/Dinocaridida.png",
+      "normalizedTokens": [
+        "dinocaridida"
+      ],
+      "scientificTokens": [
+        "dinocaridida"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "dinocaridida"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T12:32:37.000Z"
+    },
+    {
+      "id": "dinosauria",
+      "fileName": "Dinosauria.png",
+      "baseName": "Dinosauria",
+      "displayName": "Dinosauria",
+      "url": "/card-back-image/Dinosauria.png",
+      "thumbnailUrl": "/card-back-image/Dinosauria.png",
+      "src": "/card-back-image/Dinosauria.png",
+      "thumbnailSrc": "/card-back-image/Dinosauria.png",
+      "normalizedTokens": [
+        "dinosauria"
+      ],
+      "scientificTokens": [
+        "dinosauria"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "dinosauria"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T19:57:25.000Z"
+    },
+    {
+      "id": "ecdysozoa",
+      "fileName": "Ecdysozoa.png",
+      "baseName": "Ecdysozoa",
+      "displayName": "Ecdysozoa",
+      "url": "/card-back-image/Ecdysozoa.png",
+      "thumbnailUrl": "/card-back-image/Ecdysozoa.png",
+      "src": "/card-back-image/Ecdysozoa.png",
+      "thumbnailSrc": "/card-back-image/Ecdysozoa.png",
+      "normalizedTokens": [
+        "ecdysozoa"
+      ],
+      "scientificTokens": [
+        "ecdysozoa"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "ecdysozoa"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T14:49:55.000Z"
+    },
+    {
+      "id": "ephemeroptera",
+      "fileName": "Ephemeroptera.png",
+      "baseName": "Ephemeroptera",
+      "displayName": "Ephemeroptera",
+      "url": "/card-back-image/Ephemeroptera.png",
+      "thumbnailUrl": "/card-back-image/Ephemeroptera.png",
+      "src": "/card-back-image/Ephemeroptera.png",
+      "thumbnailSrc": "/card-back-image/Ephemeroptera.png",
+      "normalizedTokens": [
+        "ephemeroptera"
+      ],
+      "scientificTokens": [
+        "ephemeroptera"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "ephemeroptera"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T17:28:29.000Z"
+    },
+    {
+      "id": "euarchonta",
+      "fileName": "Euarchonta.png",
+      "baseName": "Euarchonta",
+      "displayName": "Euarchonta",
+      "url": "/card-back-image/Euarchonta.png",
+      "thumbnailUrl": "/card-back-image/Euarchonta.png",
+      "src": "/card-back-image/Euarchonta.png",
+      "thumbnailSrc": "/card-back-image/Euarchonta.png",
+      "normalizedTokens": [
+        "euarchonta"
+      ],
+      "scientificTokens": [
+        "euarchonta"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "euarchonta"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T20:06:07.000Z"
+    },
+    {
+      "id": "eureptilia",
+      "fileName": "Eureptilia.png",
+      "baseName": "Eureptilia",
+      "displayName": "Eureptilia",
+      "url": "/card-back-image/Eureptilia.png",
+      "thumbnailUrl": "/card-back-image/Eureptilia.png",
+      "src": "/card-back-image/Eureptilia.png",
+      "thumbnailSrc": "/card-back-image/Eureptilia.png",
+      "normalizedTokens": [
+        "eureptilia"
+      ],
+      "scientificTokens": [
+        "eureptilia"
+      ],
+      "broadGroups": [
+        "reptilia"
+      ],
+      "taxonomyKeywords": [
+        "eureptilia"
+      ],
+      "categoryKeywords": [
+        "reptilia"
+      ],
+      "lastModified": "2026-05-04T16:10:31.000Z"
+    },
+    {
+      "id": "extinct",
+      "fileName": "Extinct.png",
+      "baseName": "Extinct",
+      "displayName": "Extinct",
+      "url": "/card-back-image/Extinct.png",
+      "thumbnailUrl": "/card-back-image/Extinct.png",
+      "src": "/card-back-image/Extinct.png",
+      "thumbnailSrc": "/card-back-image/Extinct.png",
+      "normalizedTokens": [
+        "extinct"
+      ],
+      "scientificTokens": [
+        "extinct"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "extinct"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T20:36:14.000Z"
+    },
+    {
+      "id": "fossil",
+      "fileName": "fossil.png",
+      "baseName": "fossil",
+      "displayName": "Fossil",
+      "url": "/card-back-image/fossil.png",
+      "thumbnailUrl": "/card-back-image/fossil.png",
+      "src": "/card-back-image/fossil.png",
+      "thumbnailSrc": "/card-back-image/fossil.png",
+      "normalizedTokens": [
+        "fossil"
+      ],
+      "scientificTokens": [
+        "fossil"
+      ],
+      "broadGroups": [
+        "fossil"
+      ],
+      "taxonomyKeywords": [
+        "fossil"
+      ],
+      "categoryKeywords": [
+        "fossil"
+      ],
+      "lastModified": "2026-04-27T20:02:58.000Z"
+    },
+    {
+      "id": "fungi",
+      "fileName": "Fungi.png",
+      "baseName": "Fungi",
+      "displayName": "Fungi",
+      "url": "/card-back-image/Fungi.png",
+      "thumbnailUrl": "/card-back-image/Fungi.png",
+      "src": "/card-back-image/Fungi.png",
+      "thumbnailSrc": "/card-back-image/Fungi.png",
+      "normalizedTokens": [
+        "fungi"
+      ],
+      "scientificTokens": [
+        "fungi"
+      ],
+      "broadGroups": [
+        "fungi"
+      ],
+      "taxonomyKeywords": [
+        "fungi"
+      ],
+      "categoryKeywords": [
+        "fungi"
+      ],
+      "lastModified": "2026-04-27T20:38:11.000Z"
+    },
+    {
+      "id": "gnathostomata",
+      "fileName": "Gnathostomata.png",
+      "baseName": "Gnathostomata",
+      "displayName": "Gnathostomata",
+      "url": "/card-back-image/Gnathostomata.png",
+      "thumbnailUrl": "/card-back-image/Gnathostomata.png",
+      "src": "/card-back-image/Gnathostomata.png",
+      "thumbnailSrc": "/card-back-image/Gnathostomata.png",
+      "normalizedTokens": [
+        "gnathostomata"
+      ],
+      "scientificTokens": [
+        "gnathostomata"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "gnathostomata"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T14:16:28.000Z"
+    },
+    {
+      "id": "grylloblattidae",
+      "fileName": "Grylloblattidae.png",
+      "baseName": "Grylloblattidae",
+      "displayName": "Grylloblattidae",
+      "url": "/card-back-image/Grylloblattidae.png",
+      "thumbnailUrl": "/card-back-image/Grylloblattidae.png",
+      "src": "/card-back-image/Grylloblattidae.png",
+      "thumbnailSrc": "/card-back-image/Grylloblattidae.png",
+      "normalizedTokens": [
+        "grylloblattidae"
+      ],
+      "scientificTokens": [
+        "grylloblattidae"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "grylloblattidae"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T17:22:49.000Z"
+    },
+    {
+      "id": "hadranax",
+      "fileName": "Hadranax.png",
+      "baseName": "Hadranax",
+      "displayName": "Hadranax",
+      "url": "/card-back-image/Hadranax.png",
+      "thumbnailUrl": "/card-back-image/Hadranax.png",
+      "src": "/card-back-image/Hadranax.png",
+      "thumbnailSrc": "/card-back-image/Hadranax.png",
+      "normalizedTokens": [
+        "hadranax"
+      ],
+      "scientificTokens": [
+        "hadranax"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "hadranax"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T12:39:51.000Z"
+    },
+    {
+      "id": "hallucigenia",
+      "fileName": "Hallucigenia.png",
+      "baseName": "Hallucigenia",
+      "displayName": "Hallucigenia",
+      "url": "/card-back-image/Hallucigenia.png",
+      "thumbnailUrl": "/card-back-image/Hallucigenia.png",
+      "src": "/card-back-image/Hallucigenia.png",
+      "thumbnailSrc": "/card-back-image/Hallucigenia.png",
+      "normalizedTokens": [
+        "hallucigenia"
+      ],
+      "scientificTokens": [
+        "hallucigenia"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "hallucigenia"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T17:37:12.000Z"
+    },
+    {
+      "id": "hexapoda",
+      "fileName": "Hexapoda.png",
+      "baseName": "Hexapoda",
+      "displayName": "Hexapoda",
+      "url": "/card-back-image/Hexapoda.png",
+      "thumbnailUrl": "/card-back-image/Hexapoda.png",
+      "src": "/card-back-image/Hexapoda.png",
+      "thumbnailSrc": "/card-back-image/Hexapoda.png",
+      "normalizedTokens": [
+        "hexapoda"
+      ],
+      "scientificTokens": [
+        "hexapoda"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "hexapoda"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-04T12:02:43.000Z"
+    },
+    {
+      "id": "insecta",
+      "fileName": "Insecta.png",
+      "baseName": "Insecta",
+      "displayName": "Insecta",
+      "url": "/card-back-image/Insecta.png",
+      "thumbnailUrl": "/card-back-image/Insecta.png",
+      "src": "/card-back-image/Insecta.png",
+      "thumbnailSrc": "/card-back-image/Insecta.png",
+      "normalizedTokens": [
+        "insecta"
+      ],
+      "scientificTokens": [
+        "insecta"
+      ],
+      "broadGroups": [
+        "insecta"
+      ],
+      "taxonomyKeywords": [
+        "insecta"
+      ],
+      "categoryKeywords": [
+        "insecta"
+      ],
+      "lastModified": "2026-04-27T18:07:21.000Z"
+    },
+    {
+      "id": "lepidoptera",
+      "fileName": "Lepidoptera.png",
+      "baseName": "Lepidoptera",
+      "displayName": "Lepidoptera",
+      "url": "/card-back-image/Lepidoptera.png",
+      "thumbnailUrl": "/card-back-image/Lepidoptera.png",
+      "src": "/card-back-image/Lepidoptera.png",
+      "thumbnailSrc": "/card-back-image/Lepidoptera.png",
+      "normalizedTokens": [
+        "lepidoptera"
+      ],
+      "scientificTokens": [
+        "lepidoptera"
+      ],
+      "broadGroups": [
+        "lepidoptera"
+      ],
+      "taxonomyKeywords": [
+        "lepidoptera"
+      ],
+      "categoryKeywords": [
+        "lepidoptera"
+      ],
+      "lastModified": "2026-04-29T13:28:15.000Z"
+    },
+    {
+      "id": "living-fossil",
+      "fileName": "Living fossil.png",
+      "baseName": "Living fossil",
+      "displayName": "Living Fossil",
+      "url": "/card-back-image/Living%20fossil.png",
+      "thumbnailUrl": "/card-back-image/Living%20fossil.png",
+      "src": "/card-back-image/Living%20fossil.png",
+      "thumbnailSrc": "/card-back-image/Living%20fossil.png",
+      "normalizedTokens": [
+        "living",
+        "fossil"
+      ],
+      "scientificTokens": [
+        "living",
+        "fossil"
+      ],
+      "broadGroups": [
+        "fossil"
+      ],
+      "taxonomyKeywords": [
+        "living",
+        "fossil"
+      ],
+      "categoryKeywords": [
+        "fossil"
+      ],
+      "lastModified": "2026-04-27T21:29:08.000Z"
+    },
+    {
+      "id": "lucanidae",
+      "fileName": "Lucanidae.png",
+      "baseName": "Lucanidae",
+      "displayName": "Lucanidae",
+      "url": "/card-back-image/Lucanidae.png",
+      "thumbnailUrl": "/card-back-image/Lucanidae.png",
+      "src": "/card-back-image/Lucanidae.png",
+      "thumbnailSrc": "/card-back-image/Lucanidae.png",
+      "normalizedTokens": [
+        "lucanidae"
+      ],
+      "scientificTokens": [
+        "lucanidae"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "lucanidae"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-04T12:06:57.000Z"
+    },
+    {
+      "id": "mammalla",
+      "fileName": "Mammalla.png",
+      "baseName": "Mammalla",
+      "displayName": "Mammalla",
+      "url": "/card-back-image/Mammalla.png",
+      "thumbnailUrl": "/card-back-image/Mammalla.png",
+      "src": "/card-back-image/Mammalla.png",
+      "thumbnailSrc": "/card-back-image/Mammalla.png",
+      "normalizedTokens": [
+        "mammalla"
+      ],
+      "scientificTokens": [
+        "mammalla"
+      ],
+      "broadGroups": [
+        "mammalia"
+      ],
+      "taxonomyKeywords": [
+        "mammalla"
+      ],
+      "categoryKeywords": [
+        "mammalia"
+      ],
+      "lastModified": "2026-04-29T12:15:29.000Z"
+    },
+    {
+      "id": "mandibulata",
+      "fileName": "Mandibulata.png",
+      "baseName": "Mandibulata",
+      "displayName": "Mandibulata",
+      "url": "/card-back-image/Mandibulata.png",
+      "thumbnailUrl": "/card-back-image/Mandibulata.png",
+      "src": "/card-back-image/Mandibulata.png",
+      "thumbnailSrc": "/card-back-image/Mandibulata.png",
+      "normalizedTokens": [
+        "mandibulata"
+      ],
+      "scientificTokens": [
+        "mandibulata"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "mandibulata"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T13:08:45.000Z"
+    },
+    {
+      "id": "mantodea",
+      "fileName": "Mantodea.png",
+      "baseName": "Mantodea",
+      "displayName": "Mantodea",
+      "url": "/card-back-image/Mantodea.png",
+      "thumbnailUrl": "/card-back-image/Mantodea.png",
+      "src": "/card-back-image/Mantodea.png",
+      "thumbnailSrc": "/card-back-image/Mantodea.png",
+      "normalizedTokens": [
+        "mantodea"
+      ],
+      "scientificTokens": [
+        "mantodea"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "mantodea"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T17:41:17.000Z"
+    },
+    {
+      "id": "marsupialia",
+      "fileName": "Marsupialia.png",
+      "baseName": "Marsupialia",
+      "displayName": "Marsupialia",
+      "url": "/card-back-image/Marsupialia.png",
+      "thumbnailUrl": "/card-back-image/Marsupialia.png",
+      "src": "/card-back-image/Marsupialia.png",
+      "thumbnailSrc": "/card-back-image/Marsupialia.png",
+      "normalizedTokens": [
+        "marsupialia"
+      ],
+      "scientificTokens": [
+        "marsupialia"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "marsupialia"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T21:09:57.000Z"
+    },
+    {
+      "id": "mesomycetozoa",
+      "fileName": "Mesomycetozoa.png",
+      "baseName": "Mesomycetozoa",
+      "displayName": "Mesomycetozoa",
+      "url": "/card-back-image/Mesomycetozoa.png",
+      "thumbnailUrl": "/card-back-image/Mesomycetozoa.png",
+      "src": "/card-back-image/Mesomycetozoa.png",
+      "thumbnailSrc": "/card-back-image/Mesomycetozoa.png",
+      "normalizedTokens": [
+        "mesomycetozoa"
+      ],
+      "scientificTokens": [
+        "mesomycetozoa"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "mesomycetozoa"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T23:00:20.000Z"
+    },
+    {
+      "id": "mollusca",
+      "fileName": "Mollusca.png",
+      "baseName": "Mollusca",
+      "displayName": "Mollusca",
+      "url": "/card-back-image/Mollusca.png",
+      "thumbnailUrl": "/card-back-image/Mollusca.png",
+      "src": "/card-back-image/Mollusca.png",
+      "thumbnailSrc": "/card-back-image/Mollusca.png",
+      "normalizedTokens": [
+        "mollusca"
+      ],
+      "scientificTokens": [
+        "mollusca"
+      ],
+      "broadGroups": [
+        "mollusca"
+      ],
+      "taxonomyKeywords": [
+        "mollusca"
+      ],
+      "categoryKeywords": [
+        "mollusca"
+      ],
+      "lastModified": "2026-04-27T20:58:53.000Z"
+    },
+    {
+      "id": "monotremata",
+      "fileName": "Monotremata.png",
+      "baseName": "Monotremata",
+      "displayName": "Monotremata",
+      "url": "/card-back-image/Monotremata.png",
+      "thumbnailUrl": "/card-back-image/Monotremata.png",
+      "src": "/card-back-image/Monotremata.png",
+      "thumbnailSrc": "/card-back-image/Monotremata.png",
+      "normalizedTokens": [
+        "monotremata"
+      ],
+      "scientificTokens": [
+        "monotremata"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "monotremata"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T21:12:24.000Z"
+    },
+    {
+      "id": "olfactores",
+      "fileName": "Olfactores.png",
+      "baseName": "Olfactores",
+      "displayName": "Olfactores",
+      "url": "/card-back-image/Olfactores.png",
+      "thumbnailUrl": "/card-back-image/Olfactores.png",
+      "src": "/card-back-image/Olfactores.png",
+      "thumbnailSrc": "/card-back-image/Olfactores.png",
+      "normalizedTokens": [
+        "olfactores"
+      ],
+      "scientificTokens": [
+        "olfactores"
+      ],
+      "broadGroups": [
+        "mineral"
+      ],
+      "taxonomyKeywords": [
+        "olfactores"
+      ],
+      "categoryKeywords": [
+        "mineral"
+      ],
+      "lastModified": "2026-05-01T14:40:13.000Z"
+    },
+    {
+      "id": "ore",
+      "fileName": "Ore.png",
+      "baseName": "Ore",
+      "displayName": "Ore",
+      "url": "/card-back-image/Ore.png",
+      "thumbnailUrl": "/card-back-image/Ore.png",
+      "src": "/card-back-image/Ore.png",
+      "thumbnailSrc": "/card-back-image/Ore.png",
+      "normalizedTokens": [
+        "ore"
+      ],
+      "scientificTokens": [
+        "ore"
+      ],
+      "broadGroups": [
+        "mineral"
+      ],
+      "taxonomyKeywords": [
+        "ore"
+      ],
+      "categoryKeywords": [
+        "mineral"
+      ],
+      "lastModified": "2026-04-27T20:53:24.000Z"
+    },
+    {
+      "id": "osteichthyes",
+      "fileName": "Osteichthyes.png",
+      "baseName": "Osteichthyes",
+      "displayName": "Osteichthyes",
+      "url": "/card-back-image/Osteichthyes.png",
+      "thumbnailUrl": "/card-back-image/Osteichthyes.png",
+      "src": "/card-back-image/Osteichthyes.png",
+      "thumbnailSrc": "/card-back-image/Osteichthyes.png",
+      "normalizedTokens": [
+        "osteichthyes"
+      ],
+      "scientificTokens": [
+        "osteichthyes"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "osteichthyes"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T19:55:32.000Z"
+    },
+    {
+      "id": "panarthropoda",
+      "fileName": "Panarthropoda.png",
+      "baseName": "Panarthropoda",
+      "displayName": "Panarthropoda",
+      "url": "/card-back-image/Panarthropoda.png",
+      "thumbnailUrl": "/card-back-image/Panarthropoda.png",
+      "src": "/card-back-image/Panarthropoda.png",
+      "thumbnailSrc": "/card-back-image/Panarthropoda.png",
+      "normalizedTokens": [
+        "panarthropoda"
+      ],
+      "scientificTokens": [
+        "panarthropoda"
+      ],
+      "broadGroups": [
+        "arthropoda"
+      ],
+      "taxonomyKeywords": [
+        "panarthropoda"
+      ],
+      "categoryKeywords": [
+        "arthropoda"
+      ],
+      "lastModified": "2026-05-01T17:10:53.000Z"
+    },
+    {
+      "id": "pancrustacea",
+      "fileName": "Pancrustacea.png",
+      "baseName": "Pancrustacea",
+      "displayName": "Pancrustacea",
+      "url": "/card-back-image/Pancrustacea.png",
+      "thumbnailUrl": "/card-back-image/Pancrustacea.png",
+      "src": "/card-back-image/Pancrustacea.png",
+      "thumbnailSrc": "/card-back-image/Pancrustacea.png",
+      "normalizedTokens": [
+        "pancrustacea"
+      ],
+      "scientificTokens": [
+        "pancrustacea"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "pancrustacea"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-04T11:37:06.000Z"
+    },
+    {
+      "id": "phasmatodea",
+      "fileName": "Phasmatodea.png",
+      "baseName": "Phasmatodea",
+      "displayName": "Phasmatodea",
+      "url": "/card-back-image/Phasmatodea.png",
+      "thumbnailUrl": "/card-back-image/Phasmatodea.png",
+      "src": "/card-back-image/Phasmatodea.png",
+      "thumbnailSrc": "/card-back-image/Phasmatodea.png",
+      "normalizedTokens": [
+        "phasmatodea"
+      ],
+      "scientificTokens": [
+        "phasmatodea"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "phasmatodea"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-29T17:28:08.000Z"
+    },
+    {
+      "id": "placentalia",
+      "fileName": "Placentalia.png",
+      "baseName": "Placentalia",
+      "displayName": "Placentalia",
+      "url": "/card-back-image/Placentalia.png",
+      "thumbnailUrl": "/card-back-image/Placentalia.png",
+      "src": "/card-back-image/Placentalia.png",
+      "thumbnailSrc": "/card-back-image/Placentalia.png",
+      "normalizedTokens": [
+        "placentalia"
+      ],
+      "scientificTokens": [
+        "placentalia"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "placentalia"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T20:25:36.000Z"
+    },
+    {
+      "id": "plantae",
+      "fileName": "Plantae.png",
+      "baseName": "Plantae",
+      "displayName": "Plantae",
+      "url": "/card-back-image/Plantae.png",
+      "thumbnailUrl": "/card-back-image/Plantae.png",
+      "src": "/card-back-image/Plantae.png",
+      "thumbnailSrc": "/card-back-image/Plantae.png",
+      "normalizedTokens": [
+        "plantae"
+      ],
+      "scientificTokens": [
+        "plantae"
+      ],
+      "broadGroups": [
+        "plantae"
+      ],
+      "taxonomyKeywords": [
+        "plantae"
+      ],
+      "categoryKeywords": [
+        "plantae"
+      ],
+      "lastModified": "2026-04-27T21:34:17.000Z"
+    },
+    {
+      "id": "platyhelminthes",
+      "fileName": "Platyhelminthes.png",
+      "baseName": "Platyhelminthes",
+      "displayName": "Platyhelminthes",
+      "url": "/card-back-image/Platyhelminthes.png",
+      "thumbnailUrl": "/card-back-image/Platyhelminthes.png",
+      "src": "/card-back-image/Platyhelminthes.png",
+      "thumbnailSrc": "/card-back-image/Platyhelminthes.png",
+      "normalizedTokens": [
+        "platyhelminthes"
+      ],
+      "scientificTokens": [
+        "platyhelminthes"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "platyhelminthes"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T22:45:22.000Z"
+    },
+    {
+      "id": "primates",
+      "fileName": "Primates.png",
+      "baseName": "Primates",
+      "displayName": "Primates",
+      "url": "/card-back-image/Primates.png",
+      "thumbnailUrl": "/card-back-image/Primates.png",
+      "src": "/card-back-image/Primates.png",
+      "thumbnailSrc": "/card-back-image/Primates.png",
+      "normalizedTokens": [
+        "primates"
+      ],
+      "scientificTokens": [
+        "primates"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "primates"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-04T16:39:50.000Z"
+    },
+    {
+      "id": "prokaryote",
+      "fileName": "prokaryote.png",
+      "baseName": "prokaryote",
+      "displayName": "Prokaryote",
+      "url": "/card-back-image/prokaryote.png",
+      "thumbnailUrl": "/card-back-image/prokaryote.png",
+      "src": "/card-back-image/prokaryote.png",
+      "thumbnailSrc": "/card-back-image/prokaryote.png",
+      "normalizedTokens": [
+        "prokaryote"
+      ],
+      "scientificTokens": [
+        "prokaryote"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "prokaryote"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-28T15:17:37.000Z"
+    },
+    {
+      "id": "protocetidae",
+      "fileName": "Protocetidae.png",
+      "baseName": "Protocetidae",
+      "displayName": "Protocetidae",
+      "url": "/card-back-image/Protocetidae.png",
+      "thumbnailUrl": "/card-back-image/Protocetidae.png",
+      "src": "/card-back-image/Protocetidae.png",
+      "thumbnailSrc": "/card-back-image/Protocetidae.png",
+      "normalizedTokens": [
+        "protocetidae"
+      ],
+      "scientificTokens": [
+        "protocetidae"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "protocetidae"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T19:46:45.000Z"
+    },
+    {
+      "id": "protostomia",
+      "fileName": "Protostomia.png",
+      "baseName": "Protostomia",
+      "displayName": "Protostomia",
+      "url": "/card-back-image/Protostomia.png",
+      "thumbnailUrl": "/card-back-image/Protostomia.png",
+      "src": "/card-back-image/Protostomia.png",
+      "thumbnailSrc": "/card-back-image/Protostomia.png",
+      "normalizedTokens": [
+        "protostomia"
+      ],
+      "scientificTokens": [
+        "protostomia"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "protostomia"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-28T10:39:06.000Z"
+    },
+    {
+      "id": "pteridophyta",
+      "fileName": "Pteridophyta.png",
+      "baseName": "Pteridophyta",
+      "displayName": "Pteridophyta",
+      "url": "/card-back-image/Pteridophyta.png",
+      "thumbnailUrl": "/card-back-image/Pteridophyta.png",
+      "src": "/card-back-image/Pteridophyta.png",
+      "thumbnailSrc": "/card-back-image/Pteridophyta.png",
+      "normalizedTokens": [
+        "pteridophyta"
+      ],
+      "scientificTokens": [
+        "pteridophyta"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "pteridophyta"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T19:30:51.000Z"
+    },
+    {
+      "id": "reptilia",
+      "fileName": "Reptilia.png",
+      "baseName": "Reptilia",
+      "displayName": "Reptilia",
+      "url": "/card-back-image/Reptilia.png",
+      "thumbnailUrl": "/card-back-image/Reptilia.png",
+      "src": "/card-back-image/Reptilia.png",
+      "thumbnailSrc": "/card-back-image/Reptilia.png",
+      "normalizedTokens": [
+        "reptilia"
+      ],
+      "scientificTokens": [
+        "reptilia"
+      ],
+      "broadGroups": [
+        "reptilia"
+      ],
+      "taxonomyKeywords": [
+        "reptilia"
+      ],
+      "categoryKeywords": [
+        "reptilia"
+      ],
+      "lastModified": "2026-05-01T19:08:44.000Z"
+    },
+    {
+      "id": "rhynchosaurs",
+      "fileName": "Rhynchosaurs.png",
+      "baseName": "Rhynchosaurs",
+      "displayName": "Rhynchosaurs",
+      "url": "/card-back-image/Rhynchosaurs.png",
+      "thumbnailUrl": "/card-back-image/Rhynchosaurs.png",
+      "src": "/card-back-image/Rhynchosaurs.png",
+      "thumbnailSrc": "/card-back-image/Rhynchosaurs.png",
+      "normalizedTokens": [
+        "rhynchosaurs"
+      ],
+      "scientificTokens": [
+        "rhynchosaurs"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "rhynchosaurs"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T17:53:39.000Z"
+    },
+    {
+      "id": "sarcopterygii",
+      "fileName": "Sarcopterygii.png",
+      "baseName": "Sarcopterygii",
+      "displayName": "Sarcopterygii",
+      "url": "/card-back-image/Sarcopterygii.png",
+      "thumbnailUrl": "/card-back-image/Sarcopterygii.png",
+      "src": "/card-back-image/Sarcopterygii.png",
+      "thumbnailSrc": "/card-back-image/Sarcopterygii.png",
+      "normalizedTokens": [
+        "sarcopterygii"
+      ],
+      "scientificTokens": [
+        "sarcopterygii"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "sarcopterygii"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-27T21:17:10.000Z"
+    },
+    {
+      "id": "scarabaeidae",
+      "fileName": "Scarabaeidae.png",
+      "baseName": "Scarabaeidae",
+      "displayName": "Scarabaeidae",
+      "url": "/card-back-image/Scarabaeidae.png",
+      "thumbnailUrl": "/card-back-image/Scarabaeidae.png",
+      "src": "/card-back-image/Scarabaeidae.png",
+      "thumbnailSrc": "/card-back-image/Scarabaeidae.png",
+      "normalizedTokens": [
+        "scarabaeidae"
+      ],
+      "scientificTokens": [
+        "scarabaeidae"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "scarabaeidae"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-04T13:25:55.000Z"
+    },
+    {
+      "id": "spiralia",
+      "fileName": "Spiralia.png",
+      "baseName": "Spiralia",
+      "displayName": "Spiralia",
+      "url": "/card-back-image/Spiralia.png",
+      "thumbnailUrl": "/card-back-image/Spiralia.png",
+      "src": "/card-back-image/Spiralia.png",
+      "thumbnailSrc": "/card-back-image/Spiralia.png",
+      "normalizedTokens": [
+        "spiralia"
+      ],
+      "scientificTokens": [
+        "spiralia"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "spiralia"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T15:19:35.000Z"
+    },
+    {
+      "id": "tardigrades",
+      "fileName": "tardigrades.png",
+      "baseName": "tardigrades",
+      "displayName": "Tardigrades",
+      "url": "/card-back-image/tardigrades.png",
+      "thumbnailUrl": "/card-back-image/tardigrades.png",
+      "src": "/card-back-image/tardigrades.png",
+      "thumbnailSrc": "/card-back-image/tardigrades.png",
+      "normalizedTokens": [
+        "tardigrades"
+      ],
+      "scientificTokens": [
+        "tardigrades"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "tardigrades"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-04-28T10:29:32.000Z"
+    },
+    {
+      "id": "temnospondyli",
+      "fileName": "Temnospondyli.png",
+      "baseName": "Temnospondyli",
+      "displayName": "Temnospondyli",
+      "url": "/card-back-image/Temnospondyli.png",
+      "thumbnailUrl": "/card-back-image/Temnospondyli.png",
+      "src": "/card-back-image/Temnospondyli.png",
+      "thumbnailSrc": "/card-back-image/Temnospondyli.png",
+      "normalizedTokens": [
+        "temnospondyli"
+      ],
+      "scientificTokens": [
+        "temnospondyli"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "temnospondyli"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T17:45:10.000Z"
+    },
+    {
+      "id": "testudines",
+      "fileName": "Testudines.png",
+      "baseName": "Testudines",
+      "displayName": "Testudines",
+      "url": "/card-back-image/Testudines.png",
+      "thumbnailUrl": "/card-back-image/Testudines.png",
+      "src": "/card-back-image/Testudines.png",
+      "thumbnailSrc": "/card-back-image/Testudines.png",
+      "normalizedTokens": [
+        "testudines"
+      ],
+      "scientificTokens": [
+        "testudines"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "testudines"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T19:02:41.000Z"
+    },
+    {
+      "id": "tetrapoda",
+      "fileName": "Tetrapoda.png",
+      "baseName": "Tetrapoda",
+      "displayName": "Tetrapoda",
+      "url": "/card-back-image/Tetrapoda.png",
+      "thumbnailUrl": "/card-back-image/Tetrapoda.png",
+      "src": "/card-back-image/Tetrapoda.png",
+      "thumbnailSrc": "/card-back-image/Tetrapoda.png",
+      "normalizedTokens": [
+        "tetrapoda"
+      ],
+      "scientificTokens": [
+        "tetrapoda"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "tetrapoda"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T14:08:14.000Z"
+    },
+    {
+      "id": "therapsida",
+      "fileName": "Therapsida.png",
+      "baseName": "Therapsida",
+      "displayName": "Therapsida",
+      "url": "/card-back-image/Therapsida.png",
+      "thumbnailUrl": "/card-back-image/Therapsida.png",
+      "src": "/card-back-image/Therapsida.png",
+      "thumbnailSrc": "/card-back-image/Therapsida.png",
+      "normalizedTokens": [
+        "therapsida"
+      ],
+      "scientificTokens": [
+        "therapsida"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "therapsida"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T17:50:12.000Z"
+    },
+    {
+      "id": "titanochelon",
+      "fileName": "Titanochelon.png",
+      "baseName": "Titanochelon",
+      "displayName": "Titanochelon",
+      "url": "/card-back-image/Titanochelon.png",
+      "thumbnailUrl": "/card-back-image/Titanochelon.png",
+      "src": "/card-back-image/Titanochelon.png",
+      "thumbnailSrc": "/card-back-image/Titanochelon.png",
+      "normalizedTokens": [
+        "titanochelon"
+      ],
+      "scientificTokens": [
+        "titanochelon"
+      ],
+      "broadGroups": [
+        "other"
+      ],
+      "taxonomyKeywords": [
+        "titanochelon"
+      ],
+      "categoryKeywords": [
+        "other"
+      ],
+      "lastModified": "2026-05-01T18:56:14.000Z"
+    },
+    {
+      "id": "virus",
+      "fileName": "Virus.png",
+      "baseName": "Virus",
+      "displayName": "Virus",
+      "url": "/card-back-image/Virus.png",
+      "thumbnailUrl": "/card-back-image/Virus.png",
+      "src": "/card-back-image/Virus.png",
+      "thumbnailSrc": "/card-back-image/Virus.png",
+      "normalizedTokens": [
+        "virus"
+      ],
+      "scientificTokens": [
+        "virus"
+      ],
+      "broadGroups": [
+        "virus"
+      ],
+      "taxonomyKeywords": [
+        "virus"
+      ],
+      "categoryKeywords": [
+        "virus"
+      ],
+      "lastModified": "2026-04-27T20:39:58.000Z"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+var e=``+new URL(`craterellus-cornucopioides-DWQhjhfs.png`,import.meta.url).href,t=``+new URL(`athyma-selenophora--W6rIP2t.png`,import.meta.url).href,n=``+new URL(`amethyst-quartz-3xae-9yZ.png`,import.meta.url).href;export{t as n,e as r,n as t};
