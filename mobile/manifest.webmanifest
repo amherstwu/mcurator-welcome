@@ -1,0 +1,29 @@
+{
+  "name": "MCurator",
+  "short_name": "MCurator",
+  "description": "Scientific asset platform for specimens, SAT passports, and field tools.",
+  "start_url": "./mobile.html?skipSplash=1#/mobile/home",
+  "scope": "./",
+  "id": "./mobile.html",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "theme_color": "#101512",
+  "background_color": "#0a0d12",
+  "categories": ["education", "productivity"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "./brand/mark-app.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "./brand/mark-simple-light.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    }
+  ]
+}

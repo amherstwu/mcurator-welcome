@@ -1,0 +1,1 @@
+function e(){try{let e=sessionStorage.getItem(`mc.demoUser`);if(e){let t=JSON.parse(e);return{signedIn:!0,userId:String(t.id||`demo-user`),isAdmin:t.role===`admin`}}}catch{}try{if(sessionStorage.getItem(`MC_APP_ENTERED_V1`)===`1`)return{signedIn:!0,userId:`session-user`,isAdmin:!1}}catch{}return{signedIn:!1,userId:`anonymous`,isAdmin:!1}}export{e as t};
