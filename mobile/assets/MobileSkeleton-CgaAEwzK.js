@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-CGb78v3z.js";var t=e();function n({lines:e=3}){return(0,t.jsx)(`div`,{className:`mn-skeleton`,"aria-hidden":!0,children:Array.from({length:e},(e,n)=>(0,t.jsx)(`div`,{className:`mn-skeleton__line${n===0?` mn-skeleton__line--short`:``}`,style:{width:n===0?`42%`:n===1?`78%`:`100%`}},n))})}export{n as t};
