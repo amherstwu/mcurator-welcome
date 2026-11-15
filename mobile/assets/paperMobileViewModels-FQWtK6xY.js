@@ -1,0 +1,1 @@
+var e=[{id:`paper-001`,title:`Butterfly range evidence dossier`,status:`writing`,progress:58,nextMilestone:`citations`,updatedLabel:`today`,badges:[`Specimen linked`,`Review`]},{id:`paper-002`,title:`Camellia locality note`,status:`organize`,progress:35,nextMilestone:`photo-evidence`,updatedLabel:`this-week`,badges:[`Field note`]}];export{e as t};
