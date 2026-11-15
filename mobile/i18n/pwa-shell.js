@@ -2,6 +2,9 @@
  * Generated-style PWA shell pack for static HTML (offline, store index, boot splash).
  * Source of truth: sat-marketplace/src/i18n/pwaShellCopy.ts and loadingPageCopy.ts
  * Keep keys and placeholder counts aligned with those Copy modules.
+ *
+ * Must ship under dist-mobile/i18n/ so Pages sync with --delete cannot wipe this path
+ * (incident: mcurator-welcome@70a64bf removed mobile/i18n/pwa-shell.js).
  */
 (function (global) {
   var PACKS = {
