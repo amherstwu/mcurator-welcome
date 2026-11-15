@@ -1,5 +1,5 @@
 const CACHE = 'mcurator-mobile-v1';
-const SHELL = ['/mobile.html', '/manifest.webmanifest', '/favicon.svg'];
+const SHELL = ['/mobile.html', '/manifest.webmanifest', '/brand/mark-app.jpg', '/brand/mark-simple-light.jpg'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(SHELL)));

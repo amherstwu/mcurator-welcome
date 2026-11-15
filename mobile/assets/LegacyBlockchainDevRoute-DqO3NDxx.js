@@ -1,0 +1,1 @@
+import"./rolldown-runtime-aKtaBQYM.js";import{t as e}from"./react-XgMdbukY.js";import{t}from"./jsx-runtime-BXNj1hB7.js";import{i as n}from"./chunk-4N6VE7H7-Db4DBHu6.js";import"./McLocaleContext-CDmuZsRE.js";import"./blockchainReadinessCopy-D3U3_QFz.js";e();var r=t();function i(){return(0,r.jsx)(n,{to:`/`,replace:!0})}export{i as LegacyBlockchainDevRoute};

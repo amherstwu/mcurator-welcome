@@ -1,0 +1,1 @@
+import{r as e}from"./mobileSheetStore-DU1kR8-e.js";function t({title:t,body:n,confirmLabel:r,cancelLabel:i,onConfirm:a}){e(t,{title:t,body:n,actions:[{label:r,icon:`warning`,tone:`danger`,onClick:a},{label:i,icon:`cancel`,tone:`neutral`}]})}export{t};
