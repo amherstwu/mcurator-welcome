@@ -1,5 +1,6 @@
-const CACHE_NAME = 'mcurator-mobile-shell-v3';
-const SHELL_URLS = ['./mobile.html', './brand/mark-app.jpg', './brand/mark-simple-light.jpg', './mobile-offline.html', './manifest.webmanifest'];
+/** Bump on dual-deploy when hashed route chunks change — forces clients off stale v3 caches. */
+const CACHE_NAME = 'mcurator-mobile-shell-v4';
+const SHELL_URLS = ['./mobile.html', './index.html', './brand/mark-app.jpg', './brand/mark-simple-light.jpg', './mobile-offline.html', './manifest.webmanifest'];
 
 function isPrivateRequest(request) {
   if (request.method !== 'GET') return true;
@@ -57,11 +58,28 @@ self.addEventListener('fetch', (event) => {
   if (isPrivateRequest(event.request)) return;
   if (url.origin !== self.location.origin) return;
 
-  const cacheable = SHELL_URLS.some((item) => url.pathname.endsWith(item.replace('./', '/'))) || isHashedAsset(url.pathname);
-  if (!cacheable) return;
+  const isShell = SHELL_URLS.some((item) => url.pathname.endsWith(item.replace('./', '/')));
+  const hashed = isHashedAsset(url.pathname);
+  if (!isShell && !hashed) return;
 
+  // Hashed JS/CSS: network-first so dual-deploy cannot leave clients on a stale chunk map.
+  // Shell images/html: cache-first with network refresh.
   event.respondWith(
-    caches.match(event.request).then((cached) => {
+    (async () => {
+      const cached = await caches.match(event.request);
+      if (hashed) {
+        try {
+          const response = await fetch(event.request);
+          if (response && response.status === 200 && response.type === 'basic') {
+            const copy = response.clone();
+            void caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return response;
+        } catch {
+          if (cached) return cached;
+          throw new Error('network failed');
+        }
+      }
       const network = fetch(event.request)
         .then((response) => {
           if (response && response.status === 200 && response.type === 'basic') {
@@ -72,6 +90,6 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(() => cached);
       return cached ?? network;
-    }),
+    })(),
   );
 });
