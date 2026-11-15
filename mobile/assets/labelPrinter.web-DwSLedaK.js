@@ -1,1 +1,0 @@
-import{r as e}from"./dist-B2FW1Wim.js";var t=class extends e{async getCapabilities(){return{nativePrint:!1,bluetoothPtouch:!1,platform:`web`}}async printPng(e){throw this.unimplemented(`Native print is not available in the browser.`)}async printPtouchRaster(e){throw this.unimplemented(`P-touch Bluetooth print is not available in the browser.`)}};export{t as McLabelPrinterWeb};
