@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-BXNj1hB7.js";import"./MobileAIIcon-XRlH_XTT.js";import"./MobileOfflineBanner-Dtp-NTbg.js";var t=e();function n({children:e,"data-testid":n=`mobile-sticky-action-bar`}){return(0,t.jsx)(`div`,{className:`mn-sticky-action-bar`,"data-testid":n,children:e})}export{n as t};
