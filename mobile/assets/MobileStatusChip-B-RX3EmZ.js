@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BXNj1hB7.js";import{t}from"./MobileAIIcon-XRlH_XTT.js";var n=e();function r({label:e,icon:r,tone:i=`neutral`}){return(0,n.jsxs)(`span`,{className:`mn-status-chip mn-status-${i}`,children:[r?(0,n.jsx)(t,{name:r,size:15}):null,e]})}export{r as t};
