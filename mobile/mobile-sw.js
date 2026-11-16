@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mcurator-mobile-shell-v4';
+const CACHE_NAME = 'mcurator-mobile-shell-v3';
 const SHELL_URLS = ['./mobile.html', './brand/mark-app.jpg', './brand/mark-simple-light.jpg', './mobile-offline.html', './manifest.webmanifest'];
 
 function isPrivateRequest(request) {
