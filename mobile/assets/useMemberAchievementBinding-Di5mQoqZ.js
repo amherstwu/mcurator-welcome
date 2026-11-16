@@ -1,0 +1,1 @@
+import{i as e}from"./rolldown-runtime-aKtaBQYM.js";import{t}from"./react-XgMdbukY.js";import{qo as n}from"./mobileDraftStore-BpUzqfIn.js";var r=e(t(),1);function i(e){let t=e?.id?.trim()||(e?.isDemo?`demo-user`:`guest`);(0,r.useEffect)(()=>{n(t)},[t])}export{i as t};
